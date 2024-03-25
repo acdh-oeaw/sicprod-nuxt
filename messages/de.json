@@ -62,5 +62,12 @@
 			"title": "Seite nicht gefunden"
 		},
 		"title": "Seite nicht gefunden"
+	},
+	"Pages": {
+		"searchviews": {
+			"person": {
+				"title": "Suche - Personen"
+			}
+		}
 	}
 }
