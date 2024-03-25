@@ -66,6 +66,12 @@ export default defineNuxtConfig({
 		prerender: {
 			routes: ["/manifest.webmanifest", "/robots.txt", "/sitemap.xml"],
 		},
+		devProxy: {
+			"/apis": {
+				target: process.env.NUXT_PUBLIC_API_SPEC_URL,
+				changeOrigin: true,
+			},
+		},
 	},
 	plugins: ["@/plugins/query-client.ts"],
 	postcss: {
@@ -77,6 +83,8 @@ export default defineNuxtConfig({
 		NODE_ENV: process.env.NODE_ENV,
 		public: {
 			NUXT_PUBLIC_APP_BASE_URL: process.env.NUXT_PUBLIC_APP_BASE_URL,
+			NUXT_PUBLIC_API_BASE_URL: process.env.NUXT_PUBLIC_API_BASE_URL,
+			NUXT_PUBLIC_API_SPEC_URL: process.env.NUXT_PUBLIC_API_SPEC_URL,
 			NUXT_PUBLIC_BOTS: process.env.NUXT_PUBLIC_BOTS,
 			NUXT_PUBLIC_MATOMO_BASE_URL: process.env.NUXT_PUBLIC_MATOMO_BASE_URL,
 			NUXT_PUBLIC_MATOMO_ID: process.env.NUXT_PUBLIC_MATOMO_ID,
