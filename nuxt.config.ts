@@ -67,6 +67,7 @@ export default defineNuxtConfig({
 			routes: ["/manifest.webmanifest", "/robots.txt", "/sitemap.xml"],
 		},
 	},
+	plugins: ["@/plugins/query-client.ts"],
 	postcss: {
 		plugins: {
 			tailwindcss: {},
