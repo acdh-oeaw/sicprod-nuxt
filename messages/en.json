@@ -68,11 +68,47 @@
 		"searchviews": {
 			"person": {
 				"title": "Search - Persons",
+				"label": "Persons",
 				"first_name": "First name",
 				"name": "Last name",
 				"start_date": "From",
 				"end_date": "To",
 				"gender": "Gender"
+			},
+			"event": {
+				"title": "Search - Events",
+				"label": "Events",
+				"name": "Name",
+				"start_date": "From",
+				"end_date": "To"
+			},
+			"function": {
+				"title": "Search - Functions",
+				"label": "Functions",
+				"name": "Name",
+				"start_date": "From",
+				"end_date": "To"
+			},
+			"place": {
+				"title": "Search - Places",
+				"label": "Places",
+				"name": "Name",
+				"start_date": "From",
+				"end_date": "To"
+			},
+			"institution": {
+				"title": "Search - Institutions",
+				"label": "Institutions",
+				"name": "Name",
+				"start_date": "From",
+				"end_date": "To"
+			},
+			"salaries": {
+				"title": "Search - Salaries",
+				"label": "Salaries",
+				"name": "Name",
+				"start_date": "From",
+				"end_date": "To"
 			}
 		}
 	},

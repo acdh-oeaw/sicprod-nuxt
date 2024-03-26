@@ -62,6 +62,7 @@ const getDetailLink = (id: string) => {
 	<div class="mx-2 flex h-full flex-col gap-4">
 		<Pagination
 			v-if="data && (data.next || data.previous)"
+			class="m-2"
 			:page="pageNum"
 			:limit="Number(data.limit) || limitNum"
 			:all="Number(data.count)"
@@ -93,11 +94,12 @@ const getDetailLink = (id: string) => {
 				</NuxtLink>
 			</template>
 		</table>
-		<Centered v-else>
+		<div v-else>
 			{{ t("ui.loading") }}
-		</Centered>
+		</div>
 		<Pagination
 			v-if="data && (data.next || data.previous)"
+			class="m-2"
 			:page="pageNum"
 			:limit="Number(data.limit) || limitNum"
 			:all="Number(data.count)"

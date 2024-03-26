@@ -68,11 +68,47 @@
 		"searchviews": {
 			"person": {
 				"title": "Suche - Personen",
+				"label": "Personen",
 				"first_name": "Vorname",
 				"name": "Nachname",
 				"start_date": "Von",
 				"end_date": "Bis",
 				"gender": "Geschlecht"
+			},
+			"event": {
+				"title": "Suche - Events",
+				"label": "Events",
+				"name": "Name",
+				"start_date": "Von",
+				"end_date": "Bis"
+			},
+			"function": {
+				"title": "Suche - Funktionen",
+				"label": "Funktionen",
+				"name": "Name",
+				"start_date": "Von",
+				"end_date": "Bis"
+			},
+			"place": {
+				"title": "Suche - Orte",
+				"label": "Orte",
+				"name": "Name",
+				"start_date": "Von",
+				"end_date": "Bis"
+			},
+			"institution": {
+				"title": "Suche - Institutionen",
+				"label": "Institutionen",
+				"name": "Name",
+				"start_date": "Von",
+				"end_date": "Bis"
+			},
+			"salaries": {
+				"title": "Suche - Zahlungen",
+				"label": "Zahlungen",
+				"name": "Name",
+				"start_date": "Von",
+				"end_date": "Bis"
 			}
 		}
 	},
