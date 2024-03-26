@@ -1,5 +1,10 @@
 :root {
 	--font-body: "Inter Variable";
+	--color-background: var(--color-neutral-50);
+}
+
+:root[data-ui-color-scheme="dark"] {
+	--color-background: var(--color-neutral-900);
 }
 
 #__nuxt {
