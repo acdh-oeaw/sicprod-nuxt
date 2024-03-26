@@ -73,7 +73,7 @@ export default defineNuxtConfig({
 			},
 		},
 	},
-	plugins: ["@/plugins/query-client.ts"],
+	plugins: ["@/plugins/query-client.ts", "@/plugins/api.ts"],
 	postcss: {
 		plugins: {
 			tailwindcss: {},
