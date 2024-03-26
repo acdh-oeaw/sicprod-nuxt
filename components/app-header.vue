@@ -6,6 +6,7 @@ const t = useTranslations();
 const links = computed(() => {
 	return {
 		home: { href: { path: "/" }, label: t("AppHeader.links.home") },
+		search: { href: { path: "/search/persons" }, label: t("AppHeader.links.search") },
 	} satisfies Record<string, { href: NavLinkProps["href"]; label: string }>;
 });
 </script>

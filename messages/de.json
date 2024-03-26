@@ -7,7 +7,8 @@
 	},
 	"AppHeader": {
 		"links": {
-			"home": "Startseite"
+			"home": "Startseite",
+			"search": "Datenbank"
 		},
 		"navigation-main": "Hauptnavigation"
 	},
@@ -66,8 +67,28 @@
 	"Pages": {
 		"searchviews": {
 			"person": {
-				"title": "Suche - Personen"
+				"title": "Suche - Personen",
+				"first_name": "Vorname",
+				"name": "Nachname",
+				"start_date": "Von",
+				"end_date": "Bis",
+				"gender": "Geschlecht"
 			}
 		}
+	},
+	"ui": {
+		"showing-results": "Zeige {first} - {last} von {all} Ergebnissen",
+		"no-results": "Keine Ergebnisse.",
+		"next-page": "Nächste Seite",
+		"prev-page": "Vorherige Seite",
+		"first-page": "Es gibt keine Seite vor dieser.",
+		"last-page": "Das ist bereits die letzte Seite.",
+		"show-all": "Zeige alle...",
+		"show-filters": "Filter ausfahren...",
+		"hide-filters": "Filter verstecken...",
+		"search-placeholder": "Suche...",
+		"sort-by": "Sortiere nach dieser Spalte",
+		"loading": "Wird geladen...",
+		"no-data": "Keine Daten"
 	}
 }

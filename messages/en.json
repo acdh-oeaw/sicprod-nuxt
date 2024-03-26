@@ -7,7 +7,8 @@
 	},
 	"AppHeader": {
 		"links": {
-			"home": "Home"
+			"home": "Home",
+			"search": "Database"
 		},
 		"navigation-main": "Main"
 	},
@@ -66,8 +67,28 @@
 	"Pages": {
 		"searchviews": {
 			"person": {
-				"title": "Search - Persons"
+				"title": "Search - Persons",
+				"first_name": "First name",
+				"name": "Last name",
+				"start_date": "From",
+				"end_date": "To",
+				"gender": "Gender"
 			}
 		}
+	},
+	"ui": {
+		"showing-results": "Showing {first} - {last} out of {all}",
+		"no-results": "Nothing Found.",
+		"next-page": "Next Page",
+		"prev-page": "Previous Page",
+		"first-page": "You're already on the first page.",
+		"last-page": "You're already on the last page.",
+		"show-all": "show all...",
+		"show-filters": "Show Filters...",
+		"hide-filters": "Hide Filters...",
+		"search-placeholder": "Search...",
+		"sort-by": "sort by this column",
+		"loading": "loading...",
+		"no-data": "No data"
 	}
 }
