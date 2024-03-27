@@ -22,13 +22,13 @@ const colorSchemes = computed(() => {
 					}}</span></ListboxButton
 				>
 				<ListboxOptions
-					class="absolute -left-2 z-10 mt-3 overflow-auto rounded-md bg-neutral-50 text-sm dark:bg-zinc-900"
+					class="absolute -left-2 z-10 mt-3 overflow-auto rounded-md border bg-neutral-50 text-sm dark:bg-zinc-900"
 				>
 					<ListboxOption
 						v-for="(colorScheme, name) in colorSchemes"
 						:key="name"
 						:value="name"
-						class="group flex cursor-pointer items-center gap-2 p-2 pr-5 ui-active:text-primary-600 ui-active:dark:text-primary-300"
+						class="group flex cursor-pointer items-center gap-2 p-2 pr-9 ui-active:text-primary-600 ui-active:dark:text-primary-300"
 					>
 						<component
 							:is="colorScheme"
@@ -41,7 +41,7 @@ const colorSchemes = computed(() => {
 					<ListboxOption
 						key="system"
 						value="system"
-						class="group flex cursor-pointer items-center gap-2 p-2 pr-5 ui-active:text-primary-600 ui-active:dark:text-primary-300"
+						class="group flex cursor-pointer items-center gap-2 p-2 pr-9 ui-active:text-primary-600 ui-active:dark:text-primary-300"
 					>
 						<Laptop :size="20" class="transition group-hover:scale-110 ui-active:scale-90" />
 						{{ t(`ColorSchemeToggle.color-schemes.system`) }}
