@@ -80,7 +80,8 @@
 				"label": "Events",
 				"name": "Name",
 				"start_date": "From",
-				"end_date": "To"
+				"end_date": "To",
+				"type": "Type"
 			},
 			"function": {
 				"title": "Search - Functions",

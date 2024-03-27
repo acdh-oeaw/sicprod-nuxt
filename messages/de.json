@@ -80,7 +80,8 @@
 				"label": "Events",
 				"name": "Name",
 				"start_date": "Von",
-				"end_date": "Bis"
+				"end_date": "Bis",
+				"type": "Typ"
 			},
 			"function": {
 				"title": "Suche - Funktionen",
