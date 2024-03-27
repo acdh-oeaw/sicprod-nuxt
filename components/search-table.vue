@@ -112,9 +112,9 @@ const input = ref(route.query.q === undefined ? "" : String(route.query.q));
 			:limit="Number(data.limit) || limitNum"
 			:all="Number(data.count)"
 		/>
-		<table v-if="!isFetching && data" class="mx-2 w-full table-fixed">
+		<table v-if="!isFetching && data" class="mx-2 table-fixed">
 			<tr class="mr-6" :class="cols">
-				<th v-for="col in columns" :key="String(col.key)" class="m-2 py-2 text-start font-semibold">
+				<th v-for="col in columns" :key="String(col.key)" class="m-2 p-4 text-start font-semibold">
 					<div v-if="col.label">
 						{{ col.label }}
 					</div>
@@ -130,13 +130,13 @@ const input = ref(route.query.q === undefined ? "" : String(route.query.q));
 					<td
 						v-for="col in columns"
 						:key="col.key + hit.id"
-						class="m-2 overflow-auto py-2 text-start"
+						class="m-2 overflow-auto p-4 text-start"
 					>
 						<span v-if="hit[col.key]">
 							{{ String(hit[col.key])?.replace(/ \<.*?\>/g, "") }}
 						</span>
 					</td>
-					<td class="m-2 overflow-auto py-2 text-start align-middle">
+					<td class="m-2 overflow-auto p-4 text-start align-middle">
 						<ChevronRight class="size-6 shrink-0" />
 					</td>
 				</NuxtLink>
