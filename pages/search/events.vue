@@ -2,7 +2,7 @@
 import SearchTable from "@/components/search-table.vue";
 
 definePageMeta({
-	title: "Pages.searchviews.person.title",
+	title: "Pages.searchviews.event.title",
 });
 const t = useTranslations();
 

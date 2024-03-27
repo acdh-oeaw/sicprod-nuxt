@@ -114,7 +114,7 @@
 		}
 	},
 	"ui": {
-		"showing-results": "Showing {first} - {last} out of {all}",
+		"showing-results": "Showing {first} - {last} out of {all} results",
 		"no-results": "Nothing Found.",
 		"next-page": "Next Page",
 		"prev-page": "Previous Page",
