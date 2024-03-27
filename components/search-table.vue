@@ -136,7 +136,7 @@ const input = ref(route.query.q === undefined ? "" : String(route.query.q));
 							{{ String(hit[col.key])?.replace(/ \<.*?\>/g, "") }}
 						</span>
 					</td>
-					<td class="m-2 overflow-auto py-2 text-start align-bottom">
+					<td class="m-2 overflow-auto py-2 text-start align-middle">
 						<ChevronRight class="size-6 shrink-0" />
 					</td>
 				</NuxtLink>
