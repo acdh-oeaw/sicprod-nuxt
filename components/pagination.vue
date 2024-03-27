@@ -26,13 +26,13 @@ const t = useTranslations();
 			}"
 		>
 			<div
-				class="hover:bg-slate-200 active:bg-slate-300 cursor-pointer rounded-md border p-2 transition"
+				class="cursor-pointer rounded-md border p-2 transition hover:bg-primary-50 active:bg-primary-50 md:border-t dark:hover:bg-primary-950 dark:active:bg-primary-950"
 			>
 				<ChevronUp class="size-5 -rotate-90" />
 				<span class="sr-only">{{ t("ui.prev-page") }}</span>
 			</div>
 		</NuxtLink>
-		<div v-else class="text-gray-400 cursor-not-allowed rounded-md border p-2 transition">
+		<div v-else class="cursor-not-allowed rounded-md border p-2 text-neutral-400 transition">
 			<ChevronUp class="size-5 -rotate-90" />
 			<span class="sr-only">{{ t("ui.first-page") }}</span>
 		</div>
@@ -57,7 +57,7 @@ const t = useTranslations();
 			}"
 		>
 			<div
-				class="hover:bg-slate-200 active:bg-slate-300 cursor-pointer rounded-md border p-2 transition"
+				class="cursor-pointer rounded-md border p-2 transition hover:bg-primary-50 active:bg-primary-50 md:border-t dark:hover:bg-primary-950 dark:active:bg-primary-950"
 			>
 				<ChevronUp class="size-5 rotate-90" />
 				<span class="sr-only">{{ t("ui.next-page") }}</span>
@@ -65,7 +65,7 @@ const t = useTranslations();
 		</NuxtLink>
 
 		<div v-else class="cursor-not-allowed rounded-md border p-2 transition">
-			<ChevronUp class="text-gray-400 size-5 rotate-90" />
+			<ChevronUp class="size-5 rotate-90 text-neutral-400" />
 			<span class="sr-only">{{ t("ui.last-page") }}</span>
 		</div>
 	</div>
