@@ -44,9 +44,11 @@ const config = {
 					950: "#421406",
 				},
 				neutral: colors.neutral,
+				zinc: colors.zinc,
 			},
 		},
 	},
+	plugins: [require("@headlessui/tailwindcss")],
 } satisfies Config;
 
 export default config;
