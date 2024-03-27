@@ -151,6 +151,7 @@ const input = ref(route.query.q === undefined ? "" : String(route.query.q));
 			:page="pageNum"
 			:limit="Number(data.limit) || limitNum"
 			:all="Number(data.count)"
+			:show-label="true"
 		/>
 	</div>
 </template>

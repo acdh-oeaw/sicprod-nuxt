@@ -8,6 +8,7 @@ defineProps<{
 	page: number;
 	limit: number;
 	all: number;
+	showLabel?: boolean;
 }>();
 
 const t = useTranslations();
@@ -36,7 +37,7 @@ const t = useTranslations();
 			<ChevronUp class="size-5 -rotate-90" />
 			<span class="sr-only">{{ t("ui.first-page") }}</span>
 		</div>
-		<div v-if="all != 0">
+		<div v-if="all != 0 && showLabel">
 			{{
 				t("ui.showing-results", {
 					first: (page - 1) * limit + 1,
@@ -45,7 +46,7 @@ const t = useTranslations();
 				})
 			}}
 		</div>
-		<div v-else class="italic">{{ t("ui.no-results") }}</div>
+		<div v-else-if="showLabel" class="italic">{{ t("ui.no-results") }}</div>
 		<NuxtLink
 			v-if="page * limit < Number(all)"
 			data-testid="nextPage"
