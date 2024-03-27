@@ -95,7 +95,8 @@
 				"label": "Places",
 				"name": "Name",
 				"start_date": "From",
-				"end_date": "To"
+				"end_date": "To",
+				"type": "Type"
 			},
 			"institution": {
 				"title": "Search - Institutions",

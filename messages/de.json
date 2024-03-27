@@ -95,7 +95,8 @@
 				"label": "Orte",
 				"name": "Name",
 				"start_date": "Von",
-				"end_date": "Bis"
+				"end_date": "Bis",
+				"type": "Typ"
 			},
 			"institution": {
 				"title": "Suche - Institutionen",
