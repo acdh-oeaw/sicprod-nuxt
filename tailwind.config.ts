@@ -1,5 +1,6 @@
 import { createPreset } from "@acdh-oeaw/tailwindcss-preset";
 import type { Config } from "tailwindcss";
+import colors from "tailwindcss/colors";
 
 const preset = createPreset();
 
@@ -42,6 +43,7 @@ const config = {
 					900: "#742b13",
 					950: "#421406",
 				},
+				neutral: colors.neutral,
 			},
 		},
 	},

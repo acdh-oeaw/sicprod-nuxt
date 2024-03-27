@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useQuery } from "@tanstack/vue-query";
+import { ChevronRight, Loader2, Search, XCircle } from "lucide-vue-next";
 
 import type { PaginatedListResultType } from "@/lib/create-api-client";
 
@@ -56,10 +57,54 @@ const getDetailLink = (id: string) => {
 	const type = route.path.split("/")[3];
 	return `/${locale.value}/detail/${type}/${id}`;
 };
+
+const input = ref(route.query.q === undefined ? "" : String(route.query.q));
 </script>
 
 <template>
-	<div class="mx-2 flex h-full flex-col gap-4">
+	<div class="relative mx-2 flex h-full flex-col gap-4">
+		<div
+			class="mb-4 grid h-12 w-full shrink-0 grid-cols-[auto_1fr_auto] items-center rounded-md border shadow-md xl:my-4"
+		>
+			<label for="searchinput">
+				<Search class="mx-3 size-5 shrink-0 text-neutral-500" />
+				<span class="sr-only">
+					{{ t("ui.search-placeholder") }}
+				</span>
+			</label>
+			<input
+				id="searchinput"
+				v-model="input"
+				type="text"
+				class="h-full bg-transparent"
+				:placeholder="t('ui.search-placeholder')"
+				@input="
+					$router.replace({
+						query: {
+							...route.query,
+							q: input,
+							page: 1,
+						},
+					})
+				"
+			/>
+			<button
+				v-if="input"
+				@click="
+					$router.replace({
+						query: {
+							...route.query,
+							q: '',
+							page: 1,
+						},
+					});
+					input = '';
+				"
+			>
+				<span class="sr-only">Delete Input</span>
+				<XCircle class="mx-2 size-6 text-neutral-500" />
+			</button>
+		</div>
 		<Pagination
 			v-if="data && (data.next || data.previous)"
 			class="m-2"
@@ -91,12 +136,15 @@ const getDetailLink = (id: string) => {
 							{{ String(hit[col.key])?.replace(/ \<.*?\>/g, "") }}
 						</span>
 					</td>
+					<td class="m-2 overflow-auto py-2 text-start align-bottom">
+						<ChevronRight class="size-6 shrink-0" />
+					</td>
 				</NuxtLink>
 			</template>
 		</table>
-		<div v-else>
-			{{ t("ui.loading") }}
-		</div>
+		<Centered v-else>
+			<Loader2 class="size-8 animate-spin" />
+		</Centered>
 		<Pagination
 			v-if="data && (data.next || data.previous)"
 			class="m-2"

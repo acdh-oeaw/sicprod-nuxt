@@ -26,13 +26,13 @@ const t = useTranslations();
 			}"
 		>
 			<div
-				class="rounded hover:bg-slate-200 active:bg-slate-300 cursor-pointer border p-2 transition"
+				class="hover:bg-slate-200 active:bg-slate-300 cursor-pointer rounded-md border p-2 transition"
 			>
 				<ChevronUp class="size-5 -rotate-90" />
 				<span class="sr-only">{{ t("ui.prev-page") }}</span>
 			</div>
 		</NuxtLink>
-		<div v-else class="rounded text-gray-400 cursor-not-allowed border p-2 transition">
+		<div v-else class="text-gray-400 cursor-not-allowed rounded-md border p-2 transition">
 			<ChevronUp class="size-5 -rotate-90" />
 			<span class="sr-only">{{ t("ui.first-page") }}</span>
 		</div>
@@ -57,14 +57,14 @@ const t = useTranslations();
 			}"
 		>
 			<div
-				class="rounded hover:bg-slate-200 active:bg-slate-300 cursor-pointer border p-2 transition"
+				class="hover:bg-slate-200 active:bg-slate-300 cursor-pointer rounded-md border p-2 transition"
 			>
 				<ChevronUp class="size-5 rotate-90" />
 				<span class="sr-only">{{ t("ui.next-page") }}</span>
 			</div>
 		</NuxtLink>
 
-		<div v-else class="rounded cursor-not-allowed border p-2 transition">
+		<div v-else class="cursor-not-allowed rounded-md border p-2 transition">
 			<ChevronUp class="text-gray-400 size-5 rotate-90" />
 			<span class="sr-only">{{ t("ui.last-page") }}</span>
 		</div>
