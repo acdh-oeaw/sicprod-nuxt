@@ -20,10 +20,10 @@ test("should set a canonical url", async ({ page }) => {
 
 test("should set document title on not-found page", async ({ page }) => {
 	await page.goto("/unknown");
-	await expect(page).toHaveTitle("Page not found | ACDH-CH App");
+	await expect(page).toHaveTitle("Page not found | SiCProD");
 
 	await page.goto("/de/unknown");
-	await expect(page).toHaveTitle("Seite nicht gefunden | ACDH-CH App");
+	await expect(page).toHaveTitle("Seite nicht gefunden | SiCProD");
 });
 
 test("should disallow indexing of not-found page", async ({ page }) => {
@@ -58,16 +58,16 @@ test.describe("should set page metadata", () => {
 	test("with en locale", async ({ page }) => {
 		await page.goto("/en");
 
-		await expect(page).toHaveTitle("Home | ACDH-CH App");
+		await expect(page).toHaveTitle("Home | SiCProD");
 
 		const metaDescription = page.locator('meta[name="description"]');
-		await expect(metaDescription).toHaveAttribute("content", "ACDH-CH App");
+		await expect(metaDescription).toHaveAttribute("content", "SiCProD");
 
 		const ogTitle = page.locator('meta[property="og:title"]');
 		await expect(ogTitle).toHaveAttribute("content", "Home");
 
 		const ogDescription = page.locator('meta[property="og:description"]');
-		await expect(ogDescription).toHaveAttribute("content", "ACDH-CH App");
+		await expect(ogDescription).toHaveAttribute("content", "SiCProD");
 
 		const ogUrl = page.locator('meta[property="og:url"]');
 		await expect(ogUrl).toHaveAttribute("content", String(createUrl({ baseUrl, pathname: "/en" })));
@@ -79,16 +79,16 @@ test.describe("should set page metadata", () => {
 	test("with de locale", async ({ page }) => {
 		await page.goto("/de");
 
-		await expect(page).toHaveTitle("Startseite | ACDH-CH App");
+		await expect(page).toHaveTitle("Startseite | SiCProD");
 
 		const metaDescription = page.locator('meta[name="description"]');
-		await expect(metaDescription).toHaveAttribute("content", "ACDH-CH App");
+		await expect(metaDescription).toHaveAttribute("content", "SiCProD");
 
 		const ogTitle = page.locator('meta[property="og:title"]');
 		await expect(ogTitle).toHaveAttribute("content", "Startseite");
 
 		const ogDescription = page.locator('meta[property="og:description"]');
-		await expect(ogDescription).toHaveAttribute("content", "ACDH-CH App");
+		await expect(ogDescription).toHaveAttribute("content", "SiCProD");
 
 		const ogUrl = page.locator('meta[property="og:url"]');
 		await expect(ogUrl).toHaveAttribute("content", String(createUrl({ baseUrl, pathname: "/de" })));
@@ -108,8 +108,8 @@ test.describe("should add json+ld metadata", () => {
 			JSON.stringify({
 				"@context": "https://schema.org",
 				"@type": "WebSite",
-				name: "ACDH-CH App",
-				description: "ACDH-CH App",
+				name: "SiCProD",
+				description: "SiCProD",
 			}),
 		);
 	});
@@ -123,8 +123,8 @@ test.describe("should add json+ld metadata", () => {
 			JSON.stringify({
 				"@context": "https://schema.org",
 				"@type": "WebSite",
-				name: "ACDH-CH App",
-				description: "ACDH-CH App",
+				name: "SiCProD",
+				description: "SiCProD",
 			}),
 		);
 	});

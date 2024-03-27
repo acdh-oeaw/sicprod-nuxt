@@ -22,8 +22,8 @@
 	},
 	"DefaultLayout": {
 		"meta": {
-			"description": "ACDH-CH App",
-			"title": "ACDH-CH App"
+			"description": "SiCProD",
+			"title": "SiCProD"
 		},
 		"skip-to-main-content": "Skip to main content"
 	},
@@ -54,9 +54,9 @@
 		"switch-locale": "Switch to {locale}"
 	},
 	"Manifest": {
-		"name": "ACDH-CH App",
-		"short-name": "ACDH-CH App",
-		"description": "ACDH-CH App"
+		"name": "SiCProD",
+		"short-name": "SiCProD",
+		"description": "SiCProD"
 	},
 	"NotFoundPage": {
 		"meta": {

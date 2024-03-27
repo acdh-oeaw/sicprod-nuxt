@@ -65,9 +65,9 @@ test.describe("app", () => {
 		// TODO: use toMatchSnapshot
 		expect(body.toString()).toEqual(
 			JSON.stringify({
-				name: "ACDH-CH App",
-				short_name: "ACDH-CH App",
-				description: "ACDH-CH App",
+				name: "SiCProD",
+				short_name: "SiCProD",
+				description: "SiCProD",
 				start_url: "/",
 				display: "standalone",
 				background_color: "#fff",

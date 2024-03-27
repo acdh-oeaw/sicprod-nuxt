@@ -54,13 +54,13 @@ test.describe("i18n", () => {
 		await page.goto("/de/imprint");
 		await expect(page).toHaveURL("/de/imprint");
 		await expect(page.getByRole("heading", { name: "Impressum" })).toBeVisible();
-		await expect(page).toHaveTitle("Impressum | ACDH-CH App");
+		await expect(page).toHaveTitle("Impressum | SiCProD");
 
 		await page.getByRole("link", { name: "Zu Englisch wechseln" }).click();
 
 		await expect(page).toHaveURL("/en/imprint");
 		await expect(page.getByRole("heading", { name: "Imprint" })).toBeVisible();
-		await expect(page).toHaveTitle("Imprint | ACDH-CH App");
+		await expect(page).toHaveTitle("Imprint | SiCProD");
 	});
 
 	test("should set `lang` attribute on `html` element", async ({ page }) => {
