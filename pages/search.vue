@@ -34,7 +34,7 @@ const links = computed(() => {
 		},
 		salaries: {
 			href: { path: localePath("/search/salaries") },
-			label: t("Pages.searchviews.salaries.label"),
+			label: t("Pages.searchviews.salary.label"),
 			icon: HandCoins,
 		},
 	} satisfies Record<string, NavLink>;
