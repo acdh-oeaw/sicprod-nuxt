@@ -102,7 +102,8 @@
 				"label": "Institutionen",
 				"name": "Name",
 				"start_date": "Von",
-				"end_date": "Bis"
+				"end_date": "Bis",
+				"type": "Typ"
 			},
 			"salaries": {
 				"title": "Suche - Zahlungen",
