@@ -20,6 +20,9 @@
 			"system": "System"
 		}
 	},
+	"DetailPage": {
+		"basedata": "Basisdaten"
+	},
 	"DefaultLayout": {
 		"meta": {
 			"description": "SiCProD",
@@ -73,7 +76,10 @@
 				"name": "Nachname",
 				"start_date": "Von",
 				"end_date": "Bis",
-				"gender": "Geschlecht"
+				"born": "Geboren",
+				"died": "Gestorben",
+				"gender": "Geschlecht",
+				"alternative_names": "Alternative Namen"
 			},
 			"event": {
 				"title": "Suche - Events",

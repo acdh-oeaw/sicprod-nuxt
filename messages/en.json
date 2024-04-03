@@ -27,6 +27,9 @@
 		},
 		"skip-to-main-content": "Skip to main content"
 	},
+	"DetailPage": {
+		"basedata": "Base data"
+	},
 	"ErrorBoundary": {
 		"error": "Error"
 	},
@@ -71,9 +74,12 @@
 				"label": "Persons",
 				"first_name": "First name",
 				"name": "Last name",
+				"born": "Born",
+				"died": "Died",
 				"start_date": "From",
 				"end_date": "To",
-				"gender": "Gender"
+				"gender": "Gender",
+				"alternative_names": "Alternative names"
 			},
 			"event": {
 				"title": "Search - Events",

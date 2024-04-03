@@ -1,4 +1,5 @@
 import { createPreset } from "@acdh-oeaw/tailwindcss-preset";
+import typography from "@tailwindcss/typography";
 import type { Config } from "tailwindcss";
 import colors from "tailwindcss/colors";
 
@@ -46,9 +47,13 @@ const config = {
 				neutral: colors.neutral,
 				zinc: colors.zinc,
 			},
+			maxWidth: {
+				container: "80rem",
+				content: "64rem",
+			},
 		},
 	},
-	plugins: [require("@headlessui/tailwindcss")],
+	plugins: [require("@headlessui/tailwindcss"), typography],
 } satisfies Config;
 
 export default config;

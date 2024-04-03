@@ -69,6 +69,7 @@
 		"@acdh-oeaw/tsconfig": "^1.0.2",
 		"@nuxt/devtools": "^1.0.8",
 		"@playwright/test": "^1.42.1",
+		"@tailwindcss/typography": "^0.5.12",
 		"@types/node": "^20.11.26",
 		"axe-core": "^4.8.4",
 		"axe-playwright": "^2.0.1",
