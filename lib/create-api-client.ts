@@ -25,6 +25,7 @@ const SimplifiedRelation = z
 	})
 	.passthrough();
 const GroupedRelations = z.object({
+	event: z.array(SimplifiedRelation).optional(),
 	place: z.array(SimplifiedRelation).optional(),
 	person: z.array(SimplifiedRelation).optional(),
 	institution: z.array(SimplifiedRelation).optional(),

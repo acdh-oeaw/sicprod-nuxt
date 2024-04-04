@@ -16,7 +16,23 @@ const endpoint = $api.apis_api_ontology_person_retrieve;
 
 const { data, isLoading } = useQuery({
 	queryKey: [endpoint, id],
-	queryFn: () => endpoint({ params: { id } }),
+	queryFn: () =>
+		endpoint({ params: { id } }).then((data) => {
+			console.log(data);
+			return data;
+		}),
+});
+
+const maxFunctionCount = 3;
+const functionNames = computed(() => {
+	if (isLoading.value) return [];
+	const fNames = [...new Set(data.value?.relations.function?.map((f) => f.to.name))];
+	if (fNames.length <= maxFunctionCount) return fNames;
+	const truncatedFunctionNames = [
+		...fNames.slice(0, maxFunctionCount),
+		t("DetailPage.andOthers", { count: fNames.length - maxFunctionCount }),
+	];
+	return truncatedFunctionNames;
 });
 </script>
 
@@ -28,30 +44,23 @@ const { data, isLoading } = useQuery({
 				{{ data.first_name }} {{ data.name }}
 			</h1>
 			<div
+				v-for="f in functionNames"
+				:key="f"
 				class="mr-3 inline-block w-fit rounded-md bg-primary-200 px-3 py-1.5 text-xs font-semibold uppercase dark:bg-primary-900 dark:text-neutral-100"
 			>
-				{{ data.gender }}
-			</div>
-			<div
-				class="inline-block w-fit rounded-md bg-primary-200 px-3 py-1.5 text-xs font-semibold uppercase dark:bg-primary-900 dark:text-neutral-100"
-			>
-				Sample Chip
+				{{ f }}
 			</div>
 		</template>
 		<template #base>
 			<div class="col-span-2 my-2 border-t"></div>
-
 			<span>{{ t("Pages.searchviews.person.born") }}:</span>
-
 			<span>
-				{{ data.start_date_written || data.start_date }}
+				{{ (data.start_date_written || data.start_date || "").replace(/\<.*?\>/g, "") }}
 			</span>
-
 			<div class="col-span-2 my-2 border-t"></div>
-
 			<span>{{ t("Pages.searchviews.person.died") }}:</span>
 			<span>
-				{{ data.end_date_written || data.end_date }}
+				{{ (data.end_date_written || data.end_date || "").replace(/\<.*?\>/g, "") }}
 			</span>
 			<div class="col-span-2 my-2 border-t"></div>
 			<span>{{ t("Pages.searchviews.person.gender") }}:</span>
@@ -59,6 +68,52 @@ const { data, isLoading } = useQuery({
 			<div class="col-span-2 my-2 border-t"></div>
 			<span>{{ t("Pages.searchviews.person.alternative_names") }}:</span>
 			<span>{{ data.alternative_label }}</span>
+		</template>
+		<template #right>
+			<div v-if="data" class="flex flex-col gap-3">
+				<DetailDisclosure
+					v-if="data?.relations?.event"
+					:title="t('Pages.searchviews.event.label')"
+					:headers="['name', 'to.name', 'start_date_written', 'end_date_written']"
+					:rels="data?.relations?.event"
+					model="event"
+				/>
+				<DetailDisclosure
+					v-if="data?.relations?.function"
+					:title="t('Pages.searchviews.function.label')"
+					:headers="['to.name', 'start_date_written', 'end_date_written']"
+					:rels="data?.relations?.function"
+					model="function"
+				/>
+				<DetailDisclosure
+					v-if="data?.relations?.institution"
+					:title="t('Pages.searchviews.institution.label')"
+					:headers="['name', 'to.name', 'start_date_written', 'end_date_written']"
+					:rels="data?.relations?.institution"
+					model="institution"
+				/>
+				<DetailDisclosure
+					v-if="data?.relations?.person"
+					:title="t('Pages.searchviews.person.label')"
+					:headers="['name', 'to.name', 'start_date_written', 'end_date_written']"
+					:rels="data?.relations?.person"
+					model="person"
+				/>
+				<DetailDisclosure
+					v-if="data?.relations?.place"
+					:title="t('Pages.searchviews.place.label')"
+					:headers="['name', 'to.name', 'start_date_written', 'end_date_written']"
+					:rels="data?.relations?.place"
+					model="place"
+				/>
+				<DetailDisclosure
+					v-if="data?.relations?.salary"
+					:title="t('Pages.searchviews.salary.label')"
+					:headers="['name', 'to.name', 'start_date_written', 'end_date_written']"
+					:rels="data?.relations?.salary"
+					model="salary"
+				/>
+			</div>
 		</template>
 	</DetailPage>
 </template>

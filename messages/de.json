@@ -21,7 +21,8 @@
 		}
 	},
 	"DetailPage": {
-		"basedata": "Basisdaten"
+		"basedata": "Basisdaten",
+		"andOthers": "und {count} weitere"
 	},
 	"DefaultLayout": {
 		"meta": {
@@ -120,6 +121,55 @@
 				"end_date": "Bis",
 				"type": "Typ"
 			}
+		}
+	},
+	"Relations": {
+		"function": {
+			"to": {
+				"name": "Funktionsname"
+			},
+			"start_date_written": "Von",
+			"end_date_written": "Bis"
+		},
+		"place": {
+			"name": "Beziehung",
+			"to": {
+				"name": "Name"
+			},
+			"start_date_written": "Von",
+			"end_date_written": "Bis"
+		},
+		"person": {
+			"name": "Beziehung",
+			"to": {
+				"name": "Name"
+			},
+			"start_date_written": "Von",
+			"end_date_written": "Bis"
+		},
+		"institution": {
+			"name": "Beziehung",
+			"to": {
+				"name": "Name"
+			},
+			"start_date_written": "Von",
+			"end_date_written": "Bis"
+		},
+		"salary": {
+			"name": "Beziehung",
+			"to": {
+				"name": "Name"
+			},
+			"start_date_written": "Von",
+			"end_date_written": "Bis"
+		},
+		"event": {
+			"name": "Beziehung",
+			"to": {
+				"name": "Name"
+			},
+			"start_date_written": "Von",
+			"end_date_written": "Bis"
 		}
 	},
 	"ui": {

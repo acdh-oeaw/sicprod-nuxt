@@ -28,7 +28,8 @@
 		"skip-to-main-content": "Skip to main content"
 	},
 	"DetailPage": {
-		"basedata": "Base data"
+		"basedata": "Base data",
+		"andOthers": "and {count} others"
 	},
 	"ErrorBoundary": {
 		"error": "Error"
@@ -120,6 +121,55 @@
 				"end_date": "To",
 				"type": "Type"
 			}
+		}
+	},
+	"Relations": {
+		"function": {
+			"to": {
+				"name": "Function name"
+			},
+			"start_date_written": "From",
+			"end_date_written": "To"
+		},
+		"place": {
+			"name": "Relation",
+			"to": {
+				"name": "Name"
+			},
+			"start_date_written": "From",
+			"end_date_written": "To"
+		},
+		"event": {
+			"name": "Relation",
+			"to": {
+				"name": "Name"
+			},
+			"start_date_written": "From",
+			"end_date_written": "To"
+		},
+		"institution": {
+			"name": "Relation",
+			"to": {
+				"name": "Name"
+			},
+			"start_date_written": "From",
+			"end_date_written": "To"
+		},
+		"person": {
+			"name": "Relation",
+			"to": {
+				"name": "Name"
+			},
+			"start_date_written": "From",
+			"end_date_written": "To"
+		},
+		"salary": {
+			"name": "Relation",
+			"to": {
+				"name": "Name"
+			},
+			"start_date_written": "From",
+			"end_date_written": "To"
 		}
 	},
 	"ui": {
