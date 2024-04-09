@@ -2,6 +2,7 @@
 import { useQuery } from "@tanstack/vue-query";
 
 import DetailPage from "@/components/detail-page.vue";
+import Timeline from "@/components/timeline.vue";
 
 const t = useTranslations();
 const route = useRoute();
@@ -16,11 +17,7 @@ const endpoint = $api.apis_api_ontology_person_retrieve;
 
 const { data, isLoading } = useQuery({
 	queryKey: [endpoint, id],
-	queryFn: () =>
-		endpoint({ params: { id } }).then((data) => {
-			console.log(data);
-			return data;
-		}),
+	queryFn: () => endpoint({ params: { id } }),
 });
 
 const maxFunctionCount = 3;
@@ -33,6 +30,20 @@ const functionNames = computed(() => {
 		t("DetailPage.andOthers", { count: fNames.length - maxFunctionCount }),
 	];
 	return truncatedFunctionNames;
+});
+const flattenedRelations = computed(() => {
+	if (isLoading.value) return [];
+	const res = Object.keys(data.value?.relations)
+		.map((key) =>
+			data.value?.relations[key].map((entry) => {
+				return { ...entry, class: key };
+			}),
+		)
+		.flat()
+		.filter((r) => r.start_date)
+		.sort((r) => new Date(r.start_date).valueOf());
+	console.log(res);
+	return res;
 });
 </script>
 
@@ -50,6 +61,7 @@ const functionNames = computed(() => {
 			>
 				{{ f }}
 			</div>
+			<Timeline :relations="flattenedRelations"></Timeline>
 		</template>
 		<template #base>
 			<div class="col-span-2 my-2 border-t"></div>

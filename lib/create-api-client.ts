@@ -24,6 +24,7 @@ const SimplifiedRelation = z
 		name: z.string(),
 	})
 	.passthrough();
+export type SimplifiedRelationType = z.infer<typeof SimplifiedRelation>;
 const GroupedRelations = z.object({
 	event: z.array(SimplifiedRelation).optional(),
 	place: z.array(SimplifiedRelation).optional(),

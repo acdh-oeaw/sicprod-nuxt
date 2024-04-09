@@ -46,6 +46,12 @@ const config = {
 				},
 				neutral: colors.neutral,
 				zinc: colors.zinc,
+				function: colors.blue,
+				person: colors.emerald,
+				event: colors.rose,
+				institution: colors.violet,
+				place: colors.orange,
+				salary: colors.amber,
 			},
 			maxWidth: {
 				container: "80rem",
