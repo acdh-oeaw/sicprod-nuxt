@@ -9,24 +9,29 @@ const props = defineProps<{
 const timelineDiv = ref(null);
 let timelineWidth = ref(0);
 
+let d3Transform = ref(d3.zoomIdentity);
+
+// Add resize handler to monitor container width and adapt chart
 function resizeHandler() {
 	timelineWidth.value = timelineDiv.value?.clientWidth;
 }
-
 onMounted(() => {
 	window.addEventListener("resize", resizeHandler);
 	resizeHandler();
+	d3.select("#timelineContainer").call(
+		d3.zoom().on("zoom", (d) => {
+			console.log("Zoom: ", d);
+			d3Transform.value = d.transform;
+		}),
+	);
 });
 onBeforeUnmount(() => {
 	window.removeEventListener("resize", resizeHandler);
 });
 
+// Fiter relations by start_date
 const filteredRelations = computed(() => props.relations.filter((r) => r.start_date));
-const minVal = computed(() => d3.min(filteredRelations.value.map((r) => new Date(r.start_date))));
-const maxVal = computed(() => d3.max(filteredRelations.value.map((r) => new Date(r.start_date))));
-
-const scale = computed(() => d3.scaleTime([minVal.value, maxVal.value], [0, timelineWidth.value]));
-
+// Group relations by date
 const groupedRelations = computed(() => {
 	let groupedDict: Record<string, SimplifiedRelationType> = {};
 	filteredRelations.value.forEach((r) => {
@@ -35,12 +40,29 @@ const groupedRelations = computed(() => {
 	});
 	return Object.values(groupedDict).map((arr) => (arr.length > 1 ? arr : arr[0]));
 });
+
+// Find min and max dates to determine scale
+const minVal = computed(() => d3.min(filteredRelations.value.map((r) => new Date(r.start_date))));
+const maxVal = computed(() => d3.max(filteredRelations.value.map((r) => new Date(r.start_date))));
+const scale = computed(() =>
+	d3.scaleTime([minVal.value, maxVal.value], [0, timelineWidth.value * d3Transform.value.k]),
+);
 </script>
 
 <template>
-	<div class="relative my-16">
+	<div id="timelineContainer" class="relative my-8 max-w-full overflow-x-clip py-8">
 		<div ref="timelineDiv" class="h-0.5 w-full bg-neutral-300"></div>
-		<TimelineEntry v-for="(r, idx) in groupedRelations" :key="idx" :item="r" :scale="scale">
-		</TimelineEntry>
+		<div
+			:style="{
+				transform: `translateX(${d3Transform.x}px)`,
+			}"
+		>
+			<TimelineEntry
+				v-for="(r, idx) in groupedRelations"
+				:key="idx"
+				:item="r"
+				:scale="scale"
+			></TimelineEntry>
+		</div>
 	</div>
 </template>
