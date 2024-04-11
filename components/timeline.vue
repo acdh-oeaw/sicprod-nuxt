@@ -27,7 +27,9 @@ const groupedRelations = computed(() => {
 const minVal = computed(() => d3.min(filteredRelations.value.map((r) => new Date(r.start_date))));
 const maxVal = computed(() => d3.max(filteredRelations.value.map((r) => new Date(r.start_date))));
 const scale = computed(() =>
-	d3Transform.value.rescaleX(d3.scaleTime([minVal.value, maxVal.value], [0, timelineWidth.value])),
+	d3Transform.value.rescaleX(
+		d3.scaleTime([minVal.value, maxVal.value], [0, timelineWidth.value]).nice(),
+	),
 );
 const createAxis = () => d3.select("#AxisSvg").call(d3.axisBottom(scale.value).tickSizeInner(16));
 
@@ -54,6 +56,7 @@ onBeforeUnmount(() => {
 <template>
 	<div id="timelineContainer" class="relative my-8 max-w-full overflow-x-clip py-8">
 		<div ref="timelineDiv" class="h-0.5 w-full bg-neutral-300"></div>
+		<svg id="AxisSvg" class="absolute w-full"></svg>
 		<div>
 			<TimelineEntry
 				v-for="(r, idx) in groupedRelations"
@@ -62,7 +65,6 @@ onBeforeUnmount(() => {
 				:scale="scale"
 			></TimelineEntry>
 		</div>
-		<svg id="AxisSvg" class="w-full"></svg>
 	</div>
 </template>
 
