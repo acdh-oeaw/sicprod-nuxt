@@ -11,25 +11,6 @@ let timelineWidth = ref(0);
 
 let d3Transform = ref(d3.zoomIdentity);
 
-// Add resize handler to monitor container width and adapt chart
-function resizeHandler() {
-	timelineWidth.value = timelineDiv.value?.clientWidth;
-}
-onMounted(() => {
-	window.addEventListener("resize", resizeHandler);
-	resizeHandler();
-	d3.select("#timelineContainer").call(
-		d3.zoom().on("zoom", (d) => {
-			d3Transform.value = d.transform;
-			d3.select("#AxisSvg").call(d3.axisBottom(scale.value));
-		}),
-	);
-	d3.select("#AxisSvg").call(d3.axisBottom(scale.value));
-});
-onBeforeUnmount(() => {
-	window.removeEventListener("resize", resizeHandler);
-});
-
 // Fiter relations by start_date
 const filteredRelations = computed(() => props.relations.filter((r) => r.start_date));
 // Group relations by date
@@ -48,6 +29,26 @@ const maxVal = computed(() => d3.max(filteredRelations.value.map((r) => new Date
 const scale = computed(() =>
 	d3Transform.value.rescaleX(d3.scaleTime([minVal.value, maxVal.value], [0, timelineWidth.value])),
 );
+const createAxis = () => d3.select("#AxisSvg").call(d3.axisBottom(scale.value).tickSizeInner(16));
+
+// Add resize handler to monitor container width and adapt chart
+function resizeHandler() {
+	timelineWidth.value = timelineDiv.value?.clientWidth;
+}
+onMounted(() => {
+	window.addEventListener("resize", resizeHandler);
+	resizeHandler();
+	d3.select("#timelineContainer").call(
+		d3.zoom().on("zoom", (d) => {
+			d3Transform.value = d.transform;
+			createAxis();
+		}),
+	);
+	createAxis();
+});
+onBeforeUnmount(() => {
+	window.removeEventListener("resize", resizeHandler);
+});
 </script>
 
 <template>
@@ -68,5 +69,13 @@ const scale = computed(() =>
 <style>
 .domain {
 	color: transparent;
+}
+
+.tick {
+	font-size: 14px;
+}
+
+.tick line {
+	color: hsl(var(--color-neutral-300));
 }
 </style>
