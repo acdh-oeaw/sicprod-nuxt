@@ -13,6 +13,7 @@ const config = {
 		"./content/**/*.md",
 		"./layouts/**/*.@(css|ts|vue)",
 		"./pages/**/*.@(css|ts|vue)",
+		"./lib/colors.ts",
 	],
 	presets: [preset],
 	theme: {
@@ -46,11 +47,12 @@ const config = {
 				},
 				neutral: colors.neutral,
 				zinc: colors.zinc,
-				function: colors.blue,
+
+				function: colors.sky,
 				person: colors.emerald,
 				event: colors.rose,
-				institution: colors.violet,
-				place: colors.orange,
+				institution: colors.indigo,
+				place: colors.purple,
 				salary: colors.amber,
 			},
 			maxWidth: {

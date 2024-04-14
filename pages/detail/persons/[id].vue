@@ -61,7 +61,6 @@ const flattenedRelations = computed(() => {
 			>
 				{{ f }}
 			</div>
-			<Timeline :relations="flattenedRelations"></Timeline>
 		</template>
 		<template #base>
 			<div class="col-span-2 my-2 border-t"></div>
@@ -126,6 +125,9 @@ const flattenedRelations = computed(() => {
 					model="salary"
 				/>
 			</div>
+		</template>
+		<template #bottom>
+			<Timeline :relations="flattenedRelations"></Timeline>
 		</template>
 	</DetailPage>
 </template>

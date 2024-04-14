@@ -1,15 +1,7 @@
 <script setup lang="ts">
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
 
-const bgColors = {
-	event: "bg-event-500",
-	function: "bg-function-400",
-	person: "bg-person-500",
-	place: "bg-place-500",
-	institution: "bg-institution-500",
-	salary: "bg-salary-500",
-	mix: "bg-neutral-400",
-};
+import { bgColors } from "@/lib/colors";
 
 interface TimelineObject {
 	start_date: string;
@@ -45,10 +37,14 @@ const endDate = computed(() => {
 	else return props.item.end_date ? new Date(props.item.end_date).valueOf() : null;
 });
 const dimensions = computed(() => {
-	if (endDate.value && endDate.value !== startDate.value)
+	if (
+		endDate.value &&
+		endDate.value !== startDate.value &&
+		props.scale(endDate.value) - props.scale(startDate.value) > 12
+	)
 		return {
 			width: `${props.scale(endDate.value) - props.scale(startDate.value)}px`,
-			height: "5px",
+			height: "7px",
 			position: "relative",
 		};
 	else
@@ -96,21 +92,21 @@ const itemClass = computed(() => {
 					class="max-h-52 min-w-48 overflow-auto rounded-lg bg-neutral-50 p-4 shadow-lg ring-1 ring-black/5"
 					@wheel.stop
 				>
-					<div class="text-right text-sm">
-						<span v-if="endDate && startDate != endDate">
-							{{
-								(Array.isArray(item) ? item[0].end_date_written : item.end_date_written).replace(
-									/\<.*?\>/g,
-									"",
-								)
-							}}
-							- </span
-						><span>
+					<div class="text-right text-sm text-neutral-500">
+						<span>
 							{{
 								(Array.isArray(item)
 									? item[0].start_date_written
 									: item.start_date_written
 								).replace(/\<.*?\>/g, "")
+							}}</span
+						><span v-if="endDate && startDate != endDate">
+							-
+							{{
+								(Array.isArray(item) ? item[0].end_date_written : item.end_date_written).replace(
+									/\<.*?\>/g,
+									"",
+								)
 							}}</span
 						>
 					</div>

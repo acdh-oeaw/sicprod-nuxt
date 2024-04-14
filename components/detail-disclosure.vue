@@ -3,6 +3,8 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
 import { get } from "lodash";
 import { ChevronDown } from "lucide-vue-next";
 
+import { borderColors, icons } from "@/lib/colors";
+
 defineProps<{
 	rels: Array<object>;
 	gridClass?: string;
@@ -10,7 +12,7 @@ defineProps<{
 	defaultOpen?: boolean;
 	headers?: Array<string>;
 	customSlot?: boolean;
-	model?: string;
+	model: "event" | "function" | "institution" | "person" | "place" | "salary";
 }>();
 
 const t = useTranslations();
@@ -21,10 +23,13 @@ const localePath = useLocalePath();
 	<Disclosure :default-open="defaultOpen && (rels.length != 0 || customSlot)" as="div" class="">
 		<DisclosureButton
 			as="button"
-			class="rounded text-gray-500 flex w-full items-center justify-between border-b-4 border-b-primary-300 p-2 text-xl transition ui-open:rounded-b-none"
+			class="rounded flex w-full items-center justify-between border-b-4 p-2 text-xl transition ui-open:rounded-b-none"
 			:disabled="rels.length === 0 && !customSlot"
+			:class="borderColors[model]"
 		>
-			<span>{{ title }}</span>
+			<span class="flex gap-2 align-baseline"
+				><component :is="icons[model]" class="inline" /> {{ title }}</span
+			>
 			<ChevronDown class="size-5 transition ui-open:-rotate-180" />
 		</DisclosureButton>
 		<DisclosurePanel

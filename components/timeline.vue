@@ -56,7 +56,7 @@ onBeforeUnmount(() => {
 <template>
 	<div id="timelineContainer" class="relative my-8 max-w-full overflow-x-clip py-8">
 		<div ref="timelineDiv" class="h-0.5 w-full bg-neutral-300"></div>
-		<svg id="AxisSvg" class="absolute w-full"></svg>
+		<svg id="AxisSvg" class="absolute -z-10 w-full"></svg>
 		<div>
 			<TimelineEntry
 				v-for="(r, idx) in groupedRelations"
