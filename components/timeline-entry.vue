@@ -68,7 +68,7 @@ const itemClass = computed(() => {
 <template>
 	<Popover class="relative">
 		<PopoverButton
-			class="absolute -translate-x-1/2 -translate-y-1/2 rounded-full text-sm ring-1 ring-white/20"
+			class="absolute -translate-x-1/2 -translate-y-1/2 rounded-full text-sm ring-1 ring-white/20 dark:ring-neutral-900/20"
 			:style="{
 				left: `${scale(startDate)}px`,
 				top: '-1px',
@@ -91,7 +91,7 @@ const itemClass = computed(() => {
 				:style="{ left: `${scale(startDate)}px` }"
 			>
 				<div
-					class="max-h-52 min-w-48 overflow-auto rounded-lg bg-neutral-50 p-4 shadow-lg ring-1 ring-black/5"
+					class="max-h-52 min-w-48 overflow-auto rounded-lg bg-neutral-50 p-4 shadow-lg ring-1 ring-black/5 dark:bg-neutral-800"
 					@wheel.stop
 				>
 					<div class="text-right text-sm text-neutral-500">
@@ -117,26 +117,30 @@ const itemClass = computed(() => {
 							v-for="(i, idx) in item"
 							:key="idx"
 							:to="localePath(`/detail/${i.class}s/${i.to.id}`)"
-							class="flow-root rounded-md p-2 transition duration-150 ease-in-out hover:bg-neutral-100 focus:outline-none focus-visible:ring"
+							class="flow-root rounded-md p-2 transition duration-150 ease-in-out hover:bg-neutral-100 focus:outline-none focus-visible:ring dark:hover:bg-neutral-900"
 						>
 							<span class="block text-sm text-neutral-500">
 								{{ i.name }}
 							</span>
 							<span class="flex items-center">
-								<span class="text-sm font-medium text-neutral-900"> {{ i.to.name }} </span>
+								<span class="text-sm font-medium text-neutral-900 dark:text-neutral-100">
+									{{ i.to.name }}
+								</span>
 							</span>
 						</NuxtLink>
 					</div>
 					<div v-else>
 						<NuxtLink
 							:to="localePath(`/detail/${item.class}s/${item.to.id}`)"
-							class="flow-root rounded-md p-2 transition duration-150 ease-in-out hover:bg-neutral-100 focus:outline-none focus-visible:ring"
+							class="flow-root rounded-md p-2 transition duration-150 ease-in-out hover:bg-neutral-100 focus:outline-none focus-visible:ring dark:hover:bg-neutral-900"
 						>
 							<span class="block text-sm text-neutral-500">
 								{{ item.name }}
 							</span>
 							<span class="flex items-center">
-								<span class="text-sm font-medium text-neutral-900"> {{ item.to.name }} </span>
+								<span class="text-sm font-medium text-neutral-900 dark:text-neutral-100">
+									{{ item.to.name }}
+								</span>
 							</span>
 						</NuxtLink>
 					</div>
