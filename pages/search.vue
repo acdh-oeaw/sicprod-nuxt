@@ -1,8 +1,6 @@
 <script lang="ts" setup>
 import { Calendar, Contact, HandCoins, MapPin, School2, User } from "lucide-vue-next";
 
-import type { NavLink } from "@/types/misc.d.ts";
-
 const t = useTranslations();
 const localePath = useLocalePath();
 const links = computed(() => {
@@ -37,11 +35,11 @@ const links = computed(() => {
 			label: t("Pages.searchviews.salary.label"),
 			icon: HandCoins,
 		},
-	} satisfies Record<string, NavLink>;
+	};
 });
 
 definePageMeta({
-	title: "Pages.search.title",
+	title: "Pages.searchviews.title",
 });
 </script>
 

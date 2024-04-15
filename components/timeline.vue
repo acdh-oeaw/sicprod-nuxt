@@ -1,14 +1,10 @@
 <script setup lang="ts">
 import * as d3 from "d3";
 
-import type { SimplifiedRelationType } from "@/lib/create-api-client";
-
-interface SimplifiedRelationWithStartDate extends SimplifiedRelationType {
-	start_date: string;
-}
+import type { TimelineObject } from "@/types/timeline";
 
 const props = defineProps<{
-	relations: Array<SimplifiedRelationType>;
+	relations: Array<TimelineObject>;
 }>();
 const timelineDiv = ref();
 let timelineWidth = ref(0);
@@ -16,17 +12,27 @@ let timelineWidth = ref(0);
 let d3Transform = ref(d3.zoomIdentity);
 
 // Fiter relations by start_date
-const filteredRelations = computed<Array<SimplifiedRelationWithStartDate>>(() =>
-	props.relations.filter((r): r is SimplifiedRelationWithStartDate => Boolean(r.start_date)),
+const filteredRelations = computed<Array<TimelineObject>>(() =>
+	props.relations.filter((r): r is TimelineObject => Boolean(r.start_date)),
 );
+//type guard to filter grouped relations
+function isValidTimelineObject(
+	entry: Array<TimelineObject> | TimelineObject | undefined,
+): entry is TimelineObject | [TimelineObject, ...Array<TimelineObject>] {
+	return entry !== undefined && Array.isArray(entry) ? entry.length > 0 : true;
+}
 // Group relations by date
 const groupedRelations = computed(() => {
-	let groupedDict: Record<string, Array<SimplifiedRelationWithStartDate>> = {};
+	let groupedDict: Record<string, Array<TimelineObject>> = {};
 	filteredRelations.value.forEach((r) => {
 		if (!(r.start_date in groupedDict)) groupedDict[r.start_date] = [];
 		groupedDict[r.start_date]?.push(r);
 	});
-	return Object.values(groupedDict).map((arr) => (arr.length > 1 ? arr : arr[0]));
+	return Object.values(groupedDict)
+		.map((arr) => (arr.length > 1 ? arr : arr[0]))
+		.filter((arr): arr is TimelineObject | [TimelineObject, ...Array<TimelineObject>] =>
+			isValidTimelineObject(arr),
+		);
 });
 
 // Find min and max dates to determine scale

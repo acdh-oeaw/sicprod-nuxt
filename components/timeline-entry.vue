@@ -2,19 +2,7 @@
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
 
 import { bgColors } from "@/lib/colors";
-
-interface TimelineObject {
-	start_date: string;
-	start_date_written: string;
-	end_date: string;
-	end_date_written: string;
-	class: "event" | "function" | "institution" | "person" | "place" | "salary";
-	name: string;
-	to: {
-		name: string;
-		id: number;
-	};
-}
+import type { TimelineObject } from "@/types/timeline";
 
 const localePath = useLocalePath();
 

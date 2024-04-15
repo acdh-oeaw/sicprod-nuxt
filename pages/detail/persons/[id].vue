@@ -3,6 +3,8 @@ import { useQuery } from "@tanstack/vue-query";
 
 import DetailPage from "@/components/detail-page.vue";
 import Timeline from "@/components/timeline.vue";
+import type { SimplifiedRelationType } from "@/lib/create-api-client";
+import type { TimelineObject } from "@/types/timeline";
 
 const t = useTranslations();
 const route = useRoute();
@@ -33,16 +35,15 @@ const functionNames = computed(() => {
 });
 const flattenedRelations = computed(() => {
 	if (isLoading.value) return [];
-	const res = Object.keys(data.value?.relations)
-		.map((key) =>
-			data.value?.relations[key].map((entry) => {
+	const res = Object.entries(data.value?.relations as Record<string, Array<SimplifiedRelationType>>)
+		.map(([key, val]) =>
+			val.map((entry) => {
 				return { ...entry, class: key };
 			}),
 		)
 		.flat()
-		.filter((r) => r.start_date)
+		.filter((r): r is TimelineObject => Boolean(r.start_date))
 		.sort((r) => new Date(r.start_date).valueOf());
-	console.log(res);
 	return res;
 });
 </script>
@@ -52,7 +53,7 @@ const flattenedRelations = computed(() => {
 	<DetailPage v-else model="Person" :details-loading="isLoading">
 		<template #head>
 			<h1 class="text-2xl font-bold text-primary-700 xl:my-3 xl:text-4xl dark:text-inherit">
-				{{ data.first_name }} {{ data.name }}
+				{{ data?.first_name }} {{ data?.name }}
 			</h1>
 			<div
 				v-for="f in functionNames"
@@ -66,19 +67,19 @@ const flattenedRelations = computed(() => {
 			<div class="col-span-2 my-2 border-t"></div>
 			<span>{{ t("Pages.searchviews.person.born") }}:</span>
 			<span>
-				{{ (data.start_date_written || data.start_date || "").replace(/\<.*?\>/g, "") }}
+				{{ String(data?.start_date_written || data?.start_date || "").replace(/\<.*?\>/g, "") }}
 			</span>
 			<div class="col-span-2 my-2 border-t"></div>
 			<span>{{ t("Pages.searchviews.person.died") }}:</span>
 			<span>
-				{{ (data.end_date_written || data.end_date || "").replace(/\<.*?\>/g, "") }}
+				{{ String(data?.end_date_written || data?.end_date || "").replace(/\<.*?\>/g, "") }}
 			</span>
 			<div class="col-span-2 my-2 border-t"></div>
 			<span>{{ t("Pages.searchviews.person.gender") }}:</span>
-			<span>{{ data.gender }}</span>
+			<span>{{ data?.gender }}</span>
 			<div class="col-span-2 my-2 border-t"></div>
 			<span>{{ t("Pages.searchviews.person.alternative_names") }}:</span>
-			<span>{{ data.alternative_label }}</span>
+			<span>{{ data?.alternative_label }}</span>
 		</template>
 		<template #right>
 			<div v-if="data" class="flex flex-col gap-3">
