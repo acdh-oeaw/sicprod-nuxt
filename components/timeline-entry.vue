@@ -15,6 +15,8 @@ interface TimelineObject {
 	};
 }
 
+const localePath = useLocalePath();
+
 const props = defineProps<{
 	item: Array<TimelineObject> | TimelineObject;
 	scale: (date: Date | number) => number;
@@ -111,10 +113,11 @@ const itemClass = computed(() => {
 						>
 					</div>
 					<div v-if="Array.isArray(item)">
-						<div
+						<NuxtLink
 							v-for="(i, idx) in item"
 							:key="idx"
-							class="flow-root rounded-md p-2 transition duration-150 ease-in-out focus:outline-none focus-visible:ring"
+							:to="localePath(`/detail/${i.class}s/${i.to.id}`)"
+							class="flow-root rounded-md p-2 transition duration-150 ease-in-out hover:bg-neutral-100 focus:outline-none focus-visible:ring"
 						>
 							<span class="block text-sm text-neutral-500">
 								{{ i.name }}
@@ -122,11 +125,12 @@ const itemClass = computed(() => {
 							<span class="flex items-center">
 								<span class="text-sm font-medium text-neutral-900"> {{ i.to.name }} </span>
 							</span>
-						</div>
+						</NuxtLink>
 					</div>
 					<div v-else>
-						<div
-							class="flow-root rounded-md p-2 transition duration-150 ease-in-out focus:outline-none focus-visible:ring"
+						<NuxtLink
+							:to="localePath(`/detail/${item.class}s/${item.to.id}`)"
+							class="flow-root rounded-md p-2 transition duration-150 ease-in-out hover:bg-neutral-100 focus:outline-none focus-visible:ring"
 						>
 							<span class="block text-sm text-neutral-500">
 								{{ item.name }}
@@ -134,7 +138,7 @@ const itemClass = computed(() => {
 							<span class="flex items-center">
 								<span class="text-sm font-medium text-neutral-900"> {{ item.to.name }} </span>
 							</span>
-						</div>
+						</NuxtLink>
 					</div>
 				</div>
 			</PopoverPanel>

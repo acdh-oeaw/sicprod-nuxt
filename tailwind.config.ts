@@ -13,7 +13,7 @@ const config = {
 		"./content/**/*.md",
 		"./layouts/**/*.@(css|ts|vue)",
 		"./pages/**/*.@(css|ts|vue)",
-		"./lib/colors.ts",
+		"./lib/**/*.@(css|ts|vue)",
 	],
 	presets: [preset],
 	theme: {
