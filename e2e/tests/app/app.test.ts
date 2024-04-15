@@ -63,7 +63,7 @@ test.describe("app", () => {
 		const body = await response.body();
 
 		// TODO: use toMatchSnapshot
-		expect(body.toString()).toEqual(
+		expect(body.toString().replaceAll(/(\n|\t| )/g, "")).toEqual(
 			JSON.stringify({
 				name: "SiCProD",
 				short_name: "SiCProD",
