@@ -73,6 +73,7 @@
 		"@playwright/test": "^1.42.1",
 		"@tailwindcss/typography": "^0.5.12",
 		"@types/d3": "^7.4.3",
+		"@types/lodash": "^4.17.0",
 		"@types/node": "^20.11.26",
 		"axe-core": "^4.8.4",
 		"axe-playwright": "^2.0.1",

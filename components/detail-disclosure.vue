@@ -4,13 +4,14 @@ import { get } from "lodash";
 import { ChevronDown } from "lucide-vue-next";
 
 import { borderColors, icons } from "@/lib/colors";
+import type { SimplifiedRelationType } from "@/lib/create-api-client";
 
 defineProps<{
-	rels: Array<object>;
+	rels: Array<SimplifiedRelationType>;
 	gridClass?: string;
 	title: string;
 	defaultOpen?: boolean;
-	headers?: Array<string>;
+	headers: Array<string>;
 	customSlot?: boolean;
 	model: "event" | "function" | "institution" | "person" | "place" | "salary";
 }>();
@@ -52,7 +53,7 @@ const localePath = useLocalePath();
 						class="table-row border-t hover:bg-primary-50 active:bg-primary-50 md:border-t dark:hover:bg-primary-950 dark:active:bg-primary-950"
 					>
 						<td v-for="header in headers" :key="hit + header" class="p-2 text-start">
-							{{ get(hit, header).replace(/\<.*?\>/g, "") }}
+							{{ String(get(hit, header, "")).replace(/\<.*?\>/g, "") }}
 						</td>
 					</NuxtLink>
 				</table>

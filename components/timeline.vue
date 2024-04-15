@@ -3,22 +3,28 @@ import * as d3 from "d3";
 
 import type { SimplifiedRelationType } from "@/lib/create-api-client";
 
+interface SimplifiedRelationWithStartDate extends SimplifiedRelationType {
+	start_date: string;
+}
+
 const props = defineProps<{
 	relations: Array<SimplifiedRelationType>;
 }>();
-const timelineDiv = ref(null);
+const timelineDiv = ref();
 let timelineWidth = ref(0);
 
 let d3Transform = ref(d3.zoomIdentity);
 
 // Fiter relations by start_date
-const filteredRelations = computed(() => props.relations.filter((r) => r.start_date));
+const filteredRelations = computed<Array<SimplifiedRelationWithStartDate>>(() =>
+	props.relations.filter((r): r is SimplifiedRelationWithStartDate => Boolean(r.start_date)),
+);
 // Group relations by date
 const groupedRelations = computed(() => {
-	let groupedDict: Record<string, SimplifiedRelationType> = {};
+	let groupedDict: Record<string, Array<SimplifiedRelationWithStartDate>> = {};
 	filteredRelations.value.forEach((r) => {
 		if (!(r.start_date in groupedDict)) groupedDict[r.start_date] = [];
-		groupedDict[r.start_date].push(r);
+		groupedDict[r.start_date]?.push(r);
 	});
 	return Object.values(groupedDict).map((arr) => (arr.length > 1 ? arr : arr[0]));
 });
@@ -28,9 +34,13 @@ const minVal = computed(() => d3.min(filteredRelations.value.map((r) => new Date
 const maxVal = computed(() => d3.max(filteredRelations.value.map((r) => new Date(r.start_date))));
 const scale = computed(() =>
 	d3Transform.value.rescaleX(
-		d3.scaleTime([minVal.value, maxVal.value], [0, timelineWidth.value]).nice(),
+		d3
+			.scaleTime([minVal.value ?? new Date(), maxVal.value ?? new Date()], [0, timelineWidth.value])
+			.nice(),
 	),
 );
+
+// @ts-expect-error d3 context vs selection error
 const createAxis = () => d3.select("#AxisSvg").call(d3.axisBottom(scale.value).tickSizeInner(16));
 
 // Add resize handler to monitor container width and adapt chart
@@ -41,6 +51,7 @@ onMounted(() => {
 	window.addEventListener("resize", resizeHandler);
 	resizeHandler();
 	d3.select("#timelineContainer").call(
+		// @ts-expect-error d3 selection is incompatible with selection
 		d3.zoom().on("zoom", (d) => {
 			d3Transform.value = d.transform;
 			createAxis();

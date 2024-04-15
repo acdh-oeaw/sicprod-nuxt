@@ -17,6 +17,8 @@ const SimplifiedRelation = z
 	.object({
 		start_date_written: z.string().max(255).nullish(),
 		end_date_written: z.string().max(255).nullish(),
+		start_date: z.string().max(255).nullish(),
+		end_date: z.string().max(255).nullish(),
 		to: z.object({
 			id: z.number().int().optional(),
 			name: z.string(),

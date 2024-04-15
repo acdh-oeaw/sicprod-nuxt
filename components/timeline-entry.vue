@@ -12,13 +12,14 @@ interface TimelineObject {
 	name: string;
 	to: {
 		name: string;
+		id: number;
 	};
 }
 
 const localePath = useLocalePath();
 
 const props = defineProps<{
-	item: Array<TimelineObject> | TimelineObject;
+	item: TimelineObject | [TimelineObject, ...Array<TimelineObject>]; //ensure non-empty array
 	scale: (date: Date | number) => number;
 }>();
 
@@ -58,9 +59,7 @@ const dimensions = computed(() => {
 });
 const itemClass = computed(() => {
 	if (Array.isArray(props.item)) {
-		return new Set(props.item.map((i) => i.class)).size === 1
-			? props.item[0]?.class ?? "mix"
-			: "mix";
+		return new Set(props.item.map((i) => i.class)).size === 1 ? props.item[0].class : "mix";
 	} else return props.item.class;
 });
 </script>
