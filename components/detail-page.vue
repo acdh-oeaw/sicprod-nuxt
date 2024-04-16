@@ -17,10 +17,10 @@ defineProps<{
 			<div>
 				<slot name="head" />
 			</div>
-			<div class="mx-auto mt-8 grid max-w-container gap-16 md:grid-cols-[2fr_3fr]">
+			<div class="mx-auto mt-16 grid max-w-container gap-16 md:grid-cols-[2fr_3fr]">
 				<div class="flex flex-col gap-8">
 					<div>
-						<h2 class="text-gray-500 text-2xl">{{ t("DetailPage.basedata") }}</h2>
+						<h2 class="text-2xl">{{ t("DetailPage.basedata") }}</h2>
 						<div class="grid grid-cols-2">
 							<slot name="base" />
 						</div>

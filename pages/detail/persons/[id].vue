@@ -58,7 +58,7 @@ const flattenedRelations = computed(() => {
 			<div
 				v-for="f in functionNames"
 				:key="f"
-				class="mr-3 inline-block w-fit rounded-md bg-primary-200 px-3 py-1.5 text-xs font-semibold uppercase dark:bg-primary-900 dark:text-neutral-100"
+				class="mr-3 inline-block w-fit rounded-md bg-function-200 px-3 py-1.5 text-xs font-semibold uppercase dark:bg-function-900 dark:text-neutral-100"
 			>
 				{{ f }}
 			</div>
