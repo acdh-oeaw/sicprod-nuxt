@@ -12,8 +12,8 @@ const links = computed(() => {
 </script>
 
 <template>
-	<header class="border-b">
-		<div class="container flex items-center justify-between gap-4 py-8">
+	<header class="border-b bg-primary-50 dark:bg-neutral-900">
+		<div class="flex items-center justify-between gap-4 p-8">
 			<nav :aria-label="t('AppHeader.navigation-main')">
 				<ul class="flex items-center gap-4" role="list">
 					<li v-for="(link, key) of links" :key="key">

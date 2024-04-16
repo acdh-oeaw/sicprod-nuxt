@@ -64,7 +64,7 @@ const input = ref(route.query.q === undefined ? "" : String(route.query.q));
 <template>
 	<div class="relative mx-2 flex h-full flex-col gap-4">
 		<div
-			class="mb-4 grid h-12 w-full shrink-0 grid-cols-[auto_1fr_auto] items-center rounded-md border shadow-md xl:my-4"
+			class="mb-4 grid h-12 w-full shrink-0 grid-cols-[auto_1fr_auto] items-center rounded-md border shadow-md md:my-4"
 		>
 			<label for="searchinput">
 				<Search class="mx-3 size-5 shrink-0 text-neutral-500" />

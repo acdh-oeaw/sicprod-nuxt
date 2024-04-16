@@ -45,14 +45,14 @@ definePageMeta({
 
 <template>
 	<main>
-		<div class="grid h-full grid-rows-[auto_1fr] gap-4 md:grid-cols-[2fr_6fr]">
+		<div class="mx-4 grid h-full grid-rows-[auto_1fr] gap-4 md:grid-cols-[2fr_6fr]">
 			<div class="m-2 flex h-fit flex-wrap md:flex-col lg:mx-4 xl:m-4 xl:max-w-sm">
 				<NuxtLink
 					v-for="link in links"
 					:key="link.label"
 					:to="link.href"
 					class="group m-2 flex h-fit items-center gap-4 rounded-md border p-2 shadow transition hover:bg-primary-50 active:bg-primary-50 xl:mx-0 dark:hover:bg-primary-950 dark:active:bg-primary-950"
-					:class="$route.path === link.href.path && 'bg-slate-200'"
+					:class="$route.path === link.href.path && 'bg-primary-100'"
 				>
 					<component
 						:is="link.icon"
@@ -62,7 +62,7 @@ definePageMeta({
 					{{ link.label }}
 				</NuxtLink>
 			</div>
-			<div>
+			<div class="xl:my-2">
 				<NuxtPage />
 			</div>
 		</div>
