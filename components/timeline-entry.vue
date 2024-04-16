@@ -37,12 +37,14 @@ const dimensions = computed(() => {
 			width: `${props.scale(endDate.value) - props.scale(startDate.value)}px`,
 			height: "7px",
 			position: "relative",
+			zIndex: "0",
 		};
 	else
 		return {
 			width: "",
 			height: "",
 			position: "",
+			zIndex: "2",
 		};
 });
 const itemClass = computed(() => {
@@ -61,6 +63,7 @@ const itemClass = computed(() => {
 				top: '-1px',
 				width: dimensions.width,
 				height: dimensions.height,
+				zIndex: dimensions.zIndex,
 			}"
 			:class="[bgColors[itemClass], Array.isArray(item) ? 'size-6' : 'size-3']"
 			>{{ Array.isArray(item) ? item.length : "" }}</PopoverButton
