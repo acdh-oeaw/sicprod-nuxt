@@ -106,7 +106,7 @@ jobs:
 
   deploy:
     needs: [env, vars, build]
-    uses: acdh-oeaw/gl-autodevops-minimal-port/.github/workflows/deploy-cluster-2.yml@main
+    uses: acdh-oeaw/gl-autodevops-minimal-port/.github/workflows/deploy.yml@main
     secrets: inherit
     with:
       environment: ${{ needs.env.outputs.environment }}
