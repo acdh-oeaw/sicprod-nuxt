@@ -66,12 +66,6 @@ export default defineNuxtConfig({
 		prerender: {
 			routes: ["/manifest.webmanifest", "/robots.txt", "/sitemap.xml"],
 		},
-		devProxy: {
-			"/apis": {
-				target: process.env.NUXT_PUBLIC_API_SPEC_URL,
-				changeOrigin: true,
-			},
-		},
 	},
 	plugins: ["@/plugins/query-client.ts", "@/plugins/api.ts"],
 	postcss: {
