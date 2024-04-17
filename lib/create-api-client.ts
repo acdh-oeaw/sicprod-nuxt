@@ -35,6 +35,18 @@ const GroupedRelations = z.object({
 	function: z.array(SimplifiedRelation).optional(),
 	salary: z.array(SimplifiedRelation).optional(),
 });
+const Reference = z.object({
+	pages_start: z.string(),
+	pages_end: z.string(),
+	folio: z.string(),
+	bibtex: z.object({
+		id: z.string(),
+		type: z.string(),
+		title: z.string(),
+		archive: z.string(),
+		archive_location: z.string(),
+	}),
+});
 const Event = z
 	.object({
 		url: z.string().url(),
@@ -71,27 +83,11 @@ const PaginatedEventList = z
 	.passthrough();
 const EventDetail = z
 	.object({
-		url: z.string().url(),
-		id: z.number().int().optional(),
 		name: z.string().max(255),
-		start_date: z.string().nullable(),
-		start_start_date: z.string().nullable(),
-		start_end_date: z.string().nullable(),
-		end_date: z.string().nullable(),
-		end_start_date: z.string().nullable(),
-		end_end_date: z.string().nullable(),
 		start_date_written: z.string().max(255).nullish(),
 		end_date_written: z.string().max(255).nullish(),
-		review: z.boolean().optional(),
-		status: z.string().max(100).optional(),
-		references: z.string().nullish(),
-		notes: z.string().nullish(),
-		published: z.boolean().optional(),
-		metadata: z.unknown().nullable(),
-		alternative_label: z.string().nullish(),
+		references: z.array(Reference).nullish(),
 		type: z.union([Type19fEnum, BlankEnum]).optional(),
-		self_contenttype: z.string().url().nullable(),
-		collection: z.array(z.string()),
 		relations: GroupedRelations,
 	})
 	.passthrough();
@@ -130,26 +126,11 @@ const PaginatedFunctionList = z
 	.passthrough();
 const FunctionDetail = z
 	.object({
-		url: z.string().url(),
-		id: z.number().int().optional(),
 		name: z.string().max(255),
-		start_date: z.string().nullable(),
-		start_start_date: z.string().nullable(),
-		start_end_date: z.string().nullable(),
-		end_date: z.string().nullable(),
-		end_start_date: z.string().nullable(),
-		end_end_date: z.string().nullable(),
 		start_date_written: z.string().max(255).nullish(),
 		end_date_written: z.string().max(255).nullish(),
-		review: z.boolean().optional(),
-		status: z.string().max(100).optional(),
-		references: z.string().nullish(),
-		notes: z.string().nullish(),
-		published: z.boolean().optional(),
-		metadata: z.unknown().nullable(),
+		references: z.array(Reference).nullish(),
 		alternative_label: z.string().nullish(),
-		self_contenttype: z.string().url().nullable(),
-		collection: z.array(z.string()),
 		relations: GroupedRelations,
 	})
 	.passthrough();
@@ -200,27 +181,11 @@ const PaginatedInstitutionList = z
 	.passthrough();
 const InstitutionDetail = z
 	.object({
-		url: z.string().url(),
-		id: z.number().int().optional(),
 		name: z.string().max(255),
-		start_date: z.string().nullable(),
-		start_start_date: z.string().nullable(),
-		start_end_date: z.string().nullable(),
-		end_date: z.string().nullable(),
-		end_start_date: z.string().nullable(),
-		end_end_date: z.string().nullable(),
 		start_date_written: z.string().max(255).nullish(),
 		end_date_written: z.string().max(255).nullish(),
-		review: z.boolean().optional(),
-		status: z.string().max(100).optional(),
-		references: z.string().nullish(),
-		notes: z.string().nullish(),
-		published: z.boolean().optional(),
-		metadata: z.unknown().nullable(),
-		alternative_label: z.string().nullish(),
+		references: z.array(Reference).nullish(),
 		type: z.union([Type1c4Enum, BlankEnum]).optional(),
-		self_contenttype: z.string().url().nullable(),
-		collection: z.array(z.string()),
 		relations: GroupedRelations,
 	})
 	.passthrough();
@@ -265,25 +230,13 @@ const PersonDetail = z
 		url: z.string().url(),
 		id: z.number().int().optional(),
 		name: z.string().max(255),
-		// start_date: z.string().nullable(),
-		// start_start_date: z.string().nullable(),
-		// start_end_date: z.string().nullable(),
-		// end_date: z.string().nullable(),
-		// end_start_date: z.string().nullable(),
-		// end_end_date: z.string().nullable(),
 		start_date_written: z.string().max(255).nullish(),
 		end_date_written: z.string().max(255).nullish(),
-		// review: z.boolean().optional(),
 		status: z.string().max(100).optional(),
-		// references: z.string().nullish(),
-		// notes: z.string().nullish(),
-		// published: z.boolean().optional(),
-		// metadata: z.unknown().nullable(),
+		// references: z.array(Reference).nullish(),
 		first_name: z.string().max(1024).nullish(),
 		gender: z.union([GenderEnum, BlankEnum]).optional(),
 		alternative_label: z.string().nullish(),
-		// self_contenttype: z.string().url().nullable(),
-		// collection: z.array(z.string()),
 		relations: GroupedRelations,
 	})
 	.passthrough();
@@ -345,29 +298,14 @@ const PaginatedPlaceList = z
 	.passthrough();
 const PlaceDetail = z
 	.object({
-		url: z.string().url(),
-		id: z.number().int().optional(),
 		name: z.string().max(255),
-		start_date: z.string().nullable(),
-		start_start_date: z.string().nullable(),
-		start_end_date: z.string().nullable(),
-		end_date: z.string().nullable(),
-		end_start_date: z.string().nullable(),
-		end_end_date: z.string().nullable(),
 		start_date_written: z.string().max(255).nullish(),
 		end_date_written: z.string().max(255).nullish(),
-		review: z.boolean().optional(),
-		status: z.string().max(100).optional(),
-		references: z.string().nullish(),
-		notes: z.string().nullish(),
-		published: z.boolean().optional(),
-		metadata: z.unknown().nullable(),
+		references: z.array(Reference).nullish(),
 		alternative_label: z.string().nullish(),
 		type: z.union([Type759Enum, BlankEnum]).optional(),
 		latitude: z.number().nullish(),
 		longitude: z.number().nullish(),
-		self_contenttype: z.string().url().nullable(),
-		collection: z.array(z.string()),
 		relations: GroupedRelations,
 	})
 	.passthrough();
@@ -417,27 +355,12 @@ const PaginatedSalaryList = z
 	.passthrough();
 const SalaryDetail = z
 	.object({
-		url: z.string().url(),
-		id: z.number().int().optional(),
 		name: z.string().max(255),
-		start_date: z.string().nullable(),
-		start_start_date: z.string().nullable(),
-		start_end_date: z.string().nullable(),
-		end_date: z.string().nullable(),
-		end_start_date: z.string().nullable(),
-		end_end_date: z.string().nullable(),
 		start_date_written: z.string().max(255).nullish(),
 		end_date_written: z.string().max(255).nullish(),
-		review: z.boolean().optional(),
-		status: z.string().max(100).optional(),
-		references: z.string().nullish(),
-		notes: z.string().nullish(),
-		published: z.boolean().optional(),
-		metadata: z.unknown().nullable(),
+		references: z.array(Reference).nullish(),
 		typ: z.union([TypEnum, BlankEnum]).optional(),
 		repetitionType: z.union([RepetitionTypeEnum, BlankEnum]).optional(),
-		self_contenttype: z.string().url().nullable(),
-		collection: z.array(z.string()),
 		relations: GroupedRelations,
 	})
 	.passthrough();
