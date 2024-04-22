@@ -54,7 +54,9 @@ const { data, isFetching } = useQuery({
 	},
 });
 const getDetailLink = (id: string) => {
-	const type = route.path.split("/")[3];
+	let type = route.path.split("/")[3];
+	type = type === "salaries" ? "salary" : type;
+	type = type?.replace(/s$/g, "");
 	return `/${locale.value}/detail/${type}/${id}`;
 };
 

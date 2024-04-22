@@ -49,7 +49,7 @@ const localePath = useLocalePath();
 					<NuxtLink
 						v-for="hit in rels"
 						:key="String(hit)"
-						:to="localePath(`/detail/${model}s/${hit.to.id}`)"
+						:to="localePath(`/detail/${model}/${hit.to.id}`)"
 						class="table-row border-t hover:bg-primary-50 active:bg-primary-50 md:border-t dark:hover:bg-primary-950 dark:active:bg-primary-950"
 					>
 						<td v-for="header in headers" :key="hit + header" class="p-2 text-start">
