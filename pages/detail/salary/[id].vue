@@ -22,17 +22,6 @@ const { data, isLoading } = useQuery({
 	queryFn: () => endpoint({ params: { id } }),
 });
 
-const maxFunctionCount = 3;
-const functionNames = computed(() => {
-	if (isLoading.value) return [];
-	const fNames = [...new Set(data.value?.relations.function?.map((f) => f.to.name))];
-	if (fNames.length <= maxFunctionCount) return fNames;
-	const truncatedFunctionNames = [
-		...fNames.slice(0, maxFunctionCount),
-		t("DetailPage.andOthers", { count: fNames.length - maxFunctionCount }),
-	];
-	return truncatedFunctionNames;
-});
 const flattenedRelations = computed(() => {
 	if (isLoading.value) return [];
 	const res = Object.entries(data.value?.relations as Record<string, Array<SimplifiedRelationType>>)
@@ -56,14 +45,23 @@ const flattenedRelations = computed(() => {
 				{{ data?.first_name }} {{ data?.name }}
 			</h1>
 			<div
-				v-for="f in functionNames"
-				:key="f"
-				class="mr-3 inline-block w-fit rounded-md bg-function-200 px-3 py-1.5 text-xs font-semibold uppercase dark:bg-function-900 dark:text-neutral-100"
+				v-if="data?.repetitionType"
+				class="mr-3 inline-block w-fit rounded-md bg-salary-200 px-3 py-1.5 text-xs font-semibold uppercase dark:bg-salary-900 dark:text-neutral-100"
 			>
-				{{ f }}
+				{{ data?.repetitionType }}
 			</div>
 		</template>
 		<template #base>
+			<div class="col-span-2 my-2 border-t"></div>
+			<span>{{ t("Pages.searchviews.salary.type") }}:</span>
+			<span>
+				{{ data?.type }}
+			</span>
+			<div class="col-span-2 my-2 border-t"></div>
+			<span>{{ t("Pages.searchviews.salary.repetition_type") }}:</span>
+			<span>
+				{{ data?.repetitionType }}
+			</span>
 			<div class="col-span-2 my-2 border-t"></div>
 			<span>{{ t("Pages.searchviews.salary.start_date") }}:</span>
 			<span>

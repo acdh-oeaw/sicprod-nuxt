@@ -36,15 +36,15 @@ const GroupedRelations = z.object({
 	salary: z.array(SimplifiedRelation).optional(),
 });
 const Reference = z.object({
-	pages_start: z.string(),
-	pages_end: z.string(),
-	folio: z.string(),
+	pages_start: z.string().nullable(),
+	pages_end: z.string().nullable(),
+	folio: z.string().nullable(),
 	bibtex: z.object({
-		id: z.string(),
-		type: z.string(),
-		title: z.string(),
-		archive: z.string(),
-		archive_location: z.string(),
+		id: z.string().nullable(),
+		type: z.string().nullable(),
+		title: z.string().nullable(),
+		archive: z.string().nullable(),
+		archive_location: z.string().nullable(),
 	}),
 });
 const Event = z

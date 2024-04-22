@@ -125,6 +125,7 @@
 				"start_date": "Von",
 				"end_date": "Bis",
 				"type": "Typ",
+				"repetition_type": "Wiederholungen",
 				"alternative_label": "Alternativer Name"
 			}
 		}

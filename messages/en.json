@@ -125,6 +125,7 @@
 				"start_date": "From",
 				"end_date": "To",
 				"type": "Type",
+				"repetition_type": "Repetition",
 				"alternative_label": "Alternative name"
 			}
 		}
