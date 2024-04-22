@@ -22,16 +22,16 @@ const { data, isLoading } = useQuery({
 	queryFn: () => endpoint({ params: { id } }),
 });
 
-const maxFunctionCount = 3;
-const functionNames = computed(() => {
+const maxChipCount = 3;
+const chipNames = computed(() => {
 	if (isLoading.value) return [];
-	const fNames = [...new Set(data.value?.relations.function?.map((f) => f.to.name))];
-	if (fNames.length <= maxFunctionCount) return fNames;
-	const truncatedFunctionNames = [
-		...fNames.slice(0, maxFunctionCount),
-		t("DetailPage.andOthers", { count: fNames.length - maxFunctionCount }),
+	const fNames = [...new Set(data.value?.relations.institution?.map((f) => f.to.name))];
+	if (fNames.length <= maxChipCount) return fNames;
+	const truncatedChipNames = [
+		...fNames.slice(0, maxChipCount),
+		`${t("DetailPage.andOthers", { count: fNames.length - maxChipCount })}}`,
 	];
-	return truncatedFunctionNames;
+	return truncatedChipNames;
 });
 const flattenedRelations = computed(() => {
 	if (isLoading.value) return [];
@@ -56,14 +56,19 @@ const flattenedRelations = computed(() => {
 				{{ data?.first_name }} {{ data?.name }}
 			</h1>
 			<div
-				v-for="f in functionNames"
+				v-for="f in chipNames"
 				:key="f"
-				class="mr-3 inline-block w-fit rounded-md bg-function-200 px-3 py-1.5 text-xs font-semibold uppercase dark:bg-function-900 dark:text-neutral-100"
+				class="mr-3 inline-block w-fit rounded-md bg-institution-200 px-3 py-1.5 text-xs font-semibold uppercase dark:bg-institution-900 dark:text-neutral-100"
 			>
 				{{ f }}
 			</div>
 		</template>
 		<template #base>
+			<div class="col-span-2 my-2 border-t"></div>
+			<span>{{ t("Pages.searchviews.place.type") }}:</span>
+			<span>
+				{{ data?.type }}
+			</span>
 			<div class="col-span-2 my-2 border-t"></div>
 			<span>{{ t("Pages.searchviews.place.start_date") }}:</span>
 			<span>
@@ -75,7 +80,7 @@ const flattenedRelations = computed(() => {
 				{{ String(data?.end_date_written || data?.end_date || "").replace(/\<.*?\>/g, "") }}
 			</span>
 			<div class="col-span-2 my-2 border-t"></div>
-			<span>{{ t("Pages.searchviews.place.alternative_names") }}:</span>
+			<span>{{ t("Pages.searchviews.place.alternative_label") }}:</span>
 			<span>{{ data?.alternative_label }}</span>
 		</template>
 		<template #right>
