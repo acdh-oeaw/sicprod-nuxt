@@ -22,16 +22,16 @@ const { data, isLoading } = useQuery({
 	queryFn: () => endpoint({ params: { id } }),
 });
 
-const maxFunctionCount = 3;
-const functionNames = computed(() => {
+const maxChipCount = 3;
+const chipNames = computed(() => {
 	if (isLoading.value) return [];
-	const fNames = [...new Set(data.value?.relations.function?.map((f) => f.to.name))];
-	if (fNames.length <= maxFunctionCount) return fNames;
-	const truncatedFunctionNames = [
-		...fNames.slice(0, maxFunctionCount),
-		t("DetailPage.andOthers", { count: fNames.length - maxFunctionCount }),
+	const fNames = [...new Set(data.value?.relations.institution?.map((f) => f.to.name))];
+	if (fNames.length <= maxChipCount) return fNames;
+	const truncatedchipNames = [
+		...fNames.slice(0, maxChipCount),
+		t("DetailPage.andOthers", { count: fNames.length - maxChipCount }),
 	];
-	return truncatedFunctionNames;
+	return truncatedchipNames;
 });
 const flattenedRelations = computed(() => {
 	if (isLoading.value) return [];
@@ -56,9 +56,9 @@ const flattenedRelations = computed(() => {
 				{{ data?.first_name }} {{ data?.name }}
 			</h1>
 			<div
-				v-for="f in functionNames"
+				v-for="f in chipNames"
 				:key="f"
-				class="mr-3 inline-block w-fit rounded-md bg-function-200 px-3 py-1.5 text-xs font-semibold uppercase dark:bg-function-900 dark:text-neutral-100"
+				class="mr-3 inline-block w-fit rounded-md bg-institution-200 px-3 py-1.5 text-xs font-semibold uppercase dark:bg-institution-900 dark:text-neutral-100"
 			>
 				{{ f }}
 			</div>
@@ -74,6 +74,11 @@ const flattenedRelations = computed(() => {
 			<span>
 				{{ String(data?.end_date_written || data?.end_date || "").replace(/\<.*?\>/g, "") }}
 			</span>
+			<div class="col-span-2 my-2 border-t"></div>
+			<span>{{ t("Pages.searchviews.function.alternative_label") }}:</span>
+			<span>
+				{{ data?.alternative_label }}
+			</span>
 		</template>
 		<template #right>
 			<div v-if="data" class="flex flex-col gap-3">
@@ -87,7 +92,7 @@ const flattenedRelations = computed(() => {
 				<DetailDisclosure
 					v-if="data?.relations?.function"
 					:title="t('Pages.searchviews.function.label')"
-					:headers="['to.name', 'start_date_written', 'end_date_written']"
+					:headers="['name', 'to.name']"
 					:rels="data?.relations?.function"
 					model="function"
 				/>

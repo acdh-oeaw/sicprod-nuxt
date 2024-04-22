@@ -96,7 +96,8 @@
 				"label": "Functions",
 				"name": "Name",
 				"start_date": "From",
-				"end_date": "To"
+				"end_date": "To",
+				"alternative_label": "Alternative name"
 			},
 			"place": {
 				"title": "Search - Places",
@@ -126,6 +127,7 @@
 	},
 	"Relations": {
 		"function": {
+			"name": "Relation",
 			"to": {
 				"name": "Function name"
 			},

@@ -96,7 +96,8 @@
 				"label": "Funktionen",
 				"name": "Name",
 				"start_date": "Von",
-				"end_date": "Bis"
+				"end_date": "Bis",
+				"alternative_label": "Alternativer Name"
 			},
 			"place": {
 				"title": "Suche - Orte",
@@ -126,6 +127,7 @@
 	},
 	"Relations": {
 		"function": {
+			"name": "Beziehung",
 			"to": {
 				"name": "Funktionsname"
 			},
