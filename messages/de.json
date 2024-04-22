@@ -89,7 +89,8 @@
 				"name": "Name",
 				"start_date": "Von",
 				"end_date": "Bis",
-				"type": "Typ"
+				"type": "Typ",
+				"alternative_label": "Alternativer Name"
 			},
 			"function": {
 				"title": "Suche - Funktionen",
@@ -105,7 +106,8 @@
 				"name": "Name",
 				"start_date": "Von",
 				"end_date": "Bis",
-				"type": "Typ"
+				"type": "Typ",
+				"alternative_label": "Alternativer Name"
 			},
 			"institution": {
 				"title": "Suche - Institutionen",
@@ -113,7 +115,8 @@
 				"name": "Name",
 				"start_date": "Von",
 				"end_date": "Bis",
-				"type": "Typ"
+				"type": "Typ",
+				"alternative_label": "Alternativer Name"
 			},
 			"salary": {
 				"title": "Suche - Zahlungen",
@@ -121,7 +124,8 @@
 				"name": "Name",
 				"start_date": "Von",
 				"end_date": "Bis",
-				"type": "Typ"
+				"type": "Typ",
+				"alternative_label": "Alternativer Name"
 			}
 		}
 	},

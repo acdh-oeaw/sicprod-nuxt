@@ -89,7 +89,8 @@
 				"name": "Name",
 				"start_date": "From",
 				"end_date": "To",
-				"type": "Type"
+				"type": "Type",
+				"alternative_label": "Alternative name"
 			},
 			"function": {
 				"title": "Search - Functions",
@@ -105,7 +106,8 @@
 				"name": "Name",
 				"start_date": "From",
 				"end_date": "To",
-				"type": "Type"
+				"type": "Type",
+				"alternative_label": "Alternative name"
 			},
 			"institution": {
 				"title": "Search - Institutions",
@@ -113,7 +115,8 @@
 				"name": "Name",
 				"start_date": "From",
 				"end_date": "To",
-				"type": "Type"
+				"type": "Type",
+				"alternative_label": "Alternative name"
 			},
 			"salary": {
 				"title": "Search - Salaries",
@@ -121,7 +124,8 @@
 				"name": "Name",
 				"start_date": "From",
 				"end_date": "To",
-				"type": "Type"
+				"type": "Type",
+				"alternative_label": "Alternative name"
 			}
 		}
 	},
