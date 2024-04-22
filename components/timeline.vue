@@ -38,16 +38,21 @@ const groupedRelations = computed(() => {
 // Find min and max dates to determine scale
 const minVal = computed(() => d3.min(filteredRelations.value.map((r) => new Date(r.start_date))));
 const maxVal = computed(() => d3.max(filteredRelations.value.map((r) => new Date(r.start_date))));
-const scale = computed(() =>
-	d3Transform.value.rescaleX(
-		d3
-			.scaleTime([minVal.value ?? new Date(), maxVal.value ?? new Date()], [0, timelineWidth.value])
-			.nice(),
-	),
-);
+const scale = computed(() => {
+	let min = minVal.value;
+	let max = maxVal.value;
+	if (min?.valueOf() === max?.valueOf()) {
+		min?.setFullYear(min.getFullYear() - 1);
+		max?.setFullYear(max.getFullYear() + 1);
+	}
+	return d3Transform.value.rescaleX(
+		d3.scaleTime([min ?? new Date(), max ?? new Date()], [0, timelineWidth.value]).nice(2),
+	);
+});
 
-// @ts-expect-error d3 context vs selection error
-const createAxis = () => d3.select("#AxisSvg").call(d3.axisBottom(scale.value).tickSizeInner(16));
+const createAxis = () =>
+	// @ts-expect-error d3 context vs selection error
+	d3.select("#AxisSvg").call(d3.axisBottom(scale.value).tickSizeInner(16));
 
 // Add resize handler to monitor container width and adapt chart
 function resizeHandler() {
