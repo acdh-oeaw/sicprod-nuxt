@@ -61,7 +61,7 @@ const config = {
 			},
 		},
 	},
-	plugins: [require("@headlessui/tailwindcss"), typography],
+	plugins: [require("@headlessui/tailwindcss"), typography, require("tailwind-scrollbar")],
 } satisfies Config;
 
 export default config;

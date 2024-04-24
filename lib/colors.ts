@@ -26,3 +26,11 @@ export const borderColors = {
 	institution: "border-institution-400 dark:border-institution-700",
 	salary: "border-salary-400 dark:border-salary-700",
 };
+export const scrollbarColors = {
+	event: "scrollbar-thumb-event-400/50 dark:scrollbar-thumb-event-700/50",
+	function: "scrollbar-thumb-function-400/50 dark:scrollbar-thumb-function-700/50",
+	person: "scrollbar-thumb-person-400/50 dark:scrollbar-thumb-person-700/50",
+	place: "scrollbar-thumb-place-400/50 dark:scrollbar-thumb-place-800/50",
+	institution: "scrollbar-thumb-institution-400/50 dark:scrollbar-thumb-institution-700/50",
+	salary: "scrollbar-thumb-salary-400/50 dark:scrollbar-thumb-salary-700/50",
+};

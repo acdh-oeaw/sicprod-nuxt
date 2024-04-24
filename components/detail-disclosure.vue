@@ -3,7 +3,7 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
 import { get } from "lodash";
 import { ChevronDown } from "lucide-vue-next";
 
-import { borderColors, icons } from "@/lib/colors";
+import { borderColors, icons, scrollbarColors } from "@/lib/colors";
 import type { SimplifiedRelationType } from "@/lib/create-api-client";
 
 defineProps<{
@@ -48,7 +48,10 @@ const localePath = useLocalePath();
 							</th>
 						</tr>
 					</thead>
-					<tbody class="block max-h-screen w-full table-fixed overflow-auto">
+					<tbody
+						class="block max-h-screen w-full table-fixed overflow-auto scrollbar-thin scrollbar-track-transparent"
+						:class="scrollbarColors[model]"
+					>
 						<NuxtLink
 							v-for="hit in rels"
 							:key="String(hit)"
