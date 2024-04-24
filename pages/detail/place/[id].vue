@@ -2,6 +2,7 @@
 import { useQuery } from "@tanstack/vue-query";
 
 import DetailPage from "@/components/detail-page.vue";
+import Map from "@/components/map.vue";
 import Timeline from "@/components/timeline.vue";
 import type { SimplifiedRelationType } from "@/lib/create-api-client";
 import type { TimelineObject } from "@/types/timeline";
@@ -82,6 +83,12 @@ const flattenedRelations = computed(() => {
 			<div class="col-span-2 my-2 border-t"></div>
 			<span>{{ t("Pages.searchviews.place.alternative_label") }}:</span>
 			<span>{{ data?.alternative_label }}</span>
+			<div class="col-span-2 my-2 border-t"></div>
+			<Map
+				v-if="data?.latitude && data?.longitude"
+				:latitude="data?.latitude ?? 0"
+				:longitude="data?.longitude ?? 0"
+			></Map>
 		</template>
 		<template #right>
 			<div v-if="data" class="flex flex-col gap-3">
