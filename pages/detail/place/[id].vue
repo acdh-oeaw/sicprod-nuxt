@@ -30,7 +30,7 @@ const chipNames = computed(() => {
 	if (fNames.length <= maxChipCount) return fNames;
 	const truncatedChipNames = [
 		...fNames.slice(0, maxChipCount),
-		`${t("DetailPage.andOthers", { count: fNames.length - maxChipCount })}}`,
+		t("DetailPage.andOthers", { count: fNames.length - maxChipCount }),
 	];
 	return truncatedChipNames;
 });
