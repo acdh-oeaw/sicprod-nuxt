@@ -5,30 +5,30 @@ const t = useTranslations();
 const localePath = useLocalePath();
 const links = computed(() => {
 	return {
-		events: {
-			href: { path: localePath("/search/events") },
-			label: t("Pages.searchviews.event.label"),
-			icon: Calendar,
-		},
 		functions: {
 			href: { path: localePath("/search/functions") },
 			label: t("Pages.searchviews.function.label"),
 			icon: Contact,
-		},
-		institutions: {
-			href: { path: localePath("/search/institutions") },
-			label: t("Pages.searchviews.institution.label"),
-			icon: School2,
 		},
 		people: {
 			href: { path: localePath("/search/persons") },
 			label: t("Pages.searchviews.person.label"),
 			icon: User,
 		},
+		institutions: {
+			href: { path: localePath("/search/institutions") },
+			label: t("Pages.searchviews.institution.label"),
+			icon: School2,
+		},
 		places: {
 			href: { path: localePath("/search/places") },
 			label: t("Pages.searchviews.place.label"),
 			icon: MapPin,
+		},
+		events: {
+			href: { path: localePath("/search/events") },
+			label: t("Pages.searchviews.event.label"),
+			icon: Calendar,
 		},
 		salaries: {
 			href: { path: localePath("/search/salaries") },

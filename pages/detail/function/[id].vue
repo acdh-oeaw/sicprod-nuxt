@@ -83,25 +83,11 @@ const flattenedRelations = computed(() => {
 		<template #right>
 			<div v-if="data" class="flex flex-col gap-3">
 				<DetailDisclosure
-					v-if="data?.relations?.event"
-					:title="t('Pages.searchviews.event.label')"
-					:headers="['name', 'to.name', 'start_date_written', 'end_date_written']"
-					:rels="data?.relations?.event"
-					model="event"
-				/>
-				<DetailDisclosure
 					v-if="data?.relations?.function"
 					:title="t('Pages.searchviews.function.label')"
 					:headers="['name', 'to.name']"
 					:rels="data?.relations?.function"
 					model="function"
-				/>
-				<DetailDisclosure
-					v-if="data?.relations?.institution"
-					:title="t('Pages.searchviews.institution.label')"
-					:headers="['name', 'to.name', 'start_date_written', 'end_date_written']"
-					:rels="data?.relations?.institution"
-					model="institution"
 				/>
 				<DetailDisclosure
 					v-if="data?.relations?.person"
@@ -111,11 +97,25 @@ const flattenedRelations = computed(() => {
 					model="person"
 				/>
 				<DetailDisclosure
+					v-if="data?.relations?.institution"
+					:title="t('Pages.searchviews.institution.label')"
+					:headers="['name', 'to.name', 'start_date_written', 'end_date_written']"
+					:rels="data?.relations?.institution"
+					model="institution"
+				/>
+				<DetailDisclosure
 					v-if="data?.relations?.place"
 					:title="t('Pages.searchviews.place.label')"
 					:headers="['name', 'to.name', 'start_date_written', 'end_date_written']"
 					:rels="data?.relations?.place"
 					model="place"
+				/>
+				<DetailDisclosure
+					v-if="data?.relations?.event"
+					:title="t('Pages.searchviews.event.label')"
+					:headers="['name', 'to.name', 'start_date_written', 'end_date_written']"
+					:rels="data?.relations?.event"
+					model="event"
 				/>
 				<DetailDisclosure
 					v-if="data?.relations?.salary"
