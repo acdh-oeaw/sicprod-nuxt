@@ -49,27 +49,27 @@ const Reference = z.object({
 });
 const Event = z
 	.object({
-		url: z.string().url(),
+		// url: z.string().url(),
 		id: z.number().int(),
 		name: z.string().max(255),
-		start_date: z.string().nullable(),
-		start_start_date: z.string().nullable(),
-		start_end_date: z.string().nullable(),
-		end_date: z.string().nullable(),
-		end_start_date: z.string().nullable(),
-		end_end_date: z.string().nullable(),
+		// start_date: z.string().nullable(),
+		// start_start_date: z.string().nullable(),
+		// start_end_date: z.string().nullable(),
+		// end_date: z.string().nullable(),
+		// end_start_date: z.string().nullable(),
+		// end_end_date: z.string().nullable(),
 		start_date_written: z.string().max(255).nullish(),
 		end_date_written: z.string().max(255).nullish(),
-		review: z.boolean().optional(),
-		status: z.string().max(100).optional(),
-		references: z.string().nullish(),
-		notes: z.string().nullish(),
-		published: z.boolean().optional(),
-		metadata: z.unknown().nullable(),
+		// review: z.boolean().optional(),
+		// status: z.string().max(100).optional(),
+		// references: z.string().nullish(),
+		// notes: z.string().nullish(),
+		// published: z.boolean().optional(),
+		// metadata: z.unknown().nullable(),
 		alternative_label: z.string().nullish(),
 		type: z.union([Type19fEnum, BlankEnum]).optional(),
-		self_contenttype: z.string().url().nullable(),
-		collection: z.array(z.string()),
+		// self_contenttype: z.string().url().nullable(),
+		// collection: z.array(z.string()),
 	})
 	.passthrough();
 const PaginatedEventList = z
@@ -93,26 +93,26 @@ const EventDetail = z
 	.passthrough();
 const Function = z
 	.object({
-		url: z.string().url(),
+		// url: z.string().url(),
 		id: z.number().int(),
 		name: z.string().max(255),
-		start_date: z.string().nullable(),
-		start_start_date: z.string().nullable(),
-		start_end_date: z.string().nullable(),
-		end_date: z.string().nullable(),
-		end_start_date: z.string().nullable(),
-		end_end_date: z.string().nullable(),
+		// start_date: z.string().nullable(),
+		// start_start_date: z.string().nullable(),
+		// start_end_date: z.string().nullable(),
+		// end_date: z.string().nullable(),
+		// end_start_date: z.string().nullable(),
+		// end_end_date: z.string().nullable(),
 		start_date_written: z.string().max(255).nullish(),
 		end_date_written: z.string().max(255).nullish(),
-		review: z.boolean().optional(),
-		status: z.string().max(100).optional(),
-		references: z.string().nullish(),
-		notes: z.string().nullish(),
-		published: z.boolean().optional(),
-		metadata: z.unknown().nullable(),
+		// review: z.boolean().optional(),
+		// status: z.string().max(100).optional(),
+		// references: z.string().nullish(),
+		// notes: z.string().nullish(),
+		// published: z.boolean().optional(),
+		// metadata: z.unknown().nullable(),
 		alternative_label: z.string().nullish(),
-		self_contenttype: z.string().url().nullable(),
-		collection: z.array(z.string()),
+		// self_contenttype: z.string().url().nullable(),
+		// collection: z.array(z.string()),
 	})
 	.passthrough();
 const PaginatedFunctionList = z
@@ -147,27 +147,27 @@ const Type1c4Enum = z.enum([
 ]);
 const Institution = z
 	.object({
-		url: z.string().url(),
+		// url: z.string().url(),
 		id: z.number().int(),
 		name: z.string().max(255),
-		start_date: z.string().nullable(),
-		start_start_date: z.string().nullable(),
-		start_end_date: z.string().nullable(),
-		end_date: z.string().nullable(),
-		end_start_date: z.string().nullable(),
-		end_end_date: z.string().nullable(),
+		// start_date: z.string().nullable(),
+		// start_start_date: z.string().nullable(),
+		// start_end_date: z.string().nullable(),
+		// end_date: z.string().nullable(),
+		// end_start_date: z.string().nullable(),
+		// end_end_date: z.string().nullable(),
 		start_date_written: z.string().max(255).nullish(),
 		end_date_written: z.string().max(255).nullish(),
-		review: z.boolean().optional(),
-		status: z.string().max(100).optional(),
-		references: z.string().nullish(),
-		notes: z.string().nullish(),
-		published: z.boolean().optional(),
-		metadata: z.unknown().nullable(),
+		// review: z.boolean().optional(),
+		// status: z.string().max(100).optional(),
+		// references: z.string().nullish(),
+		// notes: z.string().nullish(),
+		// published: z.boolean().optional(),
+		// metadata: z.unknown().nullable(),
 		alternative_label: z.string().nullish(),
 		type: z.union([Type1c4Enum, BlankEnum]).optional(),
-		self_contenttype: z.string().url().nullable(),
-		collection: z.array(z.string()),
+		// self_contenttype: z.string().url().nullable(),
+		// collection: z.array(z.string()),
 	})
 	.passthrough();
 const PaginatedInstitutionList = z
@@ -192,28 +192,28 @@ const InstitutionDetail = z
 const GenderEnum = z.enum(["männlich", "weiblich", "unbekannt"]);
 const Person = z
 	.object({
-		url: z.string().url(),
+		// url: z.string().url(),
 		id: z.number().int(),
 		name: z.string().max(255),
-		start_date: z.string().nullable(),
-		start_start_date: z.string().nullable(),
-		start_end_date: z.string().nullable(),
-		end_date: z.string().nullable(),
-		end_start_date: z.string().nullable(),
-		end_end_date: z.string().nullable(),
+		// start_date: z.string().nullable(),
+		// start_start_date: z.string().nullable(),
+		// start_end_date: z.string().nullable(),
+		// end_date: z.string().nullable(),
+		// end_start_date: z.string().nullable(),
+		// end_end_date: z.string().nullable(),
 		start_date_written: z.string().max(255).nullish(),
 		end_date_written: z.string().max(255).nullish(),
-		review: z.boolean().optional(),
-		status: z.string().max(100).optional(),
-		references: z.string().nullish(),
-		notes: z.string().nullish(),
-		published: z.boolean().optional(),
-		metadata: z.unknown().nullable(),
+		// review: z.boolean().optional(),
+		// status: z.string().max(100).optional(),
+		// references: z.string().nullish(),
+		// notes: z.string().nullish(),
+		// published: z.boolean().optional(),
+		// metadata: z.unknown().nullable(),
 		first_name: z.string().max(1024).nullish(),
 		gender: z.union([GenderEnum, BlankEnum]).optional(),
 		alternative_label: z.string().nullish(),
-		self_contenttype: z.string().url().nullable(),
-		collection: z.array(z.string()),
+		// self_contenttype: z.string().url().nullable(),
+		// collection: z.array(z.string()),
 	})
 	.passthrough();
 const PaginatedPersonList = z
@@ -262,29 +262,29 @@ const Type759Enum = z.enum([
 ]);
 const Place = z
 	.object({
-		url: z.string().url(),
+		// url: z.string().url(),
 		id: z.number().int(),
 		name: z.string().max(255),
-		start_date: z.string().nullable(),
-		start_start_date: z.string().nullable(),
-		start_end_date: z.string().nullable(),
-		end_date: z.string().nullable(),
-		end_start_date: z.string().nullable(),
-		end_end_date: z.string().nullable(),
+		// start_date: z.string().nullable(),
+		// start_start_date: z.string().nullable(),
+		// start_end_date: z.string().nullable(),
+		// end_date: z.string().nullable(),
+		// end_start_date: z.string().nullable(),
+		// end_end_date: z.string().nullable(),
 		start_date_written: z.string().max(255).nullish(),
 		end_date_written: z.string().max(255).nullish(),
-		review: z.boolean().optional(),
-		status: z.string().max(100).optional(),
-		references: z.string().nullish(),
-		notes: z.string().nullish(),
-		published: z.boolean().optional(),
-		metadata: z.unknown().nullable(),
+		// review: z.boolean().optional(),
+		// status: z.string().max(100).optional(),
+		// references: z.string().nullish(),
+		// notes: z.string().nullish(),
+		// published: z.boolean().optional(),
+		// metadata: z.unknown().nullable(),
 		alternative_label: z.string().nullish(),
 		type: z.union([Type759Enum, BlankEnum]).optional(),
 		latitude: z.number().nullish(),
 		longitude: z.number().nullish(),
-		self_contenttype: z.string().url().nullable(),
-		collection: z.array(z.string()),
+		// self_contenttype: z.string().url().nullable(),
+		// collection: z.array(z.string()),
 	})
 	.passthrough();
 const PaginatedPlaceList = z
@@ -321,27 +321,27 @@ const TypEnum = z.enum([
 const RepetitionTypeEnum = z.enum(["einfach", "wiederholend"]);
 const Salary = z
 	.object({
-		url: z.string().url(),
+		// url: z.string().url(),
 		id: z.number().int(),
 		name: z.string().max(255),
-		start_date: z.string().nullable(),
-		start_start_date: z.string().nullable(),
-		start_end_date: z.string().nullable(),
-		end_date: z.string().nullable(),
-		end_start_date: z.string().nullable(),
-		end_end_date: z.string().nullable(),
+		// start_date: z.string().nullable(),
+		// start_start_date: z.string().nullable(),
+		// start_end_date: z.string().nullable(),
+		// end_date: z.string().nullable(),
+		// end_start_date: z.string().nullable(),
+		// end_end_date: z.string().nullable(),
 		start_date_written: z.string().max(255).nullish(),
 		end_date_written: z.string().max(255).nullish(),
-		review: z.boolean().optional(),
-		status: z.string().max(100).optional(),
-		references: z.string().nullish(),
-		notes: z.string().nullish(),
-		published: z.boolean().optional(),
-		metadata: z.unknown().nullable(),
+		// review: z.boolean().optional(),
+		// status: z.string().max(100).optional(),
+		// references: z.string().nullish(),
+		// notes: z.string().nullish(),
+		// published: z.boolean().optional(),
+		// metadata: z.unknown().nullable(),
 		typ: z.union([TypEnum, BlankEnum]).optional(),
 		repetitionType: z.union([RepetitionTypeEnum, BlankEnum]).optional(),
-		self_contenttype: z.string().url().nullable(),
-		collection: z.array(z.string()),
+		// self_contenttype: z.string().url().nullable(),
+		// collection: z.array(z.string()),
 	})
 	.passthrough();
 const PaginatedSalaryList = z
@@ -427,7 +427,7 @@ export const schemas = {
 const endpoints = makeApi([
 	{
 		method: "get",
-		path: "/apis/api/ontology/event/",
+		path: "/apis/api/apis_ontology.event/",
 		alias: "apis_api_ontology_event_list",
 		description: `Filter a queryset of a listview using the APIS_LIST_VIEW_OBJECT_FILTER
 setting if it exists. A child class has to call the &#x60;filter_queryset&#x60;
@@ -902,7 +902,7 @@ method somewhere, most likely in the &#x60;get_queryset&#x60; method.`,
 	},
 	{
 		method: "get",
-		path: "/apis/api/ontology/function/",
+		path: "/apis/api/apis_ontology.function/",
 		alias: "apis_api_ontology_function_list",
 		description: `Filter a queryset of a listview using the APIS_LIST_VIEW_OBJECT_FILTER
 setting if it exists. A child class has to call the &#x60;filter_queryset&#x60;
@@ -1346,7 +1346,7 @@ method somewhere, most likely in the &#x60;get_queryset&#x60; method.`,
 	},
 	{
 		method: "get",
-		path: "/apis/api/ontology/institution/",
+		path: "/apis/api/apis_ontology.institution/",
 		alias: "apis_api_ontology_institution_list",
 		description: `Filter a queryset of a listview using the APIS_LIST_VIEW_OBJECT_FILTER
 setting if it exists. A child class has to call the &#x60;filter_queryset&#x60;
@@ -1822,7 +1822,7 @@ method somewhere, most likely in the &#x60;get_queryset&#x60; method.`,
 	},
 	{
 		method: "get",
-		path: "/apis/api/ontology/person/",
+		path: "/apis/api/apis_ontology.person/",
 		alias: "apis_api_ontology_person_list",
 		description: `Filter a queryset of a listview using the APIS_LIST_VIEW_OBJECT_FILTER
 setting if it exists. A child class has to call the &#x60;filter_queryset&#x60;
@@ -2306,7 +2306,7 @@ method somewhere, most likely in the &#x60;get_queryset&#x60; method.`,
 	},
 	{
 		method: "get",
-		path: "/apis/api/ontology/place/",
+		path: "/apis/api/apis_ontology.place/",
 		alias: "apis_api_ontology_place_list",
 		description: `Filter a queryset of a listview using the APIS_LIST_VIEW_OBJECT_FILTER
 setting if it exists. A child class has to call the &#x60;filter_queryset&#x60;
@@ -2801,7 +2801,7 @@ method somewhere, most likely in the &#x60;get_queryset&#x60; method.`,
 	},
 	{
 		method: "get",
-		path: "/apis/api/ontology/salary/",
+		path: "/apis/api/apis_ontology.salary/",
 		alias: "apis_api_ontology_salary_list",
 		description: `Filter a queryset of a listview using the APIS_LIST_VIEW_OBJECT_FILTER
 setting if it exists. A child class has to call the &#x60;filter_queryset&#x60;
