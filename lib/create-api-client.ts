@@ -40,11 +40,11 @@ const Reference = z.object({
 	pages_end: z.string().nullable(),
 	folio: z.string().nullable(),
 	bibtex: z.object({
-		id: z.string().nullable(),
-		type: z.string().nullable(),
-		title: z.string().nullable(),
-		archive: z.string().nullable(),
-		archive_location: z.string().nullable(),
+		id: z.string().nullable().optional(),
+		type: z.string().nullable().optional(),
+		title: z.string().nullable().optional(),
+		archive: z.string().nullable().optional(),
+		archive_location: z.string().nullable().optional(),
 	}),
 });
 const Event = z
