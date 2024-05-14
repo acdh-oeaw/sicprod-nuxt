@@ -6,7 +6,7 @@ import { ChevronDown } from "lucide-vue-next";
 import { borderColors, icons, scrollbarColors } from "@/lib/colors";
 import type { SimplifiedRelationType } from "@/lib/create-api-client";
 
-defineProps<{
+const props = defineProps<{
 	rels: Array<SimplifiedRelationType>;
 	gridClass?: string;
 	title: string;
@@ -18,6 +18,18 @@ defineProps<{
 
 const t = useTranslations();
 const localePath = useLocalePath();
+
+const groupedRelations = computed(() => {
+	let groups: Record<string, Array<SimplifiedRelationType>> = {};
+	for (const rel of props.rels) {
+		const prop = rel.to.name;
+		if (!(prop in groups)) {
+			groups[prop] = [];
+		}
+		(groups[prop] ?? []).push(rel);
+	}
+	return groups;
+});
 </script>
 
 <template>
@@ -52,16 +64,52 @@ const localePath = useLocalePath();
 						class="block max-h-screen w-full table-fixed overflow-auto scrollbar-thin scrollbar-track-transparent"
 						:class="scrollbarColors[model]"
 					>
-						<NuxtLink
-							v-for="hit in rels"
-							:key="String(hit)"
-							:to="localePath(`/detail/${model}/${hit.to.id}`)"
-							class="table w-full table-fixed border-t hover:bg-primary-50 active:bg-primary-50 md:border-t dark:hover:bg-primary-950 dark:active:bg-primary-950"
+						<component
+							:is="rel.length > 1 ? Disclosure : 'tbody'"
+							v-for="rel of groupedRelations"
+							:key="rel[0]?.to?.name"
+							as="tbody"
+							class="w-full border-t md:border-t dark:hover:bg-primary-950 dark:active:bg-primary-950"
 						>
-							<td v-for="header in headers" :key="hit + header" class="p-2 text-start">
-								{{ String(get(hit, header, "")).replace(/\<.*?\>/g, "") }}
-							</td>
-						</NuxtLink>
+							<DisclosureButton
+								v-if="rel.length > 1"
+								as="tr"
+								class="group table w-full table-fixed cursor-pointer hover:bg-primary-50 active:bg-primary-50 dark:hover:bg-primary-950 dark:active:bg-primary-950"
+								tabindex="0"
+								><td
+									v-for="(header, idx) in headers"
+									:key="rel[0]?.to?.name + header"
+									class="p-2 text-start"
+								>
+									{{
+										header === "to.name" || rel.length === 1
+											? String(get(rel[0], header, "")).replace(/\<.*?\>/g, "")
+											: "*"
+									}}
+									<ChevronDown
+										v-if="rel.length > 1 && idx === headers.length - 1"
+										class="float-right size-5 transition group-hover:animate-bounce"
+									/>
+								</td>
+							</DisclosureButton>
+
+							<component
+								:is="rel.length > 1 ? DisclosurePanel : 'tr'"
+								as="tr"
+								class="hover:bg-primary-50 active:bg-primary-50 dark:hover:bg-primary-950 dark:active:bg-primary-950"
+							>
+								<NuxtLink
+									v-for="hit in rel"
+									:key="String(hit)"
+									:to="localePath(`/detail/${model}/${hit.to.id}`)"
+									class="table w-full table-fixed"
+								>
+									<td v-for="header in headers" :key="hit + header" class="p-2 text-start">
+										{{ String(get(hit, header, "")).replace(/\<.*?\>/g, "") }}
+									</td>
+								</NuxtLink></component
+							>
+						</component>
 					</tbody>
 				</table>
 			</slot>
