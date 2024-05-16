@@ -121,7 +121,7 @@ const itemClass = computed(() => {
 					</div>
 					<div v-else>
 						<NuxtLink
-							:to="localePath(`/detail/${item.class}s/${item.to.id}`)"
+							:to="localePath(`/detail/${item.class}/${item.to.id}`)"
 							class="flow-root rounded-md p-2 transition duration-150 ease-in-out hover:bg-neutral-100 focus:outline-none focus-visible:ring dark:hover:bg-neutral-900"
 						>
 							<span class="block text-sm text-neutral-500">
