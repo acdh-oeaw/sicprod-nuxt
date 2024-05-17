@@ -50,9 +50,9 @@ onMounted(() => {
 		<div ref="mapContainer" class="absolute size-full"></div>
 		<div class="absolute bottom-0 right-0 bg-neutral-50/70 p-1 text-xs dark:bg-neutral-900/70">
 			1450,
-			<a href="https://www.openhistoricalmap.org/copyright" target="_blank" class="hover:underline"
-				>&copy; OpenHistoricalMap</a
-			>
+			<a href="https://www.openhistoricalmap.org/copyright" target="_blank" class="hover:underline">
+				&copy; OpenHistoricalMap
+			</a>
 		</div>
 	</div>
 </template>

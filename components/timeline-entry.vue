@@ -66,8 +66,9 @@ const itemClass = computed(() => {
 				zIndex: dimensions.zIndex,
 			}"
 			:class="[bgColors[itemClass], Array.isArray(item) ? 'size-6' : 'size-3']"
-			>{{ Array.isArray(item) ? item.length : "" }}</PopoverButton
 		>
+			{{ Array.isArray(item) ? item.length : "" }}
+		</PopoverButton>
 		<Transition
 			enter-active-class="transition duration-200 ease-out"
 			enter-from-class="translate-y-1 opacity-0"
@@ -91,16 +92,17 @@ const itemClass = computed(() => {
 									? item[0].start_date_written
 									: item.start_date_written
 								).replace(/\<.*?\>/g, "")
-							}}</span
-						><span v-if="endDate && startDate != endDate">
+							}}
+						</span>
+						<span v-if="endDate && startDate != endDate">
 							-
 							{{
 								(Array.isArray(item) ? item[0].end_date_written : item.end_date_written).replace(
 									/\<.*?\>/g,
 									"",
 								)
-							}}</span
-						>
+							}}
+						</span>
 					</div>
 					<div v-if="Array.isArray(item)">
 						<NuxtLink

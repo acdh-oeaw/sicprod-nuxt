@@ -40,9 +40,10 @@ const groupedRelations = computed(() => {
 			:disabled="rels.length === 0 && !customSlot"
 			:class="borderColors[model]"
 		>
-			<span class="flex gap-2 align-baseline"
-				><component :is="icons[model]" class="inline" /> {{ title }}</span
-			>
+			<span class="flex gap-2 align-baseline">
+				<component :is="icons[model]" class="inline" />
+				{{ title }}
+			</span>
 			<ChevronDown class="size-5 transition ui-open:-rotate-180" />
 		</DisclosureButton>
 		<DisclosurePanel
@@ -76,7 +77,8 @@ const groupedRelations = computed(() => {
 								as="tr"
 								class="group table w-full table-fixed cursor-pointer hover:bg-primary-50 active:bg-primary-50 dark:hover:bg-primary-950 dark:active:bg-primary-950"
 								tabindex="0"
-								><td
+							>
+								<td
 									v-for="(header, idx) in headers"
 									:key="rel[0]?.to?.name + header"
 									class="p-2 text-start"
@@ -107,8 +109,8 @@ const groupedRelations = computed(() => {
 									<td v-for="header in headers" :key="hit + header" class="p-2 text-start">
 										{{ String(get(hit, header, "")).replace(/\<.*?\>/g, "") }}
 									</td>
-								</NuxtLink></component
-							>
+								</NuxtLink>
+							</component>
 						</component>
 					</tbody>
 				</table>
