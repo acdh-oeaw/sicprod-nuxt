@@ -20,7 +20,7 @@
 		"lint:code:fix": "pnpm run lint:code:check --fix",
 		"lint:styles:check": "stylelint \"./**/*.@(css|vue)\" --cache --ignore-path ./.gitignore",
 		"lint:styles:fix": "pnpm run lint:styles:check --fix",
-		"postinstall": "nuxt prepare",
+		"postinstall": "nuxt prepare && pnpm run createclient",
 		"preinstall": "npx only-allow pnpm",
 		"prepare": "run-s setup",
 		"setup": "is-ci || simple-git-hooks",
@@ -31,7 +31,8 @@
 		"test:e2e:install": "playwright install --with-deps",
 		"test:e2e:ui": "playwright test --ui",
 		"types:check": "nuxt typecheck",
-		"validate": "run-p format:check lint:check types:check test test:e2e"
+		"validate": "run-p format:check lint:check types:check test test:e2e",
+		"createclient": "pnpm openapi-zod-client \"https://sicprod.acdh-dev.oeaw.ac.at/apis/swagger/schema/?format=json\" -o \"./lib/api.ts\""
 	},
 	"dependencies": {
 		"@acdh-oeaw/lib": "^0.1.7",
@@ -66,7 +67,7 @@
 		"@acdh-oeaw/eslint-config-nuxt": "^1.0.13",
 		"@acdh-oeaw/eslint-config-playwright": "^1.0.7",
 		"@acdh-oeaw/eslint-config-vue": "^1.0.12",
-		"@acdh-oeaw/prettier-config": "^2.0.0",
+		"@acdh-oeaw/prettier-config": "^1.0.1",
 		"@acdh-oeaw/stylelint-config": "^2.0.1",
 		"@acdh-oeaw/tailwindcss-preset": "^0.0.22",
 		"@acdh-oeaw/tsconfig": "^1.0.2",

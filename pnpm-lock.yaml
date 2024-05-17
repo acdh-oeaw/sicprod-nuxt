@@ -98,8 +98,8 @@ devDependencies:
     specifier: ^1.0.12
     version: 1.0.12(@acdh-oeaw/eslint-config@1.0.7)(eslint@8.57.0)
   '@acdh-oeaw/prettier-config':
-    specifier: ^2.0.0
-    version: 2.0.0(prettier@3.2.5)
+    specifier: ^1.0.1
+    version: 1.0.1(prettier@3.2.5)
   '@acdh-oeaw/stylelint-config':
     specifier: ^2.0.1
     version: 2.0.1(postcss-html@1.6.0)(stylelint-order@6.0.4)(stylelint@16.2.1)
@@ -261,10 +261,10 @@ packages:
     engines: {node: '>=18', pnpm: '>=8'}
     dev: false
 
-  /@acdh-oeaw/prettier-config@2.0.0(prettier@3.2.5):
-    resolution: {integrity: sha512-PhjHkJRb5K5uWMZ6s6IzNLvBns4Ei+osR6g/XmItFb0B844VOsU6iO3DbRyrHo8zTpMzsftkxVxT9S/b3KVmtQ==}
+  /@acdh-oeaw/prettier-config@1.0.1(prettier@3.2.5):
+    resolution: {integrity: sha512-JAj6yvMoECXqZ0U11ZXkmeg6r03OP7lzh+8KhTQ4rN8SbIvI8NSF9mhXKJe0n+LOThapB8MXpIRTWiVZjduYrA==}
     peerDependencies:
-      prettier: 3.x
+      prettier: 2.x || 3.x
     dependencies:
       prettier: 3.2.5
     dev: true
