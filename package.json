@@ -32,7 +32,7 @@
 		"test:e2e:ui": "playwright test --ui",
 		"types:check": "nuxt typecheck",
 		"validate": "run-p format:check lint:check types:check test test:e2e",
-		"createclient": "pnpm openapi-zod-client \"https://sicprod.acdh-dev.oeaw.ac.at/apis/swagger/schema/?format=json\" -o \"./lib/api.ts\""
+		"createclient": "pnpm openapi-zod-client \"https://sicprod.acdh-dev.oeaw.ac.at/apis/swagger/schema/?format=json\" -o \"./lib/api.ts\" --export-types"
 	},
 	"dependencies": {
 		"@acdh-oeaw/lib": "^0.1.7",
