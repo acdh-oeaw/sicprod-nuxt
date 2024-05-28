@@ -2,7 +2,7 @@
 import { useQuery } from "@tanstack/vue-query";
 import { ChevronRight, Loader2, Search, XCircle } from "lucide-vue-next";
 
-import type { PaginatedListResultType } from "@/lib/create-api-client";
+import type { PaginatedListResultType } from "@/types/resulttypes";
 
 interface ColumnEntry {
 	key: string;
