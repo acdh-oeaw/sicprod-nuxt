@@ -11,3 +11,5 @@ const PaginatedListResult = z.union([
 	schemas.PaginatedSalaryList,
 ]);
 export type PaginatedListResultType = z.infer<typeof PaginatedListResult>;
+
+export type SimplifiedRelationType = z.infer<typeof schemas.TempTriple>;

@@ -4,7 +4,7 @@ import { get } from "lodash";
 import { ChevronDown } from "lucide-vue-next";
 
 import { borderColors, icons, scrollbarColors } from "@/lib/colors";
-import type { SimplifiedRelationType } from "@/lib/create-api-client";
+import type { SimplifiedRelationType } from "@/types/resulttypes";
 
 const props = defineProps<{
 	rels: Array<SimplifiedRelationType>;

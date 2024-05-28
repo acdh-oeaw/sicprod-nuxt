@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/vue-query";
 import DetailPage from "@/components/detail-page.vue";
 import Map from "@/components/map.vue";
 import Timeline from "@/components/timeline.vue";
-import type { SimplifiedRelationType } from "@/lib/create-api-client";
+import type { SimplifiedRelationType } from "@/types/resulttypes";
 import type { TimelineObject } from "@/types/timeline";
 
 const t = useTranslations();
