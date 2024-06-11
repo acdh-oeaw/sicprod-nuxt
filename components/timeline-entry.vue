@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { shift, useFloating } from "@floating-ui/vue";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
 
 import { bgColors } from "@/lib/colors";
@@ -10,6 +11,21 @@ const props = defineProps<{
 	item: TimelineObject | [TimelineObject, ...Array<TimelineObject>]; //ensure non-empty array
 	scale: (date: Date | number) => number;
 }>();
+
+// Popover positioning using floatingUI
+const reference = ref(null);
+const floating = ref(null);
+const { floatingStyles, update } = useFloating(reference, floating, {
+	transform: false,
+	placement: "top",
+	middleware: [shift()],
+});
+watch(
+	() => props.scale,
+	() => {
+		update();
+	},
+);
 
 const startDate = computed(() => {
 	if (Array.isArray(props.item))
@@ -59,6 +75,7 @@ const itemClass = computed(() => {
 <template>
 	<Popover class="relative">
 		<PopoverButton
+			ref="reference"
 			class="absolute -translate-x-1/2 -translate-y-1/2 rounded-full text-sm ring-1 ring-white/20 dark:ring-neutral-900/20"
 			:style="{
 				left: `${scale(startDate)}px`,
@@ -80,8 +97,9 @@ const itemClass = computed(() => {
 			leave-to-class="translate-y-1 opacity-0"
 		>
 			<PopoverPanel
-				class="absolute mt-3 -translate-x-1/2 px-4 sm:px-0 lg:max-w-3xl"
-				:style="{ left: `${scale(startDate)}px` }"
+				ref="floating"
+				class="-mt-3 px-4 sm:px-0 lg:max-w-3xl"
+				:style="{ ...floatingStyles }"
 			>
 				<div
 					class="max-h-52 min-w-48 overflow-auto rounded-lg bg-neutral-50 p-4 shadow-lg ring-1 ring-black/5 dark:bg-neutral-800"
@@ -123,7 +141,7 @@ const itemClass = computed(() => {
 					</div>
 					<div v-else>
 						<NuxtLink
-							:to="localePath(`/detail/${item.class}s/${item.to.id}`)"
+							:to="localePath(`/detail/${item.class}/${item.to.id}`)"
 							class="flow-root rounded-md p-2 transition duration-150 ease-in-out hover:bg-neutral-100 focus:outline-none focus-visible:ring dark:hover:bg-neutral-900"
 						>
 							<span class="block text-sm text-neutral-500">
