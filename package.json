@@ -32,7 +32,11 @@
 		"test:e2e:ui": "playwright test --ui",
 		"types:check": "nuxt typecheck",
 		"validate": "run-p format:check lint:check types:check test test:e2e",
-		"createclient": "pnpm openapi-zod-client \"https://sicprod.acdh-dev.oeaw.ac.at/apis/swagger/schema/?format=json\" -o \"./lib/api.ts\" --export-types"
+		"createclient:mkdir": "mkdirp generated",
+		"createclient:trimmer": "pnpm openapi-endpoint-trimmer --url \"https://sicprod.acdh-dev.oeaw.ac.at/apis/swagger/schema/?format=json\" --output generated/schema.yaml --prefixes /apis/api/apis_ontology.event,/apis/api/apis_ontology.function,/apis/api/apis_ontology.institution,/apis/api/apis_ontology.person,/apis/api/apis_ontology.place,/apis/api/apis_ontology.salary",
+		"createclient:generate:zod": "pnpm openapi-zod-client generated/schema.yaml -o \"./lib/api.ts\" --export-types",
+		"createclient:cleanup": "rimraf generated",
+		"createclient": "run-s createclient:mkdir createclient:trimmer createclient:generate:zod createclient:cleanup"
 	},
 	"dependencies": {
 		"@acdh-oeaw/lib": "^0.1.7",
@@ -88,6 +92,7 @@
 		"lint-staged": "^15.2.2",
 		"npm-run-all2": "^6.1.2",
 		"nuxt": "^3.10.3",
+		"openapi-endpoint-trimmer": "^2.0.0",
 		"postcss": "^8.4.35",
 		"prettier": "^3.2.5",
 		"schema-dts": "^1.1.2",
