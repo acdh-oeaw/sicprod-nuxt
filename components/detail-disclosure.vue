@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
-import { ChevronDown, Loader2 } from "lucide-vue-next";
 import lodash from "lodash";
+import { ChevronDown, Loader2 } from "lucide-vue-next";
 
 import Centered from "@/components/ui/centered.vue";
 import { borderColors, icons, scrollbarColors } from "@/lib/colors";
