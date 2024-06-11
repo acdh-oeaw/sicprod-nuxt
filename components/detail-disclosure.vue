@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
-import { get } from "lodash";
 import { ChevronDown, Loader2 } from "lucide-vue-next";
+import lodash from "lodash";
 
 import Centered from "@/components/ui/centered.vue";
 import { borderColors, icons, scrollbarColors } from "@/lib/colors";
@@ -93,7 +93,7 @@ const groupedRelations = computed(() => {
 								>
 									{{
 										header === "to.name" || rel.length === 1
-											? String(get(rel[0], header, "")).replace(/\<.*?\>/g, "")
+											? String(lodash.get(rel[0], header, "")).replace(/\<.*?\>/g, "")
 											: "*"
 									}}
 									<ChevronDown
@@ -115,7 +115,7 @@ const groupedRelations = computed(() => {
 									class="table w-full table-fixed"
 								>
 									<td v-for="header in headers" :key="hit + header" class="p-2 text-start">
-										{{ String(get(hit, header, "")).replace(/\<.*?\>/g, "") }}
+										{{ String(lodash.get(hit, header, "")).replace(/\<.*?\>/g, "") }}
 									</td>
 								</NuxtLink>
 							</component>
