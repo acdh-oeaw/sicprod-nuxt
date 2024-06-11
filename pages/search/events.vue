@@ -7,7 +7,7 @@ definePageMeta({
 const t = useTranslations();
 
 const { $api } = useNuxtApp();
-const endpoint = $api.apis_api_ontology_event_list;
+const endpoint = $api["apis_api_apis_ontology.event_list"];
 
 const columns = [
 	{

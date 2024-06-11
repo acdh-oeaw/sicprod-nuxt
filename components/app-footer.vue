@@ -36,11 +36,11 @@ const links = computed(() => {
 			<nav :aria-label="t('AppFooter.navigation-secondary')" class="w-full">
 				<ul class="flex items-center gap-8" role="list">
 					<li v-for="(link, key) of links" :key="key" :class="link.image ? '' : 'ml-auto'">
-						<a v-if="link.image" :href="link.href.path" target="_blank"
-							><NuxtImg :src="link.image" :alt="link.label" placeholder class="h-10 w-auto">{{
-								link.label
-							}}</NuxtImg></a
-						>
+						<a v-if="link.image" :href="link.href.path" target="_blank">
+							<NuxtImg :src="link.image" :alt="link.label" placeholder class="h-10 w-auto">
+								{{ link.label }}
+							</NuxtImg>
+						</a>
 						<NavLink v-else :href="link.href">
 							{{ link.label }}
 						</NavLink>

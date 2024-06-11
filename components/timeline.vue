@@ -25,8 +25,8 @@ function isValidTimelineObject(
 const groupedRelations = computed(() => {
 	let groupedDict: Record<string, Array<TimelineObject>> = {};
 	filteredRelations.value.forEach((r) => {
-		if (!(r.start_date in groupedDict)) groupedDict[r.start_date] = [];
-		groupedDict[r.start_date]?.push(r);
+		if (!((r.start_date ?? "") in groupedDict)) groupedDict[r.start_date ?? ""] = [];
+		groupedDict[r.start_date ?? ""]?.push(r);
 	});
 	return Object.values(groupedDict)
 		.map((arr) => (arr.length > 1 ? arr : arr[0]))
@@ -36,8 +36,12 @@ const groupedRelations = computed(() => {
 });
 
 // Find min and max dates to determine scale
-const minVal = computed(() => d3.min(filteredRelations.value.map((r) => new Date(r.start_date))));
-const maxVal = computed(() => d3.max(filteredRelations.value.map((r) => new Date(r.start_date))));
+const minVal = computed(() =>
+	d3.min(filteredRelations.value.map((r) => new Date(r.start_date ?? ""))),
+);
+const maxVal = computed(() =>
+	d3.max(filteredRelations.value.map((r) => new Date(r.start_date ?? ""))),
+);
 const scale = computed(() => {
 	let min = minVal.value;
 	let max = maxVal.value;

@@ -1,4 +1,4 @@
-import { createApiClient } from "../lib/create-api-client";
+import { createApiClient } from "../lib/api";
 
 export default defineNuxtPlugin({
 	name: "api",

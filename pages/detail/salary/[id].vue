@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/vue-query";
 
 import DetailPage from "@/components/detail-page.vue";
 import Timeline from "@/components/timeline.vue";
-import type { SimplifiedRelationType } from "@/lib/create-api-client";
+import { loadAndGroupRelations } from "@/lib/group-relations.ts";
 import type { TimelineObject } from "@/types/timeline";
 
 const t = useTranslations();
@@ -15,16 +15,26 @@ definePageMeta({
 });
 
 const { $api } = useNuxtApp();
-const endpoint = $api.apis_api_ontology_salary_retrieve;
+const detailsEndpoint = "apis_api_apis_ontology.salary_retrieve";
+const relationsEndpoint = "apis_api_apis_ontology.salary_relations_list";
 
-const { data, isLoading } = useQuery({
-	queryKey: [endpoint, id],
-	queryFn: () => endpoint({ params: { id } }),
+const data = ref({
+	entity: useQuery({
+		queryKey: [detailsEndpoint, id],
+		queryFn: () => $api[detailsEndpoint]({ params: { id } }),
+	}),
+	relations: useQuery({
+		queryKey: [relationsEndpoint, id],
+		queryFn: () =>
+			loadAndGroupRelations($api[relationsEndpoint], {
+				params: { id: String(id) },
+			}),
+	}),
 });
 
 const flattenedRelations = computed(() => {
-	if (isLoading.value) return [];
-	const res = Object.entries(data.value?.relations as Record<string, Array<SimplifiedRelationType>>)
+	if (data.value.relations.isLoading) return [];
+	const res = Object.entries(data.value.relations.data ?? {})
 		.map(([key, val]) =>
 			val.map((entry) => {
 				return { ...entry, class: key };
@@ -32,96 +42,102 @@ const flattenedRelations = computed(() => {
 		)
 		.flat()
 		.filter((r): r is TimelineObject => Boolean(r.start_date))
-		.sort((r) => new Date(r.start_date).valueOf());
+		.sort((r) => new Date(r.start_date ?? "").valueOf());
 	return res;
 });
 </script>
 
 <template>
-	<div v-if="isLoading">Loading...</div>
-	<DetailPage v-else model="Salary" :details-loading="isLoading">
+	<div v-if="data.entity.isLoading">Loading...</div>
+	<DetailPage v-else model="Salary">
 		<template #head>
 			<h1 class="text-2xl font-bold text-primary-700 xl:my-3 xl:text-4xl dark:text-inherit">
-				{{ data?.first_name }} {{ data?.name }}
+				{{ data.entity.data?.name }}
 			</h1>
 			<div
-				v-if="data?.repetitionType"
+				v-if="data.entity.data?.repetitionType"
 				class="mr-3 inline-block w-fit rounded-md bg-salary-200 px-3 py-1.5 text-xs font-semibold uppercase dark:bg-salary-900 dark:text-neutral-100"
 			>
-				{{ data?.repetitionType }}
+				{{ data.entity.data?.repetitionType }}
 			</div>
 		</template>
 		<template #base>
 			<div class="col-span-2 my-2 border-t"></div>
 			<span>{{ t("Pages.searchviews.salary.type") }}:</span>
 			<span>
-				{{ data?.type }}
+				{{ data.entity.data?.typ }}
 			</span>
 			<div class="col-span-2 my-2 border-t"></div>
 			<span>{{ t("Pages.searchviews.salary.repetition_type") }}:</span>
 			<span>
-				{{ data?.repetitionType }}
+				{{ data.entity.data?.repetitionType }}
 			</span>
 			<div class="col-span-2 my-2 border-t"></div>
 			<span>{{ t("Pages.searchviews.salary.start_date") }}:</span>
 			<span>
-				{{ String(data?.start_date_written || data?.start_date || "").replace(/\<.*?\>/g, "") }}
+				{{ String(data.entity.data?.start_date_written || "").replace(/\<.*?\>/g, "") }}
 			</span>
 			<div class="col-span-2 my-2 border-t"></div>
 			<span>{{ t("Pages.searchviews.salary.end_date") }}:</span>
 			<span>
-				{{ String(data?.end_date_written || data?.end_date || "").replace(/\<.*?\>/g, "") }}
+				{{ String(data.entity.data?.end_date_written || "").replace(/\<.*?\>/g, "") }}
 			</span>
 			<div class="col-span-2 my-2 border-t"></div>
 		</template>
 		<template #right>
-			<div v-if="data" class="flex flex-col gap-3">
+			<div v-if="data.entity.data" class="flex flex-col gap-3">
 				<DetailDisclosure
-					v-if="data?.relations?.function"
+					v-if="data.entity.data?.relation_types.includes('function')"
 					:title="t('Pages.searchviews.function.label')"
 					:headers="['to.name', 'start_date_written', 'end_date_written']"
-					:rels="data?.relations?.function"
+					:rels="data.relations.data?.function"
+					:details-loading="data.relations.isLoading"
 					model="function"
 				/>
 				<DetailDisclosure
-					v-if="data?.relations?.person"
+					v-if="data.entity.data?.relation_types.includes('person')"
 					:title="t('Pages.searchviews.person.label')"
 					:headers="['name', 'to.name', 'start_date_written', 'end_date_written']"
-					:rels="data?.relations?.person"
+					:rels="data.relations.data?.person"
+					:details-loading="data.relations.isLoading"
 					model="person"
 				/>
 				<DetailDisclosure
-					v-if="data?.relations?.institution"
+					v-if="data.entity.data?.relation_types.includes('institution')"
 					:title="t('Pages.searchviews.institution.label')"
 					:headers="['name', 'to.name', 'start_date_written', 'end_date_written']"
-					:rels="data?.relations?.institution"
+					:rels="data.relations.data?.institution"
+					:details-loading="data.relations.isLoading"
 					model="institution"
 				/>
 				<DetailDisclosure
-					v-if="data?.relations?.place"
+					v-if="data.entity.data?.relation_types.includes('place')"
 					:title="t('Pages.searchviews.place.label')"
 					:headers="['name', 'to.name', 'start_date_written', 'end_date_written']"
-					:rels="data?.relations?.place"
+					:rels="data?.relations.data?.place"
+					:details-loading="data.relations.isLoading"
 					model="place"
 				/>
 				<DetailDisclosure
-					v-if="data?.relations?.event"
+					v-if="data.entity.data?.relation_types.includes('event')"
 					:title="t('Pages.searchviews.event.label')"
 					:headers="['name', 'to.name', 'start_date_written', 'end_date_written']"
-					:rels="data?.relations?.event"
+					:rels="data?.relations.data?.event"
+					:details-loading="data.relations.isLoading"
 					model="event"
 				/>
 				<DetailDisclosure
-					v-if="data?.relations?.salary"
+					v-if="data.entity.data?.relation_types.includes('salary')"
 					:title="t('Pages.searchviews.salary.label')"
 					:headers="['name', 'to.name', 'start_date_written', 'end_date_written']"
-					:rels="data?.relations?.salary"
+					:rels="data?.relations.data?.salary"
+					:details-loading="data.relations.isLoading"
 					model="salary"
 				/>
 			</div>
 		</template>
 		<template #bottom>
-			<Timeline :relations="flattenedRelations"></Timeline>
+			<Timeline v-if="!data.relations.isLoading" :relations="flattenedRelations"></Timeline>
 		</template>
 	</DetailPage>
 </template>

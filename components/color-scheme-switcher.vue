@@ -15,12 +15,13 @@ const colorSchemes = computed(() => {
 	<ClientOnly>
 		<Listbox v-model="colorMode.preference">
 			<div class="relative">
-				<ListboxButton
-					><Sun class="inline dark:hidden"></Sun> <Moon class="hidden dark:inline"></Moon
-					><span class="sr-only">{{
-						t(`ColorSchemeToggle.color-schemes.${colorMode.preference}`)
-					}}</span></ListboxButton
-				>
+				<ListboxButton>
+					<Sun class="inline dark:hidden"></Sun>
+					<Moon class="hidden dark:inline"></Moon>
+					<span class="sr-only">
+						{{ t(`ColorSchemeToggle.color-schemes.${colorMode.preference}`) }}
+					</span>
+				</ListboxButton>
 				<ListboxOptions
 					class="absolute -left-2 z-10 mt-3 overflow-auto rounded-md border bg-neutral-50 text-sm dark:bg-zinc-900"
 				>

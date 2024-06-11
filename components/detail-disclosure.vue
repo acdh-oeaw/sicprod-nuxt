@@ -1,26 +1,32 @@
 <script lang="ts" setup>
 import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
 import lodash from "lodash";
-import { ChevronDown } from "lucide-vue-next";
+import { ChevronDown, Loader2 } from "lucide-vue-next";
 
+import Centered from "@/components/ui/centered.vue";
 import { borderColors, icons, scrollbarColors } from "@/lib/colors";
-import type { SimplifiedRelationType } from "@/lib/create-api-client";
+import type { ModelString, TempTriple } from "@/types/resulttypes";
 
-const props = defineProps<{
-	rels: Array<SimplifiedRelationType>;
-	gridClass?: string;
-	title: string;
-	defaultOpen?: boolean;
-	headers: Array<string>;
-	customSlot?: boolean;
-	model: "event" | "function" | "institution" | "person" | "place" | "salary";
-}>();
+const props = withDefaults(
+	defineProps<{
+		rels?: Array<TempTriple>;
+		gridClass?: string;
+		title: string;
+		defaultOpen?: boolean;
+		headers: Array<string>;
+		customSlot?: boolean;
+		detailsLoading?: boolean;
+		model: ModelString;
+	}>(),
+	{ rels: () => [] },
+);
 
 const t = useTranslations();
 const localePath = useLocalePath();
 
 const groupedRelations = computed(() => {
-	let groups: Record<string, Array<SimplifiedRelationType>> = {};
+	let groups: Record<string, Array<TempTriple>> = {};
+	if (props.detailsLoading) return groups;
 	for (const rel of props.rels) {
 		const prop = rel.to.name;
 		if (!(prop in groups)) {
@@ -33,25 +39,28 @@ const groupedRelations = computed(() => {
 </script>
 
 <template>
-	<Disclosure :default-open="defaultOpen && (rels.length != 0 || customSlot)" as="div" class="">
+	<Disclosure
+		:default-open="defaultOpen && (detailsLoading || rels.length != 0 || customSlot)"
+		as="div"
+		class=""
+	>
 		<DisclosureButton
 			as="button"
 			class="rounded flex w-full items-center justify-between border-b-4 p-2 text-xl transition ui-open:rounded-b-none"
-			:disabled="rels.length === 0 && !customSlot"
 			:class="borderColors[model]"
 		>
-			<span class="flex gap-2 align-baseline"
-				><component :is="icons[model]" class="inline" /> {{ title }}</span
-			>
+			<span class="flex gap-2 align-baseline">
+				<component :is="icons[model]" class="inline" />
+				{{ title }}
+			</span>
 			<ChevronDown class="size-5 transition ui-open:-rotate-180" />
 		</DisclosureButton>
 		<DisclosurePanel
-			v-if="(rels.length !== 0 && headers) || customSlot"
 			static
 			as="div"
 			class="rounded box-border overflow-hidden rounded-t-none p-4 transition-[max-height,border,padding] ui-open:max-h-full ui-open:border-t-0 ui-not-open:max-h-0 ui-not-open:border-transparent ui-not-open:py-0"
 		>
-			<slot>
+			<slot v-if="(!detailsLoading && rels.length !== 0 && headers) || customSlot">
 				<table class="w-full table-fixed">
 					<thead class="table w-full table-fixed">
 						<tr class="">
@@ -76,7 +85,8 @@ const groupedRelations = computed(() => {
 								as="tr"
 								class="group table w-full table-fixed cursor-pointer hover:bg-primary-50 active:bg-primary-50 dark:hover:bg-primary-950 dark:active:bg-primary-950"
 								tabindex="0"
-								><td
+							>
+								<td
 									v-for="(header, idx) in headers"
 									:key="rel[0]?.to?.name + header"
 									class="p-2 text-start"
@@ -107,11 +117,18 @@ const groupedRelations = computed(() => {
 									<td v-for="header in headers" :key="hit + header" class="p-2 text-start">
 										{{ String(lodash.get(hit, header, "")).replace(/\<.*?\>/g, "") }}
 									</td>
-								</NuxtLink></component
-							>
+								</NuxtLink>
+							</component>
 						</component>
 					</tbody>
 				</table>
+			</slot>
+			<slot v-else>
+				<div class="relative mt-2">
+					<Centered>
+						<Loader2 class="size-8 animate-spin" />
+					</Centered>
+				</div>
 			</slot>
 		</DisclosurePanel>
 	</Disclosure>

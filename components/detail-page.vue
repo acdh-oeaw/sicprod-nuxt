@@ -7,7 +7,7 @@ const t = useTranslations();
 
 defineProps<{
 	model: string;
-	detailsLoading: boolean;
+	detailsLoading?: boolean;
 }>();
 </script>
 
