@@ -14,16 +14,18 @@ const props = defineProps<{
 const startDate = computed(() => {
 	if (Array.isArray(props.item))
 		return (
-			props.item.map((i) => new Date(i.start_date).valueOf()).reduce((prev, curr) => prev + curr) /
-			props.item.length
+			props.item
+				.map((i) => new Date(i.start_date ?? "").valueOf())
+				.reduce((prev, curr) => prev + curr) / props.item.length
 		);
-	else return new Date(props.item.start_date).valueOf();
+	else return new Date(props.item.start_date ?? "").valueOf();
 });
 const endDate = computed(() => {
 	if (Array.isArray(props.item))
 		return props.item.every((i) => i.end_date)
-			? props.item.map((i) => new Date(i.end_date).valueOf()).reduce((prev, curr) => prev + curr) /
-					props.item.length
+			? props.item
+					.map((i) => new Date(i.end_date ?? "").valueOf())
+					.reduce((prev, curr) => prev + curr) / props.item.length
 			: null;
 	else return props.item.end_date ? new Date(props.item.end_date).valueOf() : null;
 });
@@ -88,19 +90,17 @@ const itemClass = computed(() => {
 					<div class="text-right text-sm text-neutral-500">
 						<span>
 							{{
-								(Array.isArray(item)
-									? item[0].start_date_written
-									: item.start_date_written
+								(
+									(Array.isArray(item) ? item[0].start_date_written : item.start_date_written) ?? ""
 								).replace(/\<.*?\>/g, "")
 							}}
 						</span>
 						<span v-if="endDate && startDate != endDate">
 							-
 							{{
-								(Array.isArray(item) ? item[0].end_date_written : item.end_date_written).replace(
-									/\<.*?\>/g,
-									"",
-								)
+								(
+									(Array.isArray(item) ? item[0].end_date_written : item.end_date_written) ?? ""
+								).replace(/\<.*?\>/g, "")
 							}}
 						</span>
 					</div>
