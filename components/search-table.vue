@@ -47,7 +47,7 @@ const { data, isFetching } = useQuery({
 			queries: {
 				offset: comQuery.value.per_page * (comQuery.value.page - 1),
 				limit: comQuery.value.per_page,
-				name__icontains: comQuery.value.q,
+				search: comQuery.value.q,
 			},
 		});
 		return response;
