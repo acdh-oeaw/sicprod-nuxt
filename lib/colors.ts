@@ -26,6 +26,14 @@ export const borderColors = {
 	institution: "border-institution-400 dark:border-institution-700",
 	salary: "border-salary-400 dark:border-salary-700",
 };
+export const textColors = {
+	event: "text-event-400 dark:text-event-700",
+	function: "text-function-400 dark:text-function-700",
+	person: "text-person-400 dark:text-person-700",
+	place: "text-place-400 dark:text-place-800",
+	institution: "text-institution-400 dark:text-institution-700",
+	salary: "text-salary-400 dark:text-salary-700",
+};
 export const scrollbarColors = {
 	event: "scrollbar-thumb-event-400/50 dark:scrollbar-thumb-event-700/50",
 	function: "scrollbar-thumb-function-400/50 dark:scrollbar-thumb-function-700/50",

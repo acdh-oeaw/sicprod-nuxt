@@ -1,10 +1,11 @@
 <script lang="ts" setup>
 import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
 import lodash from "lodash";
-import { ChevronDown, Loader2 } from "lucide-vue-next";
+import { ChevronDown } from "lucide-vue-next";
 
 import Centered from "@/components/ui/centered.vue";
-import { borderColors, icons, scrollbarColors } from "@/lib/colors";
+import Loader from "@/components/ui/loader.vue";
+import { borderColors, icons, scrollbarColors, textColors } from "@/lib/colors";
 import type { ModelString, TempTriple } from "@/types/resulttypes";
 
 const props = withDefaults(
@@ -124,9 +125,9 @@ const groupedRelations = computed(() => {
 				</table>
 			</slot>
 			<slot v-else>
-				<div class="relative mt-2">
+				<div class="relative mt-5" :class="textColors[model]">
 					<Centered>
-						<Loader2 class="size-8 animate-spin" />
+						<Loader />
 					</Centered>
 				</div>
 			</slot>

@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import { useQuery } from "@tanstack/vue-query";
-import { ChevronRight, Loader2, Search, XCircle } from "lucide-vue-next";
+import { ChevronRight, Search, XCircle } from "lucide-vue-next";
 
+import Loader from "@/components/ui/loader.vue";
 import type { PaginatedListResultType } from "@/types/resulttypes";
 
 interface ColumnEntry {
@@ -144,9 +145,11 @@ const input = ref(route.query.q === undefined ? "" : String(route.query.q));
 				</NuxtLink>
 			</template>
 		</table>
-		<Centered v-else>
-			<Loader2 class="size-8 animate-spin" />
-		</Centered>
+		<div v-else class="relative my-3 text-primary-950 dark:text-primary-200">
+			<Centered>
+				<Loader />
+			</Centered>
+		</div>
 		<Pagination
 			v-if="data && (data.next || data.previous)"
 			class="m-2"

@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/vue-query";
 
 import DetailPage from "@/components/detail-page.vue";
 import Timeline from "@/components/timeline.vue";
+import Loader from "@/components/ui/loader.vue";
 import { loadAndGroupRelations } from "@/lib/group-relations.ts";
 import type { TimelineObject } from "@/types/timeline";
 
@@ -53,13 +54,17 @@ const flattenedRelations = computed(() => {
 		)
 		.flat()
 		.filter((r): r is TimelineObject => Boolean(r.start_date))
-		.sort((r) => new Date(r.start_date ?? "").valueOf());
+		.sort((r) => new Date(String(r.start_date)).valueOf());
 	return res;
 });
 </script>
 
 <template>
-	<div v-if="data.entity.isLoading">Loading...</div>
+	<div v-if="data.entity.isLoading" class="relative">
+		<Centered>
+			<Loader />
+		</Centered>
+	</div>
 	<DetailPage v-else model="Institution">
 		<template #head>
 			<h1 class="text-2xl font-bold text-primary-700 xl:my-3 xl:text-4xl dark:text-inherit">
