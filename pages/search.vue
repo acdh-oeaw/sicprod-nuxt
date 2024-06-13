@@ -51,8 +51,8 @@ definePageMeta({
 					v-for="link in links"
 					:key="link.label"
 					:to="link.href"
-					class="group m-2 flex h-fit items-center gap-4 rounded-md border p-2 shadow transition hover:bg-primary-50 active:bg-primary-50 xl:mx-0 dark:hover:bg-primary-950 dark:active:bg-primary-950"
-					:class="$route.path === link.href.path && 'bg-primary-100'"
+					class="group m-2 flex h-fit items-center gap-4 rounded-md border p-2 shadow transition hover:bg-primary-100 active:bg-primary-100 xl:mx-0 dark:hover:bg-primary-900 dark:active:bg-primary-900"
+					:class="$route.path === link.href.path && 'bg-primary-100 dark:bg-primary-900'"
 				>
 					<component
 						:is="link.icon"
