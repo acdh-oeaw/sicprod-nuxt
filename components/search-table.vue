@@ -108,6 +108,11 @@ const input = ref(route.query.q === undefined ? "" : String(route.query.q));
 				<XCircle class="mx-2 size-6 text-neutral-500" />
 			</button>
 		</div>
+		<div class="relative text-primary-950 dark:text-primary-200">
+			<Centered v-if="isFetching" class="mt-5">
+				<Loader />
+			</Centered>
+		</div>
 		<Pagination
 			v-if="data && (data.next || data.previous)"
 			class="m-2"
@@ -115,7 +120,11 @@ const input = ref(route.query.q === undefined ? "" : String(route.query.q));
 			:limit="Number(data.limit) || limitNum"
 			:all="Number(data.count)"
 		/>
-		<table v-if="!isFetching && data" class="mx-2 table-fixed">
+		<table
+			v-if="data"
+			class="mx-2 table-fixed"
+			:class="isFetching && 'text-neutral-300 dark:text-neutral-500'"
+		>
 			<tr class="mr-6" :class="cols">
 				<th v-for="col in columns" :key="String(col.key)" class="m-2 p-4 text-start font-semibold">
 					<div v-if="col.label">
@@ -145,11 +154,7 @@ const input = ref(route.query.q === undefined ? "" : String(route.query.q));
 				</NuxtLink>
 			</template>
 		</table>
-		<div v-else class="relative my-3 text-primary-950 dark:text-primary-200">
-			<Centered>
-				<Loader />
-			</Centered>
-		</div>
+
 		<Pagination
 			v-if="data && (data.next || data.previous)"
 			class="m-2"
