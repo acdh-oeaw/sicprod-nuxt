@@ -8,25 +8,40 @@ const links = computed(() => {
 		uibk: {
 			href: { path: "https://www.uibk.ac.at/" },
 			label: "Universität Innsbruck",
-			image: "/assets/images/logo-uibk.svg",
+			image: {
+				light: "/assets/images/logo-uibk.svg",
+				dark: "/assets/images/logo-uibk-dark.svg",
+			},
 		},
 		acdh: {
 			href: { path: "https://www.oeaw.ac.at/acdh/" },
 			label: "Austrian Centre for Digital Humanities and Cultural Heritage",
-			image: "/assets/images/logo-acdh-with-text.svg",
+			image: {
+				light: "/assets/images/logo-acdh-with-text.svg",
+				dark: "/assets/images/logo-acdh-with-text-dark.svg",
+			},
 		},
 		oeaw: {
 			href: { path: "https://www.oeaw.ac.at/" },
 			label: "Österreichische Akademie der Wissenschaften",
-			image: "/assets/images/logo-oeaw.svg",
+			image: {
+				light: "/assets/images/logo-oeaw.svg",
+				dark: "/assets/images/logo-oeaw-dark.png",
+			},
 		},
 		goDigital: {
 			href: { path: "https://www.oeaw.ac.at/foerderungen/godigital/" },
 			label: "go!digital",
-			image: "/assets/images/go_digital.svg",
+			image: {
+				light: "/assets/images/go_digital.svg",
+				dark: "/assets/images/go_digital-dark.svg",
+			},
 		},
 		imprint: { href: { path: "/imprint" }, label: t("AppFooter.links.imprint"), image: null },
-	} satisfies Record<string, { href: NavLinkProps["href"]; label: string; image: string | null }>;
+	} satisfies Record<
+		string,
+		{ href: NavLinkProps["href"]; label: string; image: Record<"dark" | "light", string> | null }
+	>;
 });
 </script>
 
@@ -37,7 +52,20 @@ const links = computed(() => {
 				<ul class="flex items-center gap-8" role="list">
 					<li v-for="(link, key) of links" :key="key" :class="link.image ? '' : 'ml-auto'">
 						<a v-if="link.image" :href="link.href.path" target="_blank">
-							<NuxtImg :src="link.image" :alt="link.label" placeholder class="h-10 w-auto">
+							<NuxtImg
+								:src="link.image.light"
+								:alt="link.label"
+								placeholder
+								class="h-10 w-auto dark:hidden"
+							>
+								{{ link.label }}
+							</NuxtImg>
+							<NuxtImg
+								:src="link.image.dark"
+								:alt="link.label"
+								placeholder
+								class="hidden h-10 w-auto dark:block"
+							>
 								{{ link.label }}
 							</NuxtImg>
 						</a>
