@@ -120,41 +120,45 @@ const input = ref(route.query.q === undefined ? "" : String(route.query.q));
 			:limit="Number(data.limit) || limitNum"
 			:all="Number(data.count)"
 		/>
-		<table
-			v-if="data"
-			class="mx-2 table-fixed"
-			:class="isFetching && 'text-neutral-300 dark:text-neutral-500'"
-		>
-			<tr class="mr-6" :class="cols">
-				<th v-for="col in columns" :key="String(col.key)" class="m-2 p-4 text-start font-semibold">
-					<div v-if="col.label">
-						{{ col.label }}
-					</div>
-				</th>
-			</tr>
-			<template v-if="data !== null">
-				<NuxtLink
-					v-for="hit in data.results"
-					:key="String(hit.id)"
-					class="table-row border-b hover:bg-primary-50 active:bg-primary-50 md:border-t dark:hover:bg-primary-950 dark:active:bg-primary-950"
-					:to="getDetailLink(String(hit.id || String(hit.id)?.replace(/\D/g, '')))"
-				>
-					<td
+		<div v-if="data" class="w-full max-w-full overflow-x-auto">
+			<table
+				class="mx-2 min-w-full table-fixed"
+				:class="isFetching && 'text-neutral-300 dark:text-neutral-500'"
+			>
+				<tr class="mr-6" :class="cols">
+					<th
 						v-for="col in columns"
-						:key="col.key + hit.id"
-						class="m-2 overflow-auto p-4 text-start"
+						:key="String(col.key)"
+						class="m-2 p-2 text-start font-semibold md:p-4"
 					>
-						<span v-if="hit[col.key]">
-							{{ String(hit[col.key])?.replace(/ \<.*?\>/g, "") }}
-						</span>
-					</td>
-					<td class="m-2 overflow-auto p-4 text-start align-middle">
-						<ChevronRight class="size-6 shrink-0" />
-					</td>
-				</NuxtLink>
-			</template>
-		</table>
-
+						<div v-if="col.label">
+							{{ col.label }}
+						</div>
+					</th>
+				</tr>
+				<template v-if="data !== null">
+					<NuxtLink
+						v-for="hit in data.results"
+						:key="String(hit.id)"
+						class="table-row border-b hover:bg-primary-50 active:bg-primary-50 md:border-t dark:hover:bg-primary-950 dark:active:bg-primary-950"
+						:to="getDetailLink(String(hit.id || String(hit.id)?.replace(/\D/g, '')))"
+					>
+						<td
+							v-for="col in columns"
+							:key="col.key + hit.id"
+							class="m-2 overflow-auto p-2 text-start text-sm md:p-4 md:text-md"
+						>
+							<span v-if="hit[col.key]">
+								{{ String(hit[col.key])?.replace(/ \<.*?\>/g, "") }}
+							</span>
+						</td>
+						<td class="m-2 overflow-auto p-2 text-start align-middle text-sm md:p-4 md:text-md">
+							<ChevronRight class="size-6 shrink-0" />
+						</td>
+					</NuxtLink>
+				</template>
+			</table>
+		</div>
 		<Pagination
 			v-if="data && (data.next || data.previous)"
 			class="m-2"

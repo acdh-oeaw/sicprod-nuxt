@@ -44,14 +44,14 @@ definePageMeta({
 </script>
 
 <template>
-	<main>
-		<div class="mx-4 grid h-full grid-rows-[auto_1fr] gap-4 md:grid-cols-[2fr_6fr]">
-			<div class="m-2 flex h-fit flex-wrap md:flex-col lg:mx-4 xl:m-4 xl:max-w-sm">
+	<main class="max-w-[100dvw]">
+		<div class="h-full gap-4 md:mx-4 md:grid md:grid-cols-[2fr_6fr] md:grid-rows-[auto_1fr]">
+			<div class="m-2 flex h-fit flex-wrap gap-2 md:flex-col md:gap-4 lg:mx-4 xl:m-4 xl:max-w-sm">
 				<NuxtLink
 					v-for="link in links"
 					:key="link.label"
 					:to="link.href"
-					class="group m-2 flex h-fit items-center gap-4 rounded-md border p-2 shadow transition hover:bg-primary-100 active:bg-primary-100 xl:mx-0 dark:hover:bg-primary-900 dark:active:bg-primary-900"
+					class="group flex h-fit items-center gap-4 rounded-md border p-2 shadow transition hover:bg-primary-100 active:bg-primary-100 xl:mx-0 dark:hover:bg-primary-900 dark:active:bg-primary-900"
 					:class="$route.path === link.href.path && 'bg-primary-100 dark:bg-primary-900'"
 				>
 					<component

@@ -37,7 +37,7 @@ const t = useTranslations();
 			<ChevronUp class="size-5 -rotate-90" />
 			<span class="sr-only">{{ t("ui.first-page") }}</span>
 		</div>
-		<div v-if="all != 0 && showLabel">
+		<div v-if="all != 0 && showLabel" class="m-1 text-sm md:text-md">
 			{{
 				t("ui.showing-results", {
 					first: (page - 1) * limit + 1,
