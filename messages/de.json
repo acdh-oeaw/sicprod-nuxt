@@ -127,6 +127,14 @@
 				"type": "Typ",
 				"repetition_type": "Wiederholungen",
 				"alternative_label": "Alternativer Name"
+			},
+			"facets": {
+				"related_persons": "Personen",
+				"related_events": "Events",
+				"related_functions": "Funktionen",
+				"related_institutions": "Institutionen",
+				"related_places": "Orte",
+				"related_salaries": "Zahlungen"
 			}
 		}
 	},
@@ -187,12 +195,13 @@
 		"prev-page": "Vorherige Seite",
 		"first-page": "Es gibt keine Seite vor dieser.",
 		"last-page": "Das ist bereits die letzte Seite.",
-		"show-all": "Zeige alle...",
+		"show-all": "Zeige alle {all} Ergebnisse",
 		"show-filters": "Filter ausfahren...",
 		"hide-filters": "Filter verstecken...",
 		"search-placeholder": "Suche...",
 		"sort-by": "Sortiere nach dieser Spalte",
 		"loading": "Wird geladen...",
-		"no-data": "Keine Daten"
+		"no-data": "Keine Daten",
+		"hide-results": "Ergebnisse verbergen"
 	}
 }

@@ -21,3 +21,9 @@ export interface PaginatedTempTripleListType {
 	previous?: string | null | undefined;
 	results: Array<TempTriple>;
 }
+
+export interface FacetType {
+	id?: number | string;
+	name: string;
+	count: number;
+}

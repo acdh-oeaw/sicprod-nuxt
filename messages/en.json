@@ -127,6 +127,14 @@
 				"type": "Type",
 				"repetition_type": "Repetition",
 				"alternative_label": "Alternative name"
+			},
+			"facets": {
+				"related_persons": "Persons",
+				"related_events": "Events",
+				"related_functions": "Functions",
+				"related_institutions": "Institutions",
+				"related_places": "Places",
+				"related_salaries": "Salaries"
 			}
 		}
 	},
@@ -187,12 +195,13 @@
 		"prev-page": "Previous Page",
 		"first-page": "You're already on the first page.",
 		"last-page": "You're already on the last page.",
-		"show-all": "show all...",
+		"show-all": "Show all {all} results",
 		"show-filters": "Show Filters...",
 		"hide-filters": "Hide Filters...",
 		"search-placeholder": "Search...",
 		"sort-by": "sort by this column",
 		"loading": "loading...",
-		"no-data": "No data"
+		"no-data": "No data",
+		"hide-results": "Hide results"
 	}
 }

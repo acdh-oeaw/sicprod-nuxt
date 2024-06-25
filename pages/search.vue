@@ -46,7 +46,9 @@ definePageMeta({
 <template>
 	<main class="max-w-[100dvw]">
 		<div class="h-full gap-4 md:mx-4 md:grid md:grid-cols-[2fr_6fr] md:grid-rows-[auto_1fr]">
-			<div class="m-2 flex h-fit flex-wrap gap-2 md:flex-col md:gap-4 lg:mx-4 xl:m-4 xl:max-w-sm">
+			<div
+				class="m-2 flex h-fit flex-wrap gap-2 md:flex-col md:gap-4 md:pt-4 lg:mx-4 xl:m-4 xl:max-w-sm"
+			>
 				<NuxtLink
 					v-for="link in links"
 					:key="link.label"
@@ -62,7 +64,7 @@ definePageMeta({
 					{{ link.label }}
 				</NuxtLink>
 			</div>
-			<div class="xl:my-2">
+			<div class="xl:my-4">
 				<NuxtPage />
 			</div>
 		</div>
