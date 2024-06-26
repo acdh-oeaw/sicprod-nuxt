@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import SearchTable from "@/components/search-table.vue";
+import SearchPage from "@/components/search-page.vue";
 
 definePageMeta({
 	title: "Pages.searchviews.person.title",
@@ -39,5 +39,5 @@ const columns = [
 </script>
 
 <template>
-	<SearchTable :endpoint="endpoint" :cols="columns" class-name="Person"></SearchTable>
+	<SearchPage :endpoint="endpoint" :cols="columns" class-name="Person"></SearchPage>
 </template>
