@@ -134,7 +134,9 @@
 				"related_functions": "Funktionen",
 				"related_institutions": "Institutionen",
 				"related_places": "Orte",
-				"related_salaries": "Zahlungen"
+				"related_salaries": "Zahlungen",
+				"gender": "Geschlecht",
+				"type": "Typ"
 			}
 		}
 	},
