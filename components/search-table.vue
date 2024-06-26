@@ -49,6 +49,7 @@ const facetSelection = ref<Record<string, Array<FacetType>>>({});
 const initFacetSelection = () => {
 	Object.keys(facets.value).forEach((k) => (facetSelection.value[k] = []));
 };
+
 watch(
 	facetSelection,
 	(selection) =>
@@ -90,9 +91,11 @@ const { data, isFetching } = useQuery({
 				related_entity: comQuery.value.related_entity,
 			},
 		});
-		if (Object.keys(facetSelection).length === 0) initFacetSelection();
 		return response;
 	},
+});
+watch(facets, () => {
+	if (Object.keys(facets.value).some((key) => !(key in facetSelection.value))) initFacetSelection();
 });
 const getDetailLink = (id: string) => {
 	let type = route.path.split("/")[3];

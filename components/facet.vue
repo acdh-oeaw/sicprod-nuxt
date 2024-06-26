@@ -5,19 +5,17 @@ import type { FacetType } from "@/types/resulttypes";
 
 const t = useTranslations();
 
-const model = defineModel({ type: Array<FacetType>, required: true });
+const model = defineModel({ type: Array<FacetType>, required: true, default: [] });
 const props = defineProps<{
 	options: Array<FacetType>;
 }>();
 
 const input = ref<string>("");
-const selection = ref<Array<FacetType>>([]);
 const displayedOptions = computed(() => {
 	if (input.value.length > 0)
 		return props.options.filter((o) => o.name.toLowerCase().includes(input.value.toLowerCase()));
 	else return props.options;
 });
-watch(selection, (s) => (model.value = s));
 const showAllOptions = ref<boolean>(false);
 const maxResultsToDisplay = 5;
 </script>
@@ -51,12 +49,12 @@ const maxResultsToDisplay = 5;
 					class="relative flex cursor-default select-none justify-between pr-4"
 					:title="option.name"
 				>
-					<input v-model="selection" type="checkbox" :value="option" />
+					<input v-model="model" type="checkbox" :value="option" />
 
 					<span
 						class="inline-block grow truncate px-2 text-start"
 						:class="{
-							'font-medium': selection.includes(option),
+							'font-medium': model.includes(option),
 						}"
 					>
 						{{ option.name }}
