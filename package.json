@@ -32,11 +32,7 @@
 		"test:e2e:ui": "playwright test --ui",
 		"types:check": "nuxt typecheck",
 		"validate": "run-p format:check lint:check types:check test test:e2e",
-		"createclient:mkdir": "npx mkdirp generated",
-		"createclient:trimmer": "pnpm openapi-endpoint-trimmer --url \"https://sicprod.acdh-dev.oeaw.ac.at/apis/swagger/schema/?format=json\" --output generated/schema.yaml --prefixes /apis/api/apis_ontology.event,/apis/api/apis_ontology.function,/apis/api/apis_ontology.institution,/apis/api/apis_ontology.person,/apis/api/apis_ontology.place,/apis/api/apis_ontology.salary",
-		"createclient:generate:zod": "pnpm openapi-zod-client generated/schema.yaml -o \"./lib/api.ts\" --export-types",
-		"createclient:cleanup": "npx rimraf generated",
-		"createclient": "run-s createclient:mkdir createclient:trimmer createclient:generate:zod createclient:cleanup"
+		"createclient": "npx tsx ./scripts/generate-api-client.ts"
 	},
 	"dependencies": {
 		"@acdh-oeaw/lib": "^0.1.7",
@@ -82,6 +78,7 @@
 		"@playwright/test": "^1.42.1",
 		"@tailwindcss/typography": "^0.5.12",
 		"@types/d3": "^7.4.3",
+		"@types/js-yaml": "^4.0.9",
 		"@types/lodash": "^4.17.0",
 		"@types/node": "^20.11.26",
 		"axe-core": "^4.8.4",
@@ -92,10 +89,12 @@
 		"eslint": "^8.57.0",
 		"eslint-plugin-tailwindcss": "^3.15.1",
 		"is-ci": "^3.0.1",
+		"js-yaml": "^4.1.0",
 		"lint-staged": "^15.2.2",
 		"npm-run-all2": "^6.1.2",
 		"nuxt": "^3.10.3",
 		"openapi-endpoint-trimmer": "^2.0.0",
+		"openapi3-ts": "^4.3.3",
 		"postcss": "^8.4.35",
 		"prettier": "^3.2.5",
 		"schema-dts": "^1.1.2",
@@ -103,6 +102,7 @@
 		"stylelint": "^16.2.1",
 		"tailwind-scrollbar": "^3.1.0",
 		"tailwindcss": "^3.4.1",
+		"tsx": "^4.16.0",
 		"typescript": "^5.4.2",
 		"vite": "^5.1.6",
 		"vue-tsc": "^2.0.6"
