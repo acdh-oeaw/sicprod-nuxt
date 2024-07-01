@@ -48,6 +48,10 @@ openApiDoc = {
 await generateZodClientFromOpenAPI({
 	openApiDoc,
 	distPath: options.dist,
+	options: {
+		shouldExportAllTypes: true,
+		withAlias: true,
+	},
 });
 
 console.log("Client creation completed");
