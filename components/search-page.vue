@@ -88,7 +88,7 @@ const relationFacets = computed(() => {
 	});
 	return facetObject;
 });
-const relationFacetSelection = ref<Record<string, Array<FacetType>>>({});
+const relationFacetSelection = ref<Record<string, Array<number | string>>>({});
 
 // class-specific facets such as gender and type
 const classFacets = computed(() => {
@@ -106,19 +106,19 @@ const classFacets = computed(() => {
 	});
 	return facetObject;
 });
-const classFacetSelection = ref<Record<string, Array<FacetType>>>({});
+const classFacetSelection = ref<Record<string, Array<number | string>>>({});
 
 // Update route when facet selection changes
 async function updateRouter() {
 	const relationFacetQuery = Object.fromEntries(
 		Object.entries(relationFacetSelection.value)
 			.filter(([_key, value]) => value.length > 0)
-			.map(([key, value]) => [`facet_${key}`, value.map((v) => v.id).join(",")]),
+			.map(([key, value]) => [`facet_${key}`, value.join(",")]),
 	);
 	const classFacetQuery = Object.fromEntries(
 		Object.entries(classFacetSelection.value)
 			.filter(([_key, value]) => value.length > 0)
-			.map(([key, value]) => [`facet_${key}`, value.map((v) => v.name).join(",")]),
+			.map(([key, value]) => [`facet_${key}`, value.join(",")]),
 	);
 	await router.replace({
 		query: {
@@ -156,8 +156,20 @@ watch(classFacets, () => {
 		initFacetSelection();
 });
 const initFacetSelection = () => {
-	Object.keys(relationFacets.value).forEach((k) => (relationFacetSelection.value[k] = []));
-	Object.keys(classFacets.value).forEach((k) => (classFacetSelection.value[k] = []));
+	Object.keys(relationFacets.value).forEach(
+		(k) =>
+			(relationFacetSelection.value[k] = Object.entries(comQuery.value)
+				.filter(([key, value]) => key === `facet_${k}` && value !== "")
+				.map(([_key, value]) => String(value).split(","))
+				.flat()),
+	);
+	Object.keys(classFacets.value).forEach(
+		(k) =>
+			(classFacetSelection.value[k] = Object.entries(comQuery.value)
+				.filter(([key, value]) => key === `facet_${k}` && value !== "")
+				.map(([_key, value]) => String(value).split(","))
+				.flat()),
+	);
 };
 </script>
 

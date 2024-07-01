@@ -5,7 +5,7 @@ import type { FacetType } from "@/types/resulttypes";
 
 const t = useTranslations();
 
-const model = defineModel({ type: Array<FacetType>, required: true, default: [] });
+const model = defineModel({ type: Array<number | string>, required: true, default: [] });
 const props = defineProps<{
 	options: Array<FacetType>;
 }>();
@@ -49,12 +49,12 @@ const maxResultsToDisplay = 5;
 					class="relative flex cursor-default select-none justify-between pr-4"
 					:title="option.name"
 				>
-					<input v-model="model" type="checkbox" :value="option" />
+					<input v-model="model" type="checkbox" :value="option.id ?? option.name" />
 
 					<span
 						class="inline-block grow truncate px-2 text-start"
 						:class="{
-							'font-medium': model.includes(option),
+							'font-medium': model.includes(option.id ?? option.name),
 						}"
 					>
 						{{ option.name }}
