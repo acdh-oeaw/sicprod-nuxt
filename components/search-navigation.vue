@@ -5,15 +5,15 @@ const t = useTranslations();
 const localePath = useLocalePath();
 const links = computed(() => {
 	return {
-		functions: {
-			href: { path: localePath("/search/functions") },
-			label: t("Pages.searchviews.function.label"),
-			icon: Contact,
-		},
 		people: {
 			href: { path: localePath("/search/persons") },
 			label: t("Pages.searchviews.person.label"),
 			icon: User,
+		},
+		functions: {
+			href: { path: localePath("/search/functions") },
+			label: t("Pages.searchviews.function.label"),
+			icon: Contact,
 		},
 		institutions: {
 			href: { path: localePath("/search/institutions") },
