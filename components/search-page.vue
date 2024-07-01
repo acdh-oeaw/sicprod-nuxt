@@ -31,33 +31,32 @@ const limitNum = computed(() => {
 });
 const comQuery = computed(() => {
 	const query = route.query;
+	const facetQueries = Object.fromEntries(
+		Object.entries(query).filter(([key, _value]) => key.startsWith("facet_")),
+	);
 	return {
 		q: String(query.q ?? ""),
 		filter_by: String(query.facets ?? ""),
 		page: pageNum.value,
 		per_page: limitNum.value || pageLimit,
 		sort_by: String(query.sort ?? ""),
-		related_entity: String(query.related_entity ?? ""),
-		gender: String(query.gender ?? ""),
-		type: String(query.type ?? ""),
+		...facetQueries,
 	};
 });
 const { data, isFetching } = useQuery({
 	queryKey: ["search", props.className, comQuery] as const,
 	queryFn: async () => {
-		let optionalQueryParams = Object.fromEntries(
-			Object.entries({
-				gender: comQuery.value.gender,
-				type: comQuery.value.type,
-			}).filter(([_k, v]) => v !== ""),
+		const facetQueries = Object.fromEntries(
+			Object.entries(comQuery.value).filter(
+				([key, value]) => key.startsWith("facet_") && value !== "",
+			),
 		);
 		const response = await props.endpoint({
 			queries: {
 				offset: comQuery.value.per_page * (comQuery.value.page - 1),
 				limit: comQuery.value.per_page,
 				search: comQuery.value.q,
-				related_entity: comQuery.value.related_entity,
-				...optionalQueryParams,
+				...facetQueries,
 			},
 		});
 		return response;
@@ -111,32 +110,39 @@ const classFacetSelection = ref<Record<string, Array<FacetType>>>({});
 
 // Update route when facet selection changes
 async function updateRouter() {
+	const relationFacetQuery = Object.fromEntries(
+		Object.entries(relationFacetSelection.value)
+			.filter(([_key, value]) => value.length > 0)
+			.map(([key, value]) => [`facet_${key}`, value.map((v) => v.id).join(",")]),
+	);
+	const classFacetQuery = Object.fromEntries(
+		Object.entries(classFacetSelection.value)
+			.filter(([_key, value]) => value.length > 0)
+			.map(([key, value]) => [`facet_${key}`, value.map((v) => v.name).join(",")]),
+	);
 	await router.replace({
 		query: {
 			...route.query,
-			related_entity: Object.values(relationFacetSelection.value)
-				.flat()
-				.map((entry) => entry.id)
-				.filter((entry) => entry)
-				.join(","),
 			page: 1,
-			...Object.fromEntries(
-				Object.entries(classFacetSelection.value).map(([key, value]) => [
-					key,
-					value.map((v) => v.name).join(","),
-				]),
-			),
+			...classFacetQuery,
+			...relationFacetQuery,
 		},
 	});
 }
 watch(
 	classFacetSelection,
-	(selection) => (Object.keys(selection).length > 0 ? updateRouter() : null),
+	(selection, oldSelection) =>
+		Object.keys(selection).length > 0 || Object.keys(oldSelection).length > 0
+			? updateRouter()
+			: null,
 	{ deep: true },
 );
 watch(
 	relationFacetSelection,
-	(selection) => (Object.keys(selection).length > 0 ? updateRouter() : null),
+	(selection, oldSelection) =>
+		Object.keys(selection).length > 0 || Object.keys(oldSelection).length > 0
+			? updateRouter()
+			: null,
 	{ deep: true },
 );
 
@@ -168,17 +174,15 @@ const initFacetSelection = () => {
 		</div>
 		<div class="xl:my-4">
 			<SearchTable
-				:endpoint="endpoint"
 				:cols="cols"
-				:class-name="className"
 				:data="data"
 				:is-fetching="isFetching"
 				:page-num="pageNum"
 				:limit-num="limitNum"
 			></SearchTable>
 		</div>
-		<div class="px-4 md:mt-8">
-			<div v-for="(value, key) in relationFacets" :key="key" class="mx-2 w-72 md:mb-10 lg:mx-4">
+		<div class="mx-4 w-72 md:mt-8">
+			<div v-for="(value, key) in relationFacets" :key="key" class="w-full md:mb-10">
 				<h2 class="text-lg">{{ t(`Pages.searchviews.facets.${key}`) }}</h2>
 				<Facet v-model="relationFacetSelection[key]" :options="value ?? []"></Facet>
 			</div>
