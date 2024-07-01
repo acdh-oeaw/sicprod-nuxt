@@ -111,14 +111,16 @@ const classFacetSelection = ref<Record<string, Array<number | string>>>({});
 // Update route when facet selection changes
 async function updateRouter() {
 	const relationFacetQuery = Object.fromEntries(
-		Object.entries(relationFacetSelection.value)
-			.filter(([_key, value]) => value.length > 0)
-			.map(([key, value]) => [`facet_${key}`, value.join(",")]),
+		Object.entries(relationFacetSelection.value).map(([key, value]) => [
+			`facet_${key}`,
+			value.join(","),
+		]),
 	);
 	const classFacetQuery = Object.fromEntries(
-		Object.entries(classFacetSelection.value)
-			.filter(([_key, value]) => value.length > 0)
-			.map(([key, value]) => [`facet_${key}`, value.join(",")]),
+		Object.entries(classFacetSelection.value).map(([key, value]) => [
+			`facet_${key}`,
+			value.join(","),
+		]),
 	);
 	await router.replace({
 		query: {
