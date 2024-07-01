@@ -180,7 +180,11 @@ const initFacetSelection = () => {
 		<div>
 			<SearchNavigation></SearchNavigation>
 			<div class="mt-10">
-				<div v-for="(value, key) in classFacets" :key="key" class="mx-2 w-72 md:mb-10 lg:mx-4">
+				<div
+					v-for="(value, key) in classFacets"
+					:key="key"
+					class="mb-5 w-full px-2 md:mb-10 md:w-72 md:px-0 lg:mx-4"
+				>
 					<h2 class="text-lg">{{ t(`Pages.searchviews.facets.${key}`) }}</h2>
 					<Facet v-model="classFacetSelection[key]" :options="value ?? []"></Facet>
 				</div>
@@ -195,8 +199,12 @@ const initFacetSelection = () => {
 				:limit-num="limitNum"
 			></SearchTable>
 		</div>
-		<div class="mx-4 w-72 md:mt-8">
-			<div v-for="(value, key) in relationFacets" :key="key" class="w-full md:mb-10">
+		<div class="w-full md:mx-4 md:mt-8">
+			<div
+				v-for="(value, key) in relationFacets"
+				:key="key"
+				class="mb-5 w-full px-2 md:mb-10 md:w-72 md:px-0"
+			>
 				<h2 class="text-lg">{{ t(`Pages.searchviews.facets.${key}`) }}</h2>
 				<Facet v-model="relationFacetSelection[key]" :options="value ?? []"></Facet>
 			</div>

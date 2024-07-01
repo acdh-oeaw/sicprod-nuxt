@@ -33,9 +33,9 @@ const input = ref(route.query.q === undefined ? "" : String(route.query.q));
 </script>
 
 <template>
-	<div class="relative mx-2 flex h-full flex-col gap-4">
+	<div class="relative mx-2 flex h-full flex-col md:gap-4">
 		<div
-			class="mb-4 grid h-12 w-full shrink-0 grid-cols-[auto_1fr_auto] items-center rounded-md border shadow-md md:my-4"
+			class="mb-4 grid h-10 w-full shrink-0 grid-cols-[auto_1fr_auto] items-center rounded-md border shadow-md md:my-4 md:h-12"
 		>
 			<label for="searchinput">
 				<Search class="mx-3 size-5 shrink-0 text-neutral-500" />
@@ -90,7 +90,7 @@ const input = ref(route.query.q === undefined ? "" : String(route.query.q));
 		/>
 		<div v-if="data" class="w-full max-w-full overflow-x-auto">
 			<table
-				class="mx-2 min-w-full table-fixed"
+				class="min-w-full table-fixed"
 				:class="{ 'text-neutral-300 dark:text-neutral-500': isFetching }"
 			>
 				<tr class="mr-6" :class="cols">
