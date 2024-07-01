@@ -97,20 +97,20 @@ const flattenedRelations = computed(() => {
 		<template #right>
 			<div v-if="data.entity.data" class="flex flex-col gap-3">
 				<DetailDisclosure
-					v-if="data.entity.data?.relation_types.includes('function')"
-					:title="t('Pages.searchviews.function.label')"
-					:headers="['to.name', 'start_date_written', 'end_date_written']"
-					:rels="data.relations.data?.function"
-					:details-loading="data.relations.isLoading"
-					model="function"
-				/>
-				<DetailDisclosure
 					v-if="data.entity.data?.relation_types.includes('person')"
 					:title="t('Pages.searchviews.person.label')"
 					:headers="['name', 'to.name', 'start_date_written', 'end_date_written']"
 					:rels="data.relations.data?.person"
 					:details-loading="data.relations.isLoading"
 					model="person"
+				/>
+				<DetailDisclosure
+					v-if="data.entity.data?.relation_types.includes('function')"
+					:title="t('Pages.searchviews.function.label')"
+					:headers="['to.name', 'start_date_written', 'end_date_written']"
+					:rels="data.relations.data?.function"
+					:details-loading="data.relations.isLoading"
+					model="function"
 				/>
 				<DetailDisclosure
 					v-if="data.entity.data?.relation_types.includes('institution')"
