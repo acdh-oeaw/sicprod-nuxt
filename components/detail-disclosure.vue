@@ -115,8 +115,15 @@ const groupedRelations = computed(() => {
 									:to="localePath(`/detail/${model}/${hit.to.id}`)"
 									class="table w-full table-fixed"
 								>
-									<td v-for="header in headers" :key="hit + header" class="p-2 text-start">
+									<td v-for="(header, idx) in headers" :key="hit + header" class="p-2 text-start">
 										{{ String(lodash.get(hit, header, "")).replace(/\<.*?\>/g, "") }}
+										<ReferenceButton
+											v-if="
+												idx === headers.length - 1 && hit.references && hit.references.length > 0
+											"
+											class="float-right mr-0.5 size-5"
+											:references="hit.references"
+										></ReferenceButton>
 									</td>
 								</NuxtLink>
 							</component>

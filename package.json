@@ -11,7 +11,7 @@
 	"scripts": {
 		"analyze": "nuxt analyze",
 		"build": "nuxt build --dotenv ./.env.local",
-		"dev": "nuxt dev --dotenv ./.env.local",
+		"dev": "nuxt dev --dotenv ./.env.local --host",
 		"format:check": "prettier . \"!./content/**\" --cache --check --ignore-path ./.gitignore",
 		"format:fix": "pnpm run format:check --write",
 		"lint:check": "run-p --continue-on-error \"lint:*:check\"",
@@ -48,6 +48,7 @@
 		"@vueuse/core": "^10.9.0",
 		"@vueuse/nuxt": "^10.9.0",
 		"@zodios/core": "^10.9.6",
+		"citation-js": "^0.7.14",
 		"cva": "^1.0.0-beta.1",
 		"d3": "^7.9.0",
 		"fast-glob": "^3.3.2",

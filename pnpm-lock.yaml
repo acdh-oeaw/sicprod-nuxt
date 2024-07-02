@@ -44,6 +44,9 @@ dependencies:
   '@zodios/core':
     specifier: ^10.9.6
     version: 10.9.6(axios@1.6.8)(zod@3.22.4)
+  citation-js:
+    specifier: ^0.7.14
+    version: 0.7.14
   cva:
     specifier: ^1.0.0-beta.1
     version: 1.0.0-beta.1(typescript@5.4.2)
@@ -667,6 +670,112 @@ packages:
       '@babel/helper-string-parser': 7.23.4
       '@babel/helper-validator-identifier': 7.22.20
       to-fast-properties: 2.0.0
+
+  /@citation-js/cli@0.7.14:
+    resolution: {integrity: sha512-l6KXXfa/I8TFHhG0Tn0C5zb3r53MTGsyL4+da57jr5rdTUo+MSs6oyLWy2S4iW+BCjJOPJuILy1sj5FQqzozuQ==}
+    engines: {node: '>=16.0.0'}
+    hasBin: true
+    dependencies:
+      '@citation-js/core': 0.7.14
+      '@citation-js/plugin-bibjson': 0.7.14(@citation-js/core@0.7.14)
+      '@citation-js/plugin-bibtex': 0.7.14(@citation-js/core@0.7.14)
+      '@citation-js/plugin-csl': 0.7.14(@citation-js/core@0.7.14)
+      '@citation-js/plugin-doi': 0.7.14(@citation-js/core@0.7.14)
+      '@citation-js/plugin-ris': 0.7.14(@citation-js/core@0.7.14)
+      '@citation-js/plugin-wikidata': 0.7.14(@citation-js/core@0.7.14)
+      commander: 11.1.0
+    transitivePeerDependencies:
+      - encoding
+    dev: false
+
+  /@citation-js/core@0.7.14:
+    resolution: {integrity: sha512-dgeGqYDSQmn2MtnWZkwPGpJQPh43yr1lAAr9jl1NJ9pIY1RXUQxtlAUZVur0V9PHdbfQC+kkvB1KC3VpgVV3MA==}
+    engines: {node: '>=16.0.0'}
+    dependencies:
+      '@citation-js/date': 0.5.1
+      '@citation-js/name': 0.4.2
+      fetch-ponyfill: 7.1.0
+      sync-fetch: 0.4.5
+    transitivePeerDependencies:
+      - encoding
+    dev: false
+
+  /@citation-js/date@0.5.1:
+    resolution: {integrity: sha512-1iDKAZ4ie48PVhovsOXQ+C6o55dWJloXqtznnnKy6CltJBQLIuLLuUqa8zlIvma0ZigjVjgDUhnVaNU1MErtZw==}
+    engines: {node: '>=10.0.0'}
+    dev: false
+
+  /@citation-js/name@0.4.2:
+    resolution: {integrity: sha512-brSPsjs2fOVzSnARLKu0qncn6suWjHVQtrqSUrnqyaRH95r/Ad4wPF5EsoWr+Dx8HzkCGb/ogmoAzfCsqlTwTQ==}
+    engines: {node: '>=6'}
+    dev: false
+
+  /@citation-js/plugin-bibjson@0.7.14(@citation-js/core@0.7.14):
+    resolution: {integrity: sha512-Hcmk01KrpHwcl5uVoLE6TRaJRFg7/qUvpJDcKqx3LLLCsNbaBlISfRDeFETrjjipTetkX70RvtS7FfGUN58gCQ==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      '@citation-js/core': ^0.7.0
+    dependencies:
+      '@citation-js/core': 0.7.14
+      '@citation-js/date': 0.5.1
+      '@citation-js/name': 0.4.2
+    dev: false
+
+  /@citation-js/plugin-bibtex@0.7.14(@citation-js/core@0.7.14):
+    resolution: {integrity: sha512-xHOHqhF6dthLRv46N9U+mQgYLiiWQHLvQWK9+mcBKz+/3NWge62Xb1oBouNWwLEPd5FV/8gp9fp7SOp93T0dUg==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      '@citation-js/core': ^0.7.0
+    dependencies:
+      '@citation-js/core': 0.7.14
+      '@citation-js/date': 0.5.1
+      '@citation-js/name': 0.4.2
+      moo: 0.5.2
+    dev: false
+
+  /@citation-js/plugin-csl@0.7.14(@citation-js/core@0.7.14):
+    resolution: {integrity: sha512-7AKB8lMz1IqdtoE33NnWIpteLYMuSl3xqT+Cax7sQKwAIJEoq2HBmb43Ja8xQQ36nREAupQJv1V6XksIAmYnCg==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      '@citation-js/core': ^0.7.0
+    dependencies:
+      '@citation-js/core': 0.7.14
+      '@citation-js/date': 0.5.1
+      citeproc: 2.4.63
+    dev: false
+
+  /@citation-js/plugin-doi@0.7.14(@citation-js/core@0.7.14):
+    resolution: {integrity: sha512-U/E9HrGcxXr6u8R0+Ivlb7SE0lNf+DzjmlArNSh+9B1iaakjy/PzI06Myvf8jQqWBhBD0JLl2xJvrwYK6iiD3A==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      '@citation-js/core': ^0.7.0
+    dependencies:
+      '@citation-js/core': 0.7.14
+      '@citation-js/date': 0.5.1
+    dev: false
+
+  /@citation-js/plugin-ris@0.7.14(@citation-js/core@0.7.14):
+    resolution: {integrity: sha512-FZz1fa9dOrLAV/8NXgnqK1PfNKW/pOAXj1WDwoyGBrG+mbLtAwvTNhHDHGS5LvPoBbizqWkx8M8dYagke+FGOg==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      '@citation-js/core': ^0.7.0
+    dependencies:
+      '@citation-js/core': 0.7.14
+      '@citation-js/date': 0.5.1
+      '@citation-js/name': 0.4.2
+    dev: false
+
+  /@citation-js/plugin-wikidata@0.7.14(@citation-js/core@0.7.14):
+    resolution: {integrity: sha512-WF2PvRTjuzQJjpSnxOpId/ZQBdlIaLL/Mr/+Bo8GgfYqJEhmnG7Xtk8gcbANbgoL+tp+cc1rDtH1MAoV1aWx4Q==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      '@citation-js/core': ^0.7.0
+    dependencies:
+      '@citation-js/core': 0.7.14
+      '@citation-js/date': 0.5.1
+      '@citation-js/name': 0.4.2
+      wikidata-sdk: 8.1.1
+    dev: false
 
   /@cloudflare/kv-asset-handler@0.3.1:
     resolution: {integrity: sha512-lKN2XCfKCmpKb86a1tl4GIwsJYDy9TGuwjhDELLmpKygQhw8X2xR4dusgpC5Tg7q1pB96Eb0rBo81kxSILQMwA==}
@@ -3829,7 +3938,6 @@ packages:
       base64-js: 1.5.1
       ieee754: 1.2.1
     dev: false
-    optional: true
 
   /buffer@6.0.3:
     resolution: {integrity: sha512-FTiCpNxtwiZZHEZbcbTIcZjERVICn9yq/pDFkTl95/AxzD1naBctN7YO68riM/gLSDY7sdrMby8hofADYuuqOA==}
@@ -4010,6 +4118,30 @@ packages:
     resolution: {integrity: sha512-TdHqgGf9odd8SXNuxtUBVx8Nv+qZOejE6qyqiy5NtbYYQOeFa6zmHkxlPzmaLxWWHsU6nJmB7AETdVPi+2NBUg==}
     engines: {node: '>=8'}
 
+  /citation-js@0.7.14:
+    resolution: {integrity: sha512-lIebDVYX87j8QO/XfZ90gjK/+4l+RqnW6CjsXCob7ZQ5Tntkut2SacGrilLt3IaIebdlVanfNO+r7ocQbc53UA==}
+    engines: {node: '>=14'}
+    hasBin: true
+    dependencies:
+      '@citation-js/cli': 0.7.14
+      '@citation-js/core': 0.7.14
+      '@citation-js/date': 0.5.1
+      '@citation-js/name': 0.4.2
+      '@citation-js/plugin-bibjson': 0.7.14(@citation-js/core@0.7.14)
+      '@citation-js/plugin-bibtex': 0.7.14(@citation-js/core@0.7.14)
+      '@citation-js/plugin-csl': 0.7.14(@citation-js/core@0.7.14)
+      '@citation-js/plugin-doi': 0.7.14(@citation-js/core@0.7.14)
+      '@citation-js/plugin-ris': 0.7.14(@citation-js/core@0.7.14)
+      '@citation-js/plugin-wikidata': 0.7.14(@citation-js/core@0.7.14)
+      citeproc: 2.4.63
+    transitivePeerDependencies:
+      - encoding
+    dev: false
+
+  /citeproc@2.4.63:
+    resolution: {integrity: sha512-68F95Bp4UbgZU/DBUGQn0qV3HDZLCdI9+Bb2ByrTaNJDL5VEm9LqaiNaxljsvoaExSLEXe1/r6n2Z06SCzW3/Q==}
+    dev: false
+
   /citty@0.1.6:
     resolution: {integrity: sha512-tskPPKEs8D2KPafUypv2gxwJP8h/OaJmC82QQGGDQcHvXX43xF2VDACcJVmZ0EuSxkpO9Kc4MlrA3q0+FG58AQ==}
     dependencies:
@@ -4128,7 +4260,6 @@ packages:
   /commander@11.1.0:
     resolution: {integrity: sha512-yPVavfyCcRhmorC7rWlkHn15b4wDVgVmBA7kV4QVBsF7kv/9TKJAbAXVTxvTnwP8HHKjRCJDClKbciiYS7p0DQ==}
     engines: {node: '>=16'}
-    dev: true
 
   /commander@2.20.3:
     resolution: {integrity: sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==}
@@ -5466,6 +5597,14 @@ packages:
     resolution: {integrity: sha512-sRVD3lWVIXWg6By68ZN7vho9a1pQcN/WBFaAAsDDFzlJjvoGx0P8z7V1t72grFJfJhu3YPZBuu25f7Kaw2jN1w==}
     dependencies:
       reusify: 1.0.4
+
+  /fetch-ponyfill@7.1.0:
+    resolution: {integrity: sha512-FhbbL55dj/qdVO3YNK7ZEkshvj3eQ7EuIGV2I6ic/2YiocvyWv+7jg2s4AyS0wdRU75s3tA8ZxI/xPigb0v5Aw==}
+    dependencies:
+      node-fetch: 2.6.13
+    transitivePeerDependencies:
+      - encoding
+    dev: false
 
   /fflate@0.7.4:
     resolution: {integrity: sha512-5u2V/CDW15QM1XbbgS+0DfPxVB+jUKhWEKuuFuHncbk3tEEqzmoXL+2KyOFuKGqOnmdIy0/davWF1CkuwtibCw==}
@@ -7367,6 +7506,10 @@ packages:
       pkg-types: 1.0.3
       ufo: 1.4.0
 
+  /moo@0.5.2:
+    resolution: {integrity: sha512-iSAJLHYKnX41mKcJKjqvnAN9sf0LMDTXDEvFv+ffuRR9a1MIuXLjMNL6EsnDHSkKLTWNqQQ5uo61P4EbU4NU+Q==}
+    dev: false
+
   /mri@1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
     engines: {node: '>=4'}
@@ -7557,6 +7700,18 @@ packages:
 
   /node-fetch-native@1.6.2:
     resolution: {integrity: sha512-69mtXOFZ6hSkYiXAVB5SqaRvrbITC/NPyqv7yuu/qw0nmgPyYbIMYYNIDhNtwPrzk0ptrimrLz/hhjvm4w5Z+w==}
+
+  /node-fetch@2.6.13:
+    resolution: {integrity: sha512-StxNAxh15zr77QvvkmveSQ8uCQ4+v5FkvNTj0OESmiHu+VRi/gXArXtkWMElOsOUNLtUEvI4yS+rdtOHZTwlQA==}
+    engines: {node: 4.x || >=6.0.0}
+    peerDependencies:
+      encoding: ^0.1.0
+    peerDependenciesMeta:
+      encoding:
+        optional: true
+    dependencies:
+      whatwg-url: 5.0.0
+    dev: false
 
   /node-fetch@2.7.0:
     resolution: {integrity: sha512-c4FRfUm/dbcWZ7U+1Wq0AwCyFL+3nt2bEw05wfxSz+DWpWsitgmSgYmy2dQdWyKC1694ELPqMs/YzUSNozLt8A==}
@@ -9775,6 +9930,16 @@ packages:
       csso: 5.0.5
       picocolors: 1.0.0
 
+  /sync-fetch@0.4.5:
+    resolution: {integrity: sha512-esiWJ7ixSKGpd9DJPBTC4ckChqdOjIwJfYhVHkcQ2Gnm41323p1TRmEI+esTQ9ppD+b5opps2OTEGTCGX5kF+g==}
+    engines: {node: '>=14'}
+    dependencies:
+      buffer: 5.7.1
+      node-fetch: 2.7.0
+    transitivePeerDependencies:
+      - encoding
+    dev: false
+
   /system-architecture@0.1.0:
     resolution: {integrity: sha512-ulAk51I9UVUyJgxlv9M6lFot2WP3e7t8Kz9+IS6D4rVba1tR9kON+Ey69f+1R4Q8cd45Lod6a4IcJIxnzGc/zA==}
     engines: {node: '>=18'}
@@ -10785,6 +10950,19 @@ packages:
     resolution: {integrity: sha512-eDMORYaPNZ4sQIuuYPDHdQvf4gyCF9rEEV/yPxGfwPkRodwEgiMUUXTx/dex+Me0wxx53S+NgUHaP7y3MGlDmg==}
     dependencies:
       string-width: 4.2.3
+
+  /wikibase-sdk@8.1.1:
+    resolution: {integrity: sha512-1NjMnfNQ4OaLh0dFAeTMvV3vGAq6HXsNKGfYUJYOVyBPGBDMunlY3QZ8+72hLV5FiKmc6Bzg1xbI0jCHfHmIew==}
+    engines: {node: '>= 10.0.0'}
+    dev: false
+
+  /wikidata-sdk@8.1.1:
+    resolution: {integrity: sha512-KOUhJtpCHg32k/tz7pFj/BaqiYAvYGz4sGzcT15t120832WtfNTGCSeohmln40/JOjpxzfzud/6q2x6Q0Ji5hg==}
+    engines: {node: '>= 6.4'}
+    deprecated: wikidata-sdk has been renamed wikibase-sdk
+    dependencies:
+      wikibase-sdk: 8.1.1
+    dev: false
 
   /wordwrap@1.0.0:
     resolution: {integrity: sha512-gvVzJFlPycKc5dZN4yPkP8w7Dc37BtP1yczEneOb4uq34pXZcvrtRTmWV8W+Ume+XCxKgbjM+nevkyFPMybd4Q==}

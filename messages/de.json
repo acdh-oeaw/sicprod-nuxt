@@ -190,6 +190,10 @@
 			"end_date_written": "Bis"
 		}
 	},
+	"References": {
+		"download-bibtex": "Bibtex herunterladen",
+		"references": "Referenzen"
+	},
 	"ui": {
 		"showing-results": "Zeige {first} - {last} von {all} Ergebnissen",
 		"no-results": "Keine Ergebnisse.",

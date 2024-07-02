@@ -27,3 +27,5 @@ export interface FacetType {
 	name: string;
 	count: number;
 }
+
+export type Reference = z.infer<typeof schemas.Reference>;
