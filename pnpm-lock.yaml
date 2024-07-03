@@ -65,18 +65,12 @@ dependencies:
   maplibre-gl:
     specifier: ^4.1.3
     version: 4.1.3
-  mkdirp:
-    specifier: ^3.0.1
-    version: 3.0.1
   openapi-zod-client:
     specifier: ^1.16.2
     version: 1.16.2
   pino-http:
     specifier: ^9.0.0
     version: 9.0.0
-  rimraf:
-    specifier: ^5.0.7
-    version: 5.0.7
   satori:
     specifier: ^0.10.13
     version: 0.10.13
@@ -133,9 +127,6 @@ devDependencies:
   '@types/d3':
     specifier: ^7.4.3
     version: 7.4.3
-  '@types/js-yaml':
-    specifier: ^4.0.9
-    version: 4.0.9
   '@types/lodash':
     specifier: ^4.17.0
     version: 4.17.0
@@ -154,6 +145,9 @@ devDependencies:
   dotenv:
     specifier: ^16.4.5
     version: 16.4.5
+  dotenv-cli:
+    specifier: ^7.4.2
+    version: 7.4.2
   dotenv-expand:
     specifier: ^11.0.6
     version: 11.0.6
@@ -166,9 +160,6 @@ devDependencies:
   is-ci:
     specifier: ^3.0.1
     version: 3.0.1
-  js-yaml:
-    specifier: ^4.1.0
-    version: 4.1.0
   lint-staged:
     specifier: ^15.2.2
     version: 15.2.2
@@ -178,9 +169,6 @@ devDependencies:
   nuxt:
     specifier: ^3.10.3
     version: 3.10.3(@types/node@20.11.26)(eslint@8.57.0)(rollup@4.13.0)(stylelint@16.2.1)(typescript@5.4.2)(vite@5.1.6)(vue-tsc@2.0.6)
-  openapi-endpoint-trimmer:
-    specifier: ^2.0.0
-    version: 2.0.0
   openapi3-ts:
     specifier: ^4.3.3
     version: 4.3.3
@@ -3010,10 +2998,6 @@ packages:
     dependencies:
       '@types/node': 20.11.26
 
-  /@types/js-yaml@4.0.9:
-    resolution: {integrity: sha512-k4MGaQl5TGo/iipqb2UDG2UwjXziSWkh0uysQelTlJpX1qGlpUZYm8PnO4DxG1qBomtJUdYJ6qR6xdIah10JLg==}
-    dev: true
-
   /@types/json-schema@7.0.15:
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
     dev: true
@@ -4252,11 +4236,6 @@ packages:
     resolution: {integrity: sha512-Fu4hJdvzeylCfQPp9SGWidpzrMs7tTrlu6Vb8XGaRGck8QSNZJJp538Wrb60Lax4fPwR64ViY468OIUTbRlGZg==}
     dev: false
 
-  /commander@10.0.1:
-    resolution: {integrity: sha512-y4Mg2tXshplEbSGzx7amzPwKKOCGuoSRP/CjEdwwk0FOGlUbq6lKuoyDZTNZkmxHdJtp54hdfY/JUrdL7Xfdug==}
-    engines: {node: '>=14'}
-    dev: true
-
   /commander@11.1.0:
     resolution: {integrity: sha512-yPVavfyCcRhmorC7rWlkHn15b4wDVgVmBA7kV4QVBsF7kv/9TKJAbAXVTxvTnwP8HHKjRCJDClKbciiYS7p0DQ==}
     engines: {node: '>=16'}
@@ -4976,6 +4955,21 @@ packages:
     engines: {node: '>=16'}
     dependencies:
       type-fest: 3.13.1
+
+  /dotenv-cli@7.4.2:
+    resolution: {integrity: sha512-SbUj8l61zIbzyhIbg0FwPJq6+wjbzdn9oEtozQpZ6kW2ihCcapKVZj49oCT3oPM+mgQm+itgvUQcG5szxVrZTA==}
+    hasBin: true
+    dependencies:
+      cross-spawn: 7.0.3
+      dotenv: 16.4.5
+      dotenv-expand: 10.0.0
+      minimist: 1.2.8
+    dev: true
+
+  /dotenv-expand@10.0.0:
+    resolution: {integrity: sha512-GopVGCpVS1UKH75VKHGuQFqS1Gusej0z4FyQkPdwjil2gNIv+LNsqBlboOzpJFZKVT95GkCyWJbBSdFEFUWI2A==}
+    engines: {node: '>=12'}
+    dev: true
 
   /dotenv-expand@11.0.6:
     resolution: {integrity: sha512-8NHi73otpWsZGBSZwwknTXS5pqMOrk9+Ssrna8xCaxkzEpU9OTf9R5ArQGVw03//Zmk9MOwLPng9WwndvpAJ5g==}
@@ -7414,7 +7408,6 @@ packages:
   /minimist@1.2.8:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
     requiresBuild: true
-    dev: false
 
   /minipass-collect@2.0.1:
     resolution: {integrity: sha512-D7V8PO9oaz7PWGLbCACuI1qEOsq7UKfLotx/C0Aet43fCUB/wfQ7DYeq2oR/svFJGYDHPr38SHATeaj/ZoKHKw==}
@@ -7491,12 +7484,6 @@ packages:
     resolution: {integrity: sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==}
     engines: {node: '>=10'}
     hasBin: true
-
-  /mkdirp@3.0.1:
-    resolution: {integrity: sha512-+NsyUUAZDmo6YVHzL/stxSu3t9YS1iljliy3BSDrXJ/dkn1KYdmtZODGGjLcc9XLgVVpH4KshHB8XmZgMhaBXg==}
-    engines: {node: '>=10'}
-    hasBin: true
-    dev: false
 
   /mlly@1.6.1:
     resolution: {integrity: sha512-vLgaHvaeunuOXHSmEbZ9izxPx3USsk8KCQ8iC+aTlp5sKRSoZvwhHh5L9VbKSaVC6sJDqbyohIS76E2VmHIPAA==}
@@ -8067,17 +8054,6 @@ packages:
       define-lazy-prop: 2.0.0
       is-docker: 2.2.1
       is-wsl: 2.2.0
-
-  /openapi-endpoint-trimmer@2.0.0:
-    resolution: {integrity: sha512-0eHcIbHkItgk9S8mHPMn8Zn+jsdBztc2KHEaUmJYdq70vzgDr6WF9k4npisb7LhUeH3GN2d6YmKy30Xzs7GXAQ==}
-    hasBin: true
-    dependencies:
-      chalk: 5.3.0
-      commander: 10.0.1
-      js-yaml: 4.1.0
-      undici: 5.28.3
-      zod: 3.22.4
-    dev: true
 
   /openapi-types@12.1.3:
     resolution: {integrity: sha512-N4YtSYJqghVu4iek2ZUvcN/0aqH1kRDuNqzcycDxhOUpg7GdvLa2F3DgS6yBNhInhv2r/6I0Flkn7CqL8+nIcw==}
@@ -9186,14 +9162,6 @@ packages:
     hasBin: true
     dependencies:
       glob: 7.2.3
-
-  /rimraf@5.0.7:
-    resolution: {integrity: sha512-nV6YcJo5wbLW77m+8KjH8aB/7/rxQy9SZ0HY5shnwULfS+9nmTtVXAJET5NdZmCzA4fPI/Hm1wo/Po/4mopOdg==}
-    engines: {node: '>=14.18'}
-    hasBin: true
-    dependencies:
-      glob: 10.3.10
-    dev: false
 
   /robust-predicates@3.0.2:
     resolution: {integrity: sha512-IXgzBWvWQwE6PrDI05OvmXUIruQTcoMDzRsOd5CDvHCVLcLHMTSYvOK5Cm46kWqlV3yAbuSpBZdJ5oP5OUoStg==}
@@ -11120,6 +11088,7 @@ packages:
 
   /zod@3.22.4:
     resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
+    dev: false
 
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}

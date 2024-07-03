@@ -1,58 +1,63 @@
-import { load } from "js-yaml";
+import { createUrl, createUrlSearchParams, log, request } from "@acdh-oeaw/lib";
 import { generateZodClientFromOpenAPI } from "openapi-zod-client";
 import type { OpenAPIObject, PathsObject } from "openapi3-ts/oas30";
+import { z } from "zod";
 
-console.log("Starting zod client generation");
-const options = {
-	url: "https://sicprod.acdh-dev.oeaw.ac.at/apis/swagger/schema/?format=json",
-	prefixes: [
-		"/apis/api/apis_ontology.event",
-		"/apis/api/apis_ontology.function",
-		"/apis/api/apis_ontology.institution",
-		"/apis/api/apis_ontology.person",
-		"/apis/api/apis_ontology.place",
-		"/apis/api/apis_ontology.salary",
-	],
-	dist: "./lib/api.ts",
-};
+const outputPath = "./lib/api.ts";
+async function main() {
+	log.info("Starting zod client generation");
 
-let data: string;
-if (options.url) {
+	const apisBaseURL = z.string().url().parse(process.env.NUXT_PUBLIC_API_BASE_URL);
+
+	const options = {
+		url: createUrl({
+			baseUrl: apisBaseURL,
+			pathname: "/apis/swagger/schema",
+			searchParams: createUrlSearchParams({ format: "json" }),
+		}),
+		prefixes: [
+			"/apis/api/apis_ontology.event",
+			"/apis/api/apis_ontology.function",
+			"/apis/api/apis_ontology.institution",
+			"/apis/api/apis_ontology.person",
+			"/apis/api/apis_ontology.place",
+			"/apis/api/apis_ontology.salary",
+		],
+		dist: outputPath,
+	};
+
 	// download swagger file
-	const response = await fetch(options.url);
-	if (!response.ok) {
-		throw new Error(
-			`Received a non-200 response when downloading from ${options.url}. Received ${response.statusText}. Please double check your setup.`,
-		);
+	const data = await request(options.url, { responseType: "json" });
+
+	// trim swagger file to only contain the prefixes specified in options.prefixes
+	const prefixes = options.prefixes;
+	let openApiDoc: OpenAPIObject = data as OpenAPIObject;
+	const paths: PathsObject = {};
+	for (const [key, value] of Object.entries(openApiDoc.paths)) {
+		if (prefixes.some((retain) => key.startsWith(retain))) {
+			paths[key] = value;
+		}
 	}
-	data = await response.text();
-} else {
-	throw new Error(`Found neither an input URL or an input file!`);
+	openApiDoc = {
+		...openApiDoc,
+		paths,
+	};
+
+	// use the trimmed openAPIDoc with openapi-zod-client
+	await generateZodClientFromOpenAPI({
+		openApiDoc,
+		distPath: options.dist,
+		options: {
+			shouldExportAllTypes: true,
+			withAlias: true,
+		},
+	});
 }
 
-// trim swagger file to only contain the prefixes specified in options.prefixes
-const prefixes = options.prefixes;
-let openApiDoc: OpenAPIObject = load(data) as OpenAPIObject;
-const paths: PathsObject = {};
-for (const path of Object.keys(openApiDoc.paths)) {
-	if (prefixes.some((retain) => path.startsWith(retain))) {
-		paths[path] = openApiDoc.paths[path] ?? {};
-	}
-}
-openApiDoc = {
-	...openApiDoc,
-	paths,
-};
-
-// use the trimmed openAPIDoc with openapi-zod-client
-await generateZodClientFromOpenAPI({
-	openApiDoc,
-	distPath: options.dist,
-	options: {
-		shouldExportAllTypes: true,
-		withAlias: true,
-	},
-});
-
-console.log("Client creation completed");
-console.log("Output was written to: ", options.dist);
+main()
+	.then(() => {
+		log.success("Client creation completed. \nOutput was written to: ", outputPath);
+	})
+	.catch((err) => {
+		log.error("Client creation failed", String(err));
+	});
