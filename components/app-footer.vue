@@ -46,26 +46,13 @@ const links = computed(() => {
 </script>
 
 <template>
-	<footer class="border-t">
+	<footer class="border-t bg-neutral-900 text-white">
 		<div class="container flex items-center justify-between gap-4 py-8">
 			<nav :aria-label="t('AppFooter.navigation-secondary')" class="w-full">
 				<ul class="flex items-center gap-8" role="list">
 					<li v-for="(link, key) of links" :key="key" :class="link.image ? '' : 'ml-auto'">
 						<a v-if="link.image" :href="link.href.path" target="_blank">
-							<NuxtImg
-								:src="link.image.light"
-								:alt="link.label"
-								placeholder
-								class="h-10 w-auto dark:hidden"
-							>
-								{{ link.label }}
-							</NuxtImg>
-							<NuxtImg
-								:src="link.image.dark"
-								:alt="link.label"
-								placeholder
-								class="hidden h-10 w-auto dark:block"
-							>
+							<NuxtImg :src="link.image.dark" :alt="link.label" placeholder class="h-10 w-auto">
 								{{ link.label }}
 							</NuxtImg>
 						</a>
