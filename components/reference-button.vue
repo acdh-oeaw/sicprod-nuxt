@@ -42,7 +42,7 @@ function downloadBibTex() {
 	<Popover>
 		<PopoverButton
 			ref="reference"
-			class="group inline-flex scale-90 items-center rounded-md font-medium text-neutral-600 transition-transform hover:scale-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
+			class="group inline-flex scale-90 items-center rounded-md font-medium text-neutral-600 transition-transform hover:scale-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 dark:text-neutral-200"
 		>
 			<BookOpenText class="mx-auto" />
 			<span class="sr-only">{{ t("References.references") }}</span>
@@ -73,7 +73,7 @@ function downloadBibTex() {
 						v-for="(entry, idx) in citation"
 						:key="entry"
 						class="py-2"
-						:class="{ 'border-b-2': idx < citation.length - 1 }"
+						:class="{ 'border-b-2 dark:border-neutral-700': idx < citation.length - 1 }"
 						v-html="entry.format('bibliography', citationConfig)"
 					></div>
 				</div>
