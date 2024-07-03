@@ -41,7 +41,7 @@ const links = computed(() => {
 
 <template>
 	<div
-		class="m-2 flex h-fit min-w-72 flex-wrap gap-2 md:flex-col md:gap-4 md:pt-4 lg:mx-4 xl:m-4 xl:max-w-sm"
+		class="m-2 flex h-fit min-w-72 flex-wrap gap-2 pt-4 md:flex-col md:gap-4 lg:mx-4 xl:m-4 xl:max-w-sm"
 	>
 		<NuxtLink
 			v-for="link in links"

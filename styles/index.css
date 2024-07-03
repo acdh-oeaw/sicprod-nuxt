@@ -4,7 +4,7 @@
 }
 
 :root[data-ui-color-scheme="dark"] {
-	--color-background: var(--color-neutral-900);
+	--color-background: 0deg 0% 12.16%;
 	--color-on-background: var(--color-neutral-50);
 }
 

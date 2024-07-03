@@ -59,6 +59,12 @@ const config = {
 				container: "80rem",
 				content: "64rem",
 			},
+			boxShadow: {
+				header: "48px 0 0 0 white, -48px 0 0 0 white, 0 8px 40px -6px rgba(70, 70, 70, 0.4)",
+				"header-dark": "48px 0 0 0 black, -48px 0 0 0 black, 0 8px 40px -6px rgba(0, 0, 0, 0.4)",
+				"header-sm": "22px 0 0 0 white, -22px 0 0 0 white, 0 4px 18px -6px rgba(70, 70, 70, 0.4)",
+				"header-dark-sm": "22px 0 0 0 black, -22px 0 0 0 black, 0 4px 18px -6px rgba(0, 0, 0, 0.4)",
+			},
 		},
 	},
 	plugins: [require("@headlessui/tailwindcss"), typography, require("tailwind-scrollbar")],
