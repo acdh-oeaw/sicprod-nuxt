@@ -59,11 +59,19 @@ const flattenedRelations = computed(() => {
 			<h1 class="text-2xl text-neutral-800 xl:my-3 xl:text-4xl dark:text-inherit">
 				{{ data.entity.data?.name }}
 			</h1>
-			<div
-				v-if="data.entity.data?.repetitionType"
-				class="mr-3 inline-block w-fit rounded-md bg-salary-200 px-3 py-1.5 text-xs font-semibold uppercase dark:bg-salary-900 dark:text-neutral-100"
-			>
-				{{ data.entity.data?.repetitionType }}
+			<div class="flex justify-between">
+				<div
+					v-if="data.entity.data?.repetitionType"
+					class="mr-3 inline-block w-fit rounded-md bg-salary-200 px-3 py-1.5 text-xs font-semibold uppercase dark:bg-salary-900 dark:text-neutral-100"
+				>
+					{{ data.entity.data?.repetitionType }}
+				</div>
+				<ReferenceButton
+					v-if="data.entity.data?.references?.length > 0"
+					:references="data.entity.data?.references"
+					class="ml-auto inline-block size-7 w-fit"
+					popup-position="left"
+				></ReferenceButton>
 			</div>
 		</template>
 		<template #base>
