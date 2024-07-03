@@ -66,7 +66,7 @@ const flattenedRelations = computed(() => {
 	</div>
 	<DetailPage v-else model="Event">
 		<template #head>
-			<h1 class="text-2xl font-bold text-primary-700 xl:my-3 xl:text-4xl dark:text-inherit">
+			<h1 class="text-2xl text-neutral-800 xl:my-3 xl:text-4xl dark:text-inherit">
 				{{ data.entity.data?.name }}
 			</h1>
 			<div
