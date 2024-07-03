@@ -3,6 +3,7 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
 import lodash from "lodash";
 import { ChevronDown } from "lucide-vue-next";
 
+import ReferenceButton from "@/components/reference-button.vue";
 import Centered from "@/components/ui/centered.vue";
 import Loader from "@/components/ui/loader.vue";
 import { borderColors, icons, scrollbarColors, textColors } from "@/lib/colors";
