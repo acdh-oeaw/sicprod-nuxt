@@ -82,7 +82,7 @@ const flattenedRelations = computed(() => {
 					</div>
 				</div>
 				<ReferenceButton
-					v-if="data.entity.data?.references?.length > 0"
+					v-if="Number(data.entity.data?.references?.length) > 0"
 					:references="data.entity.data?.references"
 					class="ml-auto inline-block size-7 w-fit"
 					popup-position="left"

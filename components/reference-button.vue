@@ -15,7 +15,7 @@ const props = withDefaults(
 		popupPosition?: Placement;
 		popupOffset?: number;
 	}>(),
-	{ popupPosition: "top", popupOffset: 12 },
+	{ popupPosition: "top", popupOffset: 12, references: () => [] },
 );
 // Popover positioning using floatingUI
 const reference = ref(null);
@@ -62,13 +62,11 @@ function downloadBibTex() {
 		>
 			<PopoverPanel
 				ref="floating"
-				class="z-10 max-h-96 max-w-72 cursor-auto overflow-auto"
+				class="z-10 max-h-96 max-w-72 cursor-auto overflow-auto rounded-lg shadow-lg ring-1 ring-black/5"
 				:style="{ ...floatingStyles }"
 				@click.stop.prevent
 			>
-				<div
-					class="overflow-auto rounded-lg bg-neutral-50 p-4 text-sm shadow-lg ring-1 ring-black/5 dark:bg-neutral-800"
-				>
+				<div class="overflow-auto bg-neutral-50 p-4 text-sm dark:bg-neutral-800">
 					<div class="ml-auto flex w-fit">
 						<button :title="t('References.download-bibtex')" @click.stop.prevent="downloadBibTex()">
 							<ArrowDownToLine class="size-4 transition-transform hover:scale-125" />
