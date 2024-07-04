@@ -70,12 +70,22 @@ const flattenedRelations = computed(() => {
 			<h1 class="text-2xl text-neutral-800 xl:my-3 xl:text-4xl dark:text-inherit">
 				{{ data.entity.data?.name }}
 			</h1>
-			<div
-				v-for="f in chipNames"
-				:key="f"
-				class="mr-3 inline-block w-fit rounded-md bg-place-200 px-3 py-1.5 text-xs font-semibold uppercase dark:bg-place-900 dark:text-neutral-100"
-			>
-				{{ f }}
+			<div class="flex justify-between">
+				<div>
+					<div
+						v-for="f in chipNames"
+						:key="f"
+						class="mr-3 inline-block w-fit rounded-md bg-place-200 px-3 py-1.5 text-xs font-semibold uppercase dark:bg-place-900 dark:text-neutral-100"
+					>
+						{{ f }}
+					</div>
+				</div>
+				<ReferenceButton
+					v-if="Number(data.entity.data?.references?.length) > 0"
+					:references="data.entity.data?.references"
+					class="ml-auto inline-block size-7 w-fit"
+					popup-position="left"
+				></ReferenceButton>
 			</div>
 		</template>
 		<template #base>

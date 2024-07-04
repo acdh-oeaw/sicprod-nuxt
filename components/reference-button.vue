@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/no-v-html -->
 <script setup lang="ts">
-import { shift, useFloating } from "@floating-ui/vue";
+import { offset, type Placement, shift, useFloating } from "@floating-ui/vue";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
 // @ts-expect-error missing types for citation-js
 import Cite from "citation-js";
@@ -9,16 +9,21 @@ import { ArrowDownToLine, BookOpenText } from "lucide-vue-next";
 import type { Reference } from "@/types/resulttypes";
 
 const t = useTranslations();
-const props = defineProps<{
-	references: Array<Reference>;
-}>();
+const props = withDefaults(
+	defineProps<{
+		references: Array<Reference>;
+		popupPosition?: Placement;
+		popupOffset?: number;
+	}>(),
+	{ popupPosition: "top", popupOffset: 12, references: () => [] },
+);
 // Popover positioning using floatingUI
 const reference = ref(null);
 const floating = ref(null);
 const { floatingStyles } = useFloating(reference, floating, {
 	transform: false,
-	placement: "top",
-	middleware: [shift()],
+	placement: props.popupPosition,
+	middleware: [offset(props.popupOffset), shift({ padding: 8 })],
 });
 
 const citationConfig = {
@@ -42,9 +47,9 @@ function downloadBibTex() {
 	<Popover>
 		<PopoverButton
 			ref="reference"
-			class="group inline-flex scale-90 items-center rounded-md font-medium text-neutral-600 transition-transform hover:scale-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 dark:text-neutral-200"
+			class="group inline-flex size-full scale-90 items-center rounded-md font-medium text-neutral-600 transition-transform hover:scale-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 dark:text-neutral-200"
 		>
-			<BookOpenText class="mx-auto" />
+			<BookOpenText class="mx-auto size-full" />
 			<span class="sr-only">{{ t("References.references") }}</span>
 		</PopoverButton>
 		<Transition
@@ -57,13 +62,11 @@ function downloadBibTex() {
 		>
 			<PopoverPanel
 				ref="floating"
-				class="z-10 max-w-72 cursor-auto"
+				class="z-10 max-h-96 max-w-72 cursor-auto overflow-auto rounded-lg shadow-lg ring-1 ring-black/5"
 				:style="{ ...floatingStyles }"
 				@click.stop.prevent
 			>
-				<div
-					class="overflow-auto rounded-lg bg-neutral-50 p-4 text-sm shadow-lg ring-1 ring-black/5 dark:bg-neutral-800"
-				>
+				<div class="overflow-auto bg-neutral-50 p-4 text-sm dark:bg-neutral-800">
 					<div class="ml-auto flex w-fit">
 						<button :title="t('References.download-bibtex')" @click.stop.prevent="downloadBibTex()">
 							<ArrowDownToLine class="size-4 transition-transform hover:scale-125" />
