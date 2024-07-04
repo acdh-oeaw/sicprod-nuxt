@@ -81,7 +81,8 @@
 				"start_date": "From",
 				"end_date": "To",
 				"gender": "Gender",
-				"alternative_names": "Alternative names"
+				"alternative_names": "Alternative names",
+				"same_as": "Might be identical with"
 			},
 			"event": {
 				"title": "Search - Events",

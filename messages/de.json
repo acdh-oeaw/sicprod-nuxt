@@ -81,7 +81,8 @@
 				"born": "Geboren",
 				"died": "Gestorben",
 				"gender": "Geschlecht",
-				"alternative_names": "Alternative Namen"
+				"alternative_names": "Alternative Namen",
+				"same_as": "Möglicherweise identisch mit"
 			},
 			"event": {
 				"title": "Suche - Events",

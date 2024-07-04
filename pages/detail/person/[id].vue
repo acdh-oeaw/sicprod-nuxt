@@ -9,6 +9,7 @@ import { loadAndGroupRelations } from "@/lib/group-relations.ts";
 import type { TimelineObject } from "@/types/timeline";
 
 const t = useTranslations();
+const localePath = useLocalePath();
 const route = useRoute();
 const id = Number(route.params.id);
 
@@ -58,6 +59,15 @@ const flattenedRelations = computed(() => {
 		.sort((r) => new Date(String(r.start_date)).valueOf());
 	return res;
 });
+
+const sameAs = computed(() => {
+	if (!data.value.relations.data) return [];
+	return (
+		data.value.relations.data.person
+			?.filter((r) => r.name === "ist möglicherweise identisch mit")
+			.map((r) => r.to) ?? []
+	);
+});
 </script>
 
 <template>
@@ -106,6 +116,18 @@ const flattenedRelations = computed(() => {
 			<div class="col-span-2 my-2 border-t"></div>
 			<span>{{ t("Pages.searchviews.person.alternative_names") }}:</span>
 			<span>{{ data.entity.data?.alternative_label }}</span>
+			<div v-if="sameAs.length > 0" class="col-span-2 my-2 border-t"></div>
+			<span v-if="sameAs.length > 0">{{ t("Pages.searchviews.person.same_as") }}:</span>
+			<span>
+				<NuxtLink
+					v-for="person in sameAs"
+					:key="person.id"
+					:to="localePath(`/detail/person/${person.id}`)"
+					class="-ml-1 -mt-1 block p-1 hover:bg-primary-50 active:bg-primary-50 dark:hover:bg-primary-950 dark:active:bg-primary-950"
+				>
+					{{ person.name }}
+				</NuxtLink>
+			</span>
 		</template>
 		<template #right>
 			<div v-if="data.entity.data" class="flex flex-col gap-3">
