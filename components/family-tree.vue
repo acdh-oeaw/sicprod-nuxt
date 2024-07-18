@@ -10,6 +10,8 @@ import {
 
 import type { TempTriple } from "@/types/resulttypes";
 
+const t = useTranslations();
+
 const localePath = useLocalePath();
 const props = withDefaults(
 	defineProps<{
@@ -68,17 +70,13 @@ onMounted(() => {
 							location: siblings.value.length > 1 ? 12 : 0.5,
 							create() {
 								const d = document.createElement("div");
-								d.innerHTML = `<img src="/assets/icons/users.svg" class="size-4 mb-5" />`;
+								d.innerHTML = `<img src="/assets/icons/users.svg" class="size-4 mb-5" title="${t("FamilyTree.siblings")}"/><span class="sr-only">${t("FamilyTree.siblings")}</span>`;
 								return d;
 							},
 						},
 					},
 				],
 			},
-			// {
-			// 	ref: childContainer,
-			// 	anchors: [AnchorLocations.Bottom, AnchorLocations.Top],
-			// },
 			{
 				ref: partnerContainer,
 				anchors: [AnchorLocations.Right, AnchorLocations.Left],
@@ -89,8 +87,7 @@ onMounted(() => {
 							location: partners.value.length > 1 ? 12 : 0.5,
 							create() {
 								const d = document.createElement("div");
-								d.innerHTML =
-									'<div class="mb-4 text-xl" title="Partner">⚭<span class="sr-only">Partners</span></div>';
+								d.innerHTML = `<div class="mb-4 text-xl" title="${t("FamilyTree.partner")}">⚭<span class="sr-only">${t("FamilyTree.partner")}</span></div>`;
 								return d;
 							},
 						},

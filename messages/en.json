@@ -195,6 +195,14 @@
 		"download-bibtex": "Download Bibtex",
 		"references": "References"
 	},
+	"FamilyTree": {
+		"siblings": "Siblings",
+		"partner": "Partner",
+		"children": "Children",
+		"parents": "Parents",
+		"show-all-children": "Show all {count} children",
+		"show-all-siblings": "Show all {count} siblings"
+	},
 	"ui": {
 		"showing-results": "Showing {first} - {last} out of {all} results",
 		"no-results": "Nothing Found.",
