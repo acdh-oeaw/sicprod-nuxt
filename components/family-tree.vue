@@ -59,6 +59,12 @@ onMounted(() => {
 			{
 				ref: ancestorContainer,
 				anchors: [AnchorLocations.Top, AnchorLocations.Bottom],
+				overlays: [
+					{
+						type: "PlainArrow",
+						options: { location: 0, direction: -1, length: 8, width: 10 },
+					},
+				],
 			},
 			{
 				ref: siblingContainer,
@@ -87,7 +93,7 @@ onMounted(() => {
 							location: partners.value.length > 1 ? 12 : 0.5,
 							create() {
 								const d = document.createElement("div");
-								d.innerHTML = `<div class="mb-4 text-xl" title="${t("FamilyTree.partner")}">⚭<span class="sr-only">${t("FamilyTree.partner")}</span></div>`;
+								d.innerHTML = `<img src="/assets/icons/marriage.svg" class="size-4 mb-4" title="${t("FamilyTree.partner")}"/><span class="sr-only">${t("FamilyTree.partner")}</span>`;
 								return d;
 							},
 						},
@@ -124,10 +130,16 @@ onMounted(() => {
 					target: child,
 					connector: {
 						type: FlowchartConnector.type,
-						options: { midpoint: 0.9, stub: 5, alwaysRespectStubs: true },
+						options: { midpoint: 0.9, stub: 12, alwaysRespectStubs: true },
 					},
 					anchors: [AnchorLocations.Bottom, AnchorLocations.Top],
 					endpoint: BlankEndpoint.type,
+					overlays: [
+						{
+							type: "PlainArrow",
+							options: { location: 1, direction: 1, length: 8, width: 10 },
+						},
+					],
 				});
 			});
 	});
@@ -173,7 +185,7 @@ onMounted(() => {
 				</NuxtLink>
 			</div>
 		</div>
-		<div ref="childContainer" class="my-2 flex flex-wrap justify-evenly gap-2">
+		<div ref="childContainer" class="mb-2 mt-4 flex flex-wrap justify-evenly gap-2">
 			<NuxtLink
 				v-for="person in children"
 				:key="person.id"
