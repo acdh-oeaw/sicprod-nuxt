@@ -2,6 +2,7 @@
 import { useQuery } from "@tanstack/vue-query";
 
 import DetailPage from "@/components/detail-page.vue";
+import FamilyTree from "@/components/family-tree.vue";
 import ReferenceButton from "@/components/reference-button.vue";
 import Timeline from "@/components/timeline.vue";
 import Loader from "@/components/ui/loader.vue";
@@ -128,6 +129,13 @@ const sameAs = computed(() => {
 					{{ person.name }}
 				</NuxtLink>
 			</span>
+
+			<FamilyTree
+				v-if="!data.relations.isLoading"
+				:relations="data.relations.data?.person"
+				:name="`${data.entity.data?.first_name} ${data.entity.data?.name}`"
+				class="col-span-2 mt-5"
+			/>
 		</template>
 		<template #right>
 			<div v-if="data.entity.data" class="flex flex-col gap-3">
