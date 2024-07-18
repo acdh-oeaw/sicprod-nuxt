@@ -3,6 +3,7 @@ import {
 	AnchorLocations,
 	type AnchorSpec,
 	BlankEndpoint,
+	type BrowserJsPlumbInstance,
 	FlowchartConnector,
 	newInstance,
 	ready,
@@ -50,9 +51,16 @@ const partners = computed(() => {
 		props.relations.filter((r) => r.name === "hat Ehe mit").map((r) => r.to),
 	);
 });
+const instance = ref<BrowserJsPlumbInstance>();
+// Add resize handler to monitor container width and adapt chart
+function resizeHandler() {
+	console.log("Resize");
+	instance.value?.repaintEverything();
+}
+
 onMounted(() => {
 	ready(() => {
-		const instance = newInstance({
+		instance.value = newInstance({
 			container: familyTreeContainer.value,
 		});
 		const containers = [
@@ -103,7 +111,7 @@ onMounted(() => {
 		];
 		containers.forEach((container) => {
 			[...(container.ref.value?.children ?? [])].forEach((child, idx) => {
-				instance.connect({
+				instance.value?.connect({
 					source: meContainer.value,
 					target: child,
 					connector: {
@@ -125,7 +133,7 @@ onMounted(() => {
 		childContainerChildren
 			.filter((child) => child.getBoundingClientRect().top === minHeight)
 			.forEach((child) => {
-				instance.connect({
+				instance.value?.connect({
 					source: meContainer.value,
 					target: child,
 					connector: {
@@ -142,7 +150,12 @@ onMounted(() => {
 					],
 				});
 			});
+		window.addEventListener("resize", resizeHandler);
 	});
+});
+
+onBeforeUnmount(() => {
+	window.removeEventListener("resize", resizeHandler);
 });
 </script>
 
