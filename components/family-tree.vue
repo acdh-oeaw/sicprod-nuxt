@@ -4,10 +4,13 @@ import {
 	type AnchorSpec,
 	BlankEndpoint,
 	type BrowserJsPlumbInstance,
+	type Connection,
 	FlowchartConnector,
 	newInstance,
+	type OverlaySpec,
 	ready,
 } from "@jsplumb/browser-ui";
+import { ChevronDown } from "lucide-vue-next";
 
 import type { TempTriple } from "@/types/resulttypes";
 
@@ -27,6 +30,9 @@ const siblingContainer = ref<HTMLElement>();
 const childContainer = ref<HTMLElement>();
 const partnerContainer = ref<HTMLElement>();
 const meContainer = ref<HTMLElement>();
+
+const showAllChilldren = ref(false);
+const uncollapseChildrenContainer = ref<HTMLElement>();
 
 function filterUniqueObjects(list: Array<{ id: number; name: string }>) {
 	return list.filter((entry, idx) => list.findIndex((e) => e.id === entry.id) === idx);
@@ -51,11 +57,61 @@ const partners = computed(() => {
 		props.relations.filter((r) => r.name === "hat Ehe mit").map((r) => r.to),
 	);
 });
+
 const instance = ref<BrowserJsPlumbInstance>();
 // Add resize handler to monitor container width and adapt chart
 function resizeHandler() {
-	console.log("Resize");
 	instance.value?.repaintEverything();
+}
+
+const childConnections = ref<Array<Connection | undefined>>();
+function drawChildConnections() {
+	const container =
+		showAllChilldren.value || children.value.length <= 3
+			? childContainer.value
+			: uncollapseChildrenContainer.value;
+	const childContainerChildren = [...(container?.children ?? [])];
+	const getOverlays = (idx: number) => {
+		let overlays: Array<OverlaySpec> = [
+			{
+				type: "PlainArrow",
+				options: { location: 1, direction: 1, length: 8, width: 10 },
+			},
+		];
+		if (idx === 0 && showAllChilldren.value)
+			overlays.push({
+				type: "Custom",
+				options: {
+					location: 8,
+					create() {
+						const d = document.createElement("button");
+						d.innerHTML = `<img src="/assets/icons/reduce.svg" class="size-4 mr-5" title="${t("FamilyTree.collapse-children")}"/><span class="sr-only">${t("FamilyTree.collapse-children")}</span>`;
+						d.onclick = toggleShowAllChildren;
+						return d;
+					},
+				},
+			});
+		return overlays;
+	};
+	instance.value?.batch(() => {
+		childConnections.value
+			?.filter((con): con is Connection => con !== undefined)
+			.forEach((con) => instance.value?.deleteConnection(con));
+
+		childConnections.value = childContainerChildren.map((child, idx) => {
+			return instance.value?.connect({
+				source: meContainer.value,
+				target: child,
+				connector: {
+					type: FlowchartConnector.type,
+					options: { midpoint: 0.9999, stub: [12, 20], alwaysRespectStubs: true },
+				},
+				anchors: [AnchorLocations.Bottom, AnchorLocations.Top],
+				endpoint: BlankEndpoint.type,
+				overlays: getOverlays(idx),
+			});
+		});
+	});
 }
 
 onMounted(() => {
@@ -124,32 +180,8 @@ onMounted(() => {
 				});
 			});
 		});
+		drawChildConnections();
 
-		// Add child connectors only to uppermost children
-		const childContainerChildren = [...(childContainer.value?.children ?? [])];
-		const minHeight = Math.min(
-			...childContainerChildren.map((el) => el.getBoundingClientRect().top),
-		);
-		childContainerChildren
-			.filter((child) => child.getBoundingClientRect().top === minHeight)
-			.forEach((child) => {
-				instance.value?.connect({
-					source: meContainer.value,
-					target: child,
-					connector: {
-						type: FlowchartConnector.type,
-						options: { midpoint: 0.9, stub: 12, alwaysRespectStubs: true },
-					},
-					anchors: [AnchorLocations.Bottom, AnchorLocations.Top],
-					endpoint: BlankEndpoint.type,
-					overlays: [
-						{
-							type: "PlainArrow",
-							options: { location: 1, direction: 1, length: 8, width: 10 },
-						},
-					],
-				});
-			});
 		window.addEventListener("resize", resizeHandler);
 	});
 });
@@ -157,6 +189,11 @@ onMounted(() => {
 onBeforeUnmount(() => {
 	window.removeEventListener("resize", resizeHandler);
 });
+
+function toggleShowAllChildren() {
+	showAllChilldren.value = !showAllChilldren.value;
+	void nextTick(drawChildConnections);
+}
 </script>
 
 <template>
@@ -198,15 +235,34 @@ onBeforeUnmount(() => {
 				</NuxtLink>
 			</div>
 		</div>
-		<div ref="childContainer" class="mb-2 mt-4 flex flex-wrap justify-evenly gap-2">
+		<div
+			v-if="children.length <= 3 || showAllChilldren"
+			ref="childContainer"
+			class="mb-2 mt-7 flex flex-wrap justify-evenly gap-x-2 gap-y-6"
+		>
 			<NuxtLink
 				v-for="person in children"
 				:key="person.id"
 				:to="localePath(`/detail/person/${person.id}`)"
-				class="max-w-32 p-2 text-center align-middle"
+				class="z-10 max-w-32 flex-auto px-2 pt-0 text-center align-middle"
 			>
-				{{ person.name }}
+				<span class="bg-white/50 dark:bg-neutral-800/50">
+					{{ person.name }}
+				</span>
 			</NuxtLink>
+		</div>
+		<div
+			v-else
+			ref="uncollapseChildrenContainer"
+			class="mb-2 mt-7 flex flex-wrap justify-evenly gap-2"
+		>
+			<button
+				class="border-2 border-dotted p-2 text-center align-middle"
+				@click="toggleShowAllChildren"
+			>
+				{{ t("FamilyTree.show-all-children", { count: children.length }) }}
+				<ChevronDown class="inline size-4" />
+			</button>
 		</div>
 	</div>
 </template>
