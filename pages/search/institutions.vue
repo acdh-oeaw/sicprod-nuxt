@@ -16,16 +16,6 @@ const columns = [
 		sortable: true,
 	},
 	{
-		key: "start_date_written",
-		label: t("Pages.searchviews.institution.start_date"),
-		sortable: true,
-	},
-	{
-		key: "end_date_written",
-		label: t("Pages.searchviews.institution.end_date"),
-		sortable: true,
-	},
-	{
 		key: "type",
 		label: t("Pages.searchviews.institution.type"),
 		sortable: true,
