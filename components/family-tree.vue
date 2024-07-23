@@ -83,10 +83,10 @@ function drawChildConnections() {
 			overlays.push({
 				type: "Custom",
 				options: {
-					location: 8,
+					location: 12,
 					create() {
 						const d = document.createElement("button");
-						d.innerHTML = `<img src="/assets/icons/reduce.svg" class="size-4 ml-6" title="${t("FamilyTree.collapse-children")}"/><span class="sr-only">${t("FamilyTree.collapse-children")}</span>`;
+						d.innerHTML = `<img src="/assets/icons/reduce.svg" class="size-4 ml-7 dark:invert" title="${t("FamilyTree.collapse-children")}"/><span class="sr-only">${t("FamilyTree.collapse-children")}</span>`;
 						d.onclick = toggleShowAllChildren;
 						return d;
 					},
@@ -141,7 +141,7 @@ onMounted(() => {
 							location: siblings.value.length > 1 ? 12 : 0.5,
 							create() {
 								const d = document.createElement("div");
-								d.innerHTML = `<img src="/assets/icons/users.svg" class="size-4 mb-5" title="${t("FamilyTree.siblings")}"/><span class="sr-only">${t("FamilyTree.siblings")}</span>`;
+								d.innerHTML = `<img src="/assets/icons/users.svg" class="size-4 mb-5 dark:invert" title="${t("FamilyTree.siblings")}"/><span class="sr-only">${t("FamilyTree.siblings")}</span>`;
 								return d;
 							},
 						},
@@ -158,7 +158,7 @@ onMounted(() => {
 							location: partners.value.length > 1 ? 12 : 0.5,
 							create() {
 								const d = document.createElement("div");
-								d.innerHTML = `<img src="/assets/icons/marriage.svg" class="size-4 mb-4" title="${t("FamilyTree.partner")}"/><span class="sr-only">${t("FamilyTree.partner")}</span>`;
+								d.innerHTML = `<img src="/assets/icons/marriage.svg" class="size-4 mb-4 dark:invert" title="${t("FamilyTree.partner")}"/><span class="sr-only">${t("FamilyTree.partner")}</span>`;
 								return d;
 							},
 						},
@@ -201,9 +201,14 @@ function toggleShowAllChildren() {
 	<div ref="familyTreeContainer" class="relative text-sm">
 		<Menu as="div" class="absolute left-0 z-20 inline-block text-left">
 			<div>
-				<MenuButton class="inline-flex w-full justify-center text-xs font-medium text-neutral-700">
+				<MenuButton
+					class="inline-flex w-full justify-center text-xs font-medium text-neutral-700 dark:text-neutral-300"
+				>
 					{{ t("FamilyTree.legend") }}
-					<ChevronDown class="ml-1 size-3 self-center text-neutral-700" aria-hidden="true" />
+					<ChevronDown
+						class="ml-1 size-3 self-center text-neutral-700 dark:text-neutral-300"
+						aria-hidden="true"
+					/>
 				</MenuButton>
 			</div>
 
@@ -216,12 +221,16 @@ function toggleShowAllChildren() {
 				leave-to-class="transform scale-95 opacity-0"
 			>
 				<MenuItems
-					class="absolute left-0 mt-2 w-max origin-top-left rounded-md bg-white/90 shadow-lg ring-1 ring-black/5 focus:outline-none"
+					class="absolute left-0 mt-2 w-max origin-top-left rounded-md bg-white/90 shadow-lg ring-1 ring-black/5 focus:outline-none dark:bg-neutral-900/95"
 				>
 					<div class="p-1">
 						<MenuItem>
 							<div class="group flex items-center gap-2 rounded-md p-2 text-sm">
-								<img src="/assets/icons/users.svg" class="size-4" :alt="t('FamilyTree.siblings')" />
+								<img
+									src="/assets/icons/users.svg"
+									class="size-4 dark:invert"
+									:alt="t('FamilyTree.siblings')"
+								/>
 								<div>{{ t("FamilyTree.siblings") }}</div>
 							</div>
 						</MenuItem>
@@ -229,7 +238,7 @@ function toggleShowAllChildren() {
 							<div class="group flex items-center gap-2 rounded-md p-2 text-sm">
 								<img
 									src="/assets/icons/marriage.svg"
-									class="size-4"
+									class="size-4 dark:invert"
 									:alt="t('FamilyTree.partner')"
 								/>
 								<div>{{ t("FamilyTree.partner") }}</div>
@@ -239,10 +248,20 @@ function toggleShowAllChildren() {
 							<div class="group flex items-center gap-2 rounded-md p-2 text-sm">
 								<img
 									src="/assets/icons/arrow.svg"
-									class="size-4 rotate-90"
+									class="size-4 rotate-90 dark:invert"
 									:alt="t('FamilyTree.is-descendant-of')"
 								/>
 								<div>{{ t("FamilyTree.is-descendant-of") }}</div>
+							</div>
+						</MenuItem>
+						<MenuItem v-if="showAllChilldren">
+							<div class="group flex items-center gap-2 rounded-md p-2 text-sm">
+								<img
+									src="/assets/icons/reduce.svg"
+									class="size-4 dark:invert"
+									:alt="t('FamilyTree.collapse-children')"
+								/>
+								<div>{{ t("FamilyTree.collapse-children") }}</div>
 							</div>
 						</MenuItem>
 					</div>
