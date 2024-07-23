@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
+import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
 import {
 	AnchorLocations,
 	type AnchorSpec,
@@ -199,9 +199,9 @@ function toggleShowAllChildren() {
 
 <template>
 	<div ref="familyTreeContainer" class="relative text-sm">
-		<Menu as="div" class="absolute left-0 z-20 inline-block text-left">
+		<Popover as="div" class="absolute left-0 z-20 inline-block text-left">
 			<div>
-				<MenuButton
+				<PopoverButton
 					class="inline-flex w-full justify-center text-xs font-medium text-neutral-700 dark:text-neutral-300"
 				>
 					{{ t("FamilyTree.legend") }}
@@ -209,65 +209,60 @@ function toggleShowAllChildren() {
 						class="ml-1 size-3 self-center text-neutral-700 dark:text-neutral-300"
 						aria-hidden="true"
 					/>
-				</MenuButton>
+				</PopoverButton>
 			</div>
 
 			<Transition
-				enter-active-class="transition duration-100 ease-out"
-				enter-from-class="transform scale-95 opacity-0"
-				enter-to-class="transform scale-100 opacity-100"
-				leave-active-class="transition duration-75 ease-in"
-				leave-from-class="transform scale-100 opacity-100"
-				leave-to-class="transform scale-95 opacity-0"
+				enter-active-class="transition duration-200 ease-out"
+				enter-from-class="translate-y-1 opacity-0"
+				enter-to-class="translate-y-0 opacity-100"
+				leave-active-class="transition duration-150 ease-in"
+				leave-from-class="translate-y-0 opacity-100"
+				leave-to-class="translate-y-1 opacity-0"
 			>
-				<MenuItems
-					class="absolute left-0 mt-2 w-max origin-top-left rounded-md bg-white/90 shadow-lg ring-1 ring-black/5 focus:outline-none dark:bg-neutral-900/95"
+				<PopoverPanel
+					class="absolute left-0 mt-2 w-max origin-top-left rounded-lg bg-neutral-50 p-1 shadow-lg ring-1 ring-black/5 dark:bg-neutral-800"
 				>
 					<div class="p-1">
-						<MenuItem>
-							<div class="group flex items-center gap-2 rounded-md p-2 text-sm">
-								<img
-									src="/assets/icons/users.svg"
-									class="size-4 dark:invert"
-									:alt="t('FamilyTree.siblings')"
-								/>
-								<div>{{ t("FamilyTree.siblings") }}</div>
-							</div>
-						</MenuItem>
-						<MenuItem>
-							<div class="group flex items-center gap-2 rounded-md p-2 text-sm">
-								<img
-									src="/assets/icons/marriage.svg"
-									class="size-4 dark:invert"
-									:alt="t('FamilyTree.partner')"
-								/>
-								<div>{{ t("FamilyTree.partner") }}</div>
-							</div>
-						</MenuItem>
-						<MenuItem>
-							<div class="group flex items-center gap-2 rounded-md p-2 text-sm">
-								<img
-									src="/assets/icons/arrow.svg"
-									class="size-4 rotate-90 dark:invert"
-									:alt="t('FamilyTree.is-descendant-of')"
-								/>
-								<div>{{ t("FamilyTree.is-descendant-of") }}</div>
-							</div>
-						</MenuItem>
-						<MenuItem v-if="showAllChilldren">
-							<div class="group flex items-center gap-2 rounded-md p-2 text-sm">
-								<img
-									src="/assets/icons/reduce.svg"
-									class="size-4 dark:invert"
-									:alt="t('FamilyTree.collapse-children')"
-								/>
-								<div>{{ t("FamilyTree.collapse-children") }}</div>
-							</div>
-						</MenuItem>
+						<div class="group flex items-center gap-2 rounded-md p-2 text-sm">
+							<img
+								src="/assets/icons/users.svg"
+								class="size-4 dark:invert"
+								:alt="t('FamilyTree.siblings')"
+							/>
+							<div>{{ t("FamilyTree.siblings") }}</div>
+						</div>
+						<div class="group flex items-center gap-2 rounded-md p-2 text-sm">
+							<img
+								src="/assets/icons/marriage.svg"
+								class="size-4 dark:invert"
+								:alt="t('FamilyTree.partner')"
+							/>
+							<div>{{ t("FamilyTree.partner") }}</div>
+						</div>
+						<div class="group flex items-center gap-2 rounded-md p-2 text-sm">
+							<img
+								src="/assets/icons/arrow.svg"
+								class="size-4 rotate-90 dark:invert"
+								:alt="t('FamilyTree.is-descendant-of')"
+							/>
+							<div>{{ t("FamilyTree.is-descendant-of") }}</div>
+						</div>
+						<div
+							v-if="showAllChilldren"
+							class="group flex items-center gap-2 rounded-md p-2 text-sm"
+						>
+							<img
+								src="/assets/icons/reduce.svg"
+								class="size-4 dark:invert"
+								:alt="t('FamilyTree.collapse-children')"
+							/>
+							<div>{{ t("FamilyTree.collapse-children") }}</div>
+						</div>
 					</div>
-				</MenuItems>
+				</PopoverPanel>
 			</Transition>
-		</Menu>
+		</Popover>
 		<div ref="ancestorContainer" class="my-2 flex justify-around gap-2 px-16">
 			<NuxtLink
 				v-for="person in ancestors"
