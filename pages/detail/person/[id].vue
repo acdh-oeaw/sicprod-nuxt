@@ -128,22 +128,25 @@ const needsFamilyTree = computed(() => {
 			<div class="col-span-2 my-2 border-t"></div>
 			<span>{{ t("Pages.searchviews.person.gender") }}:</span>
 			<span>{{ data.entity.data?.gender }}</span>
-			<div class="col-span-2 my-2 border-t"></div>
-			<span>{{ t("Pages.searchviews.person.alternative_names") }}:</span>
-			<span>{{ data.entity.data?.alternative_label }}</span>
-			<div v-if="sameAs.length > 0" class="col-span-2 my-2 border-t"></div>
-			<span v-if="sameAs.length > 0">{{ t("Pages.searchviews.person.same_as") }}:</span>
-			<span>
-				<NuxtLink
-					v-for="person in sameAs"
-					:key="person.id"
-					:to="localePath(`/detail/person/${person.id}`)"
-					class="-ml-1 -mt-1 block p-1 hover:bg-primary-50 active:bg-primary-50 dark:hover:bg-primary-950 dark:active:bg-primary-950"
-				>
-					{{ person.name }}
-				</NuxtLink>
-			</span>
-
+			<template v-if="data.entity.data?.alternative_label">
+				<div class="col-span-2 my-2 border-t"></div>
+				<span>{{ t("Pages.searchviews.person.alternative_names") }}:</span>
+				<span>{{ data.entity.data?.alternative_label }}</span>
+			</template>
+			<template v-if="sameAs.length > 0">
+				<div class="col-span-2 my-2 border-t"></div>
+				<span>{{ t("Pages.searchviews.person.same_as") }}:</span>
+				<span>
+					<NuxtLink
+						v-for="person in sameAs"
+						:key="person.id"
+						:to="localePath(`/detail/person/${person.id}`)"
+						class="-ml-1 -mt-1 block p-1 hover:bg-primary-50 active:bg-primary-50 dark:hover:bg-primary-950 dark:active:bg-primary-950"
+					>
+						{{ person.name }}
+					</NuxtLink>
+				</span>
+			</template>
 			<FamilyTree
 				v-if="!data.relations.isLoading && needsFamilyTree"
 				:relations="data.relations.data?.person"
