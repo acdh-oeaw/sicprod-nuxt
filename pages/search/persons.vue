@@ -25,21 +25,6 @@ const columns = [
 		label: t("Pages.searchviews.person.alternative_names"),
 		sortable: true,
 	},
-	// {
-	// 	key: "start_date_written",
-	// 	label: t("Pages.searchviews.person.start_date"),
-	// 	sortable: true,
-	// },
-	// {
-	// 	key: "end_date_written",
-	// 	label: t("Pages.searchviews.person.end_date"),
-	// 	sortable: true,
-	// },
-	// {
-	// 	key: "gender",
-	// 	label: t("Pages.searchviews.person.gender"),
-	// 	sortable: true,
-	// },
 ];
 </script>
 

@@ -16,13 +16,8 @@ const columns = [
 		sortable: true,
 	},
 	{
-		key: "start_date_written",
-		label: t("Pages.searchviews.function.start_date"),
-		sortable: true,
-	},
-	{
-		key: "end_date_written",
-		label: t("Pages.searchviews.function.end_date"),
+		key: "alternative_label",
+		label: t("Pages.searchviews.function.alternative_label"),
 		sortable: true,
 	},
 ];
