@@ -83,7 +83,7 @@ function drawChildConnections() {
 			overlays.push({
 				type: "Custom",
 				options: {
-					location: 12,
+					location: 8,
 					create() {
 						const d = document.createElement("button");
 						d.innerHTML = `<img src="/assets/icons/reduce.svg" class="size-4 ml-7 dark:invert" title="${t("FamilyTree.collapse-children")}"/><span class="sr-only">${t("FamilyTree.collapse-children")}</span>`;
@@ -105,7 +105,7 @@ function drawChildConnections() {
 				target: child,
 				connector: {
 					type: FlowchartConnector.type,
-					options: { midpoint: 0.9999, stub: [12, 20], alwaysRespectStubs: true },
+					options: { midpoint: 0.9999, stub: [16, 20], alwaysRespectStubs: true },
 				},
 				anchors: [AnchorLocations.Bottom, AnchorLocations.Top],
 				endpoint: BlankEndpoint.type,
