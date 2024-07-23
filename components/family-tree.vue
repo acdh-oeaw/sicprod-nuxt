@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 import {
 	AnchorLocations,
 	type AnchorSpec,
@@ -85,7 +86,7 @@ function drawChildConnections() {
 					location: 8,
 					create() {
 						const d = document.createElement("button");
-						d.innerHTML = `<img src="/assets/icons/reduce.svg" class="size-4 mr-5" title="${t("FamilyTree.collapse-children")}"/><span class="sr-only">${t("FamilyTree.collapse-children")}</span>`;
+						d.innerHTML = `<img src="/assets/icons/reduce.svg" class="size-4 ml-6" title="${t("FamilyTree.collapse-children")}"/><span class="sr-only">${t("FamilyTree.collapse-children")}</span>`;
 						d.onclick = toggleShowAllChildren;
 						return d;
 					},
@@ -198,6 +199,56 @@ function toggleShowAllChildren() {
 
 <template>
 	<div ref="familyTreeContainer" class="relative text-sm">
+		<Menu as="div" class="absolute left-0 z-20 inline-block text-left">
+			<div>
+				<MenuButton class="inline-flex w-full justify-center text-xs font-medium text-neutral-700">
+					{{ t("FamilyTree.legend") }}
+					<ChevronDown class="ml-1 size-3 self-center text-neutral-700" aria-hidden="true" />
+				</MenuButton>
+			</div>
+
+			<Transition
+				enter-active-class="transition duration-100 ease-out"
+				enter-from-class="transform scale-95 opacity-0"
+				enter-to-class="transform scale-100 opacity-100"
+				leave-active-class="transition duration-75 ease-in"
+				leave-from-class="transform scale-100 opacity-100"
+				leave-to-class="transform scale-95 opacity-0"
+			>
+				<MenuItems
+					class="absolute left-0 mt-2 w-max origin-top-left rounded-md bg-white/90 shadow-lg ring-1 ring-black/5 focus:outline-none"
+				>
+					<div class="p-1">
+						<MenuItem>
+							<div class="group flex items-center gap-2 rounded-md p-2 text-sm">
+								<img src="/assets/icons/users.svg" class="size-4" :alt="t('FamilyTree.siblings')" />
+								<div>{{ t("FamilyTree.siblings") }}</div>
+							</div>
+						</MenuItem>
+						<MenuItem>
+							<div class="group flex items-center gap-2 rounded-md p-2 text-sm">
+								<img
+									src="/assets/icons/marriage.svg"
+									class="size-4"
+									:alt="t('FamilyTree.partner')"
+								/>
+								<div>{{ t("FamilyTree.partner") }}</div>
+							</div>
+						</MenuItem>
+						<MenuItem>
+							<div class="group flex items-center gap-2 rounded-md p-2 text-sm">
+								<img
+									src="/assets/icons/arrow.svg"
+									class="size-4 rotate-90"
+									:alt="t('FamilyTree.is-descendant-of')"
+								/>
+								<div>{{ t("FamilyTree.is-descendant-of") }}</div>
+							</div>
+						</MenuItem>
+					</div>
+				</MenuItems>
+			</Transition>
+		</Menu>
 		<div ref="ancestorContainer" class="my-2 flex justify-around gap-2 px-16">
 			<NuxtLink
 				v-for="person in ancestors"

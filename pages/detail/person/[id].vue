@@ -69,6 +69,20 @@ const sameAs = computed(() => {
 			.map((r) => r.to) ?? []
 	);
 });
+
+const needsFamilyTree = computed(() => {
+	if (!data.value.relations.data) return false;
+
+	const familyRelationNames = [
+		"ist Kind von",
+		"ist Elternteil von",
+		"ist Bruder/Schwester von",
+		"hat Ehe mit",
+	];
+	return Boolean(
+		data.value.relations.data.person?.find((r) => familyRelationNames.includes(r.name)),
+	);
+});
 </script>
 
 <template>
@@ -131,10 +145,10 @@ const sameAs = computed(() => {
 			</span>
 
 			<FamilyTree
-				v-if="!data.relations.isLoading"
+				v-if="!data.relations.isLoading && needsFamilyTree"
 				:relations="data.relations.data?.person"
 				:name="`${data.entity.data?.first_name} ${data.entity.data?.name}`"
-				class="col-span-2 mt-5"
+				class="col-span-2 mt-8"
 			/>
 		</template>
 		<template #right>

@@ -203,7 +203,9 @@
 		"show-all-children": "Show all {count} children",
 		"show-all-siblings": "Show all {count} siblings",
 		"collapse-children": "Collapse children",
-		"collapse-siblings": "Collapse siblings"
+		"collapse-siblings": "Collapse siblings",
+		"is-descendant-of": "Descendant",
+		"legend": "Legend"
 	},
 	"ui": {
 		"showing-results": "Showing {first} - {last} out of {all} results",

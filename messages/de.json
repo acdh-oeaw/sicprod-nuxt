@@ -203,7 +203,9 @@
 		"show-all-children": "Zeige alle {count} Kinder",
 		"show-all-siblings": "Zeige alle {count} Geschwister",
 		"collapse-children": "Kinder einklappen",
-		"collapse-siblings": "Geschwister einklappen"
+		"collapse-siblings": "Geschwister einklappen",
+		"is-descendant-of": "Nachkomme",
+		"legend": "Legende"
 	},
 	"ui": {
 		"showing-results": "Zeige {first} - {last} von {all} Ergebnissen",
