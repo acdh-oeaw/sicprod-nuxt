@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/vue-query";
 
 import DetailPage from "@/components/detail-page.vue";
 import Map from "@/components/map.vue";
-import Timeline from "@/components/timeline.vue";
+import Timeline from "@/components/timeline/timeline.vue";
 import Loader from "@/components/ui/loader.vue";
 import { loadAndGroupRelations } from "@/lib/group-relations.ts";
 import type { TimelineObject } from "@/types/timeline";

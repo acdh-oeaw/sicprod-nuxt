@@ -3,6 +3,8 @@ import * as d3 from "d3";
 
 import type { TimelineObject } from "@/types/timeline";
 
+import TimelineEntry from "./timeline-entry.vue";
+
 const props = defineProps<{
 	relations: Array<TimelineObject>;
 }>();
