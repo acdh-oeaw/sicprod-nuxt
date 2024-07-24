@@ -111,6 +111,7 @@ const flattenedRelations = computed(() => {
 			<div class="col-span-2 my-2 border-t"></div>
 			<Map
 				v-if="data.entity.data?.latitude && data.entity.data?.longitude"
+				class="col-span-2"
 				:latitude="data.entity.data?.latitude ?? 0"
 				:longitude="data.entity.data?.longitude ?? 0"
 			></Map>

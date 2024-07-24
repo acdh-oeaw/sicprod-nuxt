@@ -75,6 +75,7 @@
 		"@acdh-oeaw/tailwindcss-preset": "^0.0.22",
 		"@acdh-oeaw/tsconfig": "^1.0.2",
 		"@nuxt/devtools": "^1.0.8",
+		"@nuxtjs/leaflet": "^1.0.14",
 		"@playwright/test": "^1.42.1",
 		"@tailwindcss/typography": "^0.5.12",
 		"@types/d3": "^7.4.3",
