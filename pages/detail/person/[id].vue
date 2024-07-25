@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { useQuery } from "@tanstack/vue-query";
+import { SquareArrowOutUpRight } from "lucide-vue-next";
 
 import DetailPage from "@/components/detail-page.vue";
 import FamilyTree from "@/components/family-tree.vue";
 import ReferenceButton from "@/components/reference-button.vue";
 import Timeline from "@/components/timeline/timeline.vue";
+import VerticalTimeline from "@/components/timeline/vertical-timeline.vue";
 import Loader from "@/components/ui/loader.vue";
 import { loadAndGroupRelations } from "@/lib/group-relations.ts";
 import type { TimelineObject } from "@/types/timeline";
@@ -83,6 +85,14 @@ const needsFamilyTree = computed(() => {
 		data.value.relations.data.person?.find((r) => familyRelationNames.includes(r.name)),
 	);
 });
+
+const showVerticalTimeline = ref(false);
+function closeVerticalTimeline() {
+	showVerticalTimeline.value = false;
+}
+function openVerticalTimeline() {
+	showVerticalTimeline.value = true;
+}
 </script>
 
 <template>
@@ -106,12 +116,25 @@ const needsFamilyTree = computed(() => {
 						{{ f }}
 					</div>
 				</div>
-				<ReferenceButton
-					v-if="Number(data.entity.data?.references?.length) > 0"
-					:references="data.entity.data?.references"
-					class="ml-auto inline-block size-7 w-fit"
-					popup-position="left"
-				></ReferenceButton>
+				<div class="ml-auto flex gap-2">
+					<ReferenceButton
+						v-if="Number(data.entity.data?.references?.length) > 0"
+						:references="data.entity.data?.references"
+						class="size-7 w-fit"
+						popup-position="left"
+					></ReferenceButton>
+
+					<button
+						class="group w-fit scale-90 items-center rounded-md font-medium text-neutral-600 transition-transform hover:scale-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 dark:text-neutral-200"
+						@click="openVerticalTimeline"
+					>
+						<SquareArrowOutUpRight />
+					</button>
+				</div>
+				<VerticalTimeline
+					:is-open="showVerticalTimeline"
+					:close-modal="closeVerticalTimeline"
+				></VerticalTimeline>
 			</div>
 		</template>
 		<template #base>
