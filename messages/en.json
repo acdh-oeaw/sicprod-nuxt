@@ -130,12 +130,12 @@
 				"alternative_label": "Alternative name"
 			},
 			"facets": {
-				"related_persons": "Persons",
-				"related_events": "Events",
-				"related_functions": "Functions",
-				"related_institutions": "Institutions",
-				"related_places": "Places",
-				"related_salaries": "Salaries",
+				"relation_person": "Persons",
+				"relation_event": "Events",
+				"relation_function": "Functions",
+				"relation_institution": "Institutions",
+				"relation_place": "Places",
+				"relation_salary": "Salaries",
 				"gender": "Gender",
 				"type": "Type"
 			}

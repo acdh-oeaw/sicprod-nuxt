@@ -78,7 +78,7 @@ const relationFacets = computed(() => {
 
 	if (!data.value) return facetObject;
 	Object.entries(data.value.facets).forEach(([key, value]) => {
-		if (key.startsWith("related_") && hasMatchingFacetType(value)) {
+		if (key.startsWith("relation_") && hasMatchingFacetType(value)) {
 			facetObject[key] = Object.entries(value)
 				.map(([k, v]) => {
 					return { ...v, id: k };
@@ -95,7 +95,7 @@ const classFacets = computed(() => {
 	let facetObject: Record<string, Array<FacetType>> = {};
 	if (!data.value) return facetObject;
 	Object.entries(data.value.facets).forEach(([key, value]) => {
-		if (!key.startsWith("related_") && hasMatchingFacetType(value)) {
+		if (!key.startsWith("relation_") && hasMatchingFacetType(value)) {
 			facetObject[key] = Object.entries(value)
 				.filter(([_, v]) => v.name !== "")
 				.map(([k, v]) => {
