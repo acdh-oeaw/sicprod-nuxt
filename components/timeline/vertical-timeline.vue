@@ -1,10 +1,24 @@
 <script setup lang="ts">
-import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from "@headlessui/vue";
+import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from "@headlessui/vue";
 
-defineProps<{
+import type { TimelineObject } from "@/types/timeline";
+import { groupTimelineRelations } from "@/utils/timeline-utils";
+
+import VerticalTimelineEntry from "./vertical-timeline-entry.vue";
+
+const props = defineProps<{
 	isOpen: boolean;
 	closeModal: () => void;
+	relations: Array<TimelineObject>;
 }>();
+
+// Fiter relations by start_date
+const filteredRelations = computed<Array<TimelineObject>>(() =>
+	props.relations.filter((r): r is TimelineObject => Boolean(r.start_date)),
+);
+
+// Group relations by date
+const groupedRelations = computed(() => groupTimelineRelations(filteredRelations.value));
 </script>
 
 <template>
@@ -36,12 +50,16 @@ defineProps<{
 						<DialogPanel
 							class="rounded w-full max-w-md overflow-hidden bg-white p-6 text-left align-middle shadow-xl transition-all"
 						>
-							<DialogTitle as="h3" class="text-lg font-medium leading-6 text-neutral-900">
-								Payment successful
-							</DialogTitle>
-							<div class="relative mt-2">
-								<div class="mx-auto h-52 w-1 bg-neutral-300"></div>
-								<div class="absolute top-2 mx-auto size-5 rounded-full bg-primary-500"></div>
+							<div class="relative mt-2 h-auto pt-4">
+								<!-- Vertical line -->
+								<div class="absolute left-1/2 mx-auto -ml-0.5 h-full w-1 bg-neutral-300"></div>
+
+								<VerticalTimelineEntry
+									v-for="(r, idx) in groupedRelations"
+									:key="idx"
+									:item="r"
+									:position="idx % 2 == 0 ? 'left' : 'right'"
+								></VerticalTimelineEntry>
 							</div>
 						</DialogPanel>
 					</TransitionChild>

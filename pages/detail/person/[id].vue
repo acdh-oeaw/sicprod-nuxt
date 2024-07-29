@@ -132,8 +132,10 @@ function openVerticalTimeline() {
 					</button>
 				</div>
 				<VerticalTimeline
+					v-if="!data.relations.isLoading"
 					:is-open="showVerticalTimeline"
 					:close-modal="closeVerticalTimeline"
+					:relations="flattenedRelations"
 				></VerticalTimeline>
 			</div>
 		</template>
