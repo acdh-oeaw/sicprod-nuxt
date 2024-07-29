@@ -36,7 +36,7 @@ const itemClass = computed(() => {
 
 <template>
 	<div
-		class="relative w-1/2 py-4"
+		class="relative w-1/2"
 		:class="{
 			'left-1/2': position === 'right',
 		}"
@@ -46,13 +46,19 @@ const itemClass = computed(() => {
 			:class="[position === 'left' ? '-right-2.5' : '-left-2.5', bgColors[itemClass]]"
 		></div>
 		<div
-			class="min-w-48 -translate-y-1/2 p-4"
+			class="min-w-48 -translate-y-4 p-4"
 			:class="{
 				'-left-2 mr-4': position === 'left',
 				'-right-2 ml-4': position === 'right',
 			}"
 		>
-			<div class="text-right text-sm text-neutral-500">
+			<div
+				class="text-sm text-neutral-800 dark:text-neutral-300"
+				:class="{
+					'-mr-4 text-right': position === 'left',
+					'-ml-4 text-left': position === 'right',
+				}"
+			>
 				<span>
 					{{
 						(
@@ -79,7 +85,7 @@ const itemClass = computed(() => {
 					<span class="block text-sm text-neutral-500">
 						{{ i.name }}
 					</span>
-					<span class="flex items-center">
+					<span>
 						<span class="text-sm font-medium text-neutral-900 dark:text-neutral-100">
 							{{ i.to.name }}
 						</span>
@@ -94,7 +100,7 @@ const itemClass = computed(() => {
 					<span class="block text-sm text-neutral-500">
 						{{ item.name }}
 					</span>
-					<span class="flex items-center">
+					<span>
 						<span class="text-sm font-medium text-neutral-900 dark:text-neutral-100">
 							{{ item.to.name }}
 						</span>

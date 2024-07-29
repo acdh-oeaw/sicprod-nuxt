@@ -207,6 +207,9 @@
 		"is-descendant-of": "Nachkomme",
 		"legend": "Legende"
 	},
+	"Timeline": {
+		"timeline": "Zeitleiste"
+	},
 	"ui": {
 		"showing-results": "Zeige {first} - {last} von {all} Ergebnissen",
 		"no-results": "Keine Ergebnisse.",

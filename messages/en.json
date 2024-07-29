@@ -207,6 +207,9 @@
 		"is-descendant-of": "Descendant",
 		"legend": "Legend"
 	},
+	"Timeline": {
+		"timeline": "Timeline"
+	},
 	"ui": {
 		"showing-results": "Showing {first} - {last} out of {all} results",
 		"no-results": "Nothing Found.",
