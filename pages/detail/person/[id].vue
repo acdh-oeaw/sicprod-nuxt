@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useQuery } from "@tanstack/vue-query";
-import { SquareArrowOutUpRight } from "lucide-vue-next";
+import { SquareGanttChart } from "lucide-vue-next";
 
 import DetailPage from "@/components/detail-page.vue";
 import FamilyTree from "@/components/family-tree.vue";
@@ -126,9 +126,11 @@ function openVerticalTimeline() {
 					<button
 						v-if="flattenedRelations.length > 0"
 						class="group w-fit scale-90 items-center rounded-md font-medium text-neutral-600 transition-transform hover:scale-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 dark:text-neutral-200"
+						:title="t('Timeline.timeline')"
 						@click="openVerticalTimeline"
 					>
-						<SquareArrowOutUpRight />
+						<span class="sr-only">{{ t("Timeline.timeline") }}</span>
+						<SquareGanttChart />
 					</button>
 				</div>
 				<VerticalTimeline
