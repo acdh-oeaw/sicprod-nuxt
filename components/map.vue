@@ -10,7 +10,7 @@ defineProps<{
 </script>
 
 <template>
-	<div id="container" class="aspect-video w-full">
+	<div id="container" class="-z-10 aspect-video w-full">
 		<LMap ref="map" :zoom="zoom" :center="[latitude, longitude]" :use-global-leaflet="false">
 			<LTileLayer
 				url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
