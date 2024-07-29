@@ -2,6 +2,8 @@
 import { bgColors } from "@/lib/colors";
 import type { TimelineObject } from "@/types/timeline";
 
+import ReferenceButton from "../reference-button.vue";
+
 const localePath = useLocalePath();
 
 const props = defineProps<{
@@ -82,9 +84,14 @@ const itemClass = computed(() => {
 					:to="localePath(`/detail/${i.class}/${i.to.id}`)"
 					class="flow-root rounded-md p-2 transition duration-150 ease-in-out hover:bg-neutral-100 focus:outline-none focus-visible:ring dark:hover:bg-neutral-900"
 				>
-					<span class="block text-sm text-neutral-500">
+					<div class="flex items-center justify-between text-sm text-neutral-500">
 						{{ i.name }}
-					</span>
+						<ReferenceButton
+							v-if="i.references.length > 0"
+							:references="i.references"
+							class="inline-block size-4 text-neutral-900 dark:text-neutral-100"
+						></ReferenceButton>
+					</div>
 					<span>
 						<span class="text-sm font-medium text-neutral-900 dark:text-neutral-100">
 							{{ i.to.name }}
@@ -97,9 +104,14 @@ const itemClass = computed(() => {
 					:to="localePath(`/detail/${item.class}/${item.to.id}`)"
 					class="flow-root rounded-md p-2 transition duration-150 ease-in-out hover:bg-neutral-100 focus:outline-none focus-visible:ring dark:hover:bg-neutral-900"
 				>
-					<span class="block text-sm text-neutral-500">
+					<div class="flex items-center justify-between text-sm text-neutral-500">
 						{{ item.name }}
-					</span>
+						<ReferenceButton
+							v-if="item.references.length > 0"
+							:references="item.references"
+							class="inline-block size-4 text-neutral-900 dark:text-neutral-100"
+						></ReferenceButton>
+					</div>
 					<span>
 						<span class="text-sm font-medium text-neutral-900 dark:text-neutral-100">
 							{{ item.to.name }}
