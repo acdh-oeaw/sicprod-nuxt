@@ -18,6 +18,15 @@ export const bgColors = {
 	salary: "bg-salary-400 dark:bg-salary-700",
 	mix: "bg-neutral-300 dark:bg-neutral-400",
 };
+export const bgColorsSemiTransparent = {
+	event: "bg-event-400/50 dark:bg-event-700/50",
+	function: "bg-function-400/50 dark:bg-function-700/50",
+	person: "bg-person-400/50 dark:bg-person-700/50",
+	place: "bg-place-400/50 dark:bg-place-800/50",
+	institution: "bg-institution-400/50 dark:bg-institution-700/50",
+	salary: "bg-salary-400/50 dark:bg-salary-700/50",
+	mix: "bg-neutral-300/50 dark:bg-neutral-400/50",
+};
 export const borderColors = {
 	event: "border-event-400 dark:border-event-700",
 	function: "border-function-400 dark:border-function-700",

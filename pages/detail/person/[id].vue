@@ -58,8 +58,7 @@ const flattenedRelations = computed(() => {
 			}),
 		)
 		.flat()
-		.filter((r): r is TimelineObject => Boolean(r.start_date))
-		.sort((r) => new Date(String(r.start_date)).valueOf());
+		.filter((r): r is TimelineObject => Boolean(r.start_date));
 	return res;
 });
 
@@ -125,6 +124,7 @@ function openVerticalTimeline() {
 					></ReferenceButton>
 
 					<button
+						v-if="flattenedRelations.length > 0"
 						class="group w-fit scale-90 items-center rounded-md font-medium text-neutral-600 transition-transform hover:scale-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 dark:text-neutral-200"
 						@click="openVerticalTimeline"
 					>
