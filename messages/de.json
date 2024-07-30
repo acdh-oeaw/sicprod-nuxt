@@ -41,6 +41,18 @@
 		"title": "Etwas ist schief gelaufen!",
 		"try-again": "Erneut versuchen"
 	},
+	"FamilyTree": {
+		"siblings": "Geschwister",
+		"partner": "Ehepartner:in",
+		"children": "Kinder",
+		"parents": "Eltern",
+		"show-all-children": "Zeige alle {count} Kinder",
+		"show-all-siblings": "Zeige alle {count} Geschwister",
+		"collapse-children": "Kinder einklappen",
+		"collapse-siblings": "Geschwister einklappen",
+		"is-descendant-of": "Nachkomme",
+		"legend": "Legende"
+	},
 	"ImprintPage": {
 		"meta": {
 			"title": "Impressum"
@@ -139,7 +151,14 @@
 				"gender": "Geschlecht",
 				"type": "Typ"
 			}
+		},
+		"iiif": {
+			"title": "IIIF Viewer"
 		}
+	},
+	"References": {
+		"download-bibtex": "Bibtex herunterladen",
+		"references": "Referenzen"
 	},
 	"Relations": {
 		"function": {
@@ -190,22 +209,6 @@
 			"start_date_written": "Von",
 			"end_date_written": "Bis"
 		}
-	},
-	"References": {
-		"download-bibtex": "Bibtex herunterladen",
-		"references": "Referenzen"
-	},
-	"FamilyTree": {
-		"siblings": "Geschwister",
-		"partner": "Ehepartner:in",
-		"children": "Kinder",
-		"parents": "Eltern",
-		"show-all-children": "Zeige alle {count} Kinder",
-		"show-all-siblings": "Zeige alle {count} Geschwister",
-		"collapse-children": "Kinder einklappen",
-		"collapse-siblings": "Geschwister einklappen",
-		"is-descendant-of": "Nachkomme",
-		"legend": "Legende"
 	},
 	"Timeline": {
 		"timeline": "Zeitleiste"
