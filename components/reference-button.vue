@@ -7,6 +7,7 @@ import Cite from "citation-js";
 import { ArrowDownToLine, BookOpenText } from "lucide-vue-next";
 
 import type { Reference } from "@/types/resulttypes";
+import styleSheet from "~/assets/sicprod-style.csl?raw";
 
 const t = useTranslations();
 const props = withDefaults(
@@ -26,12 +27,22 @@ const { floatingStyles } = useFloating(reference, floating, {
 	middleware: [offset(props.popupOffset), shift({ padding: 8 })],
 });
 
+let config = Cite.plugins.config.get("@csl");
+config.templates.add("sicprod-stylesheet", styleSheet);
 const citationConfig = {
 	format: "html",
-	template: "apa",
+	template: "sicprod-stylesheet",
+	lang: "en-EN",
 };
 const citation = computed(() => {
-	let c = props.references.map((r) => new Cite(r.bibtex));
+	let c = props.references.map(
+		(r) =>
+			new Cite({
+				...r.bibtex,
+				note: r.folio,
+				page: [...new Set([r.pages_start, r.pages_end])].join("-"),
+			}),
+	);
 	return c;
 });
 function downloadBibTex() {
