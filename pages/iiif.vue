@@ -1,9 +1,15 @@
-<script lang="ts" setup>
+<script setup lang="ts">
+import IiifViewer from "@/components/iiif-viewer.vue";
+
 definePageMeta({
 	title: "Pages.iiif.title",
 });
 </script>
 
 <template>
-	<main>IIIF Viewer</main>
+	<main>
+		<ClientOnly>
+			<IiifViewer></IiifViewer>
+		</ClientOnly>
+	</main>
 </template>

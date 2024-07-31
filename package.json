@@ -59,6 +59,7 @@
 		"openapi-zod-client": "^1.16.2",
 		"pino-http": "^9.0.0",
 		"satori": "^0.10.13",
+		"tify": "^0.31.0",
 		"vue": "^3.4.21",
 		"vue-i18n": "^9.10.1",
 		"vue-i18n-routing": "^1.2.0",

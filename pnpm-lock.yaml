@@ -77,6 +77,9 @@ dependencies:
   satori:
     specifier: ^0.10.13
     version: 0.10.13
+  tify:
+    specifier: ^0.31.0
+    version: 0.31.0
   vue:
     specifier: ^3.4.21
     version: 3.4.21(typescript@5.4.2)
@@ -10113,6 +10116,12 @@ packages:
     resolution: {integrity: sha512-d/Ex2iWd1whipbT681JmTINKw0ZwOUBZm7+Gjs64DHuX34mmw8vJL2bFAaNacaW72zYiTJxSHi5abUuOi5nsfg==}
     dependencies:
       real-require: 0.2.0
+    dev: false
+
+  /tify@0.31.0:
+    resolution: {integrity: sha512-HThe87eS9BB1V3Dsl7HyFD8R/9mOVg9o3Zc3ulH6f/AMO4ZNocLlyrEuIXc5XEu1JBlJheuthK3hOzSK5/d5cQ==}
+    engines: {node: '>= 18', npm: '>= 9'}
+    requiresBuild: true
     dev: false
 
   /tiny-inflate@1.0.3:
