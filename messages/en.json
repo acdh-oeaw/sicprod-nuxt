@@ -193,6 +193,7 @@
 	},
 	"References": {
 		"download-bibtex": "Download Bibtex",
+		"copy-to-clipboard": "Copy to clipboard",
 		"references": "References"
 	},
 	"FamilyTree": {

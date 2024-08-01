@@ -165,7 +165,7 @@
 							<text macro="title" prefix="Art. " quotes="true"/>
 						</group>
 						<group delimiter=", ">
-							<group>
+							<group delimiter=" ">
 								<choose>
 									<if variable="title-short" match="any">
 										<text variable="title-short"/>
@@ -178,7 +178,13 @@
 									</else>
 								</choose>
 								<text variable="volume"/>
-								<text macro="year-date" prefix=" (" suffix=")"/>
+								<choose>
+									<if variable="issued">
+										<date variable="issued" prefix="(" suffix=")">
+											<date-part name="year"/>
+										</date>
+									</if>
+								</choose>
 							</group>
 						<text macro="pages"/>
 						<text variable="URL" />

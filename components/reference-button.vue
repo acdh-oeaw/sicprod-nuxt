@@ -4,7 +4,7 @@ import { offset, type Placement, shift, useFloating } from "@floating-ui/vue";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
 // @ts-expect-error missing types for citation-js
 import Cite from "citation-js";
-import { ArrowDownToLine, BookOpenText } from "lucide-vue-next";
+import { ArrowDownToLine, BookOpenText, Copy } from "lucide-vue-next";
 
 import type { Reference } from "@/types/resulttypes";
 import styleSheet from "~/assets/sicprod-style.csl?raw";
@@ -39,7 +39,7 @@ const citation = computed(() => {
 		(r) =>
 			new Cite({
 				...r.bibtex,
-				note: r.folio,
+				note: r.folio || r.notes,
 				page: [...new Set([r.pages_start, r.pages_end])].join("-"),
 			}),
 	);
@@ -51,6 +51,23 @@ function downloadBibTex() {
 		{ type: "text/plain;charset=utf-8;" },
 	);
 	window.open(URL.createObjectURL(blob), "_blank");
+}
+async function copyToClipboard() {
+	const html = citation.value.map((c) => c.format("bibliography", citationConfig)).join("\n");
+	const container = document.createElement("div");
+	container.innerHTML = html;
+	const text = container.innerText;
+
+	const blobHtml = new Blob([html], { type: "text/html" });
+	const blobText = new Blob([text], { type: "text/plain" });
+	const data = [
+		new ClipboardItem({
+			["text/plain"]: blobText,
+			["text/html"]: blobHtml,
+		}),
+	];
+
+	await navigator.clipboard.write(data);
 }
 </script>
 
@@ -78,9 +95,15 @@ function downloadBibTex() {
 				@click.stop.prevent
 			>
 				<div class="overflow-auto bg-neutral-50 p-4 text-sm dark:bg-neutral-800">
-					<div class="ml-auto flex w-fit">
-						<button :title="t('References.download-bibtex')" @click.stop.prevent="downloadBibTex()">
+					<div class="ml-auto flex w-fit gap-2">
+						<button :title="t('References.download-bibtex')" @click.stop.prevent="downloadBibTex">
 							<ArrowDownToLine class="size-4 transition-transform hover:scale-125" />
+						</button>
+						<button
+							:title="t('References.copy-to-clipboard')"
+							@click.stop.prevent="copyToClipboard"
+						>
+							<Copy class="size-4 transition-transform hover:scale-125" />
 						</button>
 					</div>
 					<div
