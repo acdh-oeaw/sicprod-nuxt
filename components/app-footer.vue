@@ -13,6 +13,14 @@ const links = computed(() => {
 				dark: "/assets/images/logo-uibk-dark.svg",
 			},
 		},
+		landesarchiv: {
+			href: { path: "https://www.tirol.gv.at/" },
+			label: "Tiroler Landesarchiv",
+			image: {
+				light: "/assets/images/Landeslogo_4c_01.png",
+				dark: "/assets/images/Landeslogo_4c_01.png",
+			},
+		},
 		acdh: {
 			href: { path: "https://www.oeaw.ac.at/acdh/" },
 			label: "Austrian Centre for Digital Humanities and Cultural Heritage",
