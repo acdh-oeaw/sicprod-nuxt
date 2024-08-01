@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { useQuery } from "@tanstack/vue-query";
+import { SquareGanttChart } from "lucide-vue-next";
 
 import DetailPage from "@/components/detail-page.vue";
 import Timeline from "@/components/timeline/timeline.vue";
+import VerticalTimeline from "@/components/timeline/vertical-timeline.vue";
 import Loader from "@/components/ui/loader.vue";
 import { loadAndGroupRelations } from "@/lib/group-relations.ts";
 import type { TimelineObject } from "@/types/timeline";
@@ -57,6 +59,13 @@ const flattenedRelations = computed(() => {
 		.sort((r) => new Date(String(r.start_date)).valueOf());
 	return res;
 });
+const showVerticalTimeline = ref(false);
+function closeVerticalTimeline() {
+	showVerticalTimeline.value = false;
+}
+function openVerticalTimeline() {
+	showVerticalTimeline.value = true;
+}
 </script>
 
 <template>
@@ -80,12 +89,29 @@ const flattenedRelations = computed(() => {
 						{{ f }}
 					</div>
 				</div>
-				<ReferenceButton
-					v-if="Number(data.entity.data?.references?.length) > 0"
-					:references="data.entity.data?.references"
-					class="ml-auto inline-block size-7 w-fit"
-					popup-position="left"
-				></ReferenceButton>
+				<div class="ml-auto flex gap-2">
+					<ReferenceButton
+						v-if="Number(data.entity.data?.references?.length) > 0"
+						:references="data.entity.data?.references"
+						class="ml-auto inline-block size-7 w-fit"
+						popup-position="left"
+					></ReferenceButton>
+					<button
+						v-if="flattenedRelations.length > 0"
+						class="group w-fit scale-90 items-center rounded-md font-medium text-neutral-600 transition-transform hover:scale-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 dark:text-neutral-200"
+						:title="t('Timeline.timeline')"
+						@click="openVerticalTimeline"
+					>
+						<span class="sr-only">{{ t("Timeline.timeline") }}</span>
+						<SquareGanttChart />
+					</button>
+				</div>
+				<VerticalTimeline
+					v-if="!data.relations.isLoading"
+					:is-open="showVerticalTimeline"
+					:close-modal="closeVerticalTimeline"
+					:relations="flattenedRelations"
+				></VerticalTimeline>
 			</div>
 		</template>
 		<template #base>
