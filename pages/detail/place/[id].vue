@@ -6,7 +6,7 @@ import Map from "@/components/map.vue";
 import Timeline from "@/components/timeline/timeline.vue";
 import Loader from "@/components/ui/loader.vue";
 import { loadAndGroupRelations } from "@/lib/group-relations.ts";
-import type { TimelineObject } from "@/types/timeline";
+import { getFlattenedRelations } from "@/utils/timeline-utils";
 
 const t = useTranslations();
 const route = useRoute();
@@ -47,16 +47,7 @@ const chipNames = computed(() => {
 });
 const flattenedRelations = computed(() => {
 	if (!data.value.relations.data) return [];
-	const res = Object.entries(data.value.relations.data)
-		.map(([key, val]) =>
-			val.map((entry) => {
-				return { ...entry, class: key };
-			}),
-		)
-		.flat()
-		.filter((r): r is TimelineObject => Boolean(r.start_date))
-		.sort((r) => new Date(String(r.start_date)).valueOf());
-	return res;
+	return getFlattenedRelations(data.value.relations.data);
 });
 </script>
 

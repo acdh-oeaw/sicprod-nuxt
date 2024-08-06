@@ -1,3 +1,4 @@
+import type { TempTriple } from "@/types/resulttypes";
 import type { TimelineObject } from "@/types/timeline";
 
 //type guard to filter grouped relations
@@ -21,4 +22,29 @@ export function groupTimelineRelations(filteredRelations: Array<TimelineObject>)
 		.filter((arr): arr is TimelineObject | [TimelineObject, ...Array<TimelineObject>] =>
 			isValidTimelineObject(arr),
 		);
+}
+
+export function getFlattenedRelations(relations: Record<string, Array<TempTriple>>) {
+	const res = Object.entries(relations)
+		.map(([key, val]) =>
+			val.map((entry) => {
+				return {
+					...entry,
+					class: key,
+				};
+			}),
+		)
+		.flat()
+		.filter((r): r is TimelineObject => Boolean(r.start_date) || Boolean(r.end_date))
+		.map((entry) => {
+			let start_date_written = entry.start_date_written;
+			if (!start_date_written || start_date_written === "")
+				start_date_written = entry.end_date_written;
+			return {
+				...entry,
+				start_date: entry.start_date ?? entry.end_date,
+				start_date_written: start_date_written,
+			};
+		});
+	return res;
 }

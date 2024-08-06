@@ -9,7 +9,7 @@ import Timeline from "@/components/timeline/timeline.vue";
 import VerticalTimeline from "@/components/timeline/vertical-timeline.vue";
 import Loader from "@/components/ui/loader.vue";
 import { loadAndGroupRelations } from "@/lib/group-relations.ts";
-import type { TimelineObject } from "@/types/timeline";
+import { getFlattenedRelations } from "@/utils/timeline-utils";
 
 const t = useTranslations();
 const localePath = useLocalePath();
@@ -51,15 +51,7 @@ const functionNames = computed(() => {
 });
 const flattenedRelations = computed(() => {
 	if (!data.value.relations.data) return [];
-	const res = Object.entries(data.value.relations.data)
-		.map(([key, val]) =>
-			val.map((entry) => {
-				return { ...entry, class: key };
-			}),
-		)
-		.flat()
-		.filter((r): r is TimelineObject => Boolean(r.start_date));
-	return res;
+	return getFlattenedRelations(data.value.relations.data);
 });
 
 const sameAs = computed(() => {
