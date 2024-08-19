@@ -106,8 +106,8 @@ function getLink(ref: Reference) {
 				class="z-10 max-h-96 max-w-72 cursor-auto overflow-auto rounded-lg shadow-lg ring-1 ring-black/5"
 				:style="{ ...floatingStyles }"
 			>
-				<div class="overflow-auto bg-neutral-50 p-4 text-sm dark:bg-neutral-800">
-					<div class="ml-auto flex w-fit gap-2">
+				<div class="overflow-auto bg-neutral-50 p-2 text-sm dark:bg-neutral-800">
+					<div class="ml-auto flex w-fit gap-2 p-2">
 						<button :title="t('References.download-bibtex')" @click.stop.prevent="downloadBibTex">
 							<ArrowDownToLine class="size-4 transition-transform hover:scale-125" />
 						</button>
@@ -124,8 +124,12 @@ function getLink(ref: Reference) {
 						:key="entry"
 						:to="getLink(references[idx])"
 						target="_blank"
-						class="block py-2"
-						:class="{ 'border-b-2 dark:border-neutral-700': idx < citation.length - 1 }"
+						class="block p-2"
+						:class="{
+							'border-b-2 dark:border-neutral-700': idx < citation.length - 1,
+							'hover:bg-neutral-100 focus:outline-none focus-visible:ring dark:hover:bg-neutral-900':
+								references[idx].scan_path,
+						}"
 						@click.stop
 					>
 						<span v-html="entry.format('bibliography', citationConfig)"></span>
