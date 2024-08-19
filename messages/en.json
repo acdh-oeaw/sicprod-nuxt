@@ -41,6 +41,18 @@
 		"title": "Something went wrong!",
 		"try-again": "Try again"
 	},
+	"FamilyTree": {
+		"siblings": "Siblings",
+		"partner": "Partner",
+		"children": "Children",
+		"parents": "Parents",
+		"show-all-children": "Show all {count} children",
+		"show-all-siblings": "Show all {count} siblings",
+		"collapse-children": "Collapse children",
+		"collapse-siblings": "Collapse siblings",
+		"is-descendant-of": "Descendant",
+		"legend": "Legend"
+	},
 	"ImprintPage": {
 		"meta": {
 			"title": "Imprint"
@@ -139,7 +151,16 @@
 				"gender": "Gender",
 				"type": "Type"
 			}
+		},
+		"iiif": {
+			"title": "IIIF Viewer"
 		}
+	},
+	"References": {
+		"copy-to-clipboard": "Copy to clipboard",
+		"download-bibtex": "Download Bibtex",
+		"open-scan": "Scan anzeigen",
+		"references": "References"
 	},
 	"Relations": {
 		"function": {
@@ -190,23 +211,6 @@
 			"start_date_written": "From",
 			"end_date_written": "To"
 		}
-	},
-	"References": {
-		"download-bibtex": "Download Bibtex",
-		"copy-to-clipboard": "Copy to clipboard",
-		"references": "References"
-	},
-	"FamilyTree": {
-		"siblings": "Siblings",
-		"partner": "Partner",
-		"children": "Children",
-		"parents": "Parents",
-		"show-all-children": "Show all {count} children",
-		"show-all-siblings": "Show all {count} siblings",
-		"collapse-children": "Collapse children",
-		"collapse-siblings": "Collapse siblings",
-		"is-descendant-of": "Descendant",
-		"legend": "Legend"
 	},
 	"Timeline": {
 		"timeline": "Timeline"

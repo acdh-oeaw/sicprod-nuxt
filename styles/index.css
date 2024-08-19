@@ -12,3 +12,12 @@
 	block-size: 100%;
 	isolation: isolate;
 }
+
+/* stylelint-disable-next-line selector-class-pattern */
+.tify-header-button-group .-icon-only svg.tify-icon {
+	position: absolute;
+}
+
+.tify-header-button-group button[aria-controls$="thumbnails"] {
+	display: none !important;
+}

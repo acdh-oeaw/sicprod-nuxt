@@ -20,6 +20,12 @@ dependencies:
   '@headlessui/vue':
     specifier: ^1.7.19
     version: 1.7.19(vue@3.4.21)
+  '@iiif/builder':
+    specifier: ^2.0.1
+    version: 2.0.1(@atlas-viewer/iiif-image-api@2.2.1)
+  '@iiif/presentation-3':
+    specifier: ^2.2.3
+    version: 2.2.3
   '@jsplumb/browser-ui':
     specifier: ^6.2.10
     version: 6.2.10
@@ -77,6 +83,9 @@ dependencies:
   satori:
     specifier: ^0.10.13
     version: 0.10.13
+  tify:
+    specifier: ^0.31.0
+    version: 0.31.0
   vue:
     specifier: ^3.4.21
     version: 3.4.21(typescript@5.4.2)
@@ -366,6 +375,13 @@ packages:
       ajv-draft-04: 1.0.0(ajv@8.12.0)
       call-me-maybe: 1.0.2
       openapi-types: 12.1.3
+    dev: false
+
+  /@atlas-viewer/iiif-image-api@2.2.1:
+    resolution: {integrity: sha512-YB/yckhWW1B/kpfO0h/aGxIAK2PF/Reic6/zXrKYVVg+D7QQySrJqIq7DpU7hh7yzucD/TldLRsJWO+z6Dwrow==}
+    engines: {node: '>=18.14.1'}
+    dependencies:
+      '@iiif/presentation-3': 2.2.3
     dev: false
 
   /@babel/code-frame@7.23.5:
@@ -1492,6 +1508,64 @@ packages:
 
   /@humanwhocodes/object-schema@2.0.2:
     resolution: {integrity: sha512-6EwiSjwWYP7pTckG6I5eyFANjPhmPjUX9JRLUSfNPC7FX7zK9gyZAfUEaECL6ALTpGX5AjnBq3C9XmVWPitNpw==}
+
+  /@iiif/builder@2.0.1(@atlas-viewer/iiif-image-api@2.2.1):
+    resolution: {integrity: sha512-9Wlxi1qn0GfvkFWxlZEuMkFGOKpZtcN/1t1zzYnOMy7OOssBNTQvao7zDZlCmtdimZ4QtQ/MMiC0z+oKI2Ax/Q==}
+    dependencies:
+      '@iiif/helpers': 1.2.19(@atlas-viewer/iiif-image-api@2.2.1)(@iiif/parser@2.1.4)
+      '@iiif/parser': 2.1.4
+      '@iiif/presentation-3': 2.2.3
+      '@iiif/presentation-3-normalized': 0.9.7
+    transitivePeerDependencies:
+      - '@atlas-viewer/iiif-image-api'
+    dev: false
+
+  /@iiif/helpers@1.2.19(@atlas-viewer/iiif-image-api@2.2.1)(@iiif/parser@2.1.4):
+    resolution: {integrity: sha512-v2NQVHq3Ut1gl66Dap1Qc40nORgC86ebgeV7iuhfxNSfseKMt6yD7r+4jSp0qliWC66kJSyg6d3QM7t4oBsE7A==}
+    peerDependencies:
+      '@atlas-viewer/iiif-image-api': ^2.2.0
+      '@iiif/parser': ^2.1.2
+    dependencies:
+      '@atlas-viewer/iiif-image-api': 2.2.1
+      '@iiif/parser': 2.1.4
+      '@iiif/presentation-2': 1.0.4(@iiif/presentation-3@2.2.3)
+      '@iiif/presentation-3': 2.2.3
+      '@iiif/presentation-3-normalized': 0.9.7
+      '@types/geojson': 7946.0.13
+    optionalDependencies:
+      abs-svg-path: 0.1.1
+      parse-svg-path: 0.1.2
+      svg-arc-to-cubic-bezier: 3.2.0
+    dev: false
+
+  /@iiif/parser@2.1.4:
+    resolution: {integrity: sha512-/mS2hSZTehp/mGDNpW6la1QxLH8Vv1bkbpYhuP+Zicq2Ov/8w/xLPJhw4tEPvlWR9uO6s57edSD1+EypixyKqg==}
+    dependencies:
+      '@iiif/presentation-2': 1.0.4(@iiif/presentation-3@2.2.3)
+      '@iiif/presentation-3': 2.2.3
+      '@iiif/presentation-3-normalized': 0.9.7
+      '@types/geojson': 7946.0.14
+    dev: false
+
+  /@iiif/presentation-2@1.0.4(@iiif/presentation-3@2.2.3):
+    resolution: {integrity: sha512-hJakpq62VBajesLJrYPtFm6hcn6c/HkKP7CmKZ5atuzu40m0nifWYsqigR1l9sZGvhhHb/DRshPmiW/0GNrJoA==}
+    peerDependencies:
+      '@iiif/presentation-3': '*'
+    dependencies:
+      '@iiif/presentation-3': 2.2.3
+    dev: false
+
+  /@iiif/presentation-3-normalized@0.9.7:
+    resolution: {integrity: sha512-Aqk0sYBFIH5W3wmVxW02tnAFbNzUU5oPygGQjvszB3PP2nSkFQ1skVjqJhQPPZTyi/de1qcJUrgSy0vp6s+c5A==}
+    dependencies:
+      '@iiif/presentation-3': 2.2.3
+    dev: false
+
+  /@iiif/presentation-3@2.2.3:
+    resolution: {integrity: sha512-xCLbUr9euqegsrxGe65M2fWbv6gKpiUhHXCpOn+V+qtawkMbOSNWbYOISo2aLQdYVg4DGYD0g2bMzSCF33uNOQ==}
+    dependencies:
+      '@types/geojson': 7946.0.14
+    dev: false
 
   /@intlify/bundle-utils@7.5.1(vue-i18n@9.10.1):
     resolution: {integrity: sha512-UovJl10oBIlmYEcWw+VIHdKY5Uv5sdPG0b/b6bOYxGLln3UwB75+2dlc0F3Fsa0RhoznQ5Rp589/BZpABpE4Xw==}
@@ -3004,6 +3078,10 @@ packages:
       '@types/geojson': 7946.0.14
     dev: false
 
+  /@types/geojson@7946.0.13:
+    resolution: {integrity: sha512-bmrNrgKMOhM3WsafmbGmC+6dsF2Z308vLFsQ3a/bT8X8Sv5clVYpPars/UPq+sAaJP+5OoLAYgwbkS5QEJdLUQ==}
+    dev: false
+
   /@types/geojson@7946.0.14:
     resolution: {integrity: sha512-WCfD5Ht3ZesJUsONdhvm84dmzWOiOzOAqOncN0++w0lBw1o8OuDNJF2McvvCef/yBqb/HYRahp1BYtODFQ8bRg==}
 
@@ -3557,6 +3635,12 @@ packages:
     engines: {node: '>=6.5'}
     dependencies:
       event-target-shim: 5.0.1
+
+  /abs-svg-path@0.1.1:
+    resolution: {integrity: sha512-d8XPSGjfyzlXC3Xx891DJRyZfqk5JU0BJrDQcsWomFIV1/BIzPW5HDH5iDdWpqWaav0YVIEzT1RHTwWr0FFshA==}
+    requiresBuild: true
+    dev: false
+    optional: true
 
   /acorn-import-attributes@1.9.2(acorn@8.11.3):
     resolution: {integrity: sha512-O+nfJwNolEA771IYJaiLWK1UAwjNsQmZbTRqqwBYxCgVQTmpFEMvBw6LOIQV0Me339L5UMVYFyRohGnGlQDdIQ==}
@@ -8260,6 +8344,12 @@ packages:
     dependencies:
       protocols: 2.0.1
 
+  /parse-svg-path@0.1.2:
+    resolution: {integrity: sha512-JyPSBnkTJ0AI8GGJLfMXvKq42cj5c006fnLz6fXy6zfoVjJizi8BNTpu8on8ziI1cKy9d9DGNuY17Ce7wuejpQ==}
+    requiresBuild: true
+    dev: false
+    optional: true
+
   /parse-url@8.1.0:
     resolution: {integrity: sha512-xDvOoLU5XRrcOZvnI6b8zA6n9O9ejNk/GExuz1yBuWUGn9KA97GI6HTs6u02wKara1CeVmZhH+0TZFdWScR89w==}
     dependencies:
@@ -9933,6 +10023,12 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
+  /svg-arc-to-cubic-bezier@3.2.0:
+    resolution: {integrity: sha512-djbJ/vZKZO+gPoSDThGNpKDO+o+bAeA4XQKovvkNCqnIS2t+S4qnLAGQhyyrulhCFRl1WWzAp0wUDV8PpTVU3g==}
+    requiresBuild: true
+    dev: false
+    optional: true
+
   /svg-tags@1.0.0:
     resolution: {integrity: sha512-ovssysQTa+luh7A5Weu3Rta6FJlFBBbInjOh722LIt6klpU2/HtdUbszju/G4devcvk8PGt7FCLv5wftu3THUA==}
 
@@ -10113,6 +10209,12 @@ packages:
     resolution: {integrity: sha512-d/Ex2iWd1whipbT681JmTINKw0ZwOUBZm7+Gjs64DHuX34mmw8vJL2bFAaNacaW72zYiTJxSHi5abUuOi5nsfg==}
     dependencies:
       real-require: 0.2.0
+    dev: false
+
+  /tify@0.31.0:
+    resolution: {integrity: sha512-HThe87eS9BB1V3Dsl7HyFD8R/9mOVg9o3Zc3ulH6f/AMO4ZNocLlyrEuIXc5XEu1JBlJheuthK3hOzSK5/d5cQ==}
+    engines: {node: '>= 18', npm: '>= 9'}
+    requiresBuild: true
     dev: false
 
   /tiny-inflate@1.0.3:
