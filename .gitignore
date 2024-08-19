@@ -4,6 +4,8 @@ node_modules/
 
 # generated libs
 lib/api.ts
+# generated manifests
+assets/manifests/
 
 # logs
 *.log

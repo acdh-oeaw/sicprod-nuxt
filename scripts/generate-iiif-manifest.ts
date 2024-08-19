@@ -7,6 +7,7 @@ import { z } from "zod";
 
 const iiifBaseURL = z.string().url().parse(process.env.NUXT_PUBLIC_IIIF_BASE_URL);
 const outputPath = "./assets/manifests";
+fs.mkdirSync(outputPath);
 
 async function main() {
 	const builder = new IIIFBuilder();
