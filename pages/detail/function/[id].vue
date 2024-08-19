@@ -116,11 +116,15 @@ function openVerticalTimeline() {
 			<span>
 				{{ String(data.entity.data?.end_date_written || "").replace(/\<.*?\>/g, "") }}
 			</span>
-			<div class="col-span-2 my-2 border-t"></div>
-			<span>{{ t("Pages.searchviews.function.alternative_label") }}:</span>
-			<span>
-				{{ data.entity.data?.alternative_label }}
-			</span>
+			<template v-if="Number(data.entity.data?.alternative_label?.length) > 0">
+				<div class="col-span-2 my-2 border-t"></div>
+				<span>{{ t("Pages.searchviews.person.alternative_names") }}:</span>
+				<div>
+					<span v-for="name in data.entity.data?.alternative_label" :key="name" class="block">
+						{{ name }}
+					</span>
+				</div>
+			</template>
 		</template>
 		<template #right>
 			<div v-if="data.entity.data" class="flex flex-col gap-3">

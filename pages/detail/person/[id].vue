@@ -147,10 +147,14 @@ function openVerticalTimeline() {
 			<div class="col-span-2 my-2 border-t"></div>
 			<span>{{ t("Pages.searchviews.person.gender") }}:</span>
 			<span>{{ data.entity.data?.gender }}</span>
-			<template v-if="data.entity.data?.alternative_label">
+			<template v-if="Number(data.entity.data?.alternative_label?.length) > 0">
 				<div class="col-span-2 my-2 border-t"></div>
 				<span>{{ t("Pages.searchviews.person.alternative_names") }}:</span>
-				<span>{{ data.entity.data?.alternative_label }}</span>
+				<div>
+					<span v-for="name in data.entity.data?.alternative_label" :key="name" class="block">
+						{{ name }}
+					</span>
+				</div>
 			</template>
 			<template v-if="sameAs.length > 0">
 				<div class="col-span-2 my-2 border-t"></div>
