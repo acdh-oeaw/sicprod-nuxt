@@ -2,11 +2,30 @@
 import "tify/dist/tify.css";
 import "tify";
 
-onMounted(() => {
+const route = useRoute();
+const router = useRouter();
+
+const page = computed(() => {
+	if (typeof route.query.page === "string")
+		return parseInt([...route.query.page.matchAll(/.*-([0-9]+)r/g)][0]?.[1] ?? "");
+	else return 1;
+});
+
+onMounted(async () => {
+	let manifest;
+	if (typeof route.query.book === "string")
+		manifest = await import(`~/assets/manifests/${decodeURI(route.query.book)}.json?url`);
 	//@ts-expect-error no Tify export
-	new Tify({
+	const tify = new Tify({
 		container: "#tify",
-		manifestUrl: "https://manifests.sub.uni-goettingen.de/iiif/presentation/PPN857449303/manifest",
+		manifestUrl: manifest.default,
+		pages: [page.value],
+	});
+	tify.ready.then(() => {
+		tify.viewer.addHandler("open", () => {
+			const page = tify.options.pages[0] ?? 1;
+			void router.replace({ query: { page: `${page - 1}v-${page}r`, book: route.query.book } });
+		});
 	});
 });
 </script>
