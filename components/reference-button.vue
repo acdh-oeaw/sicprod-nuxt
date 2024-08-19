@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/no-v-text-v-html-on-component -->
 <!-- eslint-disable vue/no-v-html -->
 <script setup lang="ts">
 import { offset, type Placement, shift, useFloating } from "@floating-ui/vue";
