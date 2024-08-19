@@ -42,6 +42,7 @@
 		"@headlessui/tailwindcss": "^0.2.0",
 		"@headlessui/vue": "^1.7.19",
 		"@iiif/builder": "^2.0.1",
+		"@iiif/presentation-3": "^2.2.3",
 		"@jsplumb/browser-ui": "^6.2.10",
 		"@nuxt/content": "^2.12.1",
 		"@nuxt/image": "^1.4.0",
