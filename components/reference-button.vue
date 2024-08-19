@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-v-text-v-html-on-component -->
 <!-- eslint-disable vue/no-v-html -->
 <script setup lang="ts">
 import { offset, type Placement, shift, useFloating } from "@floating-ui/vue";
@@ -7,8 +8,10 @@ import Cite from "citation-js";
 import { ArrowDownToLine, BookOpenText } from "lucide-vue-next";
 
 import type { Reference } from "@/types/resulttypes";
+import { NuxtLink } from "#components";
 import styleSheet from "~/assets/sicprod-style.csl?raw";
 
+const localePath = useLocalePath();
 const t = useTranslations();
 const props = withDefaults(
 	defineProps<{
@@ -52,6 +55,16 @@ function downloadBibTex() {
 	);
 	window.open(URL.createObjectURL(blob), "_blank");
 }
+function getLink(ref: Reference) {
+	const regexMatch = [...ref.scan_path.matchAll(/(.*?)\/(.*?).jpg/g)][0];
+	return {
+		path: localePath("/iiif"),
+		query: {
+			book: regexMatch[1] ?? "",
+			page: regexMatch[2] ?? "",
+		},
+	};
+}
 </script>
 
 <template>
@@ -75,21 +88,25 @@ function downloadBibTex() {
 				ref="floating"
 				class="z-10 max-h-96 max-w-72 cursor-auto overflow-auto rounded-lg shadow-lg ring-1 ring-black/5"
 				:style="{ ...floatingStyles }"
-				@click.stop.prevent
 			>
 				<div class="overflow-auto bg-neutral-50 p-4 text-sm dark:bg-neutral-800">
-					<div class="ml-auto flex w-fit">
+					<div class="ml-auto flex w-fit gap-2">
 						<button :title="t('References.download-bibtex')" @click.stop.prevent="downloadBibTex()">
 							<ArrowDownToLine class="size-4 transition-transform hover:scale-125" />
 						</button>
 					</div>
-					<div
+					<component
+						:is="references[idx].scan_path ? NuxtLink : 'div'"
 						v-for="(entry, idx) in citation"
 						:key="entry"
-						class="py-2"
+						:to="getLink(references[idx])"
+						target="_blank"
+						class="block py-2"
 						:class="{ 'border-b-2 dark:border-neutral-700': idx < citation.length - 1 }"
-						v-html="entry.format('bibliography', citationConfig)"
-					></div>
+						@click.stop
+					>
+						<span v-html="entry.format('bibliography', citationConfig)"></span>
+					</component>
 				</div>
 			</PopoverPanel>
 		</Transition>
