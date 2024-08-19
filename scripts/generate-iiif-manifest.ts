@@ -7,9 +7,11 @@ import { z } from "zod";
 
 const iiifBaseURL = z.string().url().parse(process.env.NUXT_PUBLIC_IIIF_BASE_URL);
 const outputPath = "./assets/manifests";
-fs.mkdirSync(outputPath);
 
 async function main() {
+	if (!fs.existsSync(outputPath)) {
+		fs.mkdirSync(outputPath);
+	}
 	const builder = new IIIFBuilder();
 	const books = (await request(iiifBaseURL.replace("/iiif/", "/"), {
 		responseType: "json",
@@ -38,7 +40,7 @@ async function main() {
 						bookData.forEach((img: string) => {
 							const imgName = img.replace(".jpg", ".jp2");
 							manifest.createCanvas(randomUUID(), (canvas) => {
-								canvas.addLabel(img.replace(".jpg", ""));
+								canvas.addLabel(img.replace(".jpg", ""), "de");
 								canvas.width = 4914;
 								canvas.height = 3954;
 								const annotationID = createUrl({
