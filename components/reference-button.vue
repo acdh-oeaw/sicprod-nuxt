@@ -78,7 +78,7 @@ function getLink(ref: Reference) {
 		path: localePath("/iiif"),
 		query: {
 			book: regexMatch[1] ?? "",
-			page: regexMatch[2] ?? "",
+			page: regexMatch[2] !== "" ? regexMatch[2] : ref.folio,
 		},
 	};
 }
