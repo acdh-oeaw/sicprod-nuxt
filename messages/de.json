@@ -46,6 +46,8 @@
 		"partner": "Ehepartner:in",
 		"children": "Kinder",
 		"parents": "Eltern",
+		"subordinate-function": "Untergeordnete Funktion",
+		"connected-function": "Verbunden mit",
 		"show-all-children": "Zeige alle {count} Kinder",
 		"show-all-siblings": "Zeige alle {count} Geschwister",
 		"collapse-children": "Kinder einklappen",

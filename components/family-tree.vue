@@ -22,9 +22,60 @@ const props = withDefaults(
 	defineProps<{
 		relations: Array<TempTriple>;
 		name: string;
+		relationNames?: {
+			ancestor?: string;
+			child?: string;
+			sibling?: string;
+			partner?: string;
+		};
+		legendNames?: {
+			ancestor?: string;
+			child?: string;
+			sibling?: string;
+			partner?: string;
+			descendantOf?: string;
+		};
+		icons?: {
+			sibling?: string;
+			partner?: string;
+		};
+		classnameForUrls?: string;
+		collapseThreshold?: number;
 	}>(),
-	{ relations: () => [] },
+	{
+		relations: () => [],
+		classnameForUrls: "person",
+		collapseThreshold: 3,
+	},
 );
+
+const relationNames = computed(() => {
+	const defaultNames = {
+		ancestor: "ist Kind von",
+		child: "ist Elternteil von",
+		sibling: "ist Bruder/Schwester von",
+		partner: "hat Ehe mit",
+	};
+	return { ...defaultNames, ...props.relationNames };
+});
+const icons = computed(() => {
+	const defaultIcons = {
+		sibling: "/assets/icons/users.svg",
+		partner: "/assets/icons/marriage.svg",
+	};
+	return { ...defaultIcons, ...props.icons };
+});
+const legendNames = computed(() => {
+	const defaultLegendNames = {
+		ancestor: "FamilyTree.parents",
+		child: "FamilyTree.children",
+		sibling: "FamilyTree.siblings",
+		partner: "FamilyTree.partner",
+		descendantOf: "FamilyTree.is-descendant-of",
+	};
+	return { ...defaultLegendNames, ...props.legendNames };
+});
+
 const familyTreeContainer = ref<HTMLElement>();
 const ancestorContainer = ref<HTMLElement>();
 const siblingContainer = ref<HTMLElement>();
@@ -40,22 +91,22 @@ function filterUniqueObjects(list: Array<{ id: number; name: string }>) {
 }
 const ancestors = computed(() => {
 	return filterUniqueObjects(
-		props.relations.filter((r) => r.name === "ist Kind von").map((r) => r.to),
+		props.relations.filter((r) => r.name === relationNames.value.ancestor).map((r) => r.to),
 	);
 });
 const children = computed(() => {
 	return filterUniqueObjects(
-		props.relations.filter((r) => r.name === "ist Elternteil von").map((r) => r.to),
+		props.relations.filter((r) => r.name === relationNames.value.child).map((r) => r.to),
 	);
 });
 const siblings = computed(() => {
 	return filterUniqueObjects(
-		props.relations.filter((r) => r.name === "ist Bruder/Schwester von").map((r) => r.to),
+		props.relations.filter((r) => r.name === relationNames.value.sibling).map((r) => r.to),
 	);
 });
 const partners = computed(() => {
 	return filterUniqueObjects(
-		props.relations.filter((r) => r.name === "hat Ehe mit").map((r) => r.to),
+		props.relations.filter((r) => r.name === relationNames.value.partner).map((r) => r.to),
 	);
 });
 
@@ -68,7 +119,7 @@ function resizeHandler() {
 const childConnections = ref<Array<Connection | undefined>>();
 function drawChildConnections() {
 	const container =
-		showAllChilldren.value || children.value.length <= 3
+		showAllChilldren.value || children.value.length <= props.collapseThreshold
 			? childContainer.value
 			: uncollapseChildrenContainer.value;
 	const childContainerChildren = [...(container?.children ?? [])];
@@ -141,7 +192,7 @@ onMounted(() => {
 							location: siblings.value.length > 1 ? 12 : 0.5,
 							create() {
 								const d = document.createElement("div");
-								d.innerHTML = `<img src="/assets/icons/users.svg" class="size-4 mb-5 dark:invert" title="${t("FamilyTree.siblings")}"/><span class="sr-only">${t("FamilyTree.siblings")}</span>`;
+								d.innerHTML = `<img src="${icons.value.sibling}" class="size-4 mb-5 dark:invert" title="${t(legendNames.value.sibling)}"/><span class="sr-only">${t(legendNames.value.sibling)}</span>`;
 								return d;
 							},
 						},
@@ -158,7 +209,7 @@ onMounted(() => {
 							location: partners.value.length > 1 ? 12 : 0.5,
 							create() {
 								const d = document.createElement("div");
-								d.innerHTML = `<img src="/assets/icons/marriage.svg" class="size-4 mb-4 dark:invert" title="${t("FamilyTree.partner")}"/><span class="sr-only">${t("FamilyTree.partner")}</span>`;
+								d.innerHTML = `<img src="${icons.value.partner}" class="size-4 mb-4 dark:invert" title="${t(legendNames.value.partner)}"/><span class="sr-only">${t(legendNames.value.partner)}</span>`;
 								return d;
 							},
 						},
@@ -224,29 +275,30 @@ function toggleShowAllChildren() {
 					class="absolute left-0 mt-2 w-max origin-top-left rounded-lg bg-neutral-50 p-1 shadow-lg ring-1 ring-black/5 dark:bg-neutral-800"
 				>
 					<div class="p-1">
-						<div class="group flex items-center gap-2 rounded-md p-2 text-sm">
-							<img
-								src="/assets/icons/users.svg"
-								class="size-4 dark:invert"
-								:alt="t('FamilyTree.siblings')"
-							/>
-							<div>{{ t("FamilyTree.siblings") }}</div>
+						<div
+							v-if="siblings.length > 0"
+							class="group flex items-center gap-2 rounded-md p-2 text-sm"
+						>
+							<img :src="icons.sibling" class="size-4 dark:invert" :alt="t(legendNames.sibling)" />
+							<div>{{ t(legendNames.sibling) }}</div>
 						</div>
-						<div class="group flex items-center gap-2 rounded-md p-2 text-sm">
-							<img
-								src="/assets/icons/marriage.svg"
-								class="size-4 dark:invert"
-								:alt="t('FamilyTree.partner')"
-							/>
-							<div>{{ t("FamilyTree.partner") }}</div>
+						<div
+							v-if="partners.length > 0"
+							class="group flex items-center gap-2 rounded-md p-2 text-sm"
+						>
+							<img :src="icons.partner" class="size-4 dark:invert" :alt="t(legendNames.partner)" />
+							<div>{{ t(legendNames.partner) }}</div>
 						</div>
-						<div class="group flex items-center gap-2 rounded-md p-2 text-sm">
+						<div
+							v-if="ancestors.length > 0 || children.length > 0"
+							class="group flex items-center gap-2 rounded-md p-2 text-sm"
+						>
 							<img
 								src="/assets/icons/arrow.svg"
 								class="size-4 rotate-90 dark:invert"
-								:alt="t('FamilyTree.is-descendant-of')"
+								:alt="t(legendNames.descendantOf)"
 							/>
-							<div>{{ t("FamilyTree.is-descendant-of") }}</div>
+							<div>{{ t(legendNames.descendantOf) }}</div>
 						</div>
 						<div
 							v-if="showAllChilldren"
@@ -268,7 +320,7 @@ function toggleShowAllChildren() {
 				v-for="person in ancestors"
 				:key="person.id"
 				class="mt-auto w-32 p-2 text-center"
-				:to="localePath(`/detail/person/${person.id}`)"
+				:to="localePath(`/detail/${props.classnameForUrls}/${person.id}`)"
 			>
 				{{ person.name }}
 			</NuxtLink>
@@ -279,7 +331,7 @@ function toggleShowAllChildren() {
 					v-for="person in siblings"
 					:key="person.id"
 					class="w-32 p-2 text-right align-middle"
-					:to="localePath(`/detail/person/${person.id}`)"
+					:to="localePath(`/detail/${props.classnameForUrls}/${person.id}`)"
 				>
 					{{ person.name }}
 				</NuxtLink>
@@ -293,7 +345,7 @@ function toggleShowAllChildren() {
 				<NuxtLink
 					v-for="person in partners"
 					:key="person.id"
-					:to="localePath(`/detail/person/${person.id}`)"
+					:to="localePath(`/detail/${props.classnameForUrls}/${person.id}`)"
 					class="w-32 p-2 text-left align-middle"
 				>
 					{{ person.name }}
@@ -301,14 +353,14 @@ function toggleShowAllChildren() {
 			</div>
 		</div>
 		<div
-			v-if="children.length <= 3 || showAllChilldren"
+			v-if="children.length <= props.collapseThreshold || showAllChilldren"
 			ref="childContainer"
 			class="mb-2 mt-7 flex flex-wrap justify-evenly gap-x-2 gap-y-6"
 		>
 			<NuxtLink
 				v-for="person in children"
 				:key="person.id"
-				:to="localePath(`/detail/person/${person.id}`)"
+				:to="localePath(`/detail/${props.classnameForUrls}/${person.id}`)"
 				class="z-10 max-w-32 flex-auto px-2 pt-0 text-center align-middle"
 			>
 				<span class="bg-white/50 dark:bg-neutral-800/50">

@@ -57,6 +57,18 @@ function closeVerticalTimeline() {
 function openVerticalTimeline() {
 	showVerticalTimeline.value = true;
 }
+const needsFamilyTree = computed(() => {
+	if (!data.value.relations.data) return false;
+
+	const functionRelationNames = [
+		"ist untergeordnet",
+		"hat untergeordnete Funktion",
+		"ist verbunden mit",
+	];
+	return Boolean(
+		data.value.relations.data.function?.find((r) => functionRelationNames.includes(r.name)),
+	);
+});
 </script>
 
 <template>
@@ -125,6 +137,27 @@ function openVerticalTimeline() {
 					</span>
 				</div>
 			</template>
+			<FamilyTree
+				v-if="!data.relations.isLoading && needsFamilyTree"
+				:relations="data.relations.data?.function"
+				:name="`${data.entity.data?.name}`"
+				:relation-names="{
+					ancestor: 'ist untergeordnet',
+					child: 'hat untergeordnete Funktion',
+					sibling: 'ist verbunden mit',
+					partner: '',
+				}"
+				classname-for-urls="function"
+				:collapse-threshold="Infinity"
+				:legend-names="{
+					descendantOf: 'FamilyTree.subordinate-function',
+					sibling: 'FamilyTree.connected-function',
+				}"
+				:icons="{
+					sibling: '/assets/icons/connected.svg',
+				}"
+				class="col-span-2 mt-8"
+			/>
 		</template>
 		<template #right>
 			<div v-if="data.entity.data" class="flex flex-col gap-3">

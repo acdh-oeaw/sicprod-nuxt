@@ -51,7 +51,9 @@
 		"collapse-children": "Collapse children",
 		"collapse-siblings": "Collapse siblings",
 		"is-descendant-of": "Descendant",
-		"legend": "Legend"
+		"legend": "Legend",
+		"subordinate-function": "Subordinate Funktion",
+		"connected-function": "Connected"
 	},
 	"ImprintPage": {
 		"meta": {
