@@ -21,7 +21,7 @@ const maxResultsToDisplay = 5;
 </script>
 
 <template>
-	<div class="text-sm md:text-md">
+	<div class="text-sm">
 		<div class="mb-2 grid h-8 w-full shrink-0 grid-cols-[auto_1fr_auto] items-center rounded-md">
 			<label for="searchinput">
 				<Search class="mr-3 size-4 shrink-0 text-neutral-500" />
