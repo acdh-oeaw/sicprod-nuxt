@@ -73,12 +73,12 @@ async function copyToClipboard() {
 }
 
 function getLink(ref: Reference) {
-	const regexMatch = [...ref.scan_path.matchAll(/(.*?)\/(.*?).jpg/g)][0];
+	if (!("title" in ref.scandata) || !("pages" in ref.scandata)) return null;
 	return {
 		path: localePath("/iiif"),
 		query: {
-			book: regexMatch[1] ?? "",
-			page: regexMatch[2] !== "" ? regexMatch[2] : ref.folio,
+			book: ref.scandata.title,
+			page: ref.scandata.pages,
 		},
 	};
 }
@@ -119,7 +119,7 @@ function getLink(ref: Reference) {
 						</button>
 					</div>
 					<component
-						:is="references[idx].scan_path ? NuxtLink : 'div'"
+						:is="getLink(references[idx]) ? NuxtLink : 'div'"
 						v-for="(entry, idx) in citation"
 						:key="entry"
 						:to="getLink(references[idx])"
@@ -128,7 +128,7 @@ function getLink(ref: Reference) {
 						:class="{
 							'border-b-2 dark:border-neutral-700': idx < citation.length - 1,
 							'hover:bg-neutral-100 focus:outline-none focus-visible:ring dark:hover:bg-neutral-900':
-								references[idx].scan_path,
+								getLink(references[idx]),
 						}"
 						@click.stop
 					>
