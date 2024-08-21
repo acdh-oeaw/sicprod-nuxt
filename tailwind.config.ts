@@ -54,6 +54,20 @@ const config = {
 				institution: colors.indigo,
 				place: colors.purple,
 				salary: colors.amber,
+
+				book: {
+					"50": "#fbf6ea",
+					"100": "#f7eed8",
+					"200": "#f0dddb",
+					"300": "#e4bfbd",
+					"400": "#d49a98",
+					"500": "#be6a6a",
+					"600": "#aa5458",
+					"700": "#8e4248",
+					"800": "#783940",
+					"900": "#67343b",
+					"950": "#38191d",
+				},
 			},
 			maxWidth: {
 				container: "80rem",
@@ -64,6 +78,11 @@ const config = {
 				"header-dark": "48px 0 0 0 black, -48px 0 0 0 black, 0 8px 40px -6px rgba(0, 0, 0, 0.4)",
 				"header-sm": "22px 0 0 0 white, -22px 0 0 0 white, 0 4px 18px -6px rgba(70, 70, 70, 0.4)",
 				"header-dark-sm": "22px 0 0 0 black, -22px 0 0 0 black, 0 4px 18px -6px rgba(0, 0, 0, 0.4)",
+				book: "0 0 5px -1px black, inset -1px 1px 2px rgba(255, 255, 255, 0.5)",
+			},
+			backgroundImage: {
+				"book-cover":
+					"linear-gradient(to right, rgba(0, 0, 0, 0.3) 3px, rgba(255, 255, 255, 0.5) 5px, rgba(255, 255, 255, 0.25) 7px, rgba(255, 255, 255, 0.25) 10px, transparent 12px, transparent 16px, rgba(255, 255, 255, 0.25) 17px, transparent 22px);",
 			},
 		},
 	},

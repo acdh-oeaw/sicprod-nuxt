@@ -7,6 +7,7 @@ const links = computed(() => {
 	return {
 		home: { href: { path: "/" }, label: t("AppHeader.links.home") },
 		search: { href: { path: "/search/persons" }, label: t("AppHeader.links.search") },
+		scans: { href: { path: "/iiif" }, label: t("AppHeader.links.scans") },
 	} satisfies Record<string, { href: NavLinkProps["href"]; label: string }>;
 });
 </script>

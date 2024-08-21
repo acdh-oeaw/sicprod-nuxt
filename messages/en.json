@@ -8,7 +8,8 @@
 	"AppHeader": {
 		"links": {
 			"home": "Home",
-			"search": "Database"
+			"search": "Database",
+			"scans": "Scans"
 		},
 		"navigation-main": "Main"
 	},
@@ -155,7 +156,8 @@
 			}
 		},
 		"iiif": {
-			"title": "IIIF Viewer"
+			"title": "IIIF Viewer",
+			"scans": "Scanned books"
 		}
 	},
 	"References": {

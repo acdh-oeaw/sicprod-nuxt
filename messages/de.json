@@ -8,7 +8,8 @@
 	"AppHeader": {
 		"links": {
 			"home": "Startseite",
-			"search": "Datenbank"
+			"search": "Datenbank",
+			"scans": "Scans"
 		},
 		"navigation-main": "Hauptnavigation"
 	},
@@ -155,7 +156,8 @@
 			}
 		},
 		"iiif": {
-			"title": "IIIF Viewer"
+			"title": "IIIF Viewer",
+			"scans": "Gescannte Rait- und Kopialbücher"
 		}
 	},
 	"References": {

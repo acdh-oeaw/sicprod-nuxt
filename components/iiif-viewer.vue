@@ -19,7 +19,10 @@ onMounted(async () => {
 		manifest.value = await import(`~/assets/manifests/${decodeURI(book)}.json`);
 	}
 	if (manifest.value === undefined) return;
-	const pageIdx = manifest.value.items.findIndex((item) => item.label?.de?.[0] === page);
+	const pageIdx = Math.max(
+		0,
+		manifest.value.items.findIndex((item) => item.label?.de?.[0] === page),
+	);
 	//@ts-expect-error no Tify export
 	const tify = new Tify({
 		container: "#tify",
