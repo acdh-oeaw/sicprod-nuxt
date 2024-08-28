@@ -8,8 +8,8 @@ definePageMeta({
 </script>
 
 <template>
-	<MainContent class="container grid grid-rows-[auto_1fr] content-start gap-y-8 py-8">
-		<PageTitle>{{ t("Pages.network.title") }}</PageTitle>
+	<MainContent class="container grid grid-rows-[1fr] content-start gap-y-8 py-8">
+		<PageTitle class="sr-only">{{ t("Pages.network.title") }}</PageTitle>
 		<NetworkVisualization></NetworkVisualization>
 	</MainContent>
 </template>
