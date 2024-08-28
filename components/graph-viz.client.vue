@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import chroma from "chroma-js";
 import type Graph from "graphology";
 import forceAtlas2 from "graphology-layout-forceatlas2";
 import FA2Layout from "graphology-layout-forceatlas2/worker";
@@ -8,6 +9,7 @@ const props = defineProps<{
 	graph: Graph;
 }>();
 
+const edgeAlpha = 0.05;
 const networkContainer = ref<HTMLElement>();
 
 function initSigma() {
@@ -16,7 +18,15 @@ function initSigma() {
 	const sensibleSettings = forceAtlas2.inferSettings(props.graph);
 	const layout = new FA2Layout(props.graph, { settings: sensibleSettings });
 	layout.start();
-	new Sigma(props.graph, networkContainer.value, { allowInvalidContainer: true });
+	new Sigma(props.graph, networkContainer.value, {
+		allowInvalidContainer: true,
+		edgeReducer: (_, attr) => {
+			attr.color = chroma(attr.color || "#000000")
+				.alpha(edgeAlpha)
+				.hex();
+			return attr;
+		},
+	});
 }
 onMounted(() => {
 	void nextTick(initSigma);
