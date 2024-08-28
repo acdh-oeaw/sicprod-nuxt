@@ -22,14 +22,7 @@ const { data, isLoading } = useQuery({
 	queryFn: () =>
 		loadNetworkData($api[networkEndpoint], { queries: { limit: 5000, entities: entityFilter } }),
 });
-// watch(
-// 	() => data.value?.pageParams,
-// 	() => {
-// 		if (hasNextPage.value && !isFetchingNextPage.value) void fetchNextPage();
-// 	},
-// );
 function getGraph(data: Array<NetworkEntry>) {
-	console.log("Start getGraph: ", new Date());
 	let graph = new Graph();
 	data.forEach((entity) => {
 		graph.addNode(String(entity.id), {
@@ -40,7 +33,6 @@ function getGraph(data: Array<NetworkEntry>) {
 			color: colorCodes[entity.type],
 		});
 	});
-	console.log("add Edges: ", new Date(), data);
 	const edgeDict: Record<string, Array<string>> = {};
 	data.flatMap((entity) => {
 		entity.related_to.forEach((target) => {
@@ -55,13 +47,10 @@ function getGraph(data: Array<NetworkEntry>) {
 				.flatMap(([_key, val]) => val),
 		),
 	];
-	console.log("Found ", flattenedEdges.length, " edges");
 
 	flattenedEdges.forEach((edge) => {
 		graph.addEdge(edge.split("-")[0], edge.split("-")[1]);
 	});
-	// });
-	console.log("End getGraph: ", new Date());
 	return graph;
 }
 const graph = computed(() => getGraph(data.value ?? []));

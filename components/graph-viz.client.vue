@@ -11,7 +11,6 @@ const props = defineProps<{
 const networkContainer = ref<HTMLElement>();
 
 function initSigma() {
-	console.log(new Date());
 	if (!process.client) return;
 	if (!networkContainer.value) return;
 	const sensibleSettings = forceAtlas2.inferSettings(props.graph);
