@@ -1,4 +1,5 @@
 import { Calendar, Contact, HandCoins, MapPin, School2, User } from "lucide-vue-next";
+import colors from "tailwindcss/colors";
 
 export const icons = {
 	event: Calendar,
@@ -50,4 +51,13 @@ export const scrollbarColors = {
 	place: "scrollbar-thumb-place-400/50 dark:scrollbar-thumb-place-800/50",
 	institution: "scrollbar-thumb-institution-400/50 dark:scrollbar-thumb-institution-700/50",
 	salary: "scrollbar-thumb-salary-400/50 dark:scrollbar-thumb-salary-700/50",
+};
+
+export const colorCodes: Record<string, string> = {
+	event: colors.rose[500],
+	function: colors.sky[500],
+	person: colors.emerald[500],
+	place: colors.purple[500],
+	institution: colors.indigo[500],
+	salary: colors.amber[500],
 };

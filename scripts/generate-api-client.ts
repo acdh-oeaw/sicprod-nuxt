@@ -22,6 +22,7 @@ async function main() {
 			"/apis/api/apis_ontology.person",
 			"/apis/api/apis_ontology.place",
 			"/apis/api/apis_ontology.salary",
+			"/apis/api/network",
 		],
 		dist: outputPath,
 	};

@@ -158,6 +158,9 @@
 		"iiif": {
 			"title": "IIIF Viewer",
 			"scans": "Scanned books"
+		},
+		"network": {
+			"title": "Netzwerk"
 		}
 	},
 	"References": {

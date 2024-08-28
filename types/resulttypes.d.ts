@@ -29,3 +29,7 @@ export interface FacetType {
 }
 
 export type Reference = z.infer<typeof schemas.Reference>;
+
+export type NetworkEntry = z.infer<typeof schemas.Network>;
+
+export type PaginatedNetworkList = z.infer<typeof schemas.PaginatedNetworkList>;

@@ -158,6 +158,9 @@
 		"iiif": {
 			"title": "IIIF Viewer",
 			"scans": "Gescannte Rait- und Kopialbücher"
+		},
+		"network": {
+			"title": "Netzwerk"
 		}
 	},
 	"References": {
