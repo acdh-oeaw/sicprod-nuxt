@@ -25,5 +25,5 @@ onMounted(() => {
 </script>
 
 <template>
-	<div id="networkContainer" ref="networkContainer" class="size-full ring-1 ring-neutral-500"></div>
+	<div id="networkContainer" ref="networkContainer" class="size-full"></div>
 </template>

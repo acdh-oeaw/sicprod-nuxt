@@ -68,12 +68,8 @@ const graph = computed(() => getGraph(data.value ?? []));
 </script>
 
 <template>
-	<!-- <Graph v-if="!isLoading" :data="data ?? []" /> -->
-
 	<Loader v-if="isLoading" />
 	<div v-else>
-		{{ data?.length }}
-
 		<GraphViz :graph="graph" />
 	</div>
 </template>
