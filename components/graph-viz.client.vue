@@ -1,36 +1,39 @@
 <script setup lang="ts">
-import chroma from "chroma-js";
-import type Graph from "graphology";
-import forceAtlas2 from "graphology-layout-forceatlas2";
-import FA2Layout from "graphology-layout-forceatlas2/worker";
-import { Sigma } from "sigma";
+import * as d3 from "d3-force";
+import ForceGraph, { type ForceGraphInstance, type LinkObject, type NodeObject } from "force-graph";
 
 const props = defineProps<{
-	graph: Graph;
+	graph: {
+		nodes: Array<NodeObject>;
+		links: Array<LinkObject>;
+	};
 }>();
-
-const edgeAlpha = 0.05;
+const forcegraph = ref<ForceGraphInstance>();
 const networkContainer = ref<HTMLElement>();
 
 function initSigma() {
 	if (!process.client) return;
 	if (!networkContainer.value) return;
-	const sensibleSettings = forceAtlas2.inferSettings(props.graph);
-	const layout = new FA2Layout(props.graph, { settings: sensibleSettings });
-	layout.start();
-	new Sigma(props.graph, networkContainer.value, {
-		allowInvalidContainer: true,
-		edgeReducer: (_, attr) => {
-			attr.color = chroma(attr.color || "#000000")
-				.alpha(edgeAlpha)
-				.hex();
-			return attr;
-		},
-	});
+	const myGraph = ForceGraph();
+	forcegraph.value = myGraph(networkContainer.value)
+		.graphData(props.graph)
+		.linkColor(() => "#cccccc20")
+		.warmupTicks(100)
+		.cooldownTicks(10);
+
+	forcegraph.value.d3Force(
+		"charge",
+		d3.forceManyBody().strength((node) => -node.val * 15),
+		// .distanceMax(50),
+	);
 }
 onMounted(() => {
 	void nextTick(initSigma);
 });
+watch(
+	() => props.graph,
+	() => forcegraph.value?.graphData(props.graph),
+);
 </script>
 
 <template>
