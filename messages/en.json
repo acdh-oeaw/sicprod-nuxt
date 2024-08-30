@@ -9,7 +9,8 @@
 		"links": {
 			"home": "Home",
 			"search": "Database",
-			"scans": "Scans"
+			"scans": "Scans",
+			"network": "Netzwerk"
 		},
 		"navigation-main": "Main"
 	},
