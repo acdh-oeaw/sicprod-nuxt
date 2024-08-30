@@ -23,7 +23,7 @@ function initSigma() {
 		.graphData(props.graph)
 		.linkColor(() => "#cccccc30")
 		.warmupTicks(100)
-		.cooldownTicks(10)
+		.cooldownTicks(100)
 		.height(height)
 		.width(width)
 		.onNodeClick((node) => {
