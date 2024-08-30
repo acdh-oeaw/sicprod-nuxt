@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/vue-query";
 import type { LinkObject } from "force-graph";
 import { Check, ChevronDown } from "lucide-vue-next";
 
-import { bgColorsSemiTransparent, colorCodes } from "@/lib/colors";
+import { bgColors, colorCodes } from "@/lib/colors";
 import { loadNetworkData } from "@/lib/load-network-data";
 import type { NetworkEntry } from "@/types/resulttypes";
 
@@ -34,6 +34,7 @@ function getGraph(data: Array<NetworkEntry>) {
 			name: string;
 			val: number;
 			color?: string;
+			class?: string;
 		}>,
 		links: [] as Array<LinkObject>,
 	};
@@ -43,6 +44,7 @@ function getGraph(data: Array<NetworkEntry>) {
 			name: entity.name,
 			val: entity.related_to.length,
 			color: colorCodes[entity.type],
+			class: entity.type,
 		});
 	});
 	const edgeDict: Record<string, Array<string>> = {};
@@ -71,18 +73,18 @@ const graph = computed(() => getGraph(data.value ?? []));
 
 <template>
 	<Centered v-if="isLoading"><Loader /></Centered>
-	<div v-else>
-		<div class="absolute right-2 top-2">
+	<div v-else class="relative size-full">
+		<div class="absolute right-2 top-2 z-10">
 			<Listbox v-model="selectedClasses" multiple>
 				<div class="relative mb-4 mt-1">
 					<ListboxButton
-						class="relative w-full cursor-pointer rounded-lg bg-inherit py-2 pr-10 text-left sm:text-sm"
+						class="relative w-full cursor-pointer rounded-lg py-2 pr-10 text-left sm:text-sm"
 					>
 						<span
 							v-for="className in selectedClasses"
 							:key="className"
 							class="mx-0.5 truncate rounded-md px-2 py-1"
-							:class="[bgColorsSemiTransparent[className]]"
+							:class="[bgColors[className]]"
 						>
 							{{ t(`Pages.searchviews.${className.replace("apis_ontology.", "")}.label`) }}
 						</span>
