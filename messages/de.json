@@ -157,7 +157,8 @@
 		},
 		"iiif": {
 			"title": "IIIF Viewer",
-			"scans": "Gescannte Rait- und Kopialbücher"
+			"scans": "Gescannte Rait- und Kopialbücher",
+			"disclaimer": "Bei kommerzieller Nutzung oder Abdruck in einer Publikation werden eine Genehmigung durch das Tiroler Landesarchiv sowie eine kleine Gebühr fällig."
 		},
 		"network": {
 			"title": "Netzwerk"
