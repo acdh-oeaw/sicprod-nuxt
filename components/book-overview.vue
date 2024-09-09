@@ -20,7 +20,15 @@ function getLink(item: unknown) {
 }
 
 const filteredItemList = computed(() => {
-	return collection.items.filter((item) => item.label.de[0]?.includes(searchInput.value));
+	const result = collection.items.filter((item) => item.label.de[0]?.includes(searchInput.value));
+	return result.sort((a, b) => {
+		return (
+			a.label.de[0]?.localeCompare(b.label.de[0] ?? "", undefined, {
+				numeric: true,
+				sensitivity: "base",
+			}) ?? 0
+		);
+	});
 });
 </script>
 
