@@ -78,7 +78,7 @@ function getLink(ref: Reference) {
 		path: localePath("/iiif"),
 		query: {
 			book: ref.scandata.title,
-			page: ref.scandata.pages,
+			page: ref.scandata.pages.replaceAll(".jpg", ""),
 		},
 	};
 }
