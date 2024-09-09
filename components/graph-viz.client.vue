@@ -13,6 +13,9 @@ const networkContainer = ref<HTMLElement>();
 const localePath = useLocalePath();
 const router = useRouter();
 
+const highlightedLinks = ref<Set<LinkObject>>(new Set());
+const highlightedNodes = ref<Set<NodeObject>>(new Set());
+
 function initSigma() {
 	if (!process.client) return;
 	if (!networkContainer.value) return;
@@ -21,15 +24,40 @@ function initSigma() {
 	const myGraph = ForceGraph();
 	forcegraph.value = myGraph(networkContainer.value)
 		.graphData(props.graph)
-		.linkColor(() => "#cccccc30")
+		.linkColor((link) => (highlightedLinks.value.has(link) ? "#aaaaaa" : "#cccccc30"))
+		.nodeColor((node) =>
+			highlightedNodes.value.size === 0
+				? //@ts-expect-error unknown property color
+					`${node.color}d0`
+				: highlightedNodes.value.has(node)
+					? //@ts-expect-error unknown property color
+						node.color
+					: //@ts-expect-error unknown property color
+						`${node.color}55`,
+		)
 		.warmupTicks(100)
 		.cooldownTicks(100)
+		.autoPauseRedraw(false)
 		.height(height)
 		.width(width)
 		.onNodeClick((node) => {
 			//@ts-expect-error unknown property class
 			const path = localePath(`/detail/${node.class}/${node.id}`);
 			void router.push(path);
+		})
+		.onNodeHover((node) => {
+			highlightedNodes.value.clear();
+			highlightedLinks.value.clear();
+			if (node) {
+				myGraph
+					.graphData()
+					.links.filter((link) => link.source === node || link.target === node)
+					.forEach((link) => highlightedLinks.value.add(link));
+				highlightedLinks.value.forEach((link) => {
+					highlightedNodes.value.add(link.target as NodeObject);
+					highlightedNodes.value.add(link.source as NodeObject);
+				});
+			}
 		});
 
 	forcegraph.value.d3Force(
