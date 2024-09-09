@@ -118,7 +118,11 @@ const input = ref(route.query.q === undefined ? "" : String(route.query.q));
 							class="m-2 overflow-auto p-2 text-start text-sm md:p-4 md:text-md"
 						>
 							<span v-if="hit[col.key]">
-								{{ String(hit[col.key])?.replace(/ \<.*?\>/g, "") }}
+								{{
+									Array.isArray(hit[col.key])
+										? hit[col.key].join(", ")
+										: String(hit[col.key])?.replace(/ \<.*?\>/g, "")
+								}}
 							</span>
 						</td>
 						<td class="m-2 overflow-auto text-start align-middle text-sm md:text-md">
