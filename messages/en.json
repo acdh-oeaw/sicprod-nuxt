@@ -162,7 +162,8 @@
 			"disclaimer": "For commercial use or reproduction in a publication, permission from the Tyrolean State Archives and a small fee are required."
 		},
 		"network": {
-			"title": "Netzwerk"
+			"title": "Netzwerk",
+			"hide-nodes": "Hide nodes with few links"
 		}
 	},
 	"References": {

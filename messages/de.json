@@ -162,7 +162,8 @@
 			"disclaimer": "Bei kommerzieller Nutzung oder Abdruck in einer Publikation werden eine Genehmigung durch das Tiroler Landesarchiv sowie eine kleine Gebühr fällig."
 		},
 		"network": {
-			"title": "Netzwerk"
+			"title": "Netzwerk",
+			"hide-nodes": "Knoten mit wenigen Verbindungen verbergen"
 		}
 	},
 	"References": {
