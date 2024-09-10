@@ -9,7 +9,7 @@ import {
 	TransitionChild,
 	TransitionRoot,
 } from "@headlessui/vue";
-import { Check, ChevronDown } from "lucide-vue-next";
+import { Check, ChevronDown, X } from "lucide-vue-next";
 
 import { bgColorsSemiTransparent } from "@/lib/colors";
 import type { TimelineObject } from "@/types/timeline";
@@ -63,9 +63,12 @@ const selectedClasses = ref(availableClasses.value);
 						leave-to="opacity-0 scale-95"
 					>
 						<DialogPanel
-							class="rounded w-full max-w-md overflow-hidden bg-white p-6 text-left align-middle shadow-xl transition-all md:max-w-lg dark:bg-neutral-800"
+							class="rounded relative w-full max-w-md overflow-hidden bg-white p-6 text-left align-middle shadow-xl transition-all md:max-w-lg dark:bg-neutral-800"
 						>
 							<h2 class="text-2xl">{{ t("Timeline.timeline") }}</h2>
+							<button class="absolute right-2 top-2" @click="closeModal">
+								<X class="size-5 text-neutral-500"></X>
+							</button>
 							<Listbox v-model="selectedClasses" multiple>
 								<div class="relative mb-4 mt-1">
 									<ListboxButton
