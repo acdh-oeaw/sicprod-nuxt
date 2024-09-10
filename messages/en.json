@@ -31,7 +31,9 @@
 	},
 	"DetailPage": {
 		"basedata": "Base data",
-		"andOthers": "and {count} others"
+		"andOthers": "and {count} others",
+		"showAllEntries": "Show all {count} entries",
+		"hideEntries": "Hide entries"
 	},
 	"ErrorBoundary": {
 		"error": "Error"
