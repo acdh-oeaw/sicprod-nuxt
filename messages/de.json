@@ -24,7 +24,9 @@
 	},
 	"DetailPage": {
 		"basedata": "Basisdaten",
-		"andOthers": "und {count} weitere"
+		"andOthers": "und {count} weitere",
+		"showAllEntries": "Alle {count} Einträge anzeigen",
+		"hideEntries": "Einträge verbergen"
 	},
 	"DefaultLayout": {
 		"meta": {

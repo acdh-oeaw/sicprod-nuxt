@@ -84,6 +84,25 @@ function closeVerticalTimeline() {
 function openVerticalTimeline() {
 	showVerticalTimeline.value = true;
 }
+
+const initialAltNames = 3;
+const showAltNames = ref(initialAltNames);
+const showAltNamesLabel = ref("DetailPage.showAllEntries");
+function toggleShowAltNames() {
+	if (showAltNames.value === initialAltNames) {
+		showAltNames.value = Math.max(
+			initialAltNames,
+			data.value.entity.data?.alternative_label.length ?? 0,
+		);
+		showAltNamesLabel.value = "DetailPage.hideEntries";
+	} else {
+		showAltNames.value = Math.min(
+			initialAltNames,
+			data.value.entity.data?.alternative_label.length ?? 0,
+		);
+		showAltNamesLabel.value = "DetailPage.showAllEntries";
+	}
+}
 </script>
 
 <template>
@@ -151,9 +170,20 @@ function openVerticalTimeline() {
 				<div class="col-span-2 my-2 border-t"></div>
 				<span>{{ t("Pages.searchviews.person.alternative_names") }}:</span>
 				<div>
-					<span v-for="name in data.entity.data?.alternative_label" :key="name" class="block">
+					<span
+						v-for="name in data.entity.data?.alternative_label.slice(0, showAltNames)"
+						:key="name"
+						class="block"
+					>
 						{{ name }}
 					</span>
+					<button
+						v-if="(data.entity.data?.alternative_label.length ?? 0) > initialAltNames"
+						class="mt-3 text-sm"
+						@click="toggleShowAltNames"
+					>
+						{{ t(showAltNamesLabel, { count: data.entity.data?.alternative_label.length }) }}
+					</button>
 				</div>
 			</template>
 			<template v-if="sameAs.length > 0">
