@@ -67,7 +67,7 @@ const selectedClasses = ref(availableClasses.value);
 						>
 							<h2 class="text-2xl">{{ t("Timeline.timeline") }}</h2>
 							<button class="absolute right-2 top-2" @click="closeModal">
-								<X class="size-5 text-neutral-500"></X>
+								<X class="size-4 text-neutral-500"></X>
 							</button>
 							<Listbox v-model="selectedClasses" multiple>
 								<div class="relative mb-4 mt-1">
