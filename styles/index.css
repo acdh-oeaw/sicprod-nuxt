@@ -21,3 +21,7 @@
 .tify-header-button-group button[aria-controls$="thumbnails"] {
 	display: none !important;
 }
+
+.tify-page-select + .tify-header-button {
+	display: none !important;
+}
