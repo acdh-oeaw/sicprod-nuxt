@@ -45,7 +45,9 @@ onMounted(async () => {
 <template>
 	<div class="relative h-full">
 		<div id="tify" class="h-full"></div>
-		<div class="absolute bottom-0 right-0 bg-neutral-100/70 p-3 text-sm md:max-w-96">
+		<div
+			class="absolute bottom-0 right-0 bg-neutral-100/70 p-3 text-sm md:max-w-96 dark:bg-neutral-900/70"
+		>
 			{{ t("Pages.iiif.disclaimer") }}
 		</div>
 	</div>
