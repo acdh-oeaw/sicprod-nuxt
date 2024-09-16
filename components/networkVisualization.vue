@@ -81,7 +81,9 @@ const graph = computed(() => getGraph(data.value ?? [], minDegree.value));
 <template>
 	<Centered v-if="isLoading"><Loader /></Centered>
 	<div v-else class="relative size-full">
-		<div class="absolute bottom-0 right-2 z-10 mb-2 mt-1 rounded-lg bg-white/50 p-2">
+		<div
+			class="absolute bottom-0 right-2 z-10 mb-2 mt-1 rounded-lg bg-white/70 p-2 dark:bg-neutral-900/70"
+		>
 			<Listbox v-model="selectedClasses" multiple>
 				<div class="relative">
 					<Transition
@@ -90,7 +92,7 @@ const graph = computed(() => getGraph(data.value ?? [], minDegree.value));
 						leave-to-class="opacity-0"
 					>
 						<ListboxOptions
-							class="absolute bottom-10 z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 sm:text-sm dark:bg-neutral-900"
+							class="bottom-11 right-0 z-10 mt-1 max-h-60 w-full overflow-auto py-1 sm:text-sm"
 						>
 							<ListboxOption
 								v-for="className in availableClasses"
