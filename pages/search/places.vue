@@ -11,7 +11,7 @@ const endpoint = $api["apis_api_apis_ontology.place_list"];
 
 const columns = [
 	{
-		key: "name",
+		key: "label",
 		label: t("Pages.searchviews.place.name"),
 		sortable: true,
 	},
