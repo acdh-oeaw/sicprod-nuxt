@@ -103,8 +103,8 @@
 				"same_as": "Möglicherweise identisch mit"
 			},
 			"event": {
-				"title": "Suche - Events",
-				"label": "Events",
+				"title": "Suche - Ereignisse",
+				"label": "Ereignisse",
 				"name": "Name",
 				"start_date": "Von",
 				"end_date": "Bis",
@@ -149,7 +149,7 @@
 			},
 			"facets": {
 				"relation_person": "Personen",
-				"relation_event": "Events",
+				"relation_event": "Ereignisse",
 				"relation_function": "Funktionen",
 				"relation_institution": "Institutionen",
 				"relation_place": "Orte",
@@ -165,7 +165,8 @@
 		},
 		"network": {
 			"title": "Netzwerk",
-			"hide-nodes": "Knoten mit wenigen Verbindungen verbergen"
+			"hide-nodes": "Knoten mit wenigen Verbindungen verbergen",
+			"node-distance": "Distanz zwischen Knoten ändern"
 		}
 	},
 	"References": {

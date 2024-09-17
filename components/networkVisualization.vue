@@ -2,7 +2,7 @@
 import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from "@headlessui/vue";
 import { useQuery } from "@tanstack/vue-query";
 import type { LinkObject } from "force-graph";
-import { Check, ChevronDown, Share2 } from "lucide-vue-next";
+import { Check, ChevronDown, MoveHorizontal, Share2 } from "lucide-vue-next";
 
 import { bgColors, colorCodes } from "@/lib/colors";
 import { loadNetworkData } from "@/lib/load-network-data";
@@ -15,7 +15,7 @@ const networkEndpoint = "apis_api_network_list";
 
 const availableClasses = ["event", "function", "institution", "person", "place", "salary"] as const;
 
-const selectedClasses = ref<Array<(typeof availableClasses)[number]>>(["institution", "function"]);
+const selectedClasses = ref<Array<(typeof availableClasses)[number]>>(["person", "function"]);
 const { data, isLoading } = useQuery({
 	queryKey: [networkEndpoint, selectedClasses],
 	queryFn: () =>
@@ -69,6 +69,7 @@ function getGraph(data: Array<NetworkEntry>, minDegree = 0) {
 	flattenedEdges.forEach((edge) => {
 		graph.links.push({ source: edge.split("-")[0], target: edge.split("-")[1] });
 	});
+	console.log(graph.nodes.length);
 	return graph;
 }
 const minDegree = ref(1);
@@ -76,12 +77,16 @@ const maxDegree = computed(() =>
 	Math.min(Math.max(...(data.value?.map((node) => node.related_to.length) ?? [1])), 10),
 );
 const graph = computed(() => getGraph(data.value ?? [], minDegree.value));
+
+const nodeDistance = ref(10);
 </script>
 
 <template>
 	<Centered v-if="isLoading"><Loader /></Centered>
 	<div v-else class="relative size-full">
-		<div class="absolute bottom-0 right-2 z-10 mb-2 mt-1 rounded-lg bg-white/50 p-2">
+		<div
+			class="absolute bottom-0 right-2 z-10 mb-2 mt-1 rounded-lg bg-white/70 p-2 dark:bg-neutral-900/70"
+		>
 			<Listbox v-model="selectedClasses" multiple>
 				<div class="relative">
 					<Transition
@@ -90,7 +95,7 @@ const graph = computed(() => getGraph(data.value ?? [], minDegree.value));
 						leave-to-class="opacity-0"
 					>
 						<ListboxOptions
-							class="absolute bottom-10 z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 sm:text-sm dark:bg-neutral-900"
+							class="bottom-11 right-0 z-10 mt-1 max-h-60 w-full overflow-auto py-1 sm:text-sm"
 						>
 							<ListboxOption
 								v-for="className in availableClasses"
@@ -144,7 +149,20 @@ const graph = computed(() => getGraph(data.value ?? [], minDegree.value));
 					<input v-model="minDegree" type="range" class="inline" min="0" :max="maxDegree" />
 				</label>
 			</div>
+			<div class="float-right mt-2 flex gap-2 px-2 pb-1 text-neutral-600">
+				<label class="flex gap-2" :title="t('Pages.network.node-distance')">
+					<span class="sr-only">{{ t("Pages.network.node-distance") }}</span>
+					<MoveHorizontal class="inline size-5"></MoveHorizontal>
+					<input
+						v-model="nodeDistance"
+						type="range"
+						class="inline"
+						:min="1"
+						:max="graph.nodes.length / 20"
+					/>
+				</label>
+			</div>
 		</div>
-		<GraphViz :graph="graph" />
+		<GraphViz :graph="graph" :node-distance="+nodeDistance" />
 	</div>
 </template>

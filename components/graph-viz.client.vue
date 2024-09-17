@@ -7,6 +7,7 @@ const props = defineProps<{
 		nodes: Array<NodeObject>;
 		links: Array<LinkObject>;
 	};
+	nodeDistance: number;
 }>();
 const forcegraph = ref<ForceGraphInstance>();
 const networkContainer = ref<HTMLElement>();
@@ -24,6 +25,7 @@ function initSigma() {
 	const myGraph = ForceGraph();
 	forcegraph.value = myGraph(networkContainer.value)
 		.graphData(props.graph)
+		// .nodeVal((node) => Math.sqrt(node.val))
 		.linkColor((link) => (highlightedLinks.value.has(link) ? "#aaaaaa" : "#cccccc30"))
 		.nodeColor((node) =>
 			highlightedNodes.value.size === 0
@@ -59,11 +61,15 @@ function initSigma() {
 				});
 			}
 		});
-
+	forcegraph.value.d3Force(
+		"collide",
+		//@ts-expect-error unknown property val
+		d3.forceCollide((node) => Math.sqrt(node.val) * forcegraph.value?.nodeRelSize()),
+	);
 	forcegraph.value.d3Force(
 		"charge",
 		//@ts-expect-error unknown property val
-		d3.forceManyBody().strength((node) => -node.val * 15),
+		d3.forceManyBody().strength((node) => -node.val * props.nodeDistance),
 	);
 }
 onMounted(() => {
@@ -71,7 +77,22 @@ onMounted(() => {
 });
 watch(
 	() => props.graph,
-	() => forcegraph.value?.graphData(props.graph),
+	() => {
+		forcegraph.value?.graphData(props.graph);
+
+		forcegraph.value?.d3ReheatSimulation();
+	},
+);
+watch(
+	() => props.nodeDistance,
+	() => {
+		forcegraph.value?.d3Force(
+			"charge",
+			//@ts-expect-error unknown property val
+			d3.forceManyBody().strength((node) => -node.val * props.nodeDistance),
+		);
+		forcegraph.value?.d3ReheatSimulation();
+	},
 );
 </script>
 

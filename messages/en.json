@@ -165,7 +165,8 @@
 		},
 		"network": {
 			"title": "Network",
-			"hide-nodes": "Hide nodes with few links"
+			"hide-nodes": "Hide nodes with few links",
+			"node-distance": "Set distance between nodes"
 		}
 	},
 	"References": {
