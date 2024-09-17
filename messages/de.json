@@ -166,7 +166,9 @@
 		"network": {
 			"title": "Netzwerk",
 			"hide-nodes": "Knoten mit wenigen Verbindungen verbergen",
-			"node-distance": "Distanz zwischen Knoten ändern"
+			"node-distance": "Distanz zwischen Knoten ändern",
+			"nodes": "Knoten",
+			"links": "Kanten"
 		}
 	},
 	"References": {

@@ -2,7 +2,7 @@
 import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from "@headlessui/vue";
 import { useQuery } from "@tanstack/vue-query";
 import type { LinkObject } from "force-graph";
-import { Check, ChevronDown, MoveHorizontal, Share2 } from "lucide-vue-next";
+import { Check, ChevronUp, MoveHorizontal, Share2 } from "lucide-vue-next";
 
 import { bgColors, colorCodes } from "@/lib/colors";
 import { loadNetworkData } from "@/lib/load-network-data";
@@ -69,7 +69,6 @@ function getGraph(data: Array<NetworkEntry>, minDegree = 0) {
 	flattenedEdges.forEach((edge) => {
 		graph.links.push({ source: edge.split("-")[0], target: edge.split("-")[1] });
 	});
-	console.log(graph.nodes.length);
 	return graph;
 }
 const minDegree = ref(1);
@@ -137,7 +136,7 @@ const nodeDistance = ref(10);
 							{{ t(`Pages.searchviews.${className.replace("apis_ontology.", "")}.label`) }}
 						</span>
 						<span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-							<ChevronDown class="size-5 text-neutral-400" aria-hidden="true" />
+							<ChevronUp class="size-5 text-neutral-400" aria-hidden="true" />
 						</span>
 					</ListboxButton>
 				</div>
@@ -149,7 +148,7 @@ const nodeDistance = ref(10);
 					<input v-model="minDegree" type="range" class="inline" min="0" :max="maxDegree" />
 				</label>
 			</div>
-			<div class="float-right mt-2 flex gap-2 px-2 pb-1 text-neutral-600">
+			<div class="mt-2 flex gap-2 px-2 pb-1 text-neutral-600">
 				<label class="flex gap-2" :title="t('Pages.network.node-distance')">
 					<span class="sr-only">{{ t("Pages.network.node-distance") }}</span>
 					<MoveHorizontal class="inline size-5"></MoveHorizontal>
@@ -161,6 +160,22 @@ const nodeDistance = ref(10);
 						:max="graph.nodes.length / 20"
 					/>
 				</label>
+			</div>
+			<div
+				class="float-right mt-2 flex gap-5 px-2 pb-1 text-center text-sm text-neutral-600 dark:text-neutral-300"
+			>
+				<div>
+					<span class="block font-bold uppercase text-neutral-300 dark:text-neutral-600">
+						{{ t("Pages.network.nodes") }}
+					</span>
+					{{ graph.nodes.length }}
+				</div>
+				<div>
+					<span class="block font-bold uppercase text-neutral-300 dark:text-neutral-600">
+						{{ t("Pages.network.links") }}
+					</span>
+					{{ graph.links.length }}
+				</div>
 			</div>
 		</div>
 		<GraphViz :graph="graph" :node-distance="+nodeDistance" />
