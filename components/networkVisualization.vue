@@ -56,6 +56,7 @@ function getGraph(data: Array<NetworkEntry>, minDegree = 0) {
 		if (entity.related_to.length >= minDegree)
 			entity.related_to.forEach((target) => {
 				edgeDict[target]?.push(`${entity.id}-${target}`);
+				// edgeDict[entity.id]?.push(`${entity.id}-${target}`);
 			});
 	});
 	const flattenedEdges = [
@@ -67,9 +68,10 @@ function getGraph(data: Array<NetworkEntry>, minDegree = 0) {
 	];
 
 	flattenedEdges.forEach((edge) => {
-		graph.links.push({ source: edge.split("-")[0], target: edge.split("-")[1] });
+		if (Number(edge.split("-")[0]) < Number(edge.split("-")[1]))
+			graph.links.push({ source: edge.split("-")[0], target: edge.split("-")[1] });
 	});
-	graph.nodes = graph.nodes.filter((node) => edgeDict[node.id]?.length ?? 0 >= minDegree);
+	graph.nodes = graph.nodes.filter((node) => (edgeDict[node.id]?.length ?? 0) >= minDegree);
 	return graph;
 }
 const minDegree = ref(1);
