@@ -39,6 +39,7 @@ function getGraph(data: Array<NetworkEntry>, minDegree = 0) {
 		}>,
 		links: [] as Array<LinkObject>,
 	};
+	const edgeDict: Record<string, Array<string>> = {};
 	data.forEach((entity) => {
 		if (entity.related_to.length >= minDegree)
 			graph.nodes.push({
@@ -48,20 +49,19 @@ function getGraph(data: Array<NetworkEntry>, minDegree = 0) {
 				color: colorCodes[entity.type],
 				class: entity.type,
 			});
+		edgeDict[entity.id] = [];
 	});
-	const edgeDict: Record<string, Array<string>> = {};
+
 	data.flatMap((entity) => {
 		if (entity.related_to.length >= minDegree)
 			entity.related_to.forEach((target) => {
-				if (entity.id < target) return;
-				if (!(String(target) in edgeDict)) edgeDict[String(target)] = [];
-				edgeDict[String(target)]?.push(`${entity.id}-${String(target)}`);
+				edgeDict[target]?.push(`${entity.id}-${target}`);
 			});
 	});
 	const flattenedEdges = [
 		...new Set(
 			Object.entries(edgeDict)
-				.filter(([key, _val]) => graph.nodes.find((n) => n.id === key))
+				.filter(([_key, val]) => val.length >= minDegree)
 				.flatMap(([_key, val]) => val),
 		),
 	];
@@ -69,6 +69,7 @@ function getGraph(data: Array<NetworkEntry>, minDegree = 0) {
 	flattenedEdges.forEach((edge) => {
 		graph.links.push({ source: edge.split("-")[0], target: edge.split("-")[1] });
 	});
+	graph.nodes = graph.nodes.filter((node) => edgeDict[node.id]?.length ?? 0 >= minDegree);
 	return graph;
 }
 const minDegree = ref(1);
