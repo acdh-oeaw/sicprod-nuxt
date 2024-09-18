@@ -173,6 +173,13 @@ const initFacetSelection = () => {
 				.flat()),
 	);
 };
+
+watch(
+	() => route.query,
+	() => {
+		document.body.scrollTo(0, 0);
+	},
+);
 </script>
 
 <template>
