@@ -25,7 +25,6 @@ function initSigma() {
 	const myGraph = ForceGraph();
 	forcegraph.value = myGraph(networkContainer.value)
 		.graphData(props.graph)
-		// .nodeVal((node) => Math.sqrt(node.val))
 		.linkColor((link) => (highlightedLinks.value.has(link) ? "#aaaaaa" : "#cccccc30"))
 		.nodeColor((node) =>
 			highlightedNodes.value.size === 0
@@ -38,7 +37,7 @@ function initSigma() {
 						`${node.color}55`,
 		)
 		.warmupTicks(100)
-		.cooldownTicks(100)
+		.cooldownTicks(0)
 		.autoPauseRedraw(false)
 		.height(height)
 		.width(width)
@@ -64,13 +63,19 @@ function initSigma() {
 	forcegraph.value.d3Force(
 		"collide",
 		//@ts-expect-error unknown property val
-		d3.forceCollide((node) => Math.sqrt(node.val) * forcegraph.value?.nodeRelSize()),
+		d3.forceCollide((node) => Math.sqrt(node.val) * forcegraph.value?.nodeRelSize() * 1.1),
 	);
 	forcegraph.value.d3Force(
 		"charge",
 		//@ts-expect-error unknown property val
 		d3.forceManyBody().strength((node) => -node.val * props.nodeDistance),
 	);
+	forcegraph.value.onEngineStop(() => {
+		forcegraph.value?.zoomToFit(400);
+		forcegraph.value?.cooldownTicks(100);
+		// eslint-disable-next-line @typescript-eslint/no-empty-function
+		forcegraph.value?.onEngineStop(() => {});
+	});
 }
 onMounted(() => {
 	void nextTick(initSigma);
