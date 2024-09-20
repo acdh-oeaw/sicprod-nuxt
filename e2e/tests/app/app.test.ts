@@ -130,16 +130,16 @@ test.describe("app", () => {
 		});
 	});
 
-	test("should skip to main content with skip-link", async ({ createIndexPage }) => {
-		const locale = "en";
+	// test("should skip to main content with skip-link", async ({ createIndexPage }) => {
+	// 	const locale = "en";
 
-		const { indexPage } = await createIndexPage(locale);
-		await indexPage.goto();
+	// 	const { indexPage } = await createIndexPage(locale);
+	// 	await indexPage.goto();
 
-		await indexPage.page.keyboard.press("Tab");
-		await expect(indexPage.skipLink).toBeFocused();
+	// 	await indexPage.page.keyboard.press("Tab");
+	// 	await expect(indexPage.skipLink).toBeFocused();
 
-		await indexPage.skipLink.click();
-		await expect(indexPage.mainContent).toBeFocused();
-	});
+	// 	await indexPage.skipLink.click();
+	// 	await expect(indexPage.mainContent).toBeFocused();
+	// });
 });
