@@ -1,0 +1,2259 @@
+{
+	"nodes": [
+		{
+			"id": "19",
+			"name": "Eleonore von Schottland, None (ID: 19)",
+			"val": 18,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "18",
+			"name": "Sigmund von Tirol, None (ID: 18)",
+			"val": 712,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{ "id": "28", "name": "Innsbruck", "val": 266, "color": "#a855f7", "class": "place" },
+		{
+			"id": "35",
+			"name": "Marquard, Martin (ID: 35)",
+			"val": 12,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "44",
+			"name": "Werdenberg-Sargans, Georg von (ID: 44)",
+			"val": 20,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "51",
+			"name": "Matsch, Gaudenz von (ID: 51)",
+			"val": 37,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "65",
+			"name": "Säben, Oswald von (ID: 65)",
+			"val": 25,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "67",
+			"name": "Gufidaun, Kaspar von (ID: 67)",
+			"val": 17,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{ "id": "68", "name": "Freiburg im Breisgau", "val": 20, "color": "#a855f7", "class": "place" },
+		{
+			"id": "72",
+			"name": "Schlandersberg, Ulrich von (ID: 72)",
+			"val": 22,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "73",
+			"name": "Gradner, Bernhard (ID: 73)",
+			"val": 46,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "86",
+			"name": "Klieber, Reichart (ID: 86)",
+			"val": 52,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "90",
+			"name": "Blumenau, Lorenz (ID: 90)",
+			"val": 23,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "92",
+			"name": "Ramung, Hans (ID: 92)",
+			"val": 29,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "95",
+			"name": "Montfort, Hugo von (ID: 95)",
+			"val": 15,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "96",
+			"name": "Trapp, Jakob (ID: 96)",
+			"val": 44,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "98",
+			"name": "Freundsberg, Ulrich von (ID: 98)",
+			"val": 46,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "113",
+			"name": "Gradner, Wiguläus (ID: 113)",
+			"val": 56,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "129",
+			"name": "Neideck, Sigmund von (ID: 129)",
+			"val": 28,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "153",
+			"name": "Klammer, Konrad (ID: 153)",
+			"val": 31,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "172",
+			"name": "Freyberg, Ludwig von (ID: 172)",
+			"val": 29,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "187",
+			"name": "Freyberg, der Jüngere, Michael von (ID: 187)",
+			"val": 30,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "188",
+			"name": "Hochzeit Sigmunds und Katharinas von Sachsen (ID: 188)",
+			"val": 10,
+			"color": "#f43f5e",
+			"class": "event"
+		},
+		{
+			"id": "189",
+			"name": "Katharina von Sachsen, None (ID: 189)",
+			"val": 12,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "191",
+			"name": "Fieger, Benedikt (ID: 191)",
+			"val": 24,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "192",
+			"name": "Meckau, Melchior von (ID: 192)",
+			"val": 18,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "214",
+			"name": "Graben, Reinprecht von (ID: 214)",
+			"val": 9,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "217",
+			"name": "Freyberg zu Hohenfreyberg, Georg von (ID: 217)",
+			"val": 12,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "241",
+			"name": "Matsch (der Jüngere), Ulrich von (ID: 241)",
+			"val": 21,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "251",
+			"name": "Rotenstein, Heinrich von (ID: 251)",
+			"val": 22,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "253",
+			"name": "Liechtenstein, Paul von (ID: 253)",
+			"val": 15,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "255",
+			"name": "Rümlang (der Ältere), Heinrich von (ID: 255)",
+			"val": 15,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "258",
+			"name": "Firmian, Niklas von (ID: 258)",
+			"val": 39,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "277",
+			"name": "Arnold, Hans (ID: 277)",
+			"val": 17,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "281",
+			"name": "Golser, Georg (ID: 281)",
+			"val": 16,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "294",
+			"name": "Spieß vom Spieß, Leopold (ID: 294)",
+			"val": 32,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "296",
+			"name": "Stadion, Walther von (ID: 296)",
+			"val": 41,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "298",
+			"name": "Cavalli, Antonio (ID: 298)",
+			"val": 21,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "303",
+			"name": "Tierstein, Oswald von (ID: 303)",
+			"val": 30,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "312",
+			"name": "Kneussl, Ulrich (ID: 312)",
+			"val": 21,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "314",
+			"name": "Werdenberg-Sargans, Haug von (ID: 314)",
+			"val": 10,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "316",
+			"name": "Absberg, Georg von (ID: 316)",
+			"val": 39,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{ "id": "348", "name": "Meran", "val": 44, "color": "#a855f7", "class": "place" },
+		{
+			"id": "354",
+			"name": "Knöringen, Hilpolt von (ID: 354)",
+			"val": 14,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "457",
+			"name": "Lanz von Liebenfels, Hans (ID: 457)",
+			"val": 40,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "501",
+			"name": "Au, Balthasar von (ID: 501)",
+			"val": 15,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "511",
+			"name": "Bärenfels, Hans von (ID: 511)",
+			"val": 9,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{ "id": "517", "name": "Burg Gutenberg", "val": 10, "color": "#a855f7", "class": "place" },
+		{
+			"id": "531",
+			"name": "Truchsess von Waldburg (der Ältere), Johann (ID: 531)",
+			"val": 18,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "540",
+			"name": "Freyberg zu Eisenberg, Sigmund von (ID: 540)",
+			"val": 11,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "780",
+			"name": "Fischer, Erhard (ID: 780)",
+			"val": 13,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "832",
+			"name": "Tengen, Jakob von (ID: 832)",
+			"val": 10,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "842",
+			"name": "Brandis, Ludwig von (ID: 842)",
+			"val": 9,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "857",
+			"name": "Horneck, Burkhard von (ID: 857)",
+			"val": 12,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "878",
+			"name": "Castelbark, Matthias von (ID: 878)",
+			"val": 34,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "886",
+			"name": "Sal, Konrad von (ID: 886)",
+			"val": 14,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "954",
+			"name": "Weineck, Leonhard von (ID: 954)",
+			"val": 49,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "960",
+			"name": "Wolkenstein-Rodenegg, Oswald von (ID: 960)",
+			"val": 26,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "990",
+			"name": "Schätzer, Georg (ID: 990)",
+			"val": 21,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{ "id": "1042", "name": "Trient", "val": 52, "color": "#a855f7", "class": "place" },
+		{
+			"id": "1049",
+			"name": "Niedertor, Sigmund von (ID: 1049)",
+			"val": 12,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{ "id": "1105", "name": "Burg Freundsberg", "val": 13, "color": "#a855f7", "class": "place" },
+		{
+			"id": "1206",
+			"name": "Scheit, Matthias (ID: 1206)",
+			"val": 22,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1242",
+			"name": "Gerstl, Sigmund (ID: 1242)",
+			"val": 12,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1252",
+			"name": "Mörsberg, Kaspar von (ID: 1252)",
+			"val": 15,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1256",
+			"name": "Firmian, Christoph von (ID: 1256)",
+			"val": 24,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1268",
+			"name": "Fridung, genannt (alter) Küchenmeister, Konrad (ID: 1268)",
+			"val": 13,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1270",
+			"name": "Neideck, Martin von (ID: 1270)",
+			"val": 22,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1314",
+			"name": "Hewen, Peter von (ID: 1314)",
+			"val": 16,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{ "id": "1365", "name": "Mantua", "val": 10, "color": "#a855f7", "class": "place" },
+		{
+			"id": "1416",
+			"name": "Zollern, Jobst Nikolaus von (ID: 1416)",
+			"val": 23,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1424",
+			"name": "Brandis, Sigmund von (ID: 1424)",
+			"val": 9,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1443",
+			"name": "Ems zu Hohenems, Jakob von (ID: 1443)",
+			"val": 39,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1454",
+			"name": "Lupfen, Heinrich von (ID: 1454)",
+			"val": 16,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1501",
+			"name": "Heudorf, Hans Matthias von (ID: 1501)",
+			"val": 12,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1621",
+			"name": "Truchsess von Waldburg, Eberhard (ID: 1621)",
+			"val": 11,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1623",
+			"name": "Rindsmaul, Ruprecht (ID: 1623)",
+			"val": 17,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1669",
+			"name": "Fabian, Peter (ID: 1669)",
+			"val": 11,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1678",
+			"name": "Ems, verh. Villenbach, Elisabeth von (ID: 1678)",
+			"val": 9,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1866",
+			"name": "Sulz, Rudolf von (ID: 1866)",
+			"val": 15,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1874",
+			"name": "Castelbark, Georg von (ID: 1874)",
+			"val": 22,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2009",
+			"name": "Ebenstein, Georg von (ID: 2009)",
+			"val": 9,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2026",
+			"name": "Freundsberg, Hans von (ID: 2026)",
+			"val": 13,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{ "id": "2079", "name": "Burg Berneck", "val": 9, "color": "#a855f7", "class": "place" },
+		{
+			"id": "2105",
+			"name": "Keller, Johann (ID: 2105)",
+			"val": 12,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2115",
+			"name": "Freundsberg, Wolfgang von (ID: 2115)",
+			"val": 11,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2154",
+			"name": "Freundsberg, Ulrich von (ID: 2154)",
+			"val": 11,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2162",
+			"name": "Schrofenstein, Oswald von (ID: 2162)",
+			"val": 14,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{ "id": "2164", "name": "Feldkirch", "val": 45, "color": "#a855f7", "class": "place" },
+		{
+			"id": "2176",
+			"name": "Heustadl, Balthasar (ID: 2176)",
+			"val": 10,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2195",
+			"name": "Spaur, Jakob von (ID: 2195)",
+			"val": 19,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2206",
+			"name": "Pfannholz, genannt Sagmeister, Michael (ID: 2206)",
+			"val": 9,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2294",
+			"name": "Gneus, Vigilius (ID: 2294)",
+			"val": 20,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2504",
+			"name": "Leuchtenburg, Hans von (ID: 2504)",
+			"val": 11,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2539",
+			"name": "Brandis, Ulrich von (ID: 2539)",
+			"val": 16,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2567",
+			"name": "Meusbach, Lipman von (ID: 2567)",
+			"val": 13,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2734",
+			"name": "Thun, Friedrich von (ID: 2734)",
+			"val": 11,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2923",
+			"name": "Firmian, Vigilius von (ID: 2923)",
+			"val": 10,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "3063",
+			"name": "Bayern-München, Christoph von (ID: 3063)",
+			"val": 22,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "3074",
+			"name": "Schellenberg, Marquart von (ID: 3074)",
+			"val": 21,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "3203",
+			"name": "Fröschel, verh. Gundreichinger, Corona (ID: 3203)",
+			"val": 10,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "3436",
+			"name": "Kirchmair, Jörg (ID: 3436)",
+			"val": 10,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "3623",
+			"name": "von Freyberg, verh. Turndl, Martha (ID: 3623)",
+			"val": 11,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "3681",
+			"name": "Ems, Hans von (ID: 3681)",
+			"val": 18,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{ "id": "3719", "name": "Schloss Altenburg", "val": 11, "color": "#a855f7", "class": "place" },
+		{
+			"id": "3783",
+			"name": "Härtl, Antoni (ID: 3783)",
+			"val": 10,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "3843",
+			"name": "Stadion, Burkhard von (ID: 3843)",
+			"val": 12,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "4086",
+			"name": "Reinach, Hans Erhard von (ID: 4086)",
+			"val": 18,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "4195",
+			"name": "Freyberg (der Ältere), Michael von (ID: 4195)",
+			"val": 17,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "4250",
+			"name": "Fieger, Niklas (ID: 4250)",
+			"val": 9,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "4319",
+			"name": "Lupfen, Sigmund von (ID: 4319)",
+			"val": 12,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "4400",
+			"name": "Sulz, Albig von (ID: 4400)",
+			"val": 13,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "4424",
+			"name": "Landau zu Lautrach, Lutz von (ID: 4424)",
+			"val": 11,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "4461",
+			"name": "Landgrafschaft Nellenburg",
+			"val": 14,
+			"color": "#a855f7",
+			"class": "place"
+		},
+		{
+			"id": "4696",
+			"name": "Tierstein, Wilhelm von (ID: 4696)",
+			"val": 12,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "4932",
+			"name": "Werdenberg (der Jüngere), Johann von (ID: 4932)",
+			"val": 10,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "5422",
+			"name": "Aufsess, Konrad von (ID: 5422)",
+			"val": 16,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "7344",
+			"name": "Matsch (der Ältere), Ulrich von (ID: 7344)",
+			"val": 12,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "8235",
+			"name": "N. (Kind Sigmunds), N. (ID: 8235)",
+			"val": 13,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "16",
+			"name": "Stürtzel, Konrad (ID: 16)",
+			"val": 37,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "21",
+			"name": "Vintler, Konrad (ID: 21)",
+			"val": 34,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "29",
+			"name": "Kanzlei (ID: 29)",
+			"val": 15,
+			"color": "#6366f1",
+			"class": "institution"
+		},
+		{
+			"id": "89",
+			"name": "Wegmacher, Benedikt (ID: 89)",
+			"val": 36,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "176",
+			"name": "Freyberg (zu Hohenfreyberg), Heinrich von (ID: 176)",
+			"val": 29,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "261",
+			"name": "Gossembrot, Georg (ID: 261)",
+			"val": 15,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "269",
+			"name": "Kammer (ID: 269)",
+			"val": 12,
+			"color": "#6366f1",
+			"class": "institution"
+		},
+		{
+			"id": "270",
+			"name": "Häl, Georg (ID: 270)",
+			"val": 18,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "301",
+			"name": "Maßmünster, Ludwig von (ID: 301)",
+			"val": 29,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "304",
+			"name": "Anich, Heinrich (ID: 304)",
+			"val": 31,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "309",
+			"name": "Wirsung, Lorenz (ID: 309)",
+			"val": 23,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "321",
+			"name": "Hofamt (ID: 321)",
+			"val": 27,
+			"color": "#6366f1",
+			"class": "institution"
+		},
+		{
+			"id": "323",
+			"name": "Hofstaat Sigmunds (ID: 323)",
+			"val": 83,
+			"color": "#6366f1",
+			"class": "institution"
+		},
+		{
+			"id": "702",
+			"name": "Hofstaat der Herzogin (ID: 702)",
+			"val": 34,
+			"color": "#6366f1",
+			"class": "institution"
+		},
+		{
+			"id": "995",
+			"name": "Kannacher, Paul (ID: 995)",
+			"val": 13,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1146",
+			"name": "Mentlberger, Heinrich (ID: 1146)",
+			"val": 12,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1276",
+			"name": "Rotenstein, Gerwig von (ID: 1276)",
+			"val": 14,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1455",
+			"name": "Eptingen, Hermann von (ID: 1455)",
+			"val": 13,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1480",
+			"name": "Lachsenfelder, Kaspar (ID: 1480)",
+			"val": 16,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1590",
+			"name": "Leo, Ulrich (ID: 1590)",
+			"val": 11,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1608",
+			"name": "Völseck, Leonhard von (ID: 1608)",
+			"val": 34,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1618",
+			"name": "Räte Sigmunds (ID: 1618)",
+			"val": 21,
+			"color": "#6366f1",
+			"class": "institution"
+		},
+		{
+			"id": "1636",
+			"name": "Harber, Rudolf (ID: 1636)",
+			"val": 17,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1787",
+			"name": "Yserecker, Hans (ID: 1787)",
+			"val": 12,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1795",
+			"name": "Kostentzer, Wilhelm (ID: 1795)",
+			"val": 9,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1923",
+			"name": "Laubenberg, Hans Kaspar von (ID: 1923)",
+			"val": 13,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1964",
+			"name": "Hellgruber, Johannes (ID: 1964)",
+			"val": 14,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2139",
+			"name": "Fieger (der Jüngere), Hans (ID: 2139)",
+			"val": 14,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2166",
+			"name": "Villenbach, Wilhelm von (ID: 2166)",
+			"val": 15,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2198",
+			"name": "Dieperskircher, Hans (ID: 2198)",
+			"val": 19,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2251",
+			"name": "Tänzl, Christian (ID: 2251)",
+			"val": 11,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2295",
+			"name": "Augsburger, Kaspar (ID: 2295)",
+			"val": 9,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2305",
+			"name": "Frech, Kaspar (ID: 2305)",
+			"val": 13,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2430",
+			"name": "Teininger, Hans (ID: 2430)",
+			"val": 12,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2612",
+			"name": "Rindsmaul, Hermann (ID: 2612)",
+			"val": 13,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2626",
+			"name": "Landtag 1474 in Innsbruck (ID: 2626)",
+			"val": 130,
+			"color": "#f43f5e",
+			"class": "event"
+		},
+		{
+			"id": "2628",
+			"name": "Maltitz, Hans von (ID: 2628)",
+			"val": 28,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2633",
+			"name": "Hamerspach, Bartholomäus (ID: 2633)",
+			"val": 10,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2902",
+			"name": "Jöchl, Leonhard (ID: 2902)",
+			"val": 28,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2933",
+			"name": "Turndl, Matthias (ID: 2933)",
+			"val": 36,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "3113",
+			"name": "Hofmusik (ID: 3113)",
+			"val": 17,
+			"color": "#6366f1",
+			"class": "institution"
+		},
+		{
+			"id": "3188",
+			"name": "Baumgartner, Hans (ID: 3188)",
+			"val": 18,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "3313",
+			"name": "Humel, Hans (ID: 3313)",
+			"val": 11,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "3387",
+			"name": "Wenger, Konrad (ID: 3387)",
+			"val": 11,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "3769",
+			"name": "Freundsberg, Thomas von (ID: 3769)",
+			"val": 11,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "4252",
+			"name": "Fuchsmagen, Johann (ID: 4252)",
+			"val": 14,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "5166",
+			"name": "Plotsch, genannt Hund, Ulrich (ID: 5166)",
+			"val": 9,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "6391",
+			"name": "Selos, Hans (ID: 6391)",
+			"val": 10,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "6927",
+			"name": "Hof Sigmunds und der Herzoginnen (ID: 6927)",
+			"val": 13,
+			"color": "#6366f1",
+			"class": "institution"
+		},
+		{ "id": "171", "name": "Hall in Tirol", "val": 81, "color": "#a855f7", "class": "place" },
+		{
+			"id": "300",
+			"name": "Senng, verh. Spieß, Anna (ID: 300)",
+			"val": 10,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "326",
+			"name": "Saline Hall in Tirol (ID: 326)",
+			"val": 19,
+			"color": "#6366f1",
+			"class": "institution"
+		},
+		{
+			"id": "2389",
+			"name": "Fuchsmagen, Sigmund (ID: 2389)",
+			"val": 13,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2650",
+			"name": "Grienhofer, Hermann (ID: 2650)",
+			"val": 11,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2901",
+			"name": "Schebl, Thomas (ID: 2901)",
+			"val": 22,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2909",
+			"name": "Landtag 1484 in Hall (ID: 2909)",
+			"val": 11,
+			"color": "#f43f5e",
+			"class": "event"
+		},
+		{
+			"id": "5378",
+			"name": "Zimmermann, Hans (ID: 5378)",
+			"val": 10,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "3167",
+			"name": "Landtag 1481 in Bozen (ID: 3167)",
+			"val": 137,
+			"color": "#f43f5e",
+			"class": "event"
+		},
+		{
+			"id": "5221",
+			"name": "Freyberg, Michael von (ID: 5221)",
+			"val": 9,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "228",
+			"name": "Niedertor, Arnold von (ID: 228)",
+			"val": 35,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "946",
+			"name": "Niedertor, Wolfgang von (ID: 946)",
+			"val": 10,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2391",
+			"name": "Anich, Hans (ID: 2391)",
+			"val": 19,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{ "id": "2745", "name": "Burg Greifenstein", "val": 10, "color": "#a855f7", "class": "place" },
+		{
+			"id": "2955",
+			"name": "Montani, Kaspar von (ID: 2955)",
+			"val": 13,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2971",
+			"name": "Baumgartner, Konrad (ID: 2971)",
+			"val": 14,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "3372",
+			"name": "Kamponer, Heinrich (ID: 3372)",
+			"val": 12,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{ "id": "3423", "name": "Burg Salurn", "val": 10, "color": "#a855f7", "class": "place" },
+		{
+			"id": "747",
+			"name": "Schloss Königsberg/Monreale",
+			"val": 12,
+			"color": "#a855f7",
+			"class": "place"
+		},
+		{
+			"id": "949",
+			"name": "Weineck, Hildebrand von (ID: 949)",
+			"val": 17,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{ "id": "2048", "name": "Burg Canau/Cagno", "val": 10, "color": "#a855f7", "class": "place" },
+		{
+			"id": "3260",
+			"name": "Thun, verh. von Hack/Schintl/von Weineck, Dorothea von (ID: 3260)",
+			"val": 18,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "3261",
+			"name": "Weineck, Adam von (ID: 3261)",
+			"val": 17,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "3262",
+			"name": "Weineck, Hans von (ID: 3262)",
+			"val": 14,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "3263",
+			"name": "Weineck, Blasius von (ID: 3263)",
+			"val": 13,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "3264",
+			"name": "Weineck, Augustin von (ID: 3264)",
+			"val": 13,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "3265",
+			"name": "Weineck, Veronika von (ID: 3265)",
+			"val": 12,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "3266",
+			"name": "Weineck, Hedwig von (ID: 3266)",
+			"val": 12,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "6864",
+			"name": "Weineck, Hildebrand von (ID: 6864)",
+			"val": 16,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "7187",
+			"name": "Weineck, Hildebrand von (ID: 7187)",
+			"val": 16,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "75",
+			"name": "Freyberg von Achstetten, Eberhard von (ID: 75)",
+			"val": 9,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "101",
+			"name": "Botsch, Christoph (ID: 101)",
+			"val": 28,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "117",
+			"name": "Spaur, Pankraz von (ID: 117)",
+			"val": 18,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "125",
+			"name": "Hausen, Burkhard von (ID: 125)",
+			"val": 19,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "162",
+			"name": "Annenberg, Georg von (ID: 162)",
+			"val": 26,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "168",
+			"name": "Welsberg, Oswald von (ID: 168)",
+			"val": 10,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "229",
+			"name": "Schenk, Georg (ID: 229)",
+			"val": 10,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "230",
+			"name": "Schenk, Christoph (ID: 230)",
+			"val": 14,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "232",
+			"name": "Thun zu Königsberg, Simon von (ID: 232)",
+			"val": 19,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "247",
+			"name": "Thun, Viktor von (ID: 247)",
+			"val": 14,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "346",
+			"name": "Wolkenstein-Rodenegg (der Jüngere), Sigmund von (ID: 346)",
+			"val": 19,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1111",
+			"name": "Vögler zu Hauzenheim, Niklas (ID: 1111)",
+			"val": 11,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1122",
+			"name": "Fuchs von Fuchsberg, Hildebrand (ID: 1122)",
+			"val": 21,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1324",
+			"name": "Trautson, Kaspar (ID: 1324)",
+			"val": 17,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1331",
+			"name": "Welsberg, Balthasar von (ID: 1331)",
+			"val": 20,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1394",
+			"name": "Thun, Jakob von (ID: 1394)",
+			"val": 10,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1672",
+			"name": "Turisan, Ulrich (ID: 1672)",
+			"val": 12,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1934",
+			"name": "Spaur, Ruhland von (ID: 1934)",
+			"val": 25,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2170",
+			"name": "Baldauf, Wilhelm (ID: 2170)",
+			"val": 31,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2181",
+			"name": "Voyt (von Gochsheim), Hans (ID: 2181)",
+			"val": 23,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2273",
+			"name": "Harber, Heinrich (ID: 2273)",
+			"val": 20,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2408",
+			"name": "Arz, Friedrich von (ID: 2408)",
+			"val": 10,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2454",
+			"name": "Khuen von Auer, Daniel (ID: 2454)",
+			"val": 10,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2466",
+			"name": "Brandis, Burkhard von (ID: 2466)",
+			"val": 14,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2914",
+			"name": "Lodron, Peter von (ID: 2914)",
+			"val": 13,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2915",
+			"name": "Fuchs von Fuchsberg, Thomas (ID: 2915)",
+			"val": 16,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2925",
+			"name": "Montani, Georg von (ID: 2925)",
+			"val": 15,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2930",
+			"name": "Schintl, Martin (ID: 2930)",
+			"val": 15,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2936",
+			"name": "Kreuzer, Georg (ID: 2936)",
+			"val": 13,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2945",
+			"name": "Windeck, Wolfgang von (ID: 2945)",
+			"val": 13,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2954",
+			"name": "Pücher, Niklas (ID: 2954)",
+			"val": 21,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2977",
+			"name": "Walch, Sigmund (ID: 2977)",
+			"val": 11,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "218",
+			"name": "Hölzl, Matthäus (ID: 218)",
+			"val": 18,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "552",
+			"name": "Hausen, Oswald von (ID: 552)",
+			"val": 13,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1121",
+			"name": "Fuchs von Fuchsberg, Degen (ID: 1121)",
+			"val": 28,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1318",
+			"name": "Rasp von Laufenbach, Hildebrand (ID: 1318)",
+			"val": 49,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "308",
+			"name": "Knöringen, Burkhard von (ID: 308)",
+			"val": 25,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "334",
+			"name": "Cles, Hildebrand von (ID: 334)",
+			"val": 12,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "632",
+			"name": "Spaur, Karl von (ID: 632)",
+			"val": 9,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "640",
+			"name": "Schurff, Paul (ID: 640)",
+			"val": 10,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "994",
+			"name": "Dieperskircher (der Jüngere), Georg (ID: 994)",
+			"val": 21,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1073",
+			"name": "Waldenburg, Friedrich von (ID: 1073)",
+			"val": 13,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1117",
+			"name": "Liechtenstein, Bartholomäus von (ID: 1117)",
+			"val": 22,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1123",
+			"name": "Fuchs von Fuchsberg, Georg (ID: 1123)",
+			"val": 12,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1423",
+			"name": "Stetten, Achaz von (ID: 1423)",
+			"val": 11,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "1948",
+			"name": "Calaus, Wenzel (ID: 1948)",
+			"val": 14,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "2202",
+			"name": "Überreiner, Josef (ID: 2202)",
+			"val": 14,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "3168",
+			"name": "Lodron, Paris von (ID: 3168)",
+			"val": 9,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "4150",
+			"name": "Hartlieb (von Stamheim), Gotthard (ID: 4150)",
+			"val": 13,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "4192",
+			"name": "Erlacher, Wolfgang (ID: 4192)",
+			"val": 9,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "3425",
+			"name": "Hack (der Ältere), Happe (ID: 3425)",
+			"val": 10,
+			"color": "#10b981",
+			"class": "person"
+		},
+		{
+			"id": "325",
+			"name": "Münze (Münzregal) (ID: 325)",
+			"val": 10,
+			"color": "#6366f1",
+			"class": "institution"
+		},
+		{
+			"id": "6925",
+			"name": "Tirol (ID: 6925)",
+			"val": 27,
+			"color": "#6366f1",
+			"class": "institution"
+		},
+		{
+			"id": "327",
+			"name": "Bergbau (Bergregal) (ID: 327)",
+			"val": 31,
+			"color": "#6366f1",
+			"class": "institution"
+		},
+		{
+			"id": "328",
+			"name": "Militär (ID: 328)",
+			"val": 21,
+			"color": "#6366f1",
+			"class": "institution"
+		},
+		{
+			"id": "707",
+			"name": "Pfleger, Amtleute, Richter und Hauptleute in Tirol (ID: 707)",
+			"val": 188,
+			"color": "#6366f1",
+			"class": "institution"
+		},
+		{
+			"id": "728",
+			"name": "Forst, Jagd und Fischerei (Regal) (ID: 728)",
+			"val": 16,
+			"color": "#6366f1",
+			"class": "institution"
+		},
+		{
+			"id": "808",
+			"name": "Bergbau zu Schwaz (ID: 808)",
+			"val": 16,
+			"color": "#6366f1",
+			"class": "institution"
+		},
+		{
+			"id": "3217",
+			"name": "Landesfürstliche Gerichte in Tirol (ID: 3217)",
+			"val": 64,
+			"color": "#6366f1",
+			"class": "institution"
+		},
+		{
+			"id": "5138",
+			"name": "Bergbau zu Sterzing (ID: 5138)",
+			"val": 10,
+			"color": "#6366f1",
+			"class": "institution"
+		},
+		{ "id": "7016", "name": "Grafschaft Tirol", "val": 29, "color": "#a855f7", "class": "place" },
+		{
+			"id": "2640",
+			"name": "Handwerker am/für den Hof (ID: 2640)",
+			"val": 89,
+			"color": "#6366f1",
+			"class": "institution"
+		},
+		{
+			"id": "7057",
+			"name": "Gesandtschaften (ID: 7057)",
+			"val": 251,
+			"color": "#6366f1",
+			"class": "institution"
+		},
+		{
+			"id": "7058",
+			"name": "Kapläne und Geistliche (ID: 7058)",
+			"val": 12,
+			"color": "#6366f1",
+			"class": "institution"
+		},
+		{
+			"id": "7078",
+			"name": "Ärzte/Apotheker (ID: 7078)",
+			"val": 13,
+			"color": "#6366f1",
+			"class": "institution"
+		},
+		{
+			"id": "7154",
+			"name": "Boten (ID: 7154)",
+			"val": 23,
+			"color": "#6366f1",
+			"class": "institution"
+		}
+	],
+	"links": [
+		{ "source": "19", "target": "18" },
+		{ "source": "28", "target": "18" },
+		{ "source": "35", "target": "18" },
+		{ "source": "44", "target": "18" },
+		{ "source": "51", "target": "18" },
+		{ "source": "65", "target": "18" },
+		{ "source": "67", "target": "18" },
+		{ "source": "68", "target": "18" },
+		{ "source": "72", "target": "18" },
+		{ "source": "73", "target": "18" },
+		{ "source": "86", "target": "18" },
+		{ "source": "90", "target": "18" },
+		{ "source": "92", "target": "18" },
+		{ "source": "95", "target": "18" },
+		{ "source": "96", "target": "18" },
+		{ "source": "98", "target": "18" },
+		{ "source": "113", "target": "18" },
+		{ "source": "129", "target": "18" },
+		{ "source": "153", "target": "18" },
+		{ "source": "172", "target": "18" },
+		{ "source": "187", "target": "18" },
+		{ "source": "188", "target": "18" },
+		{ "source": "189", "target": "18" },
+		{ "source": "191", "target": "18" },
+		{ "source": "192", "target": "18" },
+		{ "source": "214", "target": "18" },
+		{ "source": "217", "target": "18" },
+		{ "source": "241", "target": "18" },
+		{ "source": "251", "target": "18" },
+		{ "source": "253", "target": "18" },
+		{ "source": "255", "target": "18" },
+		{ "source": "258", "target": "18" },
+		{ "source": "277", "target": "18" },
+		{ "source": "281", "target": "18" },
+		{ "source": "294", "target": "18" },
+		{ "source": "296", "target": "18" },
+		{ "source": "298", "target": "18" },
+		{ "source": "303", "target": "18" },
+		{ "source": "312", "target": "18" },
+		{ "source": "314", "target": "18" },
+		{ "source": "316", "target": "18" },
+		{ "source": "348", "target": "18" },
+		{ "source": "354", "target": "18" },
+		{ "source": "457", "target": "18" },
+		{ "source": "501", "target": "18" },
+		{ "source": "511", "target": "18" },
+		{ "source": "517", "target": "18" },
+		{ "source": "531", "target": "18" },
+		{ "source": "540", "target": "18" },
+		{ "source": "780", "target": "18" },
+		{ "source": "832", "target": "18" },
+		{ "source": "842", "target": "18" },
+		{ "source": "857", "target": "18" },
+		{ "source": "878", "target": "18" },
+		{ "source": "886", "target": "18" },
+		{ "source": "954", "target": "18" },
+		{ "source": "960", "target": "18" },
+		{ "source": "990", "target": "18" },
+		{ "source": "1042", "target": "18" },
+		{ "source": "1049", "target": "18" },
+		{ "source": "1105", "target": "18" },
+		{ "source": "1206", "target": "18" },
+		{ "source": "1242", "target": "18" },
+		{ "source": "1252", "target": "18" },
+		{ "source": "1256", "target": "18" },
+		{ "source": "1268", "target": "18" },
+		{ "source": "1270", "target": "18" },
+		{ "source": "1314", "target": "18" },
+		{ "source": "1365", "target": "18" },
+		{ "source": "1416", "target": "18" },
+		{ "source": "1424", "target": "18" },
+		{ "source": "1443", "target": "18" },
+		{ "source": "1454", "target": "18" },
+		{ "source": "1501", "target": "18" },
+		{ "source": "1621", "target": "18" },
+		{ "source": "1623", "target": "18" },
+		{ "source": "1669", "target": "18" },
+		{ "source": "1678", "target": "18" },
+		{ "source": "1866", "target": "18" },
+		{ "source": "1874", "target": "18" },
+		{ "source": "2009", "target": "18" },
+		{ "source": "2026", "target": "18" },
+		{ "source": "2079", "target": "18" },
+		{ "source": "2105", "target": "18" },
+		{ "source": "2115", "target": "18" },
+		{ "source": "2154", "target": "18" },
+		{ "source": "2162", "target": "18" },
+		{ "source": "2164", "target": "18" },
+		{ "source": "2176", "target": "18" },
+		{ "source": "2195", "target": "18" },
+		{ "source": "2206", "target": "18" },
+		{ "source": "2294", "target": "18" },
+		{ "source": "2504", "target": "18" },
+		{ "source": "2539", "target": "18" },
+		{ "source": "2567", "target": "18" },
+		{ "source": "2734", "target": "18" },
+		{ "source": "2923", "target": "18" },
+		{ "source": "3063", "target": "18" },
+		{ "source": "3074", "target": "18" },
+		{ "source": "3203", "target": "18" },
+		{ "source": "3436", "target": "18" },
+		{ "source": "3623", "target": "18" },
+		{ "source": "3681", "target": "18" },
+		{ "source": "3719", "target": "18" },
+		{ "source": "3783", "target": "18" },
+		{ "source": "3843", "target": "18" },
+		{ "source": "4086", "target": "18" },
+		{ "source": "4195", "target": "18" },
+		{ "source": "4250", "target": "18" },
+		{ "source": "4319", "target": "18" },
+		{ "source": "4400", "target": "18" },
+		{ "source": "4424", "target": "18" },
+		{ "source": "4461", "target": "18" },
+		{ "source": "4696", "target": "18" },
+		{ "source": "4932", "target": "18" },
+		{ "source": "5422", "target": "18" },
+		{ "source": "7344", "target": "18" },
+		{ "source": "8235", "target": "18" },
+		{ "source": "16", "target": "28" },
+		{ "source": "18", "target": "28" },
+		{ "source": "21", "target": "28" },
+		{ "source": "29", "target": "28" },
+		{ "source": "44", "target": "28" },
+		{ "source": "51", "target": "28" },
+		{ "source": "86", "target": "28" },
+		{ "source": "89", "target": "28" },
+		{ "source": "92", "target": "28" },
+		{ "source": "96", "target": "28" },
+		{ "source": "98", "target": "28" },
+		{ "source": "129", "target": "28" },
+		{ "source": "176", "target": "28" },
+		{ "source": "187", "target": "28" },
+		{ "source": "192", "target": "28" },
+		{ "source": "261", "target": "28" },
+		{ "source": "269", "target": "28" },
+		{ "source": "270", "target": "28" },
+		{ "source": "298", "target": "28" },
+		{ "source": "301", "target": "28" },
+		{ "source": "304", "target": "28" },
+		{ "source": "309", "target": "28" },
+		{ "source": "312", "target": "28" },
+		{ "source": "316", "target": "28" },
+		{ "source": "321", "target": "28" },
+		{ "source": "323", "target": "28" },
+		{ "source": "702", "target": "28" },
+		{ "source": "954", "target": "28" },
+		{ "source": "995", "target": "28" },
+		{ "source": "1146", "target": "28" },
+		{ "source": "1206", "target": "28" },
+		{ "source": "1252", "target": "28" },
+		{ "source": "1256", "target": "28" },
+		{ "source": "1268", "target": "28" },
+		{ "source": "1270", "target": "28" },
+		{ "source": "1276", "target": "28" },
+		{ "source": "1455", "target": "28" },
+		{ "source": "1480", "target": "28" },
+		{ "source": "1590", "target": "28" },
+		{ "source": "1608", "target": "28" },
+		{ "source": "1618", "target": "28" },
+		{ "source": "1636", "target": "28" },
+		{ "source": "1787", "target": "28" },
+		{ "source": "1795", "target": "28" },
+		{ "source": "1923", "target": "28" },
+		{ "source": "1964", "target": "28" },
+		{ "source": "2139", "target": "28" },
+		{ "source": "2166", "target": "28" },
+		{ "source": "2195", "target": "28" },
+		{ "source": "2198", "target": "28" },
+		{ "source": "2251", "target": "28" },
+		{ "source": "2295", "target": "28" },
+		{ "source": "2305", "target": "28" },
+		{ "source": "2430", "target": "28" },
+		{ "source": "2567", "target": "28" },
+		{ "source": "2612", "target": "28" },
+		{ "source": "2626", "target": "28" },
+		{ "source": "2628", "target": "28" },
+		{ "source": "2633", "target": "28" },
+		{ "source": "2902", "target": "28" },
+		{ "source": "2933", "target": "28" },
+		{ "source": "3074", "target": "28" },
+		{ "source": "3113", "target": "28" },
+		{ "source": "3188", "target": "28" },
+		{ "source": "3313", "target": "28" },
+		{ "source": "3387", "target": "28" },
+		{ "source": "3436", "target": "28" },
+		{ "source": "3769", "target": "28" },
+		{ "source": "4252", "target": "28" },
+		{ "source": "5166", "target": "28" },
+		{ "source": "6391", "target": "28" },
+		{ "source": "6927", "target": "28" },
+		{ "source": "92", "target": "171" },
+		{ "source": "300", "target": "171" },
+		{ "source": "326", "target": "171" },
+		{ "source": "2389", "target": "171" },
+		{ "source": "2633", "target": "171" },
+		{ "source": "2650", "target": "171" },
+		{ "source": "2901", "target": "171" },
+		{ "source": "2909", "target": "171" },
+		{ "source": "4250", "target": "171" },
+		{ "source": "4252", "target": "171" },
+		{ "source": "5378", "target": "171" },
+		{ "source": "18", "target": "187" },
+		{ "source": "19", "target": "187" },
+		{ "source": "28", "target": "187" },
+		{ "source": "172", "target": "187" },
+		{ "source": "188", "target": "187" },
+		{ "source": "1049", "target": "187" },
+		{ "source": "3167", "target": "187" },
+		{ "source": "4195", "target": "187" },
+		{ "source": "5221", "target": "187" },
+		{ "source": "304", "target": "228" },
+		{ "source": "878", "target": "228" },
+		{ "source": "946", "target": "228" },
+		{ "source": "1049", "target": "228" },
+		{ "source": "2391", "target": "228" },
+		{ "source": "2626", "target": "228" },
+		{ "source": "2745", "target": "228" },
+		{ "source": "2955", "target": "228" },
+		{ "source": "3167", "target": "228" },
+		{ "source": "28", "target": "304" },
+		{ "source": "228", "target": "304" },
+		{ "source": "348", "target": "304" },
+		{ "source": "2391", "target": "304" },
+		{ "source": "2626", "target": "304" },
+		{ "source": "2971", "target": "304" },
+		{ "source": "3167", "target": "304" },
+		{ "source": "3372", "target": "304" },
+		{ "source": "3423", "target": "304" },
+		{ "source": "18", "target": "954" },
+		{ "source": "28", "target": "954" },
+		{ "source": "747", "target": "954" },
+		{ "source": "949", "target": "954" },
+		{ "source": "1270", "target": "954" },
+		{ "source": "1608", "target": "954" },
+		{ "source": "2048", "target": "954" },
+		{ "source": "2626", "target": "954" },
+		{ "source": "3260", "target": "954" },
+		{ "source": "3261", "target": "954" },
+		{ "source": "3262", "target": "954" },
+		{ "source": "3263", "target": "954" },
+		{ "source": "3264", "target": "954" },
+		{ "source": "3265", "target": "954" },
+		{ "source": "3266", "target": "954" },
+		{ "source": "6864", "target": "954" },
+		{ "source": "7187", "target": "954" },
+		{ "source": "21", "target": "2626" },
+		{ "source": "28", "target": "2626" },
+		{ "source": "75", "target": "2626" },
+		{ "source": "86", "target": "2626" },
+		{ "source": "92", "target": "2626" },
+		{ "source": "96", "target": "2626" },
+		{ "source": "101", "target": "2626" },
+		{ "source": "117", "target": "2626" },
+		{ "source": "125", "target": "2626" },
+		{ "source": "129", "target": "2626" },
+		{ "source": "153", "target": "2626" },
+		{ "source": "162", "target": "2626" },
+		{ "source": "168", "target": "2626" },
+		{ "source": "228", "target": "2626" },
+		{ "source": "229", "target": "2626" },
+		{ "source": "230", "target": "2626" },
+		{ "source": "232", "target": "2626" },
+		{ "source": "241", "target": "2626" },
+		{ "source": "247", "target": "2626" },
+		{ "source": "294", "target": "2626" },
+		{ "source": "304", "target": "2626" },
+		{ "source": "346", "target": "2626" },
+		{ "source": "946", "target": "2626" },
+		{ "source": "954", "target": "2626" },
+		{ "source": "960", "target": "2626" },
+		{ "source": "1111", "target": "2626" },
+		{ "source": "1122", "target": "2626" },
+		{ "source": "1256", "target": "2626" },
+		{ "source": "1270", "target": "2626" },
+		{ "source": "1324", "target": "2626" },
+		{ "source": "1331", "target": "2626" },
+		{ "source": "1394", "target": "2626" },
+		{ "source": "1672", "target": "2626" },
+		{ "source": "1934", "target": "2626" },
+		{ "source": "2162", "target": "2626" },
+		{ "source": "2170", "target": "2626" },
+		{ "source": "2176", "target": "2626" },
+		{ "source": "2181", "target": "2626" },
+		{ "source": "2195", "target": "2626" },
+		{ "source": "2198", "target": "2626" },
+		{ "source": "2273", "target": "2626" },
+		{ "source": "2294", "target": "2626" },
+		{ "source": "2305", "target": "2626" },
+		{ "source": "2391", "target": "2626" },
+		{ "source": "2408", "target": "2626" },
+		{ "source": "2454", "target": "2626" },
+		{ "source": "2466", "target": "2626" },
+		{ "source": "2914", "target": "2626" },
+		{ "source": "2915", "target": "2626" },
+		{ "source": "2923", "target": "2626" },
+		{ "source": "2925", "target": "2626" },
+		{ "source": "2930", "target": "2626" },
+		{ "source": "2933", "target": "2626" },
+		{ "source": "2936", "target": "2626" },
+		{ "source": "2945", "target": "2626" },
+		{ "source": "2954", "target": "2626" },
+		{ "source": "2955", "target": "2626" },
+		{ "source": "2971", "target": "2626" },
+		{ "source": "2977", "target": "2626" },
+		{ "source": "3783", "target": "2626" },
+		{ "source": "51", "target": "2909" },
+		{ "source": "101", "target": "2909" },
+		{ "source": "171", "target": "2909" },
+		{ "source": "218", "target": "2909" },
+		{ "source": "258", "target": "2909" },
+		{ "source": "294", "target": "2909" },
+		{ "source": "552", "target": "2909" },
+		{ "source": "1121", "target": "2909" },
+		{ "source": "1318", "target": "2909" },
+		{ "source": "2195", "target": "2909" },
+		{ "source": "2294", "target": "2909" },
+		{ "source": "2048", "target": "2930" },
+		{ "source": "2626", "target": "2930" },
+		{ "source": "3260", "target": "2930" },
+		{ "source": "3261", "target": "2930" },
+		{ "source": "3262", "target": "2930" },
+		{ "source": "3263", "target": "2930" },
+		{ "source": "3264", "target": "2930" },
+		{ "source": "3265", "target": "2930" },
+		{ "source": "3266", "target": "2930" },
+		{ "source": "21", "target": "3167" },
+		{ "source": "51", "target": "3167" },
+		{ "source": "75", "target": "3167" },
+		{ "source": "86", "target": "3167" },
+		{ "source": "89", "target": "3167" },
+		{ "source": "101", "target": "3167" },
+		{ "source": "117", "target": "3167" },
+		{ "source": "129", "target": "3167" },
+		{ "source": "162", "target": "3167" },
+		{ "source": "168", "target": "3167" },
+		{ "source": "176", "target": "3167" },
+		{ "source": "187", "target": "3167" },
+		{ "source": "228", "target": "3167" },
+		{ "source": "230", "target": "3167" },
+		{ "source": "232", "target": "3167" },
+		{ "source": "241", "target": "3167" },
+		{ "source": "247", "target": "3167" },
+		{ "source": "253", "target": "3167" },
+		{ "source": "258", "target": "3167" },
+		{ "source": "261", "target": "3167" },
+		{ "source": "270", "target": "3167" },
+		{ "source": "294", "target": "3167" },
+		{ "source": "298", "target": "3167" },
+		{ "source": "304", "target": "3167" },
+		{ "source": "308", "target": "3167" },
+		{ "source": "334", "target": "3167" },
+		{ "source": "346", "target": "3167" },
+		{ "source": "552", "target": "3167" },
+		{ "source": "632", "target": "3167" },
+		{ "source": "640", "target": "3167" },
+		{ "source": "886", "target": "3167" },
+		{ "source": "946", "target": "3167" },
+		{ "source": "960", "target": "3167" },
+		{ "source": "994", "target": "3167" },
+		{ "source": "1073", "target": "3167" },
+		{ "source": "1117", "target": "3167" },
+		{ "source": "1121", "target": "3167" },
+		{ "source": "1123", "target": "3167" },
+		{ "source": "1256", "target": "3167" },
+		{ "source": "1324", "target": "3167" },
+		{ "source": "1331", "target": "3167" },
+		{ "source": "1394", "target": "3167" },
+		{ "source": "1423", "target": "3167" },
+		{ "source": "1934", "target": "3167" },
+		{ "source": "1948", "target": "3167" },
+		{ "source": "2162", "target": "3167" },
+		{ "source": "2176", "target": "3167" },
+		{ "source": "2198", "target": "3167" },
+		{ "source": "2202", "target": "3167" },
+		{ "source": "2273", "target": "3167" },
+		{ "source": "2294", "target": "3167" },
+		{ "source": "2391", "target": "3167" },
+		{ "source": "2408", "target": "3167" },
+		{ "source": "2454", "target": "3167" },
+		{ "source": "2628", "target": "3167" },
+		{ "source": "2914", "target": "3167" },
+		{ "source": "2915", "target": "3167" },
+		{ "source": "2923", "target": "3167" },
+		{ "source": "2925", "target": "3167" },
+		{ "source": "2933", "target": "3167" },
+		{ "source": "2936", "target": "3167" },
+		{ "source": "2945", "target": "3167" },
+		{ "source": "2955", "target": "3167" },
+		{ "source": "2977", "target": "3167" },
+		{ "source": "3168", "target": "3167" },
+		{ "source": "3188", "target": "3167" },
+		{ "source": "3783", "target": "3167" },
+		{ "source": "4150", "target": "3167" },
+		{ "source": "4192", "target": "3167" },
+		{ "source": "232", "target": "3260" },
+		{ "source": "747", "target": "3260" },
+		{ "source": "949", "target": "3260" },
+		{ "source": "954", "target": "3260" },
+		{ "source": "2048", "target": "3260" },
+		{ "source": "2930", "target": "3260" },
+		{ "source": "3261", "target": "3260" },
+		{ "source": "3262", "target": "3260" },
+		{ "source": "3263", "target": "3260" },
+		{ "source": "3264", "target": "3260" },
+		{ "source": "3265", "target": "3260" },
+		{ "source": "3266", "target": "3260" },
+		{ "source": "3425", "target": "3260" },
+		{ "source": "6864", "target": "3260" },
+		{ "source": "7187", "target": "3260" },
+		{ "source": "949", "target": "3261" },
+		{ "source": "954", "target": "3261" },
+		{ "source": "2930", "target": "3261" },
+		{ "source": "3260", "target": "3261" },
+		{ "source": "3262", "target": "3261" },
+		{ "source": "3263", "target": "3261" },
+		{ "source": "3264", "target": "3261" },
+		{ "source": "3265", "target": "3261" },
+		{ "source": "3266", "target": "3261" },
+		{ "source": "6864", "target": "3261" },
+		{ "source": "7187", "target": "3261" },
+		{ "source": "949", "target": "3262" },
+		{ "source": "954", "target": "3262" },
+		{ "source": "2930", "target": "3262" },
+		{ "source": "3260", "target": "3262" },
+		{ "source": "3261", "target": "3262" },
+		{ "source": "3263", "target": "3262" },
+		{ "source": "3264", "target": "3262" },
+		{ "source": "3265", "target": "3262" },
+		{ "source": "3266", "target": "3262" },
+		{ "source": "6864", "target": "3262" },
+		{ "source": "7187", "target": "3262" },
+		{ "source": "949", "target": "3263" },
+		{ "source": "954", "target": "3263" },
+		{ "source": "2930", "target": "3263" },
+		{ "source": "3260", "target": "3263" },
+		{ "source": "3261", "target": "3263" },
+		{ "source": "3262", "target": "3263" },
+		{ "source": "3264", "target": "3263" },
+		{ "source": "3265", "target": "3263" },
+		{ "source": "3266", "target": "3263" },
+		{ "source": "6864", "target": "3263" },
+		{ "source": "7187", "target": "3263" },
+		{ "source": "949", "target": "3264" },
+		{ "source": "954", "target": "3264" },
+		{ "source": "2930", "target": "3264" },
+		{ "source": "3260", "target": "3264" },
+		{ "source": "3261", "target": "3264" },
+		{ "source": "3262", "target": "3264" },
+		{ "source": "3263", "target": "3264" },
+		{ "source": "3265", "target": "3264" },
+		{ "source": "3266", "target": "3264" },
+		{ "source": "6864", "target": "3264" },
+		{ "source": "7187", "target": "3264" },
+		{ "source": "949", "target": "3265" },
+		{ "source": "954", "target": "3265" },
+		{ "source": "2930", "target": "3265" },
+		{ "source": "3260", "target": "3265" },
+		{ "source": "3261", "target": "3265" },
+		{ "source": "3262", "target": "3265" },
+		{ "source": "3263", "target": "3265" },
+		{ "source": "3264", "target": "3265" },
+		{ "source": "3266", "target": "3265" },
+		{ "source": "6864", "target": "3265" },
+		{ "source": "7187", "target": "3265" },
+		{ "source": "949", "target": "3266" },
+		{ "source": "954", "target": "3266" },
+		{ "source": "2930", "target": "3266" },
+		{ "source": "3260", "target": "3266" },
+		{ "source": "3261", "target": "3266" },
+		{ "source": "3262", "target": "3266" },
+		{ "source": "3263", "target": "3266" },
+		{ "source": "3264", "target": "3266" },
+		{ "source": "3265", "target": "3266" },
+		{ "source": "6864", "target": "3266" },
+		{ "source": "7187", "target": "3266" },
+		{ "source": "325", "target": "6925" },
+		{ "source": "326", "target": "6925" },
+		{ "source": "327", "target": "6925" },
+		{ "source": "328", "target": "6925" },
+		{ "source": "707", "target": "6925" },
+		{ "source": "728", "target": "6925" },
+		{ "source": "808", "target": "6925" },
+		{ "source": "3217", "target": "6925" },
+		{ "source": "5138", "target": "6925" },
+		{ "source": "7016", "target": "6925" },
+		{ "source": "28", "target": "6927" },
+		{ "source": "321", "target": "6927" },
+		{ "source": "323", "target": "6927" },
+		{ "source": "702", "target": "6927" },
+		{ "source": "2640", "target": "6927" },
+		{ "source": "3113", "target": "6927" },
+		{ "source": "7057", "target": "6927" },
+		{ "source": "7058", "target": "6927" },
+		{ "source": "7078", "target": "6927" },
+		{ "source": "7154", "target": "6927" }
+	]
+}
