@@ -59,19 +59,20 @@ function getGraph(data: Array<NetworkEntry>, minDegree = 0) {
 				// edgeDict[entity.id]?.push(`${entity.id}-${target}`);
 			});
 	});
+	const filteredEdgeDict = Object.fromEntries(
+		Object.entries(edgeDict).filter(([_key, val]) => val.length >= minDegree),
+	);
 	const flattenedEdges = [
-		...new Set(
-			Object.entries(edgeDict)
-				.filter(([_key, val]) => val.length >= minDegree)
-				.flatMap(([_key, val]) => val),
-		),
+		...new Set(Object.entries(filteredEdgeDict).flatMap(([_key, val]) => val)),
 	];
 
 	flattenedEdges.forEach((edge) => {
-		if (Number(edge.split("-")[0]) < Number(edge.split("-")[1]))
-			graph.links.push({ source: edge.split("-")[0], target: edge.split("-")[1] });
+		const node1 = edge.split("-")[0] ?? "";
+		const node2 = edge.split("-")[1] ?? "";
+		if (Number(node1) < Number(node2) && node1 in filteredEdgeDict && node2 in filteredEdgeDict)
+			graph.links.push({ source: node1, target: node2 });
 	});
-	graph.nodes = graph.nodes.filter((node) => (edgeDict[node.id]?.length ?? 0) >= minDegree);
+	graph.nodes = graph.nodes.filter((node) => node.id in filteredEdgeDict);
 	return graph;
 }
 const minDegree = ref(1);
