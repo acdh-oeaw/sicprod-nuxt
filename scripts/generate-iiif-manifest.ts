@@ -13,9 +13,10 @@ async function main() {
 		fs.mkdirSync(outputPath);
 	}
 	const builder = new IIIFBuilder();
-	const books = (await request(iiifBaseURL.replace("/iiif/", "/"), {
+	let books = (await request(iiifBaseURL.replace("/iiif/", "/"), {
 		responseType: "json",
 	})) as Array<string>;
+	books = books.filter((book) => book !== "list");
 	const imagesPerBook: Array<Array<string>> = (await Promise.all(
 		books.map((book) =>
 			request(
