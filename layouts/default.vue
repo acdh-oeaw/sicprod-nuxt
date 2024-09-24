@@ -37,7 +37,7 @@ useHead({
 		];
 	}),
 	meta: computed(() => {
-		return [
+		const meta = [
 			{ name: "description", content: t("DefaultLayout.meta.description") },
 			{ property: "og:type", content: "website" },
 			{ property: "og:title", content: t(route.meta.title) },
@@ -57,6 +57,15 @@ useHead({
 			{ name: "twitter:site", content: "@acdh_oeaw" },
 			...(i18nHead.value.meta ?? []),
 		];
+
+		if (isNonEmptyString(env.public.NUXT_PUBLIC_GOOGLE_SITE_VERIFICATION)) {
+			meta.push({
+				name: "google-site-verification",
+				content: env.public.NUXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+			});
+		}
+
+		return meta;
 	}),
 	script: computed(() => {
 		const jsonLd: WithContext<WebSite> = {
