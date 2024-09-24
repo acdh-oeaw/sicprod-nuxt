@@ -20,7 +20,7 @@ test("should set a canonical url", async ({ page }) => {
 
 test("should set document title on not-found page", async ({ page }) => {
 	await page.goto("/unknown");
-	await expect(page).toHaveTitle("Page not found | SiCProD");
+	await expect(page).toHaveTitle("Seite nicht gefunden | SiCProD");
 
 	await page.goto("/de/unknown");
 	await expect(page).toHaveTitle("Seite nicht gefunden | SiCProD");

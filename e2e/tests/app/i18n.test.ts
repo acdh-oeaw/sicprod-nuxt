@@ -34,14 +34,14 @@ test.describe("i18n", () => {
 
 		test("with unsupported locale", async ({ page }) => {
 			await page.goto("/");
-			await expect(page).toHaveURL("/en");
+			await expect(page).toHaveURL("/de");
 		});
 	});
 
 	test("should display not-found page for unknown locale", async ({ page }) => {
 		const response = await page.goto("/unknown");
 		expect(response?.status()).toBe(404);
-		await expect(page.getByRole("heading", { name: "Page not found" })).toBeVisible();
+		await expect(page.getByRole("heading", { name: "Seite nicht gefunden" })).toBeVisible();
 	});
 
 	test("should display localised not-found page for unknown pathname", async ({ page }) => {
