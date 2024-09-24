@@ -30,7 +30,6 @@ const links = computed(() => {
 
 			<div class="flex items-center gap-4">
 				<ColorSchemeSwitcher />
-				<LocaleSwitcher />
 			</div>
 		</div>
 	</header>
