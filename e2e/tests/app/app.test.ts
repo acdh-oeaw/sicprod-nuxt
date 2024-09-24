@@ -107,7 +107,7 @@ test.describe("app", () => {
 		test.use({ colorScheme: "no-preference" });
 
 		test("with no preference", async ({ page }) => {
-			await page.goto("/en");
+			await page.goto("/de");
 			await expect(page.locator("html")).toHaveAttribute("data-ui-color-scheme", "light");
 		});
 	});
@@ -116,7 +116,7 @@ test.describe("app", () => {
 		test.use({ colorScheme: "light" });
 
 		test("in light mode", async ({ page }) => {
-			await page.goto("/en");
+			await page.goto("/de");
 			await expect(page.locator("html")).toHaveAttribute("data-ui-color-scheme", "light");
 		});
 	});
@@ -125,21 +125,21 @@ test.describe("app", () => {
 		test.use({ colorScheme: "dark" });
 
 		test("in dark mode", async ({ page }) => {
-			await page.goto("/en");
+			await page.goto("/de");
 			await expect(page.locator("html")).toHaveAttribute("data-ui-color-scheme", "dark");
 		});
 	});
 
-	// test("should skip to main content with skip-link", async ({ createIndexPage }) => {
-	// 	const locale = "en";
+	test.skip("should skip to main content with skip-link", async ({ createIndexPage }) => {
+		const locale = "en";
 
-	// 	const { indexPage } = await createIndexPage(locale);
-	// 	await indexPage.goto();
+		const { indexPage } = await createIndexPage(locale);
+		await indexPage.goto();
 
-	// 	await indexPage.page.keyboard.press("Tab");
-	// 	await expect(indexPage.skipLink).toBeFocused();
+		await indexPage.page.keyboard.press("Tab");
+		await expect(indexPage.skipLink).toBeFocused();
 
-	// 	await indexPage.skipLink.click();
-	// 	await expect(indexPage.mainContent).toBeFocused();
-	// });
+		await indexPage.skipLink.click();
+		await expect(indexPage.mainContent).toBeFocused();
+	});
 });

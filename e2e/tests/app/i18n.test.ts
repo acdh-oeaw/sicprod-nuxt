@@ -50,7 +50,8 @@ test.describe("i18n", () => {
 		await expect(page.getByRole("heading", { name: "Seite nicht gefunden" })).toBeVisible();
 	});
 
-	test("should support switching locale", async ({ page }) => {
+	// use only one locale at the moment
+	test.skip("should support switching locale", async ({ page }) => {
 		await page.goto("/de/imprint");
 		await expect(page).toHaveURL("/de/imprint");
 		await expect(page.getByRole("heading", { name: "Impressum" })).toBeVisible();
@@ -70,7 +71,7 @@ test.describe("i18n", () => {
 		}
 	});
 
-	test("should set alternate links in link tags", async ({ page }) => {
+	test.skip("should set alternate links in link tags", async ({ page }) => {
 		function createAbsoluteUrl(pathname: string) {
 			return String(createUrl({ baseUrl, pathname }));
 		}

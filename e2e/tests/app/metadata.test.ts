@@ -36,7 +36,7 @@ test("should disallow indexing of not-found page", async ({ page }) => {
 });
 
 test.describe("should set page metadata", () => {
-	test("static", async ({ page }) => {
+	test.skip("static", async ({ page }) => {
 		await page.goto("/en");
 
 		const ogType = page.locator('meta[property="og:type"]');
@@ -55,7 +55,7 @@ test.describe("should set page metadata", () => {
 		// await expect(googleSiteVerification).toHaveAttribute("content", "");
 	});
 
-	test("with en locale", async ({ page }) => {
+	test.skip("with en locale", async ({ page }) => {
 		await page.goto("/en");
 
 		await expect(page).toHaveTitle("Home | SiCProD");
@@ -99,7 +99,7 @@ test.describe("should set page metadata", () => {
 });
 
 test.describe("should add json+ld metadata", () => {
-	test("with en locale", async ({ page }) => {
+	test.skip("with en locale", async ({ page }) => {
 		await page.goto("/en");
 
 		const metadata = await page.locator('script[type="application/ld+json"]').textContent();
