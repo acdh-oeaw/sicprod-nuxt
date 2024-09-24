@@ -17,11 +17,11 @@ const t = useTranslations();
 	<MainContent class="container grid content-start gap-y-8 py-8">
 		<PageTitle>{{ t("IndexPage.title") }}</PageTitle>
 		<div>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam voluptatum nemo asperiores
-			veniam assumenda, sapiente, fugiat iure animi aut molestiae magnam porro odio, distinctio
-			repellendus sunt sit. Consequuntur, inventore quam? Lorem ipsum dolor, sit amet consectetur
-			adipisicing elit. Earum at facilis esse rerum ipsum iste adipisci similique eius ducimus
-			nobis, et vel quibusdam explicabo deserunt quae aliquam dolore repellendus blanditiis!
+			<p class="mb-2">{{ t("IndexPage.intro1") }}</p>
+			<p class="mb-2">{{ t("IndexPage.intro2") }}</p>
+			<p class="mb-2">{{ t("IndexPage.intro3") }}</p>
+			<p class="mb-2">{{ t("IndexPage.intro4") }}</p>
+			<p>{{ t("IndexPage.intro5") }}</p>
 		</div>
 		<div class="flex w-full flex-wrap justify-around gap-5">
 			<NuxtLink :to="localePath('/detail/person/18')">
