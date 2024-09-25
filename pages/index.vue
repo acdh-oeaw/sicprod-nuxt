@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { useQuery } from "@tanstack/vue-query";
 import network from "assets/networkSnippet.json";
 
 const localePath = useLocalePath();
@@ -11,13 +12,24 @@ definePageMeta({
 });
 
 const t = useTranslations();
+
+const { $api } = useNuxtApp();
+const { data } = useQuery({
+	queryKey: ["countPersons"],
+	queryFn: () =>
+		$api["apis_api_apis_ontology.person_list"]({
+			queries: {
+				limit: 1,
+			},
+		}),
+});
 </script>
 
 <template>
 	<MainContent class="container grid content-start gap-y-8 py-8">
 		<PageTitle>{{ t("IndexPage.title") }}</PageTitle>
 		<div>
-			<p class="mb-2">{{ t("IndexPage.intro1") }}</p>
+			<p class="mb-2">{{ t("IndexPage.intro1", { count: data?.count ?? "ca. 6000" }) }}</p>
 			<p class="mb-2">{{ t("IndexPage.intro2") }}</p>
 			<p class="mb-2">{{ t("IndexPage.intro3") }}</p>
 			<p class="mb-2">{{ t("IndexPage.intro4") }}</p>
