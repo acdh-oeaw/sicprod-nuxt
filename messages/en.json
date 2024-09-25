@@ -74,7 +74,8 @@
 		"intro2": "Die Datenbank wurde im Rahmen eines von der Österreichischen Akademie der Wissenschaften über das Förderprogramm „go!digital 3.0“ von 2022 bis 2024 erarbeitet. Beteiligte Institutionen waren die Universität Innsbruck (Institut für Geschichtswissenschaften und Europäische Ethnologie), das Tiroler Landesarchiv sowie das Austrian Centre for Digital Humanities and Cultural Heritage. ",
 		"intro3": "Die Datenbank basiert auf sechs Typen von Entitäten: Personen, Funktionen, Institutionen, Orte, Ereignisse und Zahlungen. Diese sind durch diverse Relationen miteinander verknüpft. So wird etwa dargestellt, zu welchem Zeitpunkt eine Person eine Funktion innehatte, dass sie an einem Ort beheimatet oder mit wem sie verwandt war und vieles mehr.",
 		"intro4": "Die Daten stammen mehrheitlich aus archivalischen Quellen, zum weitaus größten Teil Beständen des Tiroler Landesarchivs. Die umfangreichsten der durchgesehenen Bestände sind die Älteren Kopialbücher sowie die Raitbücher der Oberösterreichischen Kammer. Diese wurden im Zuge des Projekts digitalisiert und in der Datenbank verlinkt.",
-		"intro5": "Weitere Informationen zum Datenmodell, den Richtlinien der Datenerhebung sowie Tipps zum Gebrauch der Datenbank finden Sie hier [Link]."
+		"intro5": "Weitere Informationen zum Datenmodell, den Richtlinien der Datenerhebung sowie Tipps zum Gebrauch der Datenbank finden Sie",
+		"here": "hier."
 	},
 	"LocaleSwitcher": {
 		"current-locale": "Current language: {locale}",

@@ -32,8 +32,13 @@ const { data } = useQuery({
 			<p class="mb-2">{{ t("IndexPage.intro1", { count: data?.count ?? "ca. 6000" }) }}</p>
 			<p class="mb-2">{{ t("IndexPage.intro2") }}</p>
 			<p class="mb-2">{{ t("IndexPage.intro3") }}</p>
-			<p class="mb-2">{{ t("IndexPage.intro4") }}</p>
-			<p>{{ t("IndexPage.intro5") }}</p>
+			<p class="mb-2">
+				{{ t("IndexPage.intro4") }}
+			</p>
+			<p>
+				{{ t("IndexPage.intro5") }}
+				<NuxtLink to="#">{{ t("IndexPage.here") }}</NuxtLink>
+			</p>
 		</div>
 		<div class="flex w-full flex-wrap justify-around gap-5">
 			<NuxtLink :to="localePath('/detail/person/18')">
