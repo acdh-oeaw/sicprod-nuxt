@@ -42,15 +42,19 @@ const { data } = useQuery({
 		</div>
 		<div class="flex w-full flex-wrap justify-around gap-5">
 			<NuxtLink :to="localePath('/detail/person/18')">
-				<div class="rounded min-w-20 max-w-xs overflow-hidden shadow-lg">
-					<img
-						class="max-h-80 w-full object-cover object-top"
-						src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Sigismund_von_Tirol.jpg"
-						alt="Portrait von Sigmund von Tirol"
-					/>
+				<div
+					class="group min-w-20 max-w-72 overflow-hidden rounded-md shadow-lg dark:bg-neutral-800"
+				>
+					<div class="max-h-72 w-full overflow-hidden">
+						<img
+							class="max-h-72 w-full object-cover object-top transition-transform group-hover:scale-110"
+							src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Sigismund_von_Tirol.jpg"
+							alt="Portrait von Sigmund von Tirol"
+						/>
+					</div>
 					<div class="px-6 py-4">
 						<div class="mb-2 text-xl font-bold">Sigmund von Tirol</div>
-						<p>
+						<p class="text-sm">
 							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla!
 							Maiores et perferendis eaque, exercitationem praesentium nihil.
 						</p>
@@ -58,15 +62,19 @@ const { data } = useQuery({
 				</div>
 			</NuxtLink>
 			<NuxtLink :to="localePath('/search/persons')">
-				<div class="rounded min-w-20 max-w-xs overflow-hidden shadow-lg">
-					<img
-						class="h-80 w-full object-cover object-top"
-						src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Zikmund_tyrolsko.jpg"
-						alt="Habsburgersaal - Siegmund (Österreich-Tirol)"
-					/>
+				<div
+					class="group min-w-20 max-w-72 overflow-hidden rounded-md shadow-lg dark:bg-neutral-800"
+				>
+					<div class="max-h-72 w-full overflow-hidden">
+						<img
+							class="h-72 w-full object-cover object-top transition-transform group-hover:scale-110"
+							src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Zikmund_tyrolsko.jpg"
+							alt="Habsburgersaal - Siegmund (Österreich-Tirol)"
+						/>
+					</div>
 					<div class="px-6 py-4">
 						<div class="mb-2 text-xl font-bold">Datenbank</div>
-						<p>
+						<p class="text-sm">
 							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla!
 							Maiores et perferendis eaque, exercitationem praesentium nihil.
 						</p>
@@ -74,13 +82,17 @@ const { data } = useQuery({
 				</div>
 			</NuxtLink>
 			<NuxtLink :to="localePath('/network')">
-				<div class="rounded min-w-20 max-w-xs overflow-hidden shadow-lg">
-					<div class="h-80 w-full">
-						<GraphViz :graph="network" :node-distance="10"></GraphViz>
+				<div class="min-w-20 max-w-72 overflow-hidden rounded-md shadow-lg dark:bg-neutral-800">
+					<div class="h-72 w-full">
+						<GraphViz
+							:graph="network"
+							:node-distance="10"
+							class="bg-neutral-50 dark:bg-neutral-700/50"
+						></GraphViz>
 					</div>
 					<div class="px-6 py-4">
 						<div class="mb-2 text-xl font-bold">Netzwerkvisualisierung</div>
-						<p>
+						<p class="text-sm">
 							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla!
 							Maiores et perferendis eaque, exercitationem praesentium nihil.
 						</p>
@@ -88,15 +100,19 @@ const { data } = useQuery({
 				</div>
 			</NuxtLink>
 			<NuxtLink :to="localePath('/iiif')">
-				<div class="rounded min-w-20 max-w-xs overflow-hidden shadow-lg">
-					<img
-						class="h-80 w-full object-cover object-top"
-						src="https://iiif.acdh.oeaw.ac.at/iiif/images/sicprod/%C3%84ltere_Kopialb%C3%BCcher_9_K/CIIIv-CIVr.jp2/full/500,/0/default.jpg"
-						alt="Kopialbuch Scan"
-					/>
+				<div
+					class="group min-w-20 max-w-72 overflow-hidden rounded-md shadow-lg dark:bg-neutral-800"
+				>
+					<div class="max-h-72 w-full overflow-hidden">
+						<img
+							class="h-72 w-full object-cover object-top transition-transform group-hover:scale-110"
+							src="https://iiif.acdh.oeaw.ac.at/iiif/images/sicprod/%C3%84ltere_Kopialb%C3%BCcher_9_K/CIIIv-CIVr.jp2/full/500,/0/default.jpg"
+							alt="Kopialbuch Scan"
+						/>
+					</div>
 					<div class="px-6 py-4">
 						<div class="mb-2 text-xl font-bold">Rait- und Kopialbücher</div>
-						<p>
+						<p class="text-sm">
 							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla!
 							Maiores et perferendis eaque, exercitationem praesentium nihil.
 						</p>
