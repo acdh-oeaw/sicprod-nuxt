@@ -104,5 +104,58 @@ const { data } = useQuery({
 				</div>
 			</NuxtLink>
 		</div>
+		<div>
+			<h2 class="text-2xl font-semibold">Team</h2>
+			<ul>
+				<li class="my-2">
+					<NuxtLink
+						to="https://www.uibk.ac.at/geschichte-ethnologie/institut/mitarbeiterinnen/projekt/debertol-markus/"
+						class="block underline decoration-dotted"
+						target="_blank"
+					>
+						Dr. Markus Debertol
+					</NuxtLink>
+					<span class="text-sm">Prinicpal Investigator (Univ. Innsbruck) und Koordinator</span>
+				</li>
+				<li class="my-2">
+					<span class="block">Mag. Dr. Nadja Krajicek, BA MA</span>
+					<span class="text-sm">Principal Investigator (Tiroler Landesarchiv)</span>
+				</li>
+				<li class="my-2">
+					<NuxtLink
+						to="https://www.uibk.ac.at/geschichte-ethnologie/institut/mitarbeiterinnen/projekt/laumer-philipp/"
+						class="block underline decoration-dotted"
+						target="_blank"
+					>
+						Philipp Laumer, MA
+					</NuxtLink>
+					<span class="text-sm">Wissenschaftlicher Projektmitarbeiter</span>
+				</li>
+				<li class="my-2">
+					<NuxtLink
+						to="https://www.oeaw.ac.at/acdh/institute/team/staff-members/birger-schacht"
+						class="block underline decoration-dotted"
+						target="_blank"
+					>
+						Birger Schacht, BSc
+					</NuxtLink>
+					<span class="text-sm">Backend-Entwicklung (ACDH-CH)</span>
+				</li>
+				<li class="my-2">
+					<NuxtLink
+						to="https://www.oeaw.ac.at/acdh/institute/team/staff-members/katharina-ruth-wuensche"
+						class="block underline decoration-dotted"
+						target="_blank"
+					>
+						Katharina Wünsche, BSc
+					</NuxtLink>
+					<span class="text-sm">Frontend-Entwicklung (ACDH-CH, ab Jänner 2024)</span>
+				</li>
+				<li class="my-2">
+					<span class="block">Peter Senfter, BA</span>
+					<span class="text-sm">Studentischer Mitarbeiter (bis Oktober 2023)</span>
+				</li>
+			</ul>
+		</div>
 	</MainContent>
 </template>
