@@ -71,6 +71,9 @@ dependencies:
   d3-force:
     specifier: ^3.0.0
     version: 3.0.0
+  d3-time-format:
+    specifier: ^4.1.0
+    version: 4.1.0
   fast-glob:
     specifier: ^3.3.2
     version: 3.3.2

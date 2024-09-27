@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import "d3-time-format"; // für die Locale-Funktionen
+
+import type { TimeLocaleDefinition } from "d3";
 import * as d3 from "d3";
 
 import type { TimelineObject } from "@/types/timeline";
@@ -12,6 +15,32 @@ const props = defineProps<{
 const timelineDiv = ref();
 let timelineWidth = ref(0);
 
+const deDE = {
+	dateTime: "%A, der %e. %B %Y, %X",
+	date: "%d.%m.%Y",
+	time: "%H:%M:%S",
+	periods: ["AM", "PM"],
+	days: ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"],
+	shortDays: ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"],
+	months: [
+		"Januar",
+		"Februar",
+		"März",
+		"April",
+		"Mai",
+		"Juni",
+		"Juli",
+		"August",
+		"September",
+		"Oktober",
+		"November",
+		"Dezember",
+	],
+	shortMonths: ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"],
+} as TimeLocaleDefinition;
+
+// Setze die Locale
+d3.timeFormatDefaultLocale(deDE);
 let d3Transform = ref(d3.zoomIdentity);
 
 // Fiter relations by start_date
@@ -40,10 +69,29 @@ const scale = computed(() => {
 		d3.scaleTime([min ?? new Date(), max ?? new Date()], [0, timelineWidth.value]).nice(2),
 	);
 });
+const customTickFormat = (date: Date) => {
+	const formatDay = d3.timeFormat("%d. %b"); // "24. Mär"
+	const formatMonth = d3.timeFormat("%B"); // "Mär 2024"
+	const formatYear = d3.timeFormat("%Y"); // "2024"
 
+	// Wenn das Datum innerhalb des gleichen Jahres ist
+	if (d3.timeYear(date) < date) {
+		// Wenn es innerhalb des gleichen Monats ist
+		if (d3.timeMonth(date) < date) {
+			return formatDay(date); // Verwende das Tag-Format
+		} else {
+			return formatMonth(date); // Verwende das Monatsformat
+		}
+	} else {
+		return formatYear(date); // Verwende das Jahresformat
+	}
+};
 const createAxis = () =>
-	// @ts-expect-error d3 context vs selection error
-	d3.select("#AxisSvg").call(d3.axisBottom(scale.value).tickSizeInner(16));
+	d3
+		.select("#AxisSvg")
+
+		// @ts-expect-error d3 context vs selection error
+		.call(d3.axisBottom(scale.value).tickFormat(customTickFormat).tickSizeInner(16));
 
 // Add resize handler to monitor container width and adapt chart
 function resizeHandler() {
