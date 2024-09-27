@@ -40,10 +40,10 @@ const { data } = useQuery({
 				<NuxtLink to="#">{{ t("IndexPage.here") }}</NuxtLink>
 			</p>
 		</div>
-		<div class="flex w-full flex-wrap justify-around gap-5">
+		<div class="flex w-full flex-wrap items-stretch justify-around gap-5">
 			<NuxtLink :to="localePath('/detail/person/18')">
 				<div
-					class="group min-w-20 max-w-72 overflow-hidden rounded-md shadow-lg dark:bg-neutral-800"
+					class="group h-full min-w-20 max-w-72 overflow-hidden rounded-md shadow-lg dark:bg-neutral-800"
 				>
 					<div class="max-h-72 w-full overflow-hidden">
 						<img
@@ -55,15 +55,15 @@ const { data } = useQuery({
 					<div class="px-6 py-4">
 						<div class="mb-2 text-xl font-bold">Sigmund von Tirol</div>
 						<p class="text-sm">
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla!
-							Maiores et perferendis eaque, exercitationem praesentium nihil.
+							Springen Sie hier direkt zur Detailansicht Sigmunds mitsamt seinen Relationen zu
+							anderen Einträgen aus der Datenbank.
 						</p>
 					</div>
 				</div>
 			</NuxtLink>
 			<NuxtLink :to="localePath('/search/persons')">
 				<div
-					class="group min-w-20 max-w-72 overflow-hidden rounded-md shadow-lg dark:bg-neutral-800"
+					class="group h-full min-w-20 max-w-72 overflow-hidden rounded-md shadow-lg dark:bg-neutral-800"
 				>
 					<div class="max-h-72 w-full overflow-hidden">
 						<img
@@ -74,15 +74,14 @@ const { data } = useQuery({
 					</div>
 					<div class="px-6 py-4">
 						<div class="mb-2 text-xl font-bold">Datenbank</div>
-						<p class="text-sm">
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla!
-							Maiores et perferendis eaque, exercitationem praesentium nihil.
-						</p>
+						<p class="text-sm">Durchsuchen Sie unsere Datenbank mit fast 13.000 Einträgen.</p>
 					</div>
 				</div>
 			</NuxtLink>
 			<NuxtLink :to="localePath('/network')">
-				<div class="min-w-20 max-w-72 overflow-hidden rounded-md shadow-lg dark:bg-neutral-800">
+				<div
+					class="h-full min-w-20 max-w-72 overflow-hidden rounded-md shadow-lg dark:bg-neutral-800"
+				>
 					<div class="h-72 w-full">
 						<GraphViz
 							:graph="network"
@@ -93,15 +92,15 @@ const { data } = useQuery({
 					<div class="px-6 py-4">
 						<div class="mb-2 text-xl font-bold">Netzwerkvisualisierung</div>
 						<p class="text-sm">
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla!
-							Maiores et perferendis eaque, exercitationem praesentium nihil.
+							Lassen Sie sich die Vernetzungen der Einträge untereinander noch einmal genauer
+							anzeigen und durchforsten Sie, wer wo mit wem zu tun hatte.
 						</p>
 					</div>
 				</div>
 			</NuxtLink>
 			<NuxtLink :to="localePath('/iiif')">
 				<div
-					class="group min-w-20 max-w-72 overflow-hidden rounded-md shadow-lg dark:bg-neutral-800"
+					class="group h-full min-w-20 max-w-72 overflow-hidden rounded-md shadow-lg dark:bg-neutral-800"
 				>
 					<div class="max-h-72 w-full overflow-hidden">
 						<img
@@ -113,8 +112,8 @@ const { data } = useQuery({
 					<div class="px-6 py-4">
 						<div class="mb-2 text-xl font-bold">Rait- und Kopialbücher</div>
 						<p class="text-sm">
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla!
-							Maiores et perferendis eaque, exercitationem praesentium nihil.
+							Blättern Sie durch das Archiv aus gescannten Rait- und Kopialbüchern aus der Zeit
+							Sigmunds. Zur Verfügung gestellt vom Tiroler Landesarchiv.
 						</p>
 					</div>
 				</div>
