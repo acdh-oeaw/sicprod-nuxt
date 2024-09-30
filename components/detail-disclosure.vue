@@ -87,6 +87,7 @@ const groupedRelations = computed(() => {
 								as="tr"
 								class="group table w-full table-fixed cursor-pointer hover:bg-primary-50 active:bg-primary-50 dark:hover:bg-primary-950 dark:active:bg-primary-950"
 								tabindex="0"
+								role="button"
 							>
 								<td
 									v-for="(header, idx) in headers"
