@@ -17,8 +17,8 @@ const links = computed(() => {
 			href: { path: "https://www.tirol.gv.at/" },
 			label: "Tiroler Landesarchiv",
 			image: {
-				light: "/assets/images/Landeslogo_4c_01.png",
-				dark: "/assets/images/Landeslogo_4c_01.png",
+				light: "/assets/images/Landeslogo_4c_01.webp",
+				dark: "/assets/images/Landeslogo_4c_01.webp",
 			},
 		},
 		acdh: {
@@ -34,7 +34,7 @@ const links = computed(() => {
 			label: "Österreichische Akademie der Wissenschaften",
 			image: {
 				light: "/assets/images/logo-oeaw.svg",
-				dark: "/assets/images/logo-oeaw-dark.png",
+				dark: "/assets/images/logo-oeaw-dark.webp",
 			},
 		},
 		goDigital: {
