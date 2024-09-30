@@ -46,10 +46,13 @@ const { data } = useQuery({
 					class="group h-full min-w-20 max-w-72 overflow-hidden rounded-md shadow-lg dark:bg-neutral-800"
 				>
 					<div class="max-h-72 w-full overflow-hidden">
-						<img
+						<NuxtImg
 							class="max-h-72 w-full object-cover object-top transition-transform group-hover:scale-110"
-							src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Sigismund_von_Tirol.jpg"
+							src="/assets/images/index-sigismund.jpg"
 							alt="Portrait von Sigmund von Tirol"
+							width="362"
+							height="500"
+							format="webp"
 						/>
 					</div>
 					<div class="px-6 py-4">
@@ -66,10 +69,13 @@ const { data } = useQuery({
 					class="group h-full min-w-20 max-w-72 overflow-hidden rounded-md shadow-lg dark:bg-neutral-800"
 				>
 					<div class="max-h-72 w-full overflow-hidden">
-						<img
+						<NuxtImg
+							width="350"
+							height="350"
 							class="h-72 w-full object-cover object-top transition-transform group-hover:scale-110"
-							src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Zikmund_tyrolsko.jpg"
+							src="/assets/images/index-datenbank.jpg"
 							alt="Habsburgersaal - Siegmund (Österreich-Tirol)"
+							format="webp"
 						/>
 					</div>
 					<div class="px-6 py-4">
@@ -103,10 +109,13 @@ const { data } = useQuery({
 					class="group h-full min-w-20 max-w-72 overflow-hidden rounded-md shadow-lg dark:bg-neutral-800"
 				>
 					<div class="max-h-72 w-full overflow-hidden">
-						<img
+						<NuxtImg
+							width="350"
+							height="350"
 							class="h-72 w-full object-cover object-top transition-transform group-hover:scale-110"
-							src="https://iiif.acdh.oeaw.ac.at/iiif/images/sicprod/%C3%84ltere_Kopialb%C3%BCcher_9_K/CIIIv-CIVr.jp2/full/500,/0/default.jpg"
+							src="/assets/images/index-kopialbuch.jpg"
 							alt="Kopialbuch Scan"
+							format="webp"
 						/>
 					</div>
 					<div class="px-6 py-4">
