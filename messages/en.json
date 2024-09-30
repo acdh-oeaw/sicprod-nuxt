@@ -12,6 +12,10 @@
 			"scans": "Scans",
 			"network": "Network"
 		},
+		"linkTitle": {
+			"network": "",
+			"scans": ""
+		},
 		"navigation-main": "Main"
 	},
 	"ColorSchemeToggle": {

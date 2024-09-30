@@ -12,6 +12,10 @@
 			"scans": "Scans",
 			"network": "Netzwerk"
 		},
+		"linkTitle": {
+			"network": "Netzwerkvisualisierung",
+			"scans": "Gescannte Rait- und Kopialbücher"
+		},
 		"navigation-main": "Hauptnavigation"
 	},
 	"ColorSchemeToggle": {
