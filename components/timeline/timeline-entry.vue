@@ -85,6 +85,7 @@ const itemClass = computed(() => {
 				zIndex: dimensions.zIndex,
 			}"
 			:class="[bgColors[itemClass], Array.isArray(item) ? 'size-6' : 'size-3']"
+			:aria-label="Array.isArray(item) ? item[0].start_date_written : item.start_date_written"
 		>
 			{{ Array.isArray(item) ? item.length : "" }}
 		</PopoverButton>
