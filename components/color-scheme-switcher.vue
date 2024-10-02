@@ -23,7 +23,7 @@ const colorSchemes = computed(() => {
 					</span>
 				</ListboxButton>
 				<ListboxOptions
-					class="absolute -left-2 z-10 mt-3 overflow-auto rounded-md border bg-neutral-50 text-sm dark:bg-zinc-900"
+					class="absolute -right-2 z-10 mt-3 overflow-auto rounded-md border bg-neutral-50 text-sm dark:bg-zinc-900"
 				>
 					<ListboxOption
 						v-for="(colorScheme, name) in colorSchemes"
