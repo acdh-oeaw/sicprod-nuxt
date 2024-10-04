@@ -110,7 +110,8 @@
 				"end_date": "To",
 				"gender": "Gender",
 				"alternative_names": "Alternative names",
-				"same_as": "Might be identical with"
+				"same_as": "Might be identical with",
+				"status": "Title"
 			},
 			"event": {
 				"title": "Search - Events",

@@ -110,7 +110,8 @@
 				"died": "Gestorben",
 				"gender": "Geschlecht",
 				"alternative_names": "Alternative Namen",
-				"same_as": "Möglicherweise identisch mit"
+				"same_as": "Möglicherweise identisch mit",
+				"status": "Titel"
 			},
 			"event": {
 				"title": "Suche - Ereignisse",

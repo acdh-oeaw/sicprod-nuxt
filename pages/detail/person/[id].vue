@@ -154,6 +154,11 @@ function toggleShowAltNames() {
 		</template>
 		<template #base>
 			<div class="col-span-2 my-2 border-t"></div>
+			<span>{{ t("Pages.searchviews.person.status") }}:</span>
+			<span>
+				{{ data.entity.data?.status }}
+			</span>
+			<div class="col-span-2 my-2 border-t"></div>
 			<span>{{ t("Pages.searchviews.person.born") }}:</span>
 			<span>
 				{{ String(data.entity.data?.start_date_written || "").replace(/\<.*?\>/g, "") }}
