@@ -28,7 +28,6 @@ export async function loadNetworkData(endpoint: EndpointType, params: endpointPr
 	reducedResults = reducedResults.concat(response.results);
 
 	while (response.next) {
-		console.log("Loading next round: ", reducedResults.length);
 		const nextParams = new URL(response.next).searchParams;
 		response = await endpoint({
 			...params,

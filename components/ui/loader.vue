@@ -6,7 +6,7 @@
 
 <style>
 .dots-3 {
-	--_g: no-repeat radial-gradient(farthest-side, currentColor 94%, #0000);
+	--_g: no-repeat radial-gradient(farthest-side, currentColor 94%, hsl(0deg 0% 0% / 0%));
 
 	position: relative;
 	width: 50px;

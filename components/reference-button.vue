@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/no-v-html -->
 <script setup lang="ts">
 import { offset, type Placement, shift, useFloating } from "@floating-ui/vue";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
@@ -132,6 +131,7 @@ function getLink(ref: Reference) {
 						}"
 						@click.stop
 					>
+						<!-- eslint-disable-next-line vue/no-v-html -->
 						<span v-html="entry.format('bibliography', citationConfig)"></span>
 					</component>
 				</div>
