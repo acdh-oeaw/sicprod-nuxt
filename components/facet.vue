@@ -6,9 +6,13 @@ import type { FacetType } from "@/types/resulttypes";
 const t = useTranslations();
 
 const model = defineModel({ type: Array<number | string>, required: true, default: [] });
-const props = defineProps<{
-	options: Array<FacetType>;
-}>();
+
+const props = withDefaults(
+	defineProps<{
+		options: Array<FacetType> | undefined;
+	}>(),
+	{ options: () => [] },
+);
 
 const input = ref<string>("");
 const displayedOptions = computed(() => {
@@ -64,7 +68,7 @@ const maxResultsToDisplay = 5;
 			</li>
 		</ul>
 		<button
-			v-if="options.length > maxResultsToDisplay"
+			v-if="props.options.length > maxResultsToDisplay"
 			class="mt-2 cursor-pointer font-normal hover:font-medium"
 			@click="showAllOptions = !showAllOptions"
 		>

@@ -20,7 +20,7 @@ const t = useTranslations();
 const localePath = useLocalePath();
 const props = withDefaults(
 	defineProps<{
-		relations: Array<TempTriple>;
+		relations: Array<TempTriple> | undefined;
 		name: string;
 		relationNames?: {
 			ancestor?: string;

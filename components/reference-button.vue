@@ -13,7 +13,7 @@ const localePath = useLocalePath();
 const t = useTranslations();
 const props = withDefaults(
 	defineProps<{
-		references: Array<Reference>;
+		references: Array<Reference> | undefined;
 		popupPosition?: Placement;
 		popupOffset?: number;
 	}>(),
@@ -72,7 +72,7 @@ async function copyToClipboard() {
 }
 
 function getLink(ref: Reference) {
-	if (!("title" in ref.scandata) || !("pages" in ref.scandata)) return null;
+	if (ref == null || !("title" in ref.scandata) || !("pages" in ref.scandata)) return null;
 	return {
 		path: localePath("/iiif"),
 		query: {
@@ -118,17 +118,17 @@ function getLink(ref: Reference) {
 						</button>
 					</div>
 					<component
-						:is="getLink(references[idx]) ? NuxtLink : 'div'"
+						:is="getLink(props.references[idx]) ? NuxtLink : 'div'"
 						v-for="(entry, idx) in citation"
 						:key="entry"
 						class="block p-2"
 						:class="{
 							'border-b-2 dark:border-neutral-700': idx < citation.length - 1,
 							'hover:bg-neutral-100 focus:outline-none focus-visible:ring dark:hover:bg-neutral-900':
-								getLink(references[idx]),
+								getLink(props.references[idx]),
 						}"
 						target="_blank"
-						:to="getLink(references[idx])"
+						:to="getLink(props.references[idx])"
 						@click.stop
 					>
 						<!-- eslint-disable-next-line vue/no-v-html -->

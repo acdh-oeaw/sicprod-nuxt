@@ -193,7 +193,7 @@ watch(
 					class="mb-5 w-full px-2 md:mb-10 md:w-72 md:px-0 lg:mx-4"
 				>
 					<h2 class="text-lg">{{ t(`Pages.searchviews.facets.${key}`) }}</h2>
-					<Facet v-model="classFacetSelection[key]" :options="value ?? []"></Facet>
+					<Facet v-model="classFacetSelection[key]!" :options="value ?? []"></Facet>
 				</div>
 			</div>
 		</div>
@@ -213,7 +213,7 @@ watch(
 				class="mb-5 w-full px-2 md:mb-10 md:w-72 md:px-0"
 			>
 				<h2 class="text-lg">{{ t(`Pages.searchviews.facets.${key}`) }}</h2>
-				<Facet v-model="relationFacetSelection[key]" :options="value ?? []"></Facet>
+				<Facet v-model="relationFacetSelection[key]!" :options="value ?? []"></Facet>
 			</div>
 		</div>
 	</div>
