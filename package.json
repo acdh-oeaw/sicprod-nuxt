@@ -4,7 +4,7 @@
 	"license": "MIT",
 	"type": "module",
 	"engines": {
-		"node": "20.x",
+		"node": "22.x",
 		"pnpm": "9.x"
 	},
 	"packageManager": "pnpm@9.12.2",
@@ -90,7 +90,7 @@
 		"@types/chroma-js": "^2.4.4",
 		"@types/d3": "^7.4.3",
 		"@types/lodash": "^4.17.0",
-		"@types/node": "^20.11.26",
+		"@types/node": "^22.7.9",
 		"axe-core": "^4.8.4",
 		"axe-playwright": "^2.0.1",
 		"ci-info": "^4.0.0",
