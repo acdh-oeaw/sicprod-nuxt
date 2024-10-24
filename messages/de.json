@@ -34,7 +34,7 @@
 	},
 	"DefaultLayout": {
 		"meta": {
-			"description": "SiCProD",
+			"description": "Eine prosopographische Datenbank zu Hof und Verwaltung Sigmunds von Tirol.",
 			"title": "SiCProD",
 			"twitter": "{'@acdh_oeaw'}"
 		},
@@ -85,7 +85,7 @@
 	"Manifest": {
 		"name": "SiCProD",
 		"short-name": "SiCProD",
-		"description": "SiCProD"
+		"description": "Eine prosopographische Datenbank zu Hof und Verwaltung Sigmunds von Tirol."
 	},
 	"NotFoundPage": {
 		"meta": {
