@@ -7,7 +7,7 @@ template repository for nuxt 3 apps.
 prerequisites:
 
 - [Node.js v20](https://nodejs.org/en/download)
-- [pnpm](https://pnpm.io/installation)
+- [pnpm v9](https://pnpm.io/installation)
 
 set required environment variables in `.env.local`:
 
