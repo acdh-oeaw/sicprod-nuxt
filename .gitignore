@@ -2,11 +2,6 @@
 node_modules/
 .pnpm-store/
 
-# generated libs
-lib/api.ts
-# generated manifests
-assets/manifests/
-
 # logs
 *.log
 
@@ -16,6 +11,7 @@ assets/manifests/
 
 # caches
 .eslintcache
+.prettiercache
 .stylelintcache
 *.tsbuildinfo
 
@@ -38,3 +34,9 @@ dist
 /playwright/.cache/
 /playwright-report/
 /test-results/
+
+# generated api client
+lib/api.ts
+
+# generated iiif manifests
+assets/manifests/

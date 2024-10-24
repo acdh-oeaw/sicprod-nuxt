@@ -1,5 +1,7 @@
 import { createPreset } from "@acdh-oeaw/tailwindcss-preset";
-import typography from "@tailwindcss/typography";
+import headlessUiPlugin from "@headlessui/tailwindcss";
+import typographyPlugin from "@tailwindcss/typography";
+import scrollBarPlugin from "tailwind-scrollbar";
 import type { Config } from "tailwindcss";
 import colors from "tailwindcss/colors";
 
@@ -86,7 +88,7 @@ const config = {
 			},
 		},
 	},
-	plugins: [require("@headlessui/tailwindcss"), typography, require("tailwind-scrollbar")],
+	plugins: [headlessUiPlugin, typographyPlugin, scrollBarPlugin],
 } satisfies Config;
 
 export default config;

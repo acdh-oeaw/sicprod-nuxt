@@ -29,7 +29,7 @@ const { data, isLoading } = useQuery({
 });
 
 function getGraph(data: Array<NetworkEntry>, minDegree = 0) {
-	let graph = {
+	const graph = {
 		nodes: [] as Array<{
 			id: string;
 			name: string;
@@ -102,10 +102,10 @@ const nodeDistance = ref(10);
 						>
 							<ListboxOption
 								v-for="className in availableClasses"
-								v-slot="{ active, selected }"
 								:key="className"
-								:value="className"
+								v-slot="{ active, selected }"
 								as="template"
+								:value="className"
 							>
 								<li
 									:class="[
@@ -122,7 +122,7 @@ const nodeDistance = ref(10);
 										v-if="selected"
 										class="absolute inset-y-0 left-0 flex items-center pl-3 text-primary-600"
 									>
-										<Check class="size-5" aria-hidden="true" />
+										<Check aria-hidden="true" class="size-5" />
 									</span>
 								</li>
 							</ListboxOption>
@@ -140,7 +140,7 @@ const nodeDistance = ref(10);
 							{{ t(`Pages.searchviews.${className.replace("apis_ontology.", "")}.label`) }}
 						</span>
 						<span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-							<ChevronUp class="size-5 text-neutral-400" aria-hidden="true" />
+							<ChevronUp aria-hidden="true" class="size-5 text-neutral-400" />
 						</span>
 					</ListboxButton>
 				</div>
@@ -149,7 +149,7 @@ const nodeDistance = ref(10);
 				<label class="flex gap-2" :title="t('Pages.network.hide-nodes')">
 					<span class="sr-only">{{ t("Pages.network.hide-nodes") }}</span>
 					<Share2 class="inline size-5"></Share2>
-					<input v-model="minDegree" type="range" class="inline" min="0" :max="maxDegree" />
+					<input v-model="minDegree" class="inline" :max="maxDegree" min="0" type="range" />
 				</label>
 			</div>
 			<div class="mt-2 flex gap-2 px-2 pb-1 text-neutral-600">
@@ -158,10 +158,10 @@ const nodeDistance = ref(10);
 					<MoveHorizontal class="inline size-5"></MoveHorizontal>
 					<input
 						v-model="nodeDistance"
-						type="range"
 						class="inline"
-						:min="1"
 						:max="graph.nodes.length / 20"
+						:min="1"
+						type="range"
 					/>
 				</label>
 			</div>

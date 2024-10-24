@@ -5,7 +5,6 @@ import { escape } from "@/utils/safe-json-ld-replacer";
 import { sliceTrailingSlash } from "@/utils/slice-trailing-slash";
 import { expect, test } from "~/e2e/lib/test";
 
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const baseUrl = process.env.NUXT_PUBLIC_APP_BASE_URL!;
 
 test("should set a canonical url", async ({ createIndexPage }) => {
@@ -16,7 +15,7 @@ test("should set a canonical url", async ({ createIndexPage }) => {
 		const canonicalUrl = indexPage.page.locator('link[rel="canonical"]');
 		await expect(canonicalUrl).toHaveAttribute(
 			"href",
-			sliceTrailingSlash(String(createUrl({ baseUrl, pathname: `/${locale}`}))),
+			sliceTrailingSlash(String(createUrl({ baseUrl, pathname: `/${locale}` }))),
 		);
 	}
 });

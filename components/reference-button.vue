@@ -28,7 +28,7 @@ const { floatingStyles } = useFloating(reference, floating, {
 	middleware: [offset(props.popupOffset), shift({ padding: 8 })],
 });
 
-let config = Cite.plugins.config.get("@csl");
+const config = Cite.plugins.config.get("@csl");
 config.templates.add("sicprod-stylesheet", styleSheet);
 const citationConfig = {
 	format: "html",
@@ -36,7 +36,7 @@ const citationConfig = {
 	lang: "en-EN",
 };
 const citation = computed(() => {
-	let c = props.references.map(
+	const c = props.references.map(
 		(r) =>
 			new Cite({
 				...r.bibtex,
@@ -121,14 +121,14 @@ function getLink(ref: Reference) {
 						:is="getLink(references[idx]) ? NuxtLink : 'div'"
 						v-for="(entry, idx) in citation"
 						:key="entry"
-						:to="getLink(references[idx])"
-						target="_blank"
 						class="block p-2"
 						:class="{
 							'border-b-2 dark:border-neutral-700': idx < citation.length - 1,
 							'hover:bg-neutral-100 focus:outline-none focus-visible:ring dark:hover:bg-neutral-900':
 								getLink(references[idx]),
 						}"
+						target="_blank"
+						:to="getLink(references[idx])"
 						@click.stop
 					>
 						<!-- eslint-disable-next-line vue/no-v-html -->

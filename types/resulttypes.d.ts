@@ -2,7 +2,7 @@ import { z } from "zod";
 
 import { schemas } from "@/lib/api";
 
-const PaginatedListResult = z.union([
+const _PaginatedListResult = z.union([
 	schemas.PaginatedEventList,
 	schemas.PaginatedFunctionList,
 	schemas.PaginatedInstitutionList,
@@ -10,7 +10,7 @@ const PaginatedListResult = z.union([
 	schemas.PaginatedPlaceList,
 	schemas.PaginatedSalaryList,
 ]);
-export type PaginatedListResultType = z.infer<typeof PaginatedListResult>;
+export type PaginatedListResultType = z.infer<typeof _PaginatedListResult>;
 export type ModelString = "event" | "function" | "institution" | "person" | "place" | "salary";
 
 export type TempTriple = z.infer<typeof schemas.TempTriple>;

@@ -24,5 +24,5 @@ const columns = [
 </script>
 
 <template>
-	<SearchPage :endpoint="endpoint" :cols="columns" class-name="Institution"></SearchPage>
+	<SearchPage class-name="Institution" :cols="columns" :endpoint="endpoint"></SearchPage>
 </template>

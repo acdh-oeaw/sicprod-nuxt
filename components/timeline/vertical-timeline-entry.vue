@@ -81,15 +81,15 @@ const itemClass = computed(() => {
 				<NuxtLink
 					v-for="(i, idx) in item"
 					:key="idx"
-					:to="localePath(`/detail/${i.class}/${i.to.id}`)"
 					class="flow-root rounded-md p-2 transition duration-150 ease-in-out hover:bg-neutral-100 focus:outline-none focus-visible:ring dark:hover:bg-neutral-900"
+					:to="localePath(`/detail/${i.class}/${i.to.id}`)"
 				>
 					<div class="flex items-center justify-between text-sm text-neutral-500">
 						{{ i.name }}
 						<ReferenceButton
 							v-if="i.references.length > 0"
-							:references="i.references"
 							class="inline-block size-4 text-neutral-900 dark:text-neutral-100"
+							:references="i.references"
 						></ReferenceButton>
 					</div>
 					<span>
@@ -101,15 +101,15 @@ const itemClass = computed(() => {
 			</div>
 			<div v-else>
 				<NuxtLink
-					:to="localePath(`/detail/${item.class}/${item.to.id}`)"
 					class="flow-root rounded-md p-2 transition duration-150 ease-in-out hover:bg-neutral-100 focus:outline-none focus-visible:ring dark:hover:bg-neutral-900"
+					:to="localePath(`/detail/${item.class}/${item.to.id}`)"
 				>
 					<div class="flex items-center justify-between text-sm text-neutral-500">
 						{{ item.name }}
 						<ReferenceButton
 							v-if="item.references.length > 0"
-							:references="item.references"
 							class="inline-block size-4 text-neutral-900 dark:text-neutral-100"
+							:references="item.references"
 						></ReferenceButton>
 					</div>
 					<span>

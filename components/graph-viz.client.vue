@@ -18,7 +18,7 @@ const highlightedLinks = ref<Set<LinkObject>>(new Set());
 const highlightedNodes = ref<Set<NodeObject>>(new Set());
 
 function initSigma() {
-	if (!process.client) return;
+	if (!import.meta.client) return;
 	if (!networkContainer.value) return;
 	const height = networkContainer.value.clientHeight - 1;
 	const width = networkContainer.value.clientWidth - 1;

@@ -46,9 +46,9 @@ const links = computed(() => {
 		<NuxtLink
 			v-for="link in links"
 			:key="link.label"
-			:to="link.href"
 			class="group flex h-fit grow items-center justify-center gap-2 rounded-md border p-1 shadow transition hover:bg-primary-100 active:bg-primary-100 md:justify-normal md:gap-4 md:p-2 xl:mx-0 dark:hover:bg-primary-900 dark:active:bg-primary-900"
 			:class="$route.path === link.href.path && 'bg-primary-100 dark:bg-primary-900'"
+			:to="link.href"
 		>
 			<component
 				:is="link.icon"

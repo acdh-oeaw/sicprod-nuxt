@@ -1,7 +1,6 @@
 import { createApiClient } from "@/lib/api";
 import { expect, test } from "~/e2e/lib/test";
 
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const baseUrl = process.env.NUXT_PUBLIC_API_BASE_URL!;
 const ApiClient = createApiClient(baseUrl);
 

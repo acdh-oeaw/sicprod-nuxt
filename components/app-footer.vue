@@ -60,7 +60,7 @@ const links = computed(() => {
 				<ul class="flex items-center gap-8" role="list">
 					<li v-for="(link, key) of links" :key="key" :class="link.image ? '' : 'ml-auto'">
 						<a v-if="link.image" :href="link.href.path" target="_blank">
-							<NuxtImg :src="link.image.dark" :alt="link.label" placeholder class="h-10 w-auto">
+							<NuxtImg :alt="link.label" class="h-10 w-auto" placeholder :src="link.image.dark">
 								{{ link.label }}
 							</NuxtImg>
 						</a>

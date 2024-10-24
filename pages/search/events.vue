@@ -34,5 +34,5 @@ const columns = [
 </script>
 
 <template>
-	<SearchPage :endpoint="endpoint" :cols="columns" class-name="Event"></SearchPage>
+	<SearchPage class-name="Event" :cols="columns" :endpoint="endpoint"></SearchPage>
 </template>

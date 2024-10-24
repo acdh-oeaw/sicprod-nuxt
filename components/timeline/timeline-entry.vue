@@ -76,7 +76,9 @@ const itemClass = computed(() => {
 	<Popover class="relative">
 		<PopoverButton
 			ref="reference"
+			:aria-label="Array.isArray(item) ? item[0].start_date_written : item.start_date_written"
 			class="absolute -translate-x-1/2 -translate-y-1/2 rounded-full text-sm ring-1 ring-white/20 dark:ring-neutral-900/20"
+			:class="[bgColors[itemClass], Array.isArray(item) ? 'size-6' : 'size-3']"
 			:style="{
 				left: `${scale(startDate)}px`,
 				top: '-1px',
@@ -84,8 +86,6 @@ const itemClass = computed(() => {
 				height: dimensions.height,
 				zIndex: dimensions.zIndex,
 			}"
-			:class="[bgColors[itemClass], Array.isArray(item) ? 'size-6' : 'size-3']"
-			:aria-label="Array.isArray(item) ? item[0].start_date_written : item.start_date_written"
 		>
 			{{ Array.isArray(item) ? item.length : "" }}
 		</PopoverButton>
@@ -127,8 +127,8 @@ const itemClass = computed(() => {
 						<NuxtLink
 							v-for="(i, idx) in item"
 							:key="idx"
-							:to="localePath(`/detail/${i.class}/${i.to.id}`)"
 							class="flow-root rounded-md p-2 transition duration-150 ease-in-out hover:bg-neutral-100 focus:outline-none focus-visible:ring dark:hover:bg-neutral-900"
+							:to="localePath(`/detail/${i.class}/${i.to.id}`)"
 						>
 							<span class="block text-sm text-neutral-500">
 								{{ i.name }}
@@ -142,8 +142,8 @@ const itemClass = computed(() => {
 					</div>
 					<div v-else>
 						<NuxtLink
-							:to="localePath(`/detail/${item.class}/${item.to.id}`)"
 							class="flow-root rounded-md p-2 transition duration-150 ease-in-out hover:bg-neutral-100 focus:outline-none focus-visible:ring dark:hover:bg-neutral-900"
+							:to="localePath(`/detail/${item.class}/${item.to.id}`)"
 						>
 							<span class="block text-sm text-neutral-500">
 								{{ item.name }}

@@ -47,9 +47,9 @@ const filteredItemList = computed(() => {
 			<input
 				id="searchinput"
 				v-model="searchInput"
-				type="text"
 				class="h-full bg-transparent"
 				:placeholder="t('ui.search-placeholder')"
+				type="text"
 			/>
 			<button v-if="searchInput" @click="searchInput = ''">
 				<span class="sr-only">Delete Input</span>
@@ -60,8 +60,8 @@ const filteredItemList = computed(() => {
 			<NuxtLink
 				v-for="item in filteredItemList"
 				:key="item.id"
-				:to="getLink(item)"
 				class="flex justify-between border-b hover:bg-primary-50 active:bg-primary-50 md:border-t dark:hover:bg-primary-950 dark:active:bg-primary-950"
+				:to="getLink(item)"
 			>
 				<div class="overflow-auto p-2 text-start text-sm md:p-4 md:text-md">
 					{{ item.label.de[0] }}

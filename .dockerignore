@@ -13,6 +13,7 @@ node_modules/
 
 # caches
 .eslintcache
+.prettiercache
 .stylelintcache
 *.tsbuildinfo
 
@@ -35,6 +36,12 @@ dist
 /playwright/.cache/
 /playwright-report/
 /test-results/
+
+# generated api client
+lib/api.ts
+
+# generated iiif manifests
+assets/manifests/
 
 
 ## .dockerignore ##

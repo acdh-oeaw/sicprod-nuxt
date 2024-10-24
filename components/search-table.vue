@@ -46,9 +46,9 @@ const input = ref(route.query.q === undefined ? "" : String(route.query.q));
 			<input
 				id="searchinput"
 				v-model="input"
-				type="text"
 				class="h-full bg-transparent"
 				:placeholder="t('ui.search-placeholder')"
+				type="text"
 				@input="
 					$router.replace({
 						query: {
@@ -83,10 +83,10 @@ const input = ref(route.query.q === undefined ? "" : String(route.query.q));
 		</div>
 		<Pagination
 			v-if="data && (data.next || data.previous)"
-			class="m-2"
-			:page="pageNum"
-			:limit="Number(data.limit) || limitNum"
 			:all="Number(data.count)"
+			class="m-2"
+			:limit="Number(data.limit) || limitNum"
+			:page="pageNum"
 		/>
 		<div v-if="data" class="w-full max-w-full overflow-x-auto">
 			<table
@@ -134,10 +134,10 @@ const input = ref(route.query.q === undefined ? "" : String(route.query.q));
 		</div>
 		<Pagination
 			v-if="data && (data.next || data.previous)"
-			class="m-2"
-			:page="pageNum"
-			:limit="Number(data.limit) || limitNum"
 			:all="Number(data.count)"
+			class="m-2"
+			:limit="Number(data.limit) || limitNum"
+			:page="pageNum"
 			:show-label="true"
 		/>
 	</div>

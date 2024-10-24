@@ -13,7 +13,7 @@ const props = defineProps<{
 	relations: Array<TimelineObject>;
 }>();
 const timelineDiv = ref();
-let timelineWidth = ref(0);
+const timelineWidth = ref(0);
 
 const deDE = {
 	dateTime: "%A, der %e. %B %Y, %X",
@@ -41,7 +41,7 @@ const deDE = {
 
 // Setze die Locale
 d3.timeFormatDefaultLocale(deDE);
-let d3Transform = ref(d3.zoomIdentity);
+const d3Transform = ref(d3.zoomIdentity);
 
 // Fiter relations by start_date
 const filteredRelations = computed<Array<TimelineObject>>(() =>
@@ -59,8 +59,8 @@ const maxVal = computed(() =>
 	d3.max(filteredRelations.value.map((r) => new Date(r.start_date ?? ""))),
 );
 const scale = computed(() => {
-	let min = minVal.value;
-	let max = maxVal.value;
+	const min = minVal.value;
+	const max = maxVal.value;
 	if (min?.valueOf() === max?.valueOf()) {
 		min?.setFullYear(min.getFullYear() - 1);
 		max?.setFullYear(max.getFullYear() + 1);

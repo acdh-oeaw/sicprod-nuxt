@@ -32,9 +32,9 @@ const maxResultsToDisplay = 5;
 			<input
 				id="searchinput"
 				v-model="input"
-				type="text"
 				class="h-full bg-transparent"
 				:placeholder="t('ui.search-placeholder')"
+				type="text"
 			/>
 		</div>
 		<ul class="max-h-52 overflow-auto">

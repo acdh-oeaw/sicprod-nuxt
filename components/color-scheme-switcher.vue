@@ -28,23 +28,23 @@ const colorSchemes = computed(() => {
 					<ListboxOption
 						v-for="(colorScheme, name) in colorSchemes"
 						:key="name"
-						:value="name"
 						class="group flex cursor-pointer items-center gap-2 p-2 pr-9 ui-active:text-primary-600 ui-active:dark:text-primary-300"
+						:value="name"
 					>
 						<component
 							:is="colorScheme"
-							:size="20"
 							class="transition group-hover:scale-110 ui-active:scale-90"
+							:size="20"
 						/>
 						{{ t(`ColorSchemeToggle.color-schemes.${name}`) }}
 					</ListboxOption>
 
 					<ListboxOption
 						key="system"
-						value="system"
 						class="group flex cursor-pointer items-center gap-2 p-2 pr-9 ui-active:text-primary-600 ui-active:dark:text-primary-300"
+						value="system"
 					>
-						<Laptop :size="20" class="transition group-hover:scale-110 ui-active:scale-90" />
+						<Laptop class="transition group-hover:scale-110 ui-active:scale-90" :size="20" />
 						{{ t(`ColorSchemeToggle.color-schemes.system`) }}
 					</ListboxOption>
 				</ListboxOptions>

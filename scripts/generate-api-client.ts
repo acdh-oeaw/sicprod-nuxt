@@ -59,6 +59,6 @@ main()
 	.then(() => {
 		log.success("Client creation completed. \nOutput was written to: ", outputPath);
 	})
-	.catch((err) => {
-		log.error("Client creation failed", String(err));
+	.catch((error: unknown) => {
+		log.error("Client creation failed", String(error));
 	});

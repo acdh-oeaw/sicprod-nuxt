@@ -107,6 +107,6 @@ main()
 	.then(() => {
 		log.success("Manifest creation completed. \nOutput was written to: ", outputPath);
 	})
-	.catch((err) => {
-		log.error("Manifest creation failed", String(err));
+	.catch((error: unknown) => {
+		log.error("Manifest creation failed", String(error));
 	});

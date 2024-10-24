@@ -47,12 +47,12 @@ const { data } = useQuery({
 				>
 					<div class="max-h-72 w-full overflow-hidden">
 						<NuxtImg
-							class="max-h-72 w-full object-cover object-top transition-transform group-hover:scale-110"
-							src="/assets/images/index-sigismund.jpg"
 							alt="Portrait von Sigmund von Tirol"
-							width="362"
-							height="500"
+							class="max-h-72 w-full object-cover object-top transition-transform group-hover:scale-110"
 							format="webp"
+							height="500"
+							src="/assets/images/index-sigismund.jpg"
+							width="362"
 						/>
 					</div>
 					<div class="px-6 py-4">
@@ -70,12 +70,12 @@ const { data } = useQuery({
 				>
 					<div class="max-h-72 w-full overflow-hidden">
 						<NuxtImg
-							width="350"
-							height="350"
-							class="h-72 w-full object-cover object-top transition-transform group-hover:scale-110"
-							src="/assets/images/index-datenbank.jpg"
 							alt="Habsburgersaal - Siegmund (Österreich-Tirol)"
+							class="h-72 w-full object-cover object-top transition-transform group-hover:scale-110"
 							format="webp"
+							height="350"
+							src="/assets/images/index-datenbank.jpg"
+							width="350"
 						/>
 					</div>
 					<div class="px-6 py-4">
@@ -90,9 +90,9 @@ const { data } = useQuery({
 				>
 					<div class="h-72 w-full">
 						<GraphViz
+							class="bg-neutral-50 dark:bg-neutral-700/50"
 							:graph="network"
 							:node-distance="10"
-							class="bg-neutral-50 dark:bg-neutral-700/50"
 						></GraphViz>
 					</div>
 					<div class="px-6 py-4">
@@ -110,12 +110,12 @@ const { data } = useQuery({
 				>
 					<div class="max-h-72 w-full overflow-hidden">
 						<NuxtImg
-							width="350"
-							height="350"
-							class="h-72 w-full object-cover object-top transition-transform group-hover:scale-110"
-							src="/assets/images/index-kopialbuch.jpg"
 							alt="Kopialbuch Scan"
+							class="h-72 w-full object-cover object-top transition-transform group-hover:scale-110"
 							format="webp"
+							height="350"
+							src="/assets/images/index-kopialbuch.jpg"
+							width="350"
 						/>
 					</div>
 					<div class="px-6 py-4">
@@ -133,9 +133,9 @@ const { data } = useQuery({
 			<ul>
 				<li class="my-2">
 					<NuxtLink
-						to="https://www.uibk.ac.at/geschichte-ethnologie/institut/mitarbeiterinnen/projekt/debertol-markus/"
 						class="block underline decoration-dotted"
 						target="_blank"
+						to="https://www.uibk.ac.at/geschichte-ethnologie/institut/mitarbeiterinnen/projekt/debertol-markus/"
 					>
 						Dr. Markus Debertol
 					</NuxtLink>
@@ -147,9 +147,9 @@ const { data } = useQuery({
 				</li>
 				<li class="my-2">
 					<NuxtLink
-						to="https://www.uibk.ac.at/geschichte-ethnologie/institut/mitarbeiterinnen/projekt/laumer-philipp/"
 						class="block underline decoration-dotted"
 						target="_blank"
+						to="https://www.uibk.ac.at/geschichte-ethnologie/institut/mitarbeiterinnen/projekt/laumer-philipp/"
 					>
 						Philipp Laumer, MA
 					</NuxtLink>
@@ -157,9 +157,9 @@ const { data } = useQuery({
 				</li>
 				<li class="my-2">
 					<NuxtLink
-						to="https://www.oeaw.ac.at/acdh/institute/team/staff-members/birger-schacht"
 						class="block underline decoration-dotted"
 						target="_blank"
+						to="https://www.oeaw.ac.at/acdh/institute/team/staff-members/birger-schacht"
 					>
 						Birger Schacht, BSc
 					</NuxtLink>
@@ -167,9 +167,9 @@ const { data } = useQuery({
 				</li>
 				<li class="my-2">
 					<NuxtLink
-						to="https://www.oeaw.ac.at/acdh/institute/team/staff-members/katharina-ruth-wuensche"
 						class="block underline decoration-dotted"
 						target="_blank"
+						to="https://www.oeaw.ac.at/acdh/institute/team/staff-members/katharina-ruth-wuensche"
 					>
 						Katharina Wünsche, BSc
 					</NuxtLink>

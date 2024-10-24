@@ -11,12 +11,12 @@ defineProps<{
 
 <template>
 	<div id="container" class="aspect-video w-full">
-		<LMap ref="map" :zoom="zoom" :center="[latitude, longitude]" :use-global-leaflet="false">
+		<LMap ref="map" :center="[latitude, longitude]" :use-global-leaflet="false" :zoom="zoom">
 			<LTileLayer
-				url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 				attribution='&amp;copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
 				layer-type="base"
 				name="OpenStreetMap"
+				url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 			/>
 			<LMarker :lat-lng="[latitude, longitude]" />
 		</LMap>

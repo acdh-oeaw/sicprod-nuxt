@@ -74,7 +74,7 @@ function hasMatchingFacetType(val: unknown): val is Record<string, FacetType> {
 	);
 }
 const relationFacets = computed(() => {
-	let facetObject: Record<string, Array<FacetType>> = {};
+	const facetObject: Record<string, Array<FacetType>> = {};
 
 	if (!data.value) return facetObject;
 	Object.entries(data.value.facets).forEach(([key, value]) => {
@@ -92,7 +92,7 @@ const relationFacetSelection = ref<Record<string, Array<number | string>>>({});
 
 // class-specific facets such as gender and type
 const classFacets = computed(() => {
-	let facetObject: Record<string, Array<FacetType>> = {};
+	const facetObject: Record<string, Array<FacetType>> = {};
 	if (!data.value) return facetObject;
 	Object.entries(data.value.facets).forEach(([key, value]) => {
 		if (!key.startsWith("relation_") && hasMatchingFacetType(value)) {
@@ -202,8 +202,8 @@ watch(
 				:cols="cols"
 				:data="data"
 				:is-fetching="isFetching"
-				:page-num="pageNum"
 				:limit-num="limitNum"
+				:page-num="pageNum"
 			></SearchTable>
 		</div>
 		<div class="w-full md:mx-4 md:mt-8">

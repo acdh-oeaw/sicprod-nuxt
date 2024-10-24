@@ -37,7 +37,7 @@ const selectedClasses = ref(availableClasses.value);
 </script>
 
 <template>
-	<TransitionRoot appear :show="isOpen" as="template">
+	<TransitionRoot appear as="template" :show="isOpen">
 		<Dialog as="div" class="relative z-10" @close="closeModal">
 			<TransitionChild
 				as="template"
@@ -85,7 +85,7 @@ const selectedClasses = ref(availableClasses.value);
 										<span
 											class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2"
 										>
-											<ChevronDown class="size-5 text-neutral-400" aria-hidden="true" />
+											<ChevronDown aria-hidden="true" class="size-5 text-neutral-400" />
 										</span>
 									</ListboxButton>
 
@@ -99,10 +99,10 @@ const selectedClasses = ref(availableClasses.value);
 										>
 											<ListboxOption
 												v-for="className in availableClasses"
-												v-slot="{ active, selected }"
 												:key="className"
-												:value="className"
+												v-slot="{ active, selected }"
 												as="template"
+												:value="className"
 											>
 												<li
 													:class="[
@@ -121,7 +121,7 @@ const selectedClasses = ref(availableClasses.value);
 														v-if="selected"
 														class="absolute inset-y-0 left-0 flex items-center pl-3 text-primary-600"
 													>
-														<Check class="size-5" aria-hidden="true" />
+														<Check aria-hidden="true" class="size-5" />
 													</span>
 												</li>
 											</ListboxOption>

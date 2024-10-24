@@ -124,7 +124,7 @@ function drawChildConnections() {
 			: uncollapseChildrenContainer.value;
 	const childContainerChildren = [...(container?.children ?? [])];
 	const getOverlays = (idx: number) => {
-		let overlays: Array<OverlaySpec> = [
+		const overlays: Array<OverlaySpec> = [
 			{
 				type: "PlainArrow",
 				options: { location: 1, direction: 1, length: 8, width: 10 },
@@ -257,8 +257,8 @@ function toggleShowAllChildren() {
 				>
 					{{ t("FamilyTree.legend") }}
 					<ChevronDown
-						class="ml-1 size-3 self-center text-neutral-700 dark:text-neutral-300"
 						aria-hidden="true"
+						class="ml-1 size-3 self-center text-neutral-700 dark:text-neutral-300"
 					/>
 				</PopoverButton>
 			</div>
@@ -279,14 +279,14 @@ function toggleShowAllChildren() {
 							v-if="siblings.length > 0"
 							class="group flex items-center gap-2 rounded-md p-2 text-sm"
 						>
-							<img :src="icons.sibling" class="size-4 dark:invert" :alt="t(legendNames.sibling)" />
+							<img :alt="t(legendNames.sibling)" class="size-4 dark:invert" :src="icons.sibling" />
 							<div>{{ t(legendNames.sibling) }}</div>
 						</div>
 						<div
 							v-if="partners.length > 0"
 							class="group flex items-center gap-2 rounded-md p-2 text-sm"
 						>
-							<img :src="icons.partner" class="size-4 dark:invert" :alt="t(legendNames.partner)" />
+							<img :alt="t(legendNames.partner)" class="size-4 dark:invert" :src="icons.partner" />
 							<div>{{ t(legendNames.partner) }}</div>
 						</div>
 						<div
@@ -294,9 +294,9 @@ function toggleShowAllChildren() {
 							class="group flex items-center gap-2 rounded-md p-2 text-sm"
 						>
 							<img
-								src="/assets/icons/arrow.svg"
-								class="size-4 rotate-90 dark:invert"
 								:alt="t(legendNames.descendantOf)"
+								class="size-4 rotate-90 dark:invert"
+								src="/assets/icons/arrow.svg"
 							/>
 							<div>{{ t(legendNames.descendantOf) }}</div>
 						</div>
@@ -305,9 +305,9 @@ function toggleShowAllChildren() {
 							class="group flex items-center gap-2 rounded-md p-2 text-sm"
 						>
 							<img
-								src="/assets/icons/reduce.svg"
-								class="size-4 dark:invert"
 								:alt="t('FamilyTree.collapse-children')"
+								class="size-4 dark:invert"
+								src="/assets/icons/reduce.svg"
 							/>
 							<div>{{ t("FamilyTree.collapse-children") }}</div>
 						</div>
@@ -345,8 +345,8 @@ function toggleShowAllChildren() {
 				<NuxtLink
 					v-for="person in partners"
 					:key="person.id"
-					:to="localePath(`/detail/${props.classnameForUrls}/${person.id}`)"
 					class="w-32 p-2 text-left align-middle"
+					:to="localePath(`/detail/${props.classnameForUrls}/${person.id}`)"
 				>
 					{{ person.name }}
 				</NuxtLink>
@@ -360,8 +360,8 @@ function toggleShowAllChildren() {
 			<NuxtLink
 				v-for="person in children"
 				:key="person.id"
-				:to="localePath(`/detail/${props.classnameForUrls}/${person.id}`)"
 				class="z-10 max-w-32 flex-auto px-2 pt-0 text-center align-middle"
+				:to="localePath(`/detail/${props.classnameForUrls}/${person.id}`)"
 			>
 				<span class="bg-white/50 dark:bg-neutral-800/50">
 					{{ person.name }}

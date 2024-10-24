@@ -129,9 +129,9 @@ function toggleShowAltNames() {
 				<div class="ml-auto flex gap-2">
 					<ReferenceButton
 						v-if="Number(data.entity.data?.references?.length) > 0"
-						:references="data.entity.data?.references"
 						class="size-7 w-fit"
 						popup-position="left"
+						:references="data.entity.data?.references"
 					></ReferenceButton>
 
 					<button
@@ -146,8 +146,8 @@ function toggleShowAltNames() {
 				</div>
 				<VerticalTimeline
 					v-if="!data.relations.isLoading"
-					:is-open="showVerticalTimeline"
 					:close-modal="closeVerticalTimeline"
+					:is-open="showVerticalTimeline"
 					:relations="flattenedRelations"
 				></VerticalTimeline>
 			</div>
@@ -198,8 +198,8 @@ function toggleShowAltNames() {
 					<NuxtLink
 						v-for="person in sameAs"
 						:key="person.id"
-						:to="localePath(`/detail/person/${person.id}`)"
 						class="-ml-1 -mt-1 block p-1 hover:bg-primary-50 active:bg-primary-50 dark:hover:bg-primary-950 dark:active:bg-primary-950"
+						:to="localePath(`/detail/person/${person.id}`)"
 					>
 						{{ person.name }}
 					</NuxtLink>
@@ -207,60 +207,60 @@ function toggleShowAltNames() {
 			</template>
 			<FamilyTree
 				v-if="!data.relations.isLoading && needsFamilyTree"
-				:relations="data.relations.data?.person"
-				:name="`${data.entity.data?.first_name} ${data.entity.data?.name}`"
 				class="col-span-2 mt-8"
+				:name="`${data.entity.data?.first_name} ${data.entity.data?.name}`"
+				:relations="data.relations.data?.person"
 			/>
 		</template>
 		<template #right>
 			<div v-if="data.entity.data" class="flex flex-col gap-3">
 				<DetailDisclosure
 					v-if="data.entity.data?.relation_types.includes('person')"
-					:title="t('Pages.searchviews.person.label')"
-					:headers="['name', 'to.name', 'start_date_written', 'end_date_written']"
-					:rels="data.relations.data?.person"
 					:details-loading="data.relations.isLoading"
+					:headers="['name', 'to.name', 'start_date_written', 'end_date_written']"
 					model="person"
+					:rels="data.relations.data?.person"
+					:title="t('Pages.searchviews.person.label')"
 				/>
 				<DetailDisclosure
 					v-if="data.entity.data?.relation_types.includes('function')"
-					:title="t('Pages.searchviews.function.label')"
-					:headers="['to.name', 'start_date_written', 'end_date_written']"
-					:rels="data.relations.data?.function"
 					:details-loading="data.relations.isLoading"
+					:headers="['to.name', 'start_date_written', 'end_date_written']"
 					model="function"
+					:rels="data.relations.data?.function"
+					:title="t('Pages.searchviews.function.label')"
 				/>
 				<DetailDisclosure
 					v-if="data.entity.data?.relation_types.includes('institution')"
-					:title="t('Pages.searchviews.institution.label')"
-					:headers="['name', 'to.name', 'start_date_written', 'end_date_written']"
-					:rels="data.relations.data?.institution"
 					:details-loading="data.relations.isLoading"
+					:headers="['name', 'to.name', 'start_date_written', 'end_date_written']"
 					model="institution"
+					:rels="data.relations.data?.institution"
+					:title="t('Pages.searchviews.institution.label')"
 				/>
 				<DetailDisclosure
 					v-if="data.entity.data?.relation_types.includes('place')"
-					:title="t('Pages.searchviews.place.label')"
-					:headers="['name', 'to.name', 'start_date_written', 'end_date_written']"
-					:rels="data?.relations.data?.place"
 					:details-loading="data.relations.isLoading"
+					:headers="['name', 'to.name', 'start_date_written', 'end_date_written']"
 					model="place"
+					:rels="data?.relations.data?.place"
+					:title="t('Pages.searchviews.place.label')"
 				/>
 				<DetailDisclosure
 					v-if="data.entity.data?.relation_types.includes('event')"
-					:title="t('Pages.searchviews.event.label')"
-					:headers="['name', 'to.name', 'start_date_written', 'end_date_written']"
-					:rels="data?.relations.data?.event"
 					:details-loading="data.relations.isLoading"
+					:headers="['name', 'to.name', 'start_date_written', 'end_date_written']"
 					model="event"
+					:rels="data?.relations.data?.event"
+					:title="t('Pages.searchviews.event.label')"
 				/>
 				<DetailDisclosure
 					v-if="data.entity.data?.relation_types.includes('salary')"
-					:title="t('Pages.searchviews.salary.label')"
-					:headers="['name', 'to.name', 'start_date_written', 'end_date_written']"
-					:rels="data?.relations.data?.salary"
 					:details-loading="data.relations.isLoading"
+					:headers="['name', 'to.name', 'start_date_written', 'end_date_written']"
 					model="salary"
+					:rels="data?.relations.data?.salary"
+					:title="t('Pages.searchviews.salary.label')"
 				/>
 			</div>
 		</template>
