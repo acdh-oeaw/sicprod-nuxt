@@ -101,6 +101,7 @@ export default defineNuxtConfig({
 			compilerOptions: {
 				paths: {
 					"@/*": ["./*"],
+					"~/*": ["./*"],
 				},
 			},
 		},

@@ -1,5 +1,5 @@
-import { expect, test } from "@/e2e/lib/test";
 import { createApiClient } from "@/lib/api";
+import { expect, test } from "~/e2e/lib/test";
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const baseUrl = process.env.NUXT_PUBLIC_API_BASE_URL!;
@@ -18,6 +18,7 @@ test.describe("api", () => {
 	test("should check if ApiClient initialization was successful", () => {
 		expect(ApiClient).toBeTruthy();
 	});
+
 	Object.entries(apiListCalls).forEach(([className, apiFunction]) => {
 		test(`should retrieve list of ${className}s`, async () => {
 			const listResult = await apiFunction();

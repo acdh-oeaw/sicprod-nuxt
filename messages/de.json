@@ -35,7 +35,8 @@
 	"DefaultLayout": {
 		"meta": {
 			"description": "SiCProD",
-			"title": "SiCProD"
+			"title": "SiCProD",
+			"twitter": "{'@acdh_oeaw'}"
 		},
 		"skip-to-main-content": "Zum Hauptinhalt springen"
 	},
@@ -80,10 +81,6 @@
 		"intro4": "Die Daten stammen mehrheitlich aus archivalischen Quellen, zum weitaus größten Teil Beständen des Tiroler Landesarchivs. Die umfangreichsten der durchgesehenen Bestände sind die Älteren Kopialbücher sowie die Raitbücher der Oberösterreichischen Kammer. Diese wurden im Zuge des Projekts digitalisiert und in der Datenbank verlinkt.",
 		"intro5": "Weitere Informationen zum Datenmodell, den Richtlinien der Datenerhebung sowie Tipps zum Gebrauch der Datenbank finden Sie",
 		"here": "hier."
-	},
-	"LocaleSwitcher": {
-		"current-locale": "Aktuelle Sprache: {locale}",
-		"switch-locale": "Zu {locale} wechseln"
 	},
 	"Manifest": {
 		"name": "SiCProD",

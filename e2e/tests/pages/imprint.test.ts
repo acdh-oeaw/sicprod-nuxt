@@ -1,5 +1,5 @@
 import { locales } from "@/config/i18n.config";
-import { expect, test } from "@/e2e/lib/test";
+import { expect, test } from "~/e2e/lib/test";
 
 test.describe("imprint page", () => {
 	test("should have document title", async ({ createImprintPage }) => {
@@ -40,12 +40,12 @@ test.describe("imprint page", () => {
 		}
 	});
 
-	// test("should not have visible changes", async ({ createImprintPage }) => {
-	// 	for (const locale of locales) {
-	// 		const { imprintPage } = await createImprintPage(locale);
-	// 		await imprintPage.goto();
+	test("should not have visible changes", async ({ createImprintPage }) => {
+		for (const locale of locales) {
+			const { imprintPage } = await createImprintPage(locale);
+			await imprintPage.goto();
 
-	// 		await expect(imprintPage.page).toHaveScreenshot();
-	// 	}
-	// });
+			await expect(imprintPage.page).toHaveScreenshot();
+		}
+	});
 });
