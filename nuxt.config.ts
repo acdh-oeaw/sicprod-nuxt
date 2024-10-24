@@ -27,6 +27,12 @@ export default defineNuxtConfig({
 	devtools: {
 		enabled: process.env.NODE_ENV === "development",
 	},
+	eslint: {
+		config: {
+			autoInit: false,
+			standalone: true,
+		},
+	},
 	experimental: {
 		componentIslands: {
 			selectiveClient: true,
@@ -62,11 +68,12 @@ export default defineNuxtConfig({
 	},
 	modules: [
 		"@nuxt/content",
+		"@nuxt/eslint",
 		"@nuxt/image",
 		"@nuxtjs/color-mode",
 		"@nuxtjs/i18n",
-		"@vueuse/nuxt",
 		"@nuxtjs/leaflet",
+		"@vueuse/nuxt",
 	],
 	nitro: {
 		compressPublicAssets: true,

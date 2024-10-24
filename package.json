@@ -19,7 +19,7 @@
 		"generate:iiif-manifest": "dotenv -c -- tsx ./scripts/generate-iiif-manifest.ts",
 		"lint:check": "run-p --continue-on-error \"lint:*:check\"",
 		"lint:fix": "run-p --continue-on-error \"lint:*:fix\"",
-		"lint:code:check": "eslint . --cache --ext .js,.ts,.vue --ignore-path ./.gitignore",
+		"lint:code:check": "eslint . --cache",
 		"lint:code:fix": "pnpm run lint:code:check --fix",
 		"lint:styles:check": "stylelint \"./**/*.@(css|vue)\" --cache --ignore-path ./.gitignore",
 		"lint:styles:fix": "pnpm run lint:styles:check --fix",
@@ -76,15 +76,17 @@
 		"zod": "^3.23.8"
 	},
 	"devDependencies": {
-		"@acdh-oeaw/eslint-config": "^1.0.10",
-		"@acdh-oeaw/eslint-config-nuxt": "^1.0.16",
-		"@acdh-oeaw/eslint-config-playwright": "^1.0.10",
-		"@acdh-oeaw/eslint-config-vue": "^1.0.15",
-		"@acdh-oeaw/prettier-config": "^1.0.1",
+		"@acdh-oeaw/eslint-config": "^2.0.3",
+		"@acdh-oeaw/eslint-config-nuxt": "^2.0.8",
+		"@acdh-oeaw/eslint-config-playwright": "^2.0.4",
+		"@acdh-oeaw/eslint-config-tailwindcss": "^2.0.3",
+		"@acdh-oeaw/eslint-config-vue": "^2.0.6",
+		"@acdh-oeaw/prettier-config": "^2.0.0",
 		"@acdh-oeaw/stylelint-config": "^2.0.4",
 		"@acdh-oeaw/tailwindcss-preset": "^0.0.22",
 		"@acdh-oeaw/tsconfig": "^1.2.0",
 		"@nuxt/devtools": "^1.6.0",
+		"@nuxt/eslint": "^0.6.0",
 		"@nuxtjs/leaflet": "^1.2.3",
 		"@playwright/test": "^1.48.1",
 		"@tailwindcss/typography": "^0.5.15",
@@ -98,8 +100,9 @@
 		"dotenv": "^16.4.5",
 		"dotenv-cli": "^7.4.2",
 		"dotenv-expand": "^11.0.6",
-		"eslint": "^8.57.1",
-		"eslint-plugin-tailwindcss": "^3.17.5",
+		"eslint": "^9.13.0",
+		"eslint-config-flat-gitignore": "^0.3.0",
+		"globals": "^15.11.0",
 		"is-ci": "^3.0.1",
 		"lint-staged": "^15.2.10",
 		"npm-run-all2": "^6.2.6",
@@ -129,31 +132,21 @@
 			"not op_mini all"
 		]
 	},
-	"eslintConfig": {
-		"extends": [
-			"@acdh-oeaw/eslint-config",
-			"@acdh-oeaw/eslint-config/strict",
-			"@acdh-oeaw/eslint-config-vue",
-			"@acdh-oeaw/eslint-config-nuxt",
-			"@acdh-oeaw/eslint-config-playwright",
-			"plugin:eslint-plugin-tailwindcss/recommended"
-		]
-	},
 	"lint-staged": {
 		"*.@(vue)": [
 			"eslint --cache --fix",
 			"stylelint --cache --fix",
-			"prettier --cache --write"
+			"prettier --cache --cache-location ./.prettiercache --write"
 		],
 		"*.@(js|ts)": [
 			"eslint --cache --fix",
-			"prettier --cache --write"
+			"prettier --cache --cache-location ./.prettiercache --write"
 		],
 		"*.@(css)": [
 			"stylelint --cache --fix",
-			"prettier --cache --write"
+			"prettier --cache --cache-location ./.prettiercache --write"
 		],
-		"*.!(css|js|ts|vue),!./content/**": "prettier --cache --ignore-unknown --write"
+		"*.!(css|js|ts|vue),!./@(content|public)/**": "prettier --cache --cache-location ./.prettiercache --ignore-unknown --write"
 	},
 	"postcss": {
 		"plugins": {
