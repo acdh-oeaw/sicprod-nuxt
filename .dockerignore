@@ -38,7 +38,7 @@ dist
 /test-results/
 
 # generated api client
-lib/api.ts
+app/lib/api.ts
 
 # generated iiif manifests
 assets/manifests/

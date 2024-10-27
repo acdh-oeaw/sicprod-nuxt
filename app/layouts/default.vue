@@ -47,7 +47,7 @@ useHead({
 				property: "og:image",
 				content: String(
 					createUrl({
-						baseUrl: env.public.NUXT_PUBLIC_APP_BASE_URL,
+						baseUrl: env.public.appBaseUrl,
 						pathname: "/opengraph-image.png",
 					}),
 				),
@@ -58,10 +58,10 @@ useHead({
 			...(i18nHead.value.meta ?? []),
 		];
 
-		if (isNonEmptyString(env.public.NUXT_PUBLIC_GOOGLE_SITE_VERIFICATION)) {
+		if (isNonEmptyString(env.public.googleSiteVerification)) {
 			meta.push({
 				name: "google-site-verification",
-				content: env.public.NUXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+				content: env.public.googleSiteVerification,
 			});
 		}
 
@@ -79,16 +79,10 @@ useHead({
 			{ type: "application/ld+json", innerHTML: JSON.stringify(jsonLd, safeJsonLdReplacer) },
 		];
 
-		if (
-			isNonEmptyString(env.public.NUXT_PUBLIC_MATOMO_BASE_URL) &&
-			isNonEmptyString(env.public.NUXT_PUBLIC_MATOMO_ID)
-		) {
+		if (isNonEmptyString(env.public.matomoBaseUrl) && isNonEmptyString(env.public.matomoId)) {
 			scripts.push({
 				type: "",
-				innerHTML: createAnalyticsScript(
-					env.public.NUXT_PUBLIC_MATOMO_BASE_URL,
-					env.public.NUXT_PUBLIC_MATOMO_ID,
-				),
+				innerHTML: createAnalyticsScript(env.public.matomoBaseUrl, env.public.matomoId),
 			});
 		}
 

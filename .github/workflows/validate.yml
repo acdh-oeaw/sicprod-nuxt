@@ -22,7 +22,7 @@ jobs:
       fail-fast: true
       matrix:
         node-version: [22.x]
-        os: [ubuntu-latest]
+        os: [ubuntu-22.04]
 
     steps:
       - name: Checkout repository
@@ -79,15 +79,15 @@ jobs:
       - name: Build app
         run: pnpm run build
         env:
-          NUXT_PUBLIC_APP_BASE_URL: "http://localhost:3000"
           NUXT_PUBLIC_API_BASE_URL: "${{ vars.NUXT_PUBLIC_API_BASE_URL }}"
+          NUXT_PUBLIC_APP_BASE_URL: "http://localhost:3000"
           NUXT_PUBLIC_REDMINE_ID: "${{ vars.SERVICE_ID }}"
 
       - name: Run e2e tests
         run: pnpm run test:e2e
         env:
-          NUXT_PUBLIC_APP_BASE_URL: "http://localhost:3000"
           NUXT_PUBLIC_API_BASE_URL: "${{ vars.NUXT_PUBLIC_API_BASE_URL }}"
+          NUXT_PUBLIC_APP_BASE_URL: "http://localhost:3000"
 
       - uses: actions/upload-artifact@v4
         if: always()

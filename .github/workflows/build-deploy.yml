@@ -10,7 +10,8 @@ on:
 
 jobs:
   env:
-    runs-on: ubuntu-latest
+    name: Generate environment variables
+    runs-on: ubuntu-22.04
     steps:
       - name: Derive environment from git ref
         id: environment
@@ -37,8 +38,9 @@ jobs:
       image: ${{ github.repository }}
 
   vars:
+    name: Generate public url
     needs: [env]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     environment:
       name: ${{ needs.env.outputs.environment }}
     steps:
@@ -56,11 +58,14 @@ jobs:
       public_url: ${{ steps.public_url.outputs.PUBLIC_URL }}
 
   build:
+    name: Build and push docker image
     needs: [env, vars]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     permissions:
       contents: read
       packages: write
+    environment:
+      name: "${{ needs.env.outputs.environment }}"
 
     steps:
       - name: Checkout repository
@@ -109,6 +114,7 @@ jobs:
           cache-to: type=gha,mode=max
 
   deploy:
+    name: Deploy docker image
     needs: [env, vars, build]
     uses: acdh-oeaw/gl-autodevops-minimal-port/.github/workflows/deploy.yml@main
     secrets: inherit

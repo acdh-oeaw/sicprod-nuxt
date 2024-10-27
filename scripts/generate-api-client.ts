@@ -3,7 +3,8 @@ import { generateZodClientFromOpenAPI } from "openapi-zod-client";
 import type { OpenAPIObject, PathsObject } from "openapi3-ts/oas30";
 import { z } from "zod";
 
-const outputPath = "./lib/api.ts";
+const outputPath = "./app/lib/api.ts";
+
 async function main() {
 	log.info("Starting zod client generation");
 

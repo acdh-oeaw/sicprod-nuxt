@@ -1,12 +1,13 @@
 import { fileURLToPath } from "node:url";
 
-import { defaultLocale, localesMap } from "./config/i18n.config";
+import { defaultLocale, localesMap } from "./app/config/i18n.config";
 
 const baseUrl = process.env.NUXT_PUBLIC_APP_BASE_URL!;
 
 export default defineNuxtConfig({
 	alias: {
-		"@": fileURLToPath(new URL("./", import.meta.url)),
+		"@": fileURLToPath(new URL("./app/", import.meta.url)),
+		"~": fileURLToPath(new URL("./", import.meta.url)),
 	},
 	app: {
 		layoutTransition: false,
@@ -16,11 +17,10 @@ export default defineNuxtConfig({
 		classSuffix: "",
 		dataValue: "ui-color-scheme",
 	},
-	components: [{ path: "@/components", extensions: [".vue"], pathPrefix: false }],
+	components: [{ extensions: [".vue"], path: "@/components", pathPrefix: false }],
 	content: {
 		defaultLocale,
 		locales: Object.keys(localesMap),
-		markdown: {},
 	},
 	css: [
 		"@fontsource-variable/inter/standard.css",
@@ -29,7 +29,7 @@ export default defineNuxtConfig({
 		"@/styles/index.css",
 	],
 	devtools: {
-		enabled: process.env.NODE_ENV === "development",
+		enabled: true,
 	},
 	eslint: {
 		config: {
@@ -55,17 +55,20 @@ export default defineNuxtConfig({
 		/** @see https://github.com/nuxt/nuxt/issues/21821 */
 		inlineStyles: false,
 	},
+	future: {
+		compatibilityVersion: 4,
+	},
 	i18n: {
 		baseUrl,
 		defaultLocale,
 		detectBrowserLanguage: {
 			redirectOn: "root",
 		},
-		langDir: "./messages",
+		langDir: "../i18n/messages",
 		lazy: true,
 		locales: Object.values(localesMap),
 		strategy: "prefix",
-		vueI18n: "./i18n.config.ts",
+		vueI18n: "./i18n/i18n.config.ts",
 	},
 	imports: {
 		dirs: ["./config/"],
@@ -83,25 +86,23 @@ export default defineNuxtConfig({
 		compressPublicAssets: true,
 		prerender: {
 			routes: ["/manifest.webmanifest", "/robots.txt", "/sitemap.xml"],
-			failOnError: false,
 		},
 	},
-	plugins: ["@/plugins/query-client.ts", "@/plugins/api.ts"],
 	postcss: {
 		plugins: {
 			tailwindcss: {},
 		},
 	},
 	runtimeConfig: {
-		NODE_ENV: process.env.NODE_ENV,
 		public: {
-			NUXT_PUBLIC_API_BASE_URL: process.env.NUXT_PUBLIC_API_BASE_URL,
-			NUXT_PUBLIC_APP_BASE_URL: process.env.NUXT_PUBLIC_APP_BASE_URL,
-			NUXT_PUBLIC_BOTS: process.env.NUXT_PUBLIC_BOTS,
-			NUXT_PUBLIC_GOOGLE_SITE_VERIFICATION: process.env.NUXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
-			NUXT_PUBLIC_MATOMO_BASE_URL: process.env.NUXT_PUBLIC_MATOMO_BASE_URL,
-			NUXT_PUBLIC_MATOMO_ID: process.env.NUXT_PUBLIC_MATOMO_ID,
-			NUXT_PUBLIC_REDMINE_ID: process.env.NUXT_PUBLIC_REDMINE_ID,
+			apiBaseUrl: process.env.NUXT_PUBLIC_API_BASE_URL,
+			appBaseUrl: process.env.NUXT_PUBLIC_APP_BASE_URL,
+			bots: process.env.NUXT_PUBLIC_BOTS,
+			googleSiteVerification: process.env.NUXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+			iiifBaseUrl: process.env.NUXT_PUBLIC_IIIF_BASE_URL,
+			matomoBaseUrl: process.env.NUXT_PUBLIC_MATOMO_BASE_URL,
+			matomoId: process.env.NUXT_PUBLIC_MATOMO_ID,
+			redmineId: process.env.NUXT_PUBLIC_REDMINE_ID,
 		},
 	},
 	typescript: {
@@ -110,8 +111,9 @@ export default defineNuxtConfig({
 		// https://github.com/nuxt/nuxt/issues/14816#issuecomment-1484918081
 		tsConfig: {
 			compilerOptions: {
+				baseUrl: ".",
 				paths: {
-					"@/*": ["./*"],
+					"@/*": ["./app/*"],
 					"~/*": ["./*"],
 				},
 			},
