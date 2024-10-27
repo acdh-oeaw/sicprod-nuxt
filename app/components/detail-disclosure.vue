@@ -1,6 +1,6 @@
 <script lang="ts" setup>
+import { get } from "@acdh-oeaw/lib";
 import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
-import lodash from "lodash";
 import { ChevronDown } from "lucide-vue-next";
 
 import ReferenceButton from "@/components/reference-button.vue";
@@ -96,7 +96,7 @@ const groupedRelations = computed(() => {
 								>
 									{{
 										header === "to.name" || rel.length === 1
-											? String(lodash.get(rel[0], header, "")).replace(/\<.*?\>/g, "")
+											? String(get(rel[0]!, header) ?? "").replace(/\<.*?\>/g, "")
 											: "*"
 									}}
 									<ChevronDown
@@ -118,7 +118,7 @@ const groupedRelations = computed(() => {
 									:to="localePath(`/detail/${model}/${hit.to.id}`)"
 								>
 									<td v-for="(header, idx) in headers" :key="hit + header" class="p-2 text-start">
-										{{ String(lodash.get(hit, header, "")).replace(/\<.*?\>/g, "") }}
+										{{ String(get(hit, header) ?? "").replace(/\<.*?\>/g, "") }}
 										<ReferenceButton
 											v-if="
 												idx === headers.length - 1 && hit.references && hit.references.length > 0
@@ -133,6 +133,7 @@ const groupedRelations = computed(() => {
 					</tbody>
 				</table>
 			</slot>
+
 			<slot v-else>
 				<div class="relative mt-5" :class="textColors[model]">
 					<Centered>
