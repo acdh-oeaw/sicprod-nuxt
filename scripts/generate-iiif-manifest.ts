@@ -1,112 +1,120 @@
+import { randomUUID } from "node:crypto";
+import { mkdir, writeFile } from "node:fs/promises";
+import { join } from "node:path";
+
 import { createUrl, log, request } from "@acdh-oeaw/lib";
 import { IIIFBuilder } from "@iiif/builder";
-import { randomUUID } from "crypto";
-import type { ErrnoException } from "fast-glob/out/types";
-import * as fs from "fs";
 import { z } from "zod";
 
-const iiifBaseURL = z.string().url().parse(process.env.NUXT_PUBLIC_IIIF_BASE_URL);
-const outputPath = "./assets/manifests";
+const outputFolder = join(process.cwd(), "assets", "manifests");
 
-async function main() {
-	if (!fs.existsSync(outputPath)) {
-		fs.mkdirSync(outputPath);
-	}
-	const builder = new IIIFBuilder();
-	let books = (await request(iiifBaseURL.replace("/iiif/", "/"), {
-		responseType: "json",
-	})) as Array<string>;
-	books = books.filter((book) => book !== "list");
+async function generate() {
+	log.info("Generating iiif manifest...");
+
+	const apiBaseUrl = z.string().url().parse(process.env.NUXT_PUBLIC_IIIF_BASE_URL);
+
+	const booksUrl = createUrl({ baseUrl: apiBaseUrl, pathname: "/images/sicprod/" });
+	const _books = (await request(booksUrl, { responseType: "json" })) as Array<string>;
+	const books = _books.filter((book) => book !== "list");
+
 	const imagesPerBook: Array<Array<string>> = (await Promise.all(
-		books.map((book) =>
-			request(
-				createUrl({
-					baseUrl: iiifBaseURL.replace("/iiif/", "/"),
-					pathname: book,
-				}).toString(),
-				{ responseType: "json" },
-			),
-		),
+		books.map((book) => {
+			const bookUrl = createUrl({ baseUrl: apiBaseUrl, pathname: `/images/sicprod/${book}/` });
+			return request(bookUrl, { responseType: "json" });
+		}),
 	)) as Array<Array<string>>;
 
+	//
+
+	const width = 4914;
+	const height = 3954;
+
+	const builder = new IIIFBuilder();
+
 	const collectionManifest = builder.createCollection("ScanCollection", (collection) => {
-		books.forEach((book: string, idx: number) => {
-			collection.createManifest(
-				createUrl({ baseUrl: iiifBaseURL, pathname: book }).toString(),
-				(manifest) => {
-					manifest.addLabel(book.replaceAll("_", " "), "de");
-					const bookData = imagesPerBook[idx];
-
-					if (Array.isArray(bookData)) {
-						bookData.forEach((img: string) => {
-							const imgName = img.replace(".jpg", ".jp2");
-							manifest.createCanvas(randomUUID(), (canvas) => {
-								canvas.addLabel(img.replace(".jpg", ""), "de");
-								canvas.width = 4914;
-								canvas.height = 3954;
-								const annotationID = createUrl({
-									baseUrl: iiifBaseURL,
-									pathname: `${book}/${imgName}/annotation`,
-								}).toString();
-
-								canvas.createAnnotation(annotationID, {
-									id: annotationID,
-									type: "Annotation",
-									motivation: "painting",
-									thumbnail: [
-										{
-											type: "Image",
-											id: createUrl({
-												baseUrl: iiifBaseURL,
-												pathname: `${book}/${imgName}/full/100,/0/default.jpg`,
-											}).toString(),
-										},
-									],
-									body: {
-										id: createUrl({
-											baseUrl: iiifBaseURL,
-											pathname: `${book}/${imgName}/full/full/0/default.jpg`,
-										}).toString(),
-										type: "Image",
-										format: "image/jpg",
-										height: 3954,
-										width: 4914,
-									},
-								});
-							});
-						});
-					}
-				},
+		books.forEach((book: string, index: number) => {
+			const url = String(
+				createUrl({ baseUrl: apiBaseUrl, pathname: `/iiif/images/sicprod/${book}/` }),
 			);
+
+			collection.createManifest(url, (manifest) => {
+				manifest.addLabel(book.replaceAll("_", " "), "de");
+
+				const bookData = imagesPerBook[index];
+
+				bookData?.forEach((img: string) => {
+					const imgName = img.replace(".jpg", ".jp2");
+
+					manifest.createCanvas(randomUUID(), (canvas) => {
+						canvas.addLabel(img.replace(".jpg", ""), "de");
+						canvas.width = width;
+						canvas.height = height;
+
+						const annotationId = String(
+							createUrl({
+								baseUrl: apiBaseUrl,
+								pathname: `/iiif/images/sicprod/${book}/${imgName}/annotation`,
+							}),
+						);
+
+						const thumbnailId = String(
+							createUrl({
+								baseUrl: apiBaseUrl,
+								pathname: `/iiif/images/sicprod/${book}/${imgName}/full/100,/0/default.jpg`,
+							}),
+						);
+
+						const bodyId = String(
+							createUrl({
+								baseUrl: apiBaseUrl,
+								pathname: `/iiif/images/sicprod/${book}/${imgName}/full/full/0/default.jpg`,
+							}),
+						);
+
+						canvas.createAnnotation(annotationId, {
+							id: annotationId,
+							type: "Annotation",
+							motivation: "painting",
+							thumbnail: [{ type: "Image", id: thumbnailId }],
+							body: {
+								id: bodyId,
+								type: "Image",
+								format: "image/jpg",
+								height,
+								width,
+							},
+						});
+					});
+				});
+			});
 		});
 	});
-	collectionManifest.items.forEach((manifest) => {
-		fs.writeFile(
-			`${outputPath}/${decodeURI(manifest.id.split("/").slice(-1).join(""))}.json`,
-			JSON.stringify(
-				builder.toPresentation3({
-					id: manifest.id,
-					type: "Manifest",
-				}),
-			),
-			(msg: ErrnoException | null) => {
-				if (msg) throw msg;
-			},
-		);
-	});
-	fs.writeFile(
-		`${outputPath}/collection-manifest.json`,
-		JSON.stringify(builder.toPresentation3({ id: collectionManifest.id, type: "Collection" })),
-		(msg: ErrnoException | null) => {
-			if (msg) throw msg;
-		},
-	);
+
+	//
+
+	await mkdir(outputFolder, { recursive: true });
+
+	for (const manifest of collectionManifest.items) {
+		const name = decodeURI(manifest.id.split("/").slice(-1).join(""));
+		const filePath = join(outputFolder, `${name}.json`);
+		const fileContent = builder.toPresentation3({ id: manifest.id, type: "Manifest" });
+
+		await writeFile(filePath, JSON.stringify(fileContent), { encoding: "utf-8" });
+	}
+
+	const filePath = join(outputFolder, "collection-manifest.json");
+	const fileContent = builder.toPresentation3({ id: collectionManifest.id, type: "Collection" });
+
+	await writeFile(filePath, JSON.stringify(fileContent), { encoding: "utf-8" });
 }
 
-main()
+generate()
 	.then(() => {
-		log.success("Manifest creation completed. \nOutput was written to: ", outputPath);
+		log.success(
+			"Successfully generated iiif manifest.\n",
+			`Output was written to: "${outputFolder}".`,
+		);
 	})
 	.catch((error: unknown) => {
-		log.error("Manifest creation failed", String(error));
+		log.error("Failed to generate iiif manifest.\n", String(error));
 	});
