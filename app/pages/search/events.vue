@@ -36,5 +36,5 @@ const columns = [
 <template>
 	<SearchPage class-name="Event" :cols="columns" :endpoint="endpoint">
 		<h1 class="sr-only">{{ t("SearchEventsPage.title") }}</h1>
-</SearchPage>
+	</SearchPage>
 </template>

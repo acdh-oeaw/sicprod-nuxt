@@ -48,7 +48,7 @@ test.describe("app", () => {
 				const loc = String(
 					createUrl({
 						baseUrl,
-						pathname: url
+						pathname: url,
 					}),
 				);
 
