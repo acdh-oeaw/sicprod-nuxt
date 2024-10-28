@@ -4,7 +4,6 @@ import { ChevronRight, Search, XCircle } from "lucide-vue-next";
 
 import collection from "~/assets/manifests/collection-manifest.json";
 
-const localePath = useLocalePath();
 const t = useTranslations();
 
 const searchInput = ref("");
@@ -12,7 +11,7 @@ const searchInput = ref("");
 function getLink(item: unknown) {
 	const manifest = item as Manifest;
 	return {
-		path: localePath("/iiif"),
+		path: "/iiif",
 		query: {
 			book: manifest.label.de?.[0]?.replaceAll(" ", "_"),
 		},
@@ -60,7 +59,7 @@ const filteredItemList = computed(() => {
 			</button>
 		</div>
 		<div class="columns-2 md:columns-3">
-			<NuxtLink
+			<NuxtLinkLocale
 				v-for="item in filteredItemList"
 				:key="item.id"
 				class="flex justify-between border-b hover:bg-primary-50 active:bg-primary-50 md:border-t dark:hover:bg-primary-950 dark:active:bg-primary-950"
@@ -72,7 +71,7 @@ const filteredItemList = computed(() => {
 				<div class="self-center overflow-auto text-start align-middle text-sm md:text-md">
 					<ChevronRight class="size-6 shrink-0" />
 				</div>
-			</NuxtLink>
+			</NuxtLinkLocale>
 		</div>
 	</div>
 </template>

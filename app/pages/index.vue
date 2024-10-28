@@ -3,8 +3,6 @@ import { useQuery } from "@tanstack/vue-query";
 
 import network from "~/assets/networkSnippet.json";
 
-const localePath = useLocalePath();
-
 defineRouteRules({
 	prerender: true,
 });
@@ -40,11 +38,11 @@ const { data } = useQuery({
 			</p>
 			<p>
 				{{ t("IndexPage.intro5") }}
-				<NuxtLink to="#">{{ t("IndexPage.here") }}</NuxtLink>
+				<NuxtLinkLocale to="#">{{ t("IndexPage.here") }}</NuxtLinkLocale>
 			</p>
 		</div>
 		<div class="flex w-full flex-wrap items-stretch justify-around gap-5">
-			<NuxtLink :to="localePath('/detail/person/18')">
+			<NuxtLinkLocale to="/detail/person/18">
 				<div
 					class="group h-full min-w-20 max-w-72 overflow-hidden rounded-md shadow-lg dark:bg-neutral-800"
 				>
@@ -66,8 +64,8 @@ const { data } = useQuery({
 						</p>
 					</div>
 				</div>
-			</NuxtLink>
-			<NuxtLink :to="localePath('/search/persons')">
+			</NuxtLinkLocale>
+			<NuxtLinkLocale to="/search/persons">
 				<div
 					class="group h-full min-w-20 max-w-72 overflow-hidden rounded-md shadow-lg dark:bg-neutral-800"
 				>
@@ -86,8 +84,8 @@ const { data } = useQuery({
 						<p class="text-sm">Durchsuchen Sie unsere Datenbank mit fast 13.000 Einträgen.</p>
 					</div>
 				</div>
-			</NuxtLink>
-			<NuxtLink :to="localePath('/network')">
+			</NuxtLinkLocale>
+			<NuxtLinkLocale to="/network">
 				<div
 					class="h-full min-w-20 max-w-72 overflow-hidden rounded-md shadow-lg dark:bg-neutral-800"
 				>
@@ -106,8 +104,8 @@ const { data } = useQuery({
 						</p>
 					</div>
 				</div>
-			</NuxtLink>
-			<NuxtLink :to="localePath('/iiif')">
+			</NuxtLinkLocale>
+			<NuxtLinkLocale to="/iiif">
 				<div
 					class="group h-full min-w-20 max-w-72 overflow-hidden rounded-md shadow-lg dark:bg-neutral-800"
 				>
@@ -129,19 +127,19 @@ const { data } = useQuery({
 						</p>
 					</div>
 				</div>
-			</NuxtLink>
+			</NuxtLinkLocale>
 		</div>
 		<div>
 			<h2 class="text-2xl font-semibold">Team</h2>
 			<ul>
 				<li class="my-2">
-					<NuxtLink
+					<NuxtLinkLocale
 						class="block underline decoration-dotted"
 						target="_blank"
 						to="https://www.uibk.ac.at/geschichte-ethnologie/institut/mitarbeiterinnen/projekt/debertol-markus/"
 					>
 						Dr. Markus Debertol
-					</NuxtLink>
+					</NuxtLinkLocale>
 					<span class="text-sm">Prinicpal Investigator (Univ. Innsbruck) und Koordinator</span>
 				</li>
 				<li class="my-2">
@@ -149,33 +147,33 @@ const { data } = useQuery({
 					<span class="text-sm">Principal Investigator (Tiroler Landesarchiv)</span>
 				</li>
 				<li class="my-2">
-					<NuxtLink
+					<NuxtLinkLocale
 						class="block underline decoration-dotted"
 						target="_blank"
 						to="https://www.uibk.ac.at/geschichte-ethnologie/institut/mitarbeiterinnen/projekt/laumer-philipp/"
 					>
 						Philipp Laumer, MA
-					</NuxtLink>
+					</NuxtLinkLocale>
 					<span class="text-sm">Wissenschaftlicher Projektmitarbeiter</span>
 				</li>
 				<li class="my-2">
-					<NuxtLink
+					<NuxtLinkLocale
 						class="block underline decoration-dotted"
 						target="_blank"
 						to="https://www.oeaw.ac.at/acdh/institute/team/staff-members/birger-schacht"
 					>
 						Birger Schacht, BSc
-					</NuxtLink>
+					</NuxtLinkLocale>
 					<span class="text-sm">Backend-Entwicklung (ACDH-CH)</span>
 				</li>
 				<li class="my-2">
-					<NuxtLink
+					<NuxtLinkLocale
 						class="block underline decoration-dotted"
 						target="_blank"
 						to="https://www.oeaw.ac.at/acdh/institute/team/staff-members/katharina-ruth-wuensche"
 					>
 						Katharina Wünsche, BSc
-					</NuxtLink>
+					</NuxtLinkLocale>
 					<span class="text-sm">Frontend-Entwicklung (ACDH-CH, ab Jänner 2024)</span>
 				</li>
 				<li class="my-2">

@@ -6,10 +6,8 @@ import Cite from "citation-js";
 import { ArrowDownToLine, BookOpenText, Copy } from "lucide-vue-next";
 
 import type { Reference } from "@/types/resulttypes";
-import { NuxtLink } from "#components";
 import styleSheet from "~/assets/sicprod-style.csl?raw";
 
-const localePath = useLocalePath();
 const t = useTranslations();
 const props = withDefaults(
 	defineProps<{
@@ -87,7 +85,7 @@ function getLink(ref: Reference) {
 		return null;
 	}
 	return {
-		path: localePath("/iiif"),
+		path: "/iiif",
 		query: {
 			book: ref.scandata.title,
 			page: ref.scandata.pages.replaceAll(".jpg", ""),
@@ -131,7 +129,7 @@ function getLink(ref: Reference) {
 						</button>
 					</div>
 					<component
-						:is="getLink(props.references[idx]) ? NuxtLink : 'div'"
+						:is="getLink(props.references[idx]) ? NuxtLinkLocale : 'div'"
 						v-for="(entry, idx) in citation"
 						:key="entry"
 						class="block p-2"

@@ -12,7 +12,6 @@ import { loadAndGroupRelations } from "@/lib/group-relations.ts";
 import { getFlattenedRelations } from "@/utils/timeline-utils";
 
 const t = useTranslations();
-const localePath = useLocalePath();
 
 const route = useRoute();
 const id = Number(route.params.id);
@@ -221,14 +220,14 @@ function toggleShowAltNames() {
 				<div class="col-span-2 my-2 border-t" />
 				<span>{{ t("Pages.searchviews.person.same_as") }}:</span>
 				<span>
-					<NuxtLink
+					<NuxtLinkLocale
 						v-for="person in sameAs"
 						:key="person.id"
 						class="-ml-1 -mt-1 block p-1 hover:bg-primary-50 active:bg-primary-50 dark:hover:bg-primary-950 dark:active:bg-primary-950"
-						:to="localePath(`/detail/person/${person.id}`)"
+						:to="`/detail/person/${person.id}`"
 					>
 						{{ person.name }}
-					</NuxtLink>
+					</NuxtLinkLocale>
 				</span>
 			</template>
 			<FamilyTree

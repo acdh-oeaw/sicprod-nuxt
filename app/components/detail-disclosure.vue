@@ -28,7 +28,6 @@ const props = withDefaults(
 );
 
 const t = useTranslations();
-const localePath = useLocalePath();
 
 const groupedRelations = computed(() => {
 	const groups: Record<string, Array<TempTriple>> = {};
@@ -119,11 +118,11 @@ const groupedRelations = computed(() => {
 								as="tr"
 								class="hover:bg-primary-50 active:bg-primary-50 dark:hover:bg-primary-950 dark:active:bg-primary-950"
 							>
-								<NuxtLink
+								<NuxtLinkLocale
 									v-for="hit in rel"
 									:key="String(hit)"
 									class="table w-full table-fixed"
-									:to="localePath(`/detail/${model}/${hit.to.id}`)"
+									:to="`/detail/${model}/${hit.to.id}`"
 								>
 									<td v-for="(header, idx) in headers" :key="hit + header" class="p-2 text-start">
 										{{ String(get(hit, header) ?? "").replace(/\<.*?\>/g, "") }}
@@ -135,7 +134,7 @@ const groupedRelations = computed(() => {
 											:references="hit.references"
 										/>
 									</td>
-								</NuxtLink>
+								</NuxtLinkLocale>
 							</component>
 						</component>
 					</tbody>

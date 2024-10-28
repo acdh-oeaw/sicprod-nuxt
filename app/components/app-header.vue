@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import type { NavLinkProps } from "@/components/nav-link.vue";
-
 const t = useTranslations();
 
 const links = computed(() => {
@@ -21,7 +19,7 @@ const links = computed(() => {
 			label: t("AppHeader.links.scans"),
 			title: t("AppHeader.linkTitle.scans"),
 		},
-	} satisfies Record<string, { href: NavLinkProps["href"]; label: string; title?: string }>;
+	};
 });
 </script>
 
@@ -33,9 +31,9 @@ const links = computed(() => {
 			<nav :aria-label="t('AppHeader.navigation-main')">
 				<ul class="flex items-center gap-4" role="list">
 					<li v-for="(link, key) of links" :key="key" :title="link.title ?? ''">
-						<NavLink :href="link.href">
+						<NuxtLocaleLink :href="link.href">
 							{{ link.label }}
-						</NavLink>
+						</NuxtLocaleLink>
 					</li>
 				</ul>
 			</nav>

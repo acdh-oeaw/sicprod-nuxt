@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import type { NavLinkProps } from "@/components/nav-link.vue";
-
 const t = useTranslations();
 
 const links = computed(() => {
@@ -46,10 +44,7 @@ const links = computed(() => {
 			},
 		},
 		imprint: { href: { path: "/imprint" }, label: t("AppFooter.links.imprint"), image: null },
-	} satisfies Record<
-		string,
-		{ href: NavLinkProps["href"]; label: string; image: Record<"dark" | "light", string> | null }
-	>;
+	};
 });
 </script>
 
@@ -64,9 +59,9 @@ const links = computed(() => {
 								{{ link.label }}
 							</NuxtImg>
 						</a>
-						<NavLink v-else :href="link.href">
+						<NuxtLocaleLink v-else :href="link.href">
 							{{ link.label }}
-						</NavLink>
+						</NuxtLocaleLink>
 					</li>
 				</ul>
 			</nav>

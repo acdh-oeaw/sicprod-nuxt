@@ -17,7 +17,6 @@ import type { TempTriple } from "@/types/resulttypes";
 
 const t = useTranslations();
 
-const localePath = useLocalePath();
 const props = withDefaults(
 	defineProps<{
 		relations: Array<TempTriple> | undefined;
@@ -353,25 +352,25 @@ function toggleShowAllChildren() {
 			</Transition>
 		</Popover>
 		<div ref="ancestorContainer" class="my-2 flex justify-around gap-2 px-16">
-			<NuxtLink
+			<NuxtLinkLocale
 				v-for="person in ancestors"
 				:key="person.id"
 				class="mt-auto w-32 p-2 text-center"
-				:to="localePath(`/detail/${props.classnameForUrls}/${person.id}`)"
+				:to="`/detail/${props.classnameForUrls}/${person.id}`"
 			>
 				{{ person.name }}
-			</NuxtLink>
+			</NuxtLinkLocale>
 		</div>
 		<div class="my-4 flex justify-around gap-2">
 			<div ref="siblingContainer" class="flex flex-col justify-around">
-				<NuxtLink
+				<NuxtLinkLocale
 					v-for="person in siblings"
 					:key="person.id"
 					class="w-32 p-2 text-right align-middle"
-					:to="localePath(`/detail/${props.classnameForUrls}/${person.id}`)"
+					:to="`/detail/${props.classnameForUrls}/${person.id}`"
 				>
 					{{ person.name }}
-				</NuxtLink>
+				</NuxtLinkLocale>
 			</div>
 			<div class="flex w-36 p-2 text-center font-bold">
 				<div ref="meContainer" class="my-auto p-2">
@@ -379,14 +378,14 @@ function toggleShowAllChildren() {
 				</div>
 			</div>
 			<div ref="partnerContainer" class="flex flex-col justify-around">
-				<NuxtLink
+				<NuxtLinkLocale
 					v-for="person in partners"
 					:key="person.id"
 					class="w-32 p-2 text-left align-middle"
-					:to="localePath(`/detail/${props.classnameForUrls}/${person.id}`)"
+					:to="`/detail/${props.classnameForUrls}/${person.id}`"
 				>
 					{{ person.name }}
-				</NuxtLink>
+				</NuxtLinkLocale>
 			</div>
 		</div>
 		<div
@@ -394,16 +393,16 @@ function toggleShowAllChildren() {
 			ref="childContainer"
 			class="mb-2 mt-7 flex flex-wrap justify-evenly gap-x-2 gap-y-6"
 		>
-			<NuxtLink
+			<NuxtLinkLocale
 				v-for="person in children"
 				:key="person.id"
 				class="z-10 max-w-32 flex-auto px-2 pt-0 text-center align-middle"
-				:to="localePath(`/detail/${props.classnameForUrls}/${person.id}`)"
+				:to="`/detail/${props.classnameForUrls}/${person.id}`"
 			>
 				<span class="bg-white/50 dark:bg-neutral-800/50">
 					{{ person.name }}
 				</span>
-			</NuxtLink>
+			</NuxtLinkLocale>
 		</div>
 		<div
 			v-else

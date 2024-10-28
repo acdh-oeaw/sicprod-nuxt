@@ -5,8 +5,6 @@ import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
 import { bgColors } from "@/lib/colors";
 import type { TimelineObject } from "@/types/timeline";
 
-const localePath = useLocalePath();
-
 const props = defineProps<{
 	item: TimelineObject | [TimelineObject, ...Array<TimelineObject>]; //ensure non-empty array
 	scale: (date: Date | number) => number;
@@ -149,11 +147,11 @@ const itemClass = computed(() => {
 						</span>
 					</div>
 					<div v-if="Array.isArray(item)">
-						<NuxtLink
+						<NuxtLinkLocale
 							v-for="(i, idx) in item"
 							:key="idx"
 							class="flow-root rounded-md p-2 transition duration-150 ease-in-out hover:bg-neutral-100 focus:outline-none focus-visible:ring dark:hover:bg-neutral-900"
-							:to="localePath(`/detail/${i.class}/${i.to.id}`)"
+							:to="`/detail/${i.class}/${i.to.id}`"
 						>
 							<span class="block text-sm text-neutral-500">
 								{{ i.name }}
@@ -163,12 +161,12 @@ const itemClass = computed(() => {
 									{{ i.to.name }}
 								</span>
 							</span>
-						</NuxtLink>
+						</NuxtLinkLocale>
 					</div>
 					<div v-else>
-						<NuxtLink
+						<NuxtLinkLocale
 							class="flow-root rounded-md p-2 transition duration-150 ease-in-out hover:bg-neutral-100 focus:outline-none focus-visible:ring dark:hover:bg-neutral-900"
-							:to="localePath(`/detail/${item.class}/${item.to.id}`)"
+							:to="`/detail/${item.class}/${item.to.id}`"
 						>
 							<span class="block text-sm text-neutral-500">
 								{{ item.name }}
@@ -178,7 +176,7 @@ const itemClass = computed(() => {
 									{{ item.to.name }}
 								</span>
 							</span>
-						</NuxtLink>
+						</NuxtLinkLocale>
 					</div>
 				</div>
 			</PopoverPanel>
