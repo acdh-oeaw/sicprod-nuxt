@@ -93,6 +93,7 @@ function getLink(ref: Reference) {
 	if (ref == null || !("title" in ref.scandata) || !("pages" in ref.scandata)) {
 		return null;
 	}
+
 	return {
 		path: "/iiif",
 		query: {
@@ -137,23 +138,32 @@ function getLink(ref: Reference) {
 							<Copy class="size-4 transition-transform hover:scale-125" />
 						</button>
 					</div>
-					<component
-						:is="getLink(props.references[idx]) ? resolveComponent('NuxtLinkLocale') : 'div'"
-						v-for="(entry, idx) in citation"
-						:key="entry"
-						class="block p-2"
-						:class="{
-							'border-b-2 dark:border-neutral-700': idx < citation.length - 1,
-							'hover:bg-neutral-100 focus:outline-none focus-visible:ring dark:hover:bg-neutral-900':
-								getLink(props.references[idx]),
-						}"
-						target="_blank"
-						:to="getLink(props.references[idx])"
-						@click.stop
-					>
-						<!-- eslint-disable-next-line vue/no-v-html -->
-						<span v-html="entry.format('bibliography', citationConfig)" />
-					</component>
+					<template v-for="(entry, idx) in citation" :key="entry">
+						<NuxtLinkLocale
+							v-if="getLink(props.references[idx])"
+							class="block p-2 hover:bg-neutral-100 focus:outline-none focus-visible:ring dark:hover:bg-neutral-900"
+							:class="{
+								'border-b-2 dark:border-neutral-700': idx < citation.length - 1,
+							}"
+							target="_blank"
+							:to="getLink(props.references[idx])!"
+							@click.stop
+						>
+							<!-- eslint-disable-next-line vue/no-v-html -->
+							<span v-html="entry.format('bibliography', citationConfig)" />
+						</NuxtLinkLocale>
+
+						<div
+							v-else
+							class="block p-2"
+							:class="{
+								'border-b-2 dark:border-neutral-700': idx < citation.length - 1,
+							}"
+						>
+							<!-- eslint-disable-next-line vue/no-v-html -->
+							<span v-html="entry.format('bibliography', citationConfig)" />
+						</div>
+					</template>
 				</div>
 			</PopoverPanel>
 		</Transition>
