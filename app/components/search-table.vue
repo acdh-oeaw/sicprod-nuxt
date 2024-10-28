@@ -22,8 +22,9 @@ const props = defineProps<{
 
 const columns = props.cols;
 
+// FIXME:
 const getDetailLink = (id: string) => {
-	let type = route.path.split("/")[3];
+	let type = route.path.split("/")[2];
 	type = type === "salaries" ? "salary" : type;
 	type = type?.replace(/s$/g, "");
 	return `/${locale.value}/detail/${type}/${id}`;
