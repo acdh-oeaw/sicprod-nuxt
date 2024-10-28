@@ -4,7 +4,7 @@ const t = useTranslations();
 const links = computed(() => {
 	return {
 		uibk: {
-			href: { path: "https://www.uibk.ac.at/" },
+			href: "https://www.uibk.ac.at/",
 			label: "Universität Innsbruck",
 			image: {
 				light: "/assets/images/logo-uibk.svg",
@@ -12,7 +12,7 @@ const links = computed(() => {
 			},
 		},
 		landesarchiv: {
-			href: { path: "https://www.tirol.gv.at/" },
+			href: "https://www.tirol.gv.at/",
 			label: "Tiroler Landesarchiv",
 			image: {
 				light: "/assets/images/Landeslogo_4c_01.webp",
@@ -20,7 +20,7 @@ const links = computed(() => {
 			},
 		},
 		acdh: {
-			href: { path: "https://www.oeaw.ac.at/acdh/" },
+			href: "https://www.oeaw.ac.at/acdh/",
 			label: "Austrian Centre for Digital Humanities and Cultural Heritage",
 			image: {
 				light: "/assets/images/logo-acdh-with-text.svg",
@@ -28,7 +28,7 @@ const links = computed(() => {
 			},
 		},
 		oeaw: {
-			href: { path: "https://www.oeaw.ac.at/" },
+			href: "https://www.oeaw.ac.at/",
 			label: "Österreichische Akademie der Wissenschaften",
 			image: {
 				light: "/assets/images/logo-oeaw.svg",
@@ -36,35 +36,33 @@ const links = computed(() => {
 			},
 		},
 		goDigital: {
-			href: { path: "https://www.oeaw.ac.at/foerderungen/godigital/" },
+			href: "https://www.oeaw.ac.at/foerderungen/godigital/",
 			label: "go!digital",
 			image: {
 				light: "/assets/images/go_digital.svg",
 				dark: "/assets/images/go_digital-dark.svg",
 			},
 		},
-		imprint: { href: { path: "/imprint" }, label: t("AppFooter.links.imprint"), image: null },
 	};
 });
 </script>
 
 <template>
-	<footer class="border-t bg-neutral-900 text-white">
-		<div class="container flex items-center justify-between gap-4 py-8">
-			<nav :aria-label="t('AppFooter.navigation-secondary')" class="w-full">
-				<ul class="flex items-center gap-8" role="list">
-					<li v-for="(link, key) of links" :key="key" :class="link.image ? '' : 'ml-auto'">
-						<a v-if="link.image" :href="link.href.path" target="_blank">
-							<NuxtImg :alt="link.label" class="h-10 w-auto" placeholder :src="link.image.dark">
-								{{ link.label }}
-							</NuxtImg>
-						</a>
-						<NuxtLocaleLink v-else :href="link.href">
-							{{ link.label }}
-						</NuxtLocaleLink>
-					</li>
-				</ul>
-			</nav>
-		</div>
+	<footer class="border-t bg-neutral-900 p-8 text-white">
+		<nav :aria-label="t('AppFooter.navigation-secondary')" class="w-full">
+			<ul class="flex flex-wrap items-center gap-8" role="list">
+				<li v-for="(link, key) of links" :key="key" class="shrink-0">
+					<a :href="link.href" target="_blank">
+						<NuxtImg alt="" class="h-10 w-auto" placeholder :src="link.image.dark" />
+						<span class="sr-only">{{ link.label }}</span>
+					</a>
+				</li>
+				<li class="ml-auto text-sm">
+					<NuxtLinkLocale class="underline decoration-dotted" href="/imprint">
+						{{ t("AppFooter.links.imprint") }}
+					</NuxtLinkLocale>
+				</li>
+			</ul>
+		</nav>
 	</footer>
 </template>

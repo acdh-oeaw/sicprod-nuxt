@@ -3,21 +3,25 @@ const t = useTranslations();
 
 const links = computed(() => {
 	return {
-		home: { href: { path: "/" }, label: t("AppHeader.links.home"), title: "" },
+		home: {
+			href: { path: "/" },
+			label: t("AppHeader.links.home.label"),
+			title: "",
+		},
 		search: {
 			href: { path: "/search/persons" },
-			label: t("AppHeader.links.search"),
-			title: t("AppHeader.links.search"),
+			label: t("AppHeader.links.search.label"),
+			title: t("AppHeader.links.search.title"),
 		},
 		network: {
 			href: { path: "/network" },
-			label: t("AppHeader.links.network"),
-			title: t("AppHeader.linkTitle.network"),
+			label: t("AppHeader.links.network.label"),
+			title: t("AppHeader.links.network.title"),
 		},
 		scans: {
 			href: { path: "/iiif" },
-			label: t("AppHeader.links.scans"),
-			title: t("AppHeader.linkTitle.scans"),
+			label: t("AppHeader.links.scans.label"),
+			title: t("AppHeader.links.scans.title"),
 		},
 	};
 });
@@ -25,20 +29,20 @@ const links = computed(() => {
 
 <template>
 	<header
-		class="max-w-[100dvw] shadow-header-sm md:shadow-header dark:bg-neutral-950 dark:shadow-header-dark-sm dark:md:shadow-header-dark"
+		class="shadow-header-sm md:shadow-header dark:bg-neutral-950 dark:shadow-header-dark-sm dark:md:shadow-header-dark"
 	>
-		<div class="flex items-center justify-between gap-4 p-6 md:p-8">
+		<div class="flex items-center justify-between gap-x-4 px-8 py-6">
 			<nav :aria-label="t('AppHeader.navigation-main')">
-				<ul class="flex items-center gap-4" role="list">
-					<li v-for="(link, key) of links" :key="key" :title="link.title ?? ''">
-						<NuxtLocaleLink :href="link.href">
+				<ul class="flex flex-wrap items-center gap-x-6 gap-y-3" role="list">
+					<li v-for="(link, key) of links" :key="key">
+						<NuxtLinkLocale class="font-medium transition" :href="link.href" :title="link.title">
 							{{ link.label }}
-						</NuxtLocaleLink>
+						</NuxtLinkLocale>
 					</li>
 				</ul>
 			</nav>
 
-			<div class="flex items-center gap-4">
+			<div class="flex items-center gap-x-4">
 				<ColorSchemeSwitcher />
 			</div>
 		</div>
