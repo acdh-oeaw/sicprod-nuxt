@@ -183,6 +183,7 @@ watch(
 </script>
 
 <template>
+	<slot />
 	<div class="h-full gap-4 md:mx-4 md:grid md:grid-cols-[auto_4fr_auto] md:grid-rows-[auto_1fr]">
 		<div>
 			<SearchNavigation></SearchNavigation>

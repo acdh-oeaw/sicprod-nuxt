@@ -235,7 +235,42 @@
 			"end_date_written": "Bis"
 		}
 	},
-
+	"SearchEventsPage": {
+		"meta": {
+			"title": "Suche - Ereignisse"
+		},
+		"title": "Suche - Ereignisse"
+	},
+	"SearchFunctionsPage": {
+		"meta": {
+			"title": "Suche - Funktionen"
+		},
+		"title": "Suche - Funktionen"
+	},
+	"SearchInstitutionsPage": {
+		"meta": {
+			"title": "Suche - Institutionen"
+		},
+		"title": "Suche - Institutionen"
+	},
+	"SearchPersonsPage": {
+		"meta": {
+			"title": "Suche - Personen"
+		},
+		"title": "Suche - Personen"
+	},
+	"SearchPlacesPage": {
+		"meta": {
+			"title": "Suche - Orte"
+		},
+		"title": "Suche - Orte"
+	},
+	"SearchSalariesPage": {
+		"meta": {
+			"title": "Suche - Zahlungen"
+		},
+		"title": "Suche - Zahlungen"
+	},
 	"Timeline": {
 		"timeline": "Zeitleiste"
 	},
