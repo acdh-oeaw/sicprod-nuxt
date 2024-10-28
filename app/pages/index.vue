@@ -11,7 +11,7 @@ defineRouteRules({
 
 const t = useTranslations();
 
-usePageMeta({
+usePageMetadata({
 	title: t("IndexPage.meta.title"),
 });
 

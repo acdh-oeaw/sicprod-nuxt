@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const t = useTranslations();
 
-usePageMeta({
+usePageMetadata({
 	title: t("Pages.searchviews.title"),
 });
 </script>

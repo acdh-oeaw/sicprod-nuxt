@@ -5,7 +5,7 @@ defineRouteRules({
 
 const t = useTranslations();
 
-usePageMeta({
+usePageMetadata({
 	title: t("ImprintPage.meta.title"),
 });
 </script>

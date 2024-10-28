@@ -3,7 +3,7 @@ import SearchPage from "@/components/search-page.vue";
 
 const t = useTranslations();
 
-usePageMeta({
+usePageMetadata({
 	title: "Pages.searchviews.person.title",
 });
 

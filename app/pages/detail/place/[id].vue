@@ -13,7 +13,7 @@ const t = useTranslations();
 const route = useRoute();
 const id = Number(route.params.id);
 
-usePageMeta({
+usePageMetadata({
 	title: t("Pages.searchviews.place.title"),
 });
 

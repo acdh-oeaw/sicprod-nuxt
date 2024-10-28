@@ -6,7 +6,7 @@ const t = useTranslations();
 
 const route = useRoute();
 
-usePageMeta({
+usePageMetadata({
 	title: t("Pages.iiif.title"),
 });
 </script>

@@ -17,7 +17,7 @@ const localePath = useLocalePath();
 const route = useRoute();
 const id = Number(route.params.id);
 
-usePageMeta({
+usePageMetadata({
 	title: t("Pages.searchviews.person.title"),
 });
 
