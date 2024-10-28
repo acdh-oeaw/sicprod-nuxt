@@ -15,8 +15,8 @@ const links = computed(() => {
 			href: "https://www.tirol.gv.at/",
 			label: "Tiroler Landesarchiv",
 			image: {
-				light: "/assets/images/Landeslogo_4c_01.webp",
-				dark: "/assets/images/Landeslogo_4c_01.webp",
+				light: "/assets/images/landesarchiv.webp",
+				dark: "/assets/images/landesarchiv.webp",
 			},
 		},
 		acdh: {
