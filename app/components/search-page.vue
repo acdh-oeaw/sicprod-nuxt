@@ -32,7 +32,9 @@ const limitNum = computed(() => {
 const comQuery = computed(() => {
 	const query = route.query;
 	const facetQueries = Object.fromEntries(
-		Object.entries(query).filter(([key, _value]) => key.startsWith("facet_")),
+		Object.entries(query).filter(([key, _value]) => {
+			return key.startsWith("facet_");
+		}),
 	);
 	return {
 		q: String(query.q ?? ""),
@@ -47,9 +49,9 @@ const { data, isFetching } = useQuery({
 	queryKey: ["search", props.className, comQuery] as const,
 	queryFn: async () => {
 		const facetQueries = Object.fromEntries(
-			Object.entries(comQuery.value).filter(
-				([key, value]) => key.startsWith("facet_") && value !== "",
-			),
+			Object.entries(comQuery.value).filter(([key, value]) => {
+				return key.startsWith("facet_") && value !== "";
+			}),
 		);
 		const response = await props.endpoint({
 			queries: {
@@ -68,22 +70,26 @@ function hasMatchingFacetType(val: unknown): val is Record<string, FacetType> {
 	return (
 		val != null &&
 		Object.values(val as Record<string, FacetType>).length > 0 &&
-		Object.values(val as Record<string, FacetType>).every(
-			(entry) => "name" in entry && "count" in entry,
-		)
+		Object.values(val as Record<string, FacetType>).every((entry) => {
+			return "name" in entry && "count" in entry;
+		})
 	);
 }
 const relationFacets = computed(() => {
 	const facetObject: Record<string, Array<FacetType>> = {};
 
-	if (!data.value) return facetObject;
+	if (!data.value) {
+		return facetObject;
+	}
 	Object.entries(data.value.facets).forEach(([key, value]) => {
 		if (key.startsWith("relation_") && hasMatchingFacetType(value)) {
 			facetObject[key] = Object.entries(value)
 				.map(([k, v]) => {
 					return { ...v, id: k };
 				})
-				.sort((a, b) => b.count - a.count);
+				.sort((a, b) => {
+					return b.count - a.count;
+				});
 		}
 	});
 	return facetObject;
@@ -93,15 +99,21 @@ const relationFacetSelection = ref<Record<string, Array<number | string>>>({});
 // class-specific facets such as gender and type
 const classFacets = computed(() => {
 	const facetObject: Record<string, Array<FacetType>> = {};
-	if (!data.value) return facetObject;
+	if (!data.value) {
+		return facetObject;
+	}
 	Object.entries(data.value.facets).forEach(([key, value]) => {
 		if (!key.startsWith("relation_") && hasMatchingFacetType(value)) {
 			facetObject[key] = Object.entries(value)
-				.filter(([_, v]) => v.name !== "")
+				.filter(([_, v]) => {
+					return v.name !== "";
+				})
 				.map(([k, v]) => {
 					return { ...v, id: k };
 				})
-				.sort((a, b) => b.count - a.count);
+				.sort((a, b) => {
+					return b.count - a.count;
+				});
 		}
 	});
 	return facetObject;
@@ -111,16 +123,14 @@ const classFacetSelection = ref<Record<string, Array<number | string>>>({});
 // Update route when facet selection changes
 async function updateRouter() {
 	const relationFacetQuery = Object.fromEntries(
-		Object.entries(relationFacetSelection.value).map(([key, value]) => [
-			`facet_${key}`,
-			value.join(","),
-		]),
+		Object.entries(relationFacetSelection.value).map(([key, value]) => {
+			return [`facet_${key}`, value.join(",")];
+		}),
 	);
 	const classFacetQuery = Object.fromEntries(
-		Object.entries(classFacetSelection.value).map(([key, value]) => [
-			`facet_${key}`,
-			value.join(","),
-		]),
+		Object.entries(classFacetSelection.value).map(([key, value]) => {
+			return [`facet_${key}`, value.join(",")];
+		}),
 	);
 	await router.replace({
 		query: {
@@ -133,49 +143,69 @@ async function updateRouter() {
 }
 watch(
 	classFacetSelection,
-	(selection, oldSelection) =>
-		Object.keys(selection).length > 0 || Object.keys(oldSelection).length > 0
+	(selection, oldSelection) => {
+		return Object.keys(selection).length > 0 || Object.keys(oldSelection).length > 0
 			? updateRouter()
-			: null,
+			: null;
+	},
 	{ deep: true },
 );
 watch(
 	relationFacetSelection,
-	(selection, oldSelection) =>
-		Object.keys(selection).length > 0 || Object.keys(oldSelection).length > 0
+	(selection, oldSelection) => {
+		return Object.keys(selection).length > 0 || Object.keys(oldSelection).length > 0
 			? updateRouter()
-			: null,
+			: null;
+	},
 	{ deep: true },
 );
 
 // Update selection arrays when facets change
 watch(relationFacets, () => {
-	if (Object.keys(relationFacets.value).some((key) => !(key in relationFacetSelection.value)))
+	if (
+		Object.keys(relationFacets.value).some((key) => {
+			return !(key in relationFacetSelection.value);
+		})
+	) {
 		initFacetSelection();
+	}
 });
 watch(classFacets, () => {
-	if (Object.keys(classFacets.value).some((key) => !(key in classFacetSelection.value)))
+	if (
+		Object.keys(classFacets.value).some((key) => {
+			return !(key in classFacetSelection.value);
+		})
+	) {
 		initFacetSelection();
+	}
 });
 const initFacetSelection = () => {
-	Object.keys(relationFacets.value).forEach(
-		(k) =>
-			(relationFacetSelection.value[k] = Object.entries(comQuery.value)
-				.filter(([key, value]) => key === `facet_${k}` && value !== "")
-				.map(([_key, value]) => String(value).split(","))
-				.flat()),
-	);
-	Object.keys(classFacets.value).forEach(
-		(k) =>
-			(classFacetSelection.value[k] = Object.entries(comQuery.value)
-				.filter(([key, value]) => key === `facet_${k}` && value !== "")
-				.map(([_key, value]) => String(value).split(","))
-				.flat()),
-	);
+	Object.keys(relationFacets.value).forEach((k) => {
+		return (relationFacetSelection.value[k] = Object.entries(comQuery.value)
+			.filter(([key, value]) => {
+				return key === `facet_${k}` && value !== "";
+			})
+			.map(([_key, value]) => {
+				return String(value).split(",");
+			})
+			.flat());
+	});
+	Object.keys(classFacets.value).forEach((k) => {
+		return (classFacetSelection.value[k] = Object.entries(comQuery.value)
+			.filter(([key, value]) => {
+				return key === `facet_${k}` && value !== "";
+			})
+			.map(([_key, value]) => {
+				return String(value).split(",");
+			})
+			.flat());
+	});
 };
 
 watch(
-	() => route.query,
+	() => {
+		return route.query;
+	},
 	() => {
 		document.body.scrollTo(0, 0);
 	},
@@ -186,7 +216,7 @@ watch(
 	<slot />
 	<div class="h-full gap-4 md:mx-4 md:grid md:grid-cols-[auto_4fr_auto] md:grid-rows-[auto_1fr]">
 		<div>
-			<SearchNavigation></SearchNavigation>
+			<SearchNavigation />
 			<div class="mt-10">
 				<div
 					v-for="(value, key) in classFacets"
@@ -194,7 +224,7 @@ watch(
 					class="mb-5 w-full px-2 md:mb-10 md:w-72 md:px-0 lg:mx-4"
 				>
 					<h2 class="text-lg">{{ t(`Pages.searchviews.facets.${key}`) }}</h2>
-					<Facet v-model="classFacetSelection[key]!" :options="value ?? []"></Facet>
+					<Facet v-model="classFacetSelection[key]!" :options="value ?? []" />
 				</div>
 			</div>
 		</div>
@@ -205,7 +235,7 @@ watch(
 				:is-fetching="isFetching"
 				:limit-num="limitNum"
 				:page-num="pageNum"
-			></SearchTable>
+			/>
 		</div>
 		<div class="w-full md:mx-4 md:mt-8">
 			<div
@@ -214,7 +244,7 @@ watch(
 				class="mb-5 w-full px-2 md:mb-10 md:w-72 md:px-0"
 			>
 				<h2 class="text-lg">{{ t(`Pages.searchviews.facets.${key}`) }}</h2>
-				<Facet v-model="relationFacetSelection[key]!" :options="value ?? []"></Facet>
+				<Facet v-model="relationFacetSelection[key]!" :options="value ?? []" />
 			</div>
 		</div>
 	</div>

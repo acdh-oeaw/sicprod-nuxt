@@ -25,14 +25,26 @@ const props = defineProps<{
 }>();
 
 // Fiter relations by start_date
-const filteredRelations = computed<Array<TimelineObject>>(() =>
-	props.relations.filter((r) => selectedClasses.value.includes(r.class)),
-);
+const filteredRelations = computed<Array<TimelineObject>>(() => {
+	return props.relations.filter((r) => {
+		return selectedClasses.value.includes(r.class);
+	});
+});
 
 // Group relations by date
-const groupedRelations = computed(() => groupTimelineRelations(filteredRelations.value));
+const groupedRelations = computed(() => {
+	return groupTimelineRelations(filteredRelations.value);
+});
 
-const availableClasses = computed(() => [...new Set(props.relations.map((r) => r.class))]);
+const availableClasses = computed(() => {
+	return [
+		...new Set(
+			props.relations.map((r) => {
+				return r.class;
+			}),
+		),
+	];
+});
 const selectedClasses = ref(availableClasses.value);
 </script>
 
@@ -67,7 +79,7 @@ const selectedClasses = ref(availableClasses.value);
 						>
 							<h2 class="text-2xl">{{ t("Timeline.timeline") }}</h2>
 							<button class="absolute right-2 top-2" @click="closeModal">
-								<X class="size-4 text-neutral-500"></X>
+								<X class="size-4 text-neutral-500" />
 							</button>
 							<Listbox v-model="selectedClasses" multiple>
 								<div class="relative mb-4 mt-1">
@@ -131,14 +143,14 @@ const selectedClasses = ref(availableClasses.value);
 							</Listbox>
 							<div class="relative h-auto">
 								<!-- Vertical line -->
-								<div class="absolute left-1/2 mx-auto -ml-0.5 h-full w-1 bg-neutral-300"></div>
+								<div class="absolute left-1/2 mx-auto -ml-0.5 h-full w-1 bg-neutral-300" />
 
 								<VerticalTimelineEntry
 									v-for="(r, idx) in groupedRelations"
 									:key="idx"
 									:item="r"
 									:position="idx % 2 == 0 ? 'left' : 'right'"
-								></VerticalTimelineEntry>
+								/>
 							</div>
 						</DialogPanel>
 					</TransitionChild>

@@ -18,14 +18,17 @@ const availableClasses = ["event", "function", "institution", "person", "place",
 const selectedClasses = ref<Array<(typeof availableClasses)[number]>>(["person", "function"]);
 const { data, isLoading } = useQuery({
 	queryKey: [networkEndpoint, selectedClasses],
-	queryFn: () =>
-		loadNetworkData($api[networkEndpoint], {
+	queryFn: () => {
+		return loadNetworkData($api[networkEndpoint], {
 			queries: {
 				limit: 5000,
 				//@ts-expect-error apis_ontology mapping
-				entities: selectedClasses.value.map((className) => `apis_ontology.${className}`),
+				entities: selectedClasses.value.map((className) => {
+					return `apis_ontology.${className}`;
+				}),
 			},
-		}),
+		});
+	},
 });
 
 function getGraph(data: Array<NetworkEntry>, minDegree = 0) {
@@ -41,7 +44,7 @@ function getGraph(data: Array<NetworkEntry>, minDegree = 0) {
 	};
 	const edgeDict: Record<string, Array<string>> = {};
 	data.forEach((entity) => {
-		if (entity.related_to.length >= minDegree)
+		if (entity.related_to.length >= minDegree) {
 			graph.nodes.push({
 				id: String(entity.id),
 				name: entity.name,
@@ -49,37 +52,57 @@ function getGraph(data: Array<NetworkEntry>, minDegree = 0) {
 				color: colorCodes[entity.type],
 				class: entity.type,
 			});
+		}
 		edgeDict[entity.id] = [];
 	});
 
 	data.flatMap((entity) => {
-		if (entity.related_to.length >= minDegree)
+		if (entity.related_to.length >= minDegree) {
 			entity.related_to.forEach((target) => {
 				edgeDict[target]?.push(`${entity.id}-${target}`);
 				// edgeDict[entity.id]?.push(`${entity.id}-${target}`);
 			});
+		}
 	});
 	const filteredEdgeDict = Object.fromEntries(
-		Object.entries(edgeDict).filter(([_key, val]) => val.length >= minDegree),
+		Object.entries(edgeDict).filter(([_key, val]) => {
+			return val.length >= minDegree;
+		}),
 	);
 	const flattenedEdges = [
-		...new Set(Object.entries(filteredEdgeDict).flatMap(([_key, val]) => val)),
+		...new Set(
+			Object.entries(filteredEdgeDict).flatMap(([_key, val]) => {
+				return val;
+			}),
+		),
 	];
 
 	flattenedEdges.forEach((edge) => {
 		const node1 = edge.split("-")[0] ?? "";
 		const node2 = edge.split("-")[1] ?? "";
-		if (Number(node1) < Number(node2) && node1 in filteredEdgeDict && node2 in filteredEdgeDict)
+		if (Number(node1) < Number(node2) && node1 in filteredEdgeDict && node2 in filteredEdgeDict) {
 			graph.links.push({ source: node1, target: node2 });
+		}
 	});
-	graph.nodes = graph.nodes.filter((node) => node.id in filteredEdgeDict);
+	graph.nodes = graph.nodes.filter((node) => {
+		return node.id in filteredEdgeDict;
+	});
 	return graph;
 }
 const minDegree = ref(1);
-const maxDegree = computed(() =>
-	Math.min(Math.max(...(data.value?.map((node) => node.related_to.length) ?? [1])), 10),
-);
-const graph = computed(() => getGraph(data.value ?? [], minDegree.value));
+const maxDegree = computed(() => {
+	return Math.min(
+		Math.max(
+			...(data.value?.map((node) => {
+				return node.related_to.length;
+			}) ?? [1]),
+		),
+		10,
+	);
+});
+const graph = computed(() => {
+	return getGraph(data.value ?? [], minDegree.value);
+});
 
 const nodeDistance = ref(10);
 </script>
@@ -148,14 +171,14 @@ const nodeDistance = ref(10);
 			<div class="float-right mt-2 flex gap-2 px-2 pb-1 text-neutral-600">
 				<label class="flex gap-2" :title="t('Pages.network.hide-nodes')">
 					<span class="sr-only">{{ t("Pages.network.hide-nodes") }}</span>
-					<Share2 class="inline size-5"></Share2>
+					<Share2 class="inline size-5" />
 					<input v-model="minDegree" class="inline" :max="maxDegree" min="0" type="range" />
 				</label>
 			</div>
 			<div class="mt-2 flex gap-2 px-2 pb-1 text-neutral-600">
 				<label class="flex gap-2" :title="t('Pages.network.node-distance')">
 					<span class="sr-only">{{ t("Pages.network.node-distance") }}</span>
-					<MoveHorizontal class="inline size-5"></MoveHorizontal>
+					<MoveHorizontal class="inline size-5" />
 					<input
 						v-model="nodeDistance"
 						class="inline"

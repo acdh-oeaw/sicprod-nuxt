@@ -44,20 +44,32 @@ d3.timeFormatDefaultLocale(deDE);
 const d3Transform = ref(d3.zoomIdentity);
 
 // Fiter relations by start_date
-const filteredRelations = computed<Array<TimelineObject>>(() =>
-	props.relations.filter((r): r is TimelineObject => Boolean(r.start_date)),
-);
+const filteredRelations = computed<Array<TimelineObject>>(() => {
+	return props.relations.filter((r): r is TimelineObject => {
+		return Boolean(r.start_date);
+	});
+});
 
 // Group relations by date
-const groupedRelations = computed(() => groupTimelineRelations(filteredRelations.value));
+const groupedRelations = computed(() => {
+	return groupTimelineRelations(filteredRelations.value);
+});
 
 // Find min and max dates to determine scale
-const minVal = computed(() =>
-	d3.min(filteredRelations.value.map((r) => new Date(r.start_date ?? ""))),
-);
-const maxVal = computed(() =>
-	d3.max(filteredRelations.value.map((r) => new Date(r.start_date ?? ""))),
-);
+const minVal = computed(() => {
+	return d3.min(
+		filteredRelations.value.map((r) => {
+			return new Date(r.start_date ?? "");
+		}),
+	);
+});
+const maxVal = computed(() => {
+	return d3.max(
+		filteredRelations.value.map((r) => {
+			return new Date(r.start_date ?? "");
+		}),
+	);
+});
 const scale = computed(() => {
 	const min = minVal.value;
 	const max = maxVal.value;
@@ -86,12 +98,15 @@ const customTickFormat = (date: Date) => {
 		return formatYear(date); // Verwende das Jahresformat
 	}
 };
-const createAxis = () =>
-	d3
-		.select("#AxisSvg")
+const createAxis = () => {
+	return (
+		d3
+			.select("#AxisSvg")
 
-		// @ts-expect-error d3 context vs selection error
-		.call(d3.axisBottom(scale.value).tickFormat(customTickFormat).tickSizeInner(16));
+			// @ts-expect-error d3 context vs selection error
+			.call(d3.axisBottom(scale.value).tickFormat(customTickFormat).tickSizeInner(16))
+	);
+};
 
 // Add resize handler to monitor container width and adapt chart
 function resizeHandler() {
@@ -120,15 +135,10 @@ onBeforeUnmount(() => {
 		id="timelineContainer"
 		class="relative z-[1001] my-8 max-w-full overflow-x-clip py-8"
 	>
-		<div ref="timelineDiv" class="h-0.5 w-full bg-neutral-300"></div>
-		<svg id="AxisSvg" class="absolute -z-10 w-full"></svg>
+		<div ref="timelineDiv" class="h-0.5 w-full bg-neutral-300" />
+		<svg id="AxisSvg" class="absolute -z-10 w-full" />
 		<div>
-			<TimelineEntry
-				v-for="(r, idx) in groupedRelations"
-				:key="idx"
-				:item="r"
-				:scale="scale"
-			></TimelineEntry>
+			<TimelineEntry v-for="(r, idx) in groupedRelations" :key="idx" :item="r" :scale="scale" />
 		</div>
 	</div>
 </template>

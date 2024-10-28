@@ -12,27 +12,49 @@ const props = defineProps<{
 }>();
 
 const startDate = computed(() => {
-	if (Array.isArray(props.item))
+	if (Array.isArray(props.item)) {
 		return (
 			props.item
-				.map((i) => new Date(i.start_date ?? "").valueOf())
-				.reduce((prev, curr) => prev + curr) / props.item.length
+				.map((i) => {
+					return new Date(i.start_date ?? "").valueOf();
+				})
+				.reduce((prev, curr) => {
+					return prev + curr;
+				}) / props.item.length
 		);
-	else return new Date(props.item.start_date ?? "").valueOf();
+	} else {
+		return new Date(props.item.start_date ?? "").valueOf();
+	}
 });
 const endDate = computed(() => {
-	if (Array.isArray(props.item))
-		return props.item.every((i) => i.end_date)
+	if (Array.isArray(props.item)) {
+		return props.item.every((i) => {
+			return i.end_date;
+		})
 			? props.item
-					.map((i) => new Date(i.end_date ?? "").valueOf())
-					.reduce((prev, curr) => prev + curr) / props.item.length
+					.map((i) => {
+						return new Date(i.end_date ?? "").valueOf();
+					})
+					.reduce((prev, curr) => {
+						return prev + curr;
+					}) / props.item.length
 			: null;
-	else return props.item.end_date ? new Date(props.item.end_date).valueOf() : null;
+	} else {
+		return props.item.end_date ? new Date(props.item.end_date).valueOf() : null;
+	}
 });
 const itemClass = computed(() => {
 	if (Array.isArray(props.item)) {
-		return new Set(props.item.map((i) => i.class)).size === 1 ? props.item[0].class : "mix";
-	} else return props.item.class;
+		return new Set(
+			props.item.map((i) => {
+				return i.class;
+			}),
+		).size === 1
+			? props.item[0].class
+			: "mix";
+	} else {
+		return props.item.class;
+	}
 });
 </script>
 
@@ -46,7 +68,7 @@ const itemClass = computed(() => {
 		<div
 			class="absolute mx-auto size-5 rounded-full"
 			:class="[position === 'left' ? '-right-2.5' : '-left-2.5', bgColors[itemClass]]"
-		></div>
+		/>
 		<div
 			class="min-w-48 -translate-y-4 p-4"
 			:class="{
@@ -90,7 +112,7 @@ const itemClass = computed(() => {
 							v-if="i.references.length > 0"
 							class="inline-block size-4 text-neutral-900 dark:text-neutral-100"
 							:references="i.references"
-						></ReferenceButton>
+						/>
 					</div>
 					<span>
 						<span class="text-sm font-medium text-neutral-900 dark:text-neutral-100">
@@ -110,7 +132,7 @@ const itemClass = computed(() => {
 							v-if="item.references.length > 0"
 							class="inline-block size-4 text-neutral-900 dark:text-neutral-100"
 							:references="item.references"
-						></ReferenceButton>
+						/>
 					</div>
 					<span>
 						<span class="text-sm font-medium text-neutral-900 dark:text-neutral-100">

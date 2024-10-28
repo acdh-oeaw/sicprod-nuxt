@@ -11,6 +11,6 @@ usePageMetadata({
 <template>
 	<MainContent class="relative">
 		<PageTitle class="sr-only">{{ t("Pages.network.title") }}</PageTitle>
-		<NetworkVisualization></NetworkVisualization>
+		<NetworkVisualization />
 	</MainContent>
 </template>

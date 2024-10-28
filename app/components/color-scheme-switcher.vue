@@ -16,8 +16,8 @@ const colorSchemes = computed(() => {
 		<Listbox v-model="colorMode.preference">
 			<div class="relative">
 				<ListboxButton>
-					<Sun class="inline dark:hidden"></Sun>
-					<Moon class="hidden dark:inline"></Moon>
+					<Sun class="inline dark:hidden" />
+					<Moon class="hidden dark:inline" />
 					<span class="sr-only">
 						{{ t(`ColorSchemeToggle.color-schemes.${colorMode.preference}`) }}
 					</span>

@@ -14,8 +14,8 @@ usePageMetadata({
 <template>
 	<main>
 		<ClientOnly v-if="route.query.book">
-			<IiifViewer></IiifViewer>
+			<IiifViewer />
 		</ClientOnly>
-		<BookOverview v-else class="mx-auto my-8 max-w-container"></BookOverview>
+		<BookOverview v-else class="mx-auto my-8 max-w-container" />
 	</main>
 </template>

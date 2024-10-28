@@ -40,11 +40,11 @@ export async function loadAndGroupRelations(endpoint: EndpointType, params: endp
 		});
 	}
 
-	Object.keys(groupedResults).forEach((key) =>
-		groupedResults[key]?.sort(
-			(a, b) => new Date(a.start_date ?? 0).getTime() - new Date(b.start_date ?? 0).getTime(),
-		),
-	);
+	Object.keys(groupedResults).forEach((key) => {
+		return groupedResults[key]?.sort((a, b) => {
+			return new Date(a.start_date ?? 0).getTime() - new Date(b.start_date ?? 0).getTime();
+		});
+	});
 
 	return groupedResults;
 }

@@ -43,7 +43,9 @@ const props = withDefaults(
 		collapseThreshold?: number;
 	}>(),
 	{
-		relations: () => [],
+		relations: () => {
+			return [];
+		},
 		classnameForUrls: "person",
 		collapseThreshold: 3,
 	},
@@ -87,26 +89,56 @@ const showAllChilldren = ref(false);
 const uncollapseChildrenContainer = ref<HTMLElement>();
 
 function filterUniqueObjects(list: Array<{ id: number; name: string }>) {
-	return list.filter((entry, idx) => list.findIndex((e) => e.id === entry.id) === idx);
+	return list.filter((entry, idx) => {
+		return (
+			list.findIndex((e) => {
+				return e.id === entry.id;
+			}) === idx
+		);
+	});
 }
 const ancestors = computed(() => {
 	return filterUniqueObjects(
-		props.relations.filter((r) => r.name === relationNames.value.ancestor).map((r) => r.to),
+		props.relations
+			.filter((r) => {
+				return r.name === relationNames.value.ancestor;
+			})
+			.map((r) => {
+				return r.to;
+			}),
 	);
 });
 const children = computed(() => {
 	return filterUniqueObjects(
-		props.relations.filter((r) => r.name === relationNames.value.child).map((r) => r.to),
+		props.relations
+			.filter((r) => {
+				return r.name === relationNames.value.child;
+			})
+			.map((r) => {
+				return r.to;
+			}),
 	);
 });
 const siblings = computed(() => {
 	return filterUniqueObjects(
-		props.relations.filter((r) => r.name === relationNames.value.sibling).map((r) => r.to),
+		props.relations
+			.filter((r) => {
+				return r.name === relationNames.value.sibling;
+			})
+			.map((r) => {
+				return r.to;
+			}),
 	);
 });
 const partners = computed(() => {
 	return filterUniqueObjects(
-		props.relations.filter((r) => r.name === relationNames.value.partner).map((r) => r.to),
+		props.relations
+			.filter((r) => {
+				return r.name === relationNames.value.partner;
+			})
+			.map((r) => {
+				return r.to;
+			}),
 	);
 });
 
@@ -130,7 +162,7 @@ function drawChildConnections() {
 				options: { location: 1, direction: 1, length: 8, width: 10 },
 			},
 		];
-		if (idx === 0 && showAllChilldren.value)
+		if (idx === 0 && showAllChilldren.value) {
 			overlays.push({
 				type: "Custom",
 				options: {
@@ -143,12 +175,17 @@ function drawChildConnections() {
 					},
 				},
 			});
+		}
 		return overlays;
 	};
 	instance.value?.batch(() => {
 		childConnections.value
-			?.filter((con): con is Connection => con !== undefined)
-			.forEach((con) => instance.value?.deleteConnection(con));
+			?.filter((con): con is Connection => {
+				return con !== undefined;
+			})
+			.forEach((con) => {
+				return instance.value?.deleteConnection(con);
+			});
 
 		childConnections.value = childContainerChildren.map((child, idx) => {
 			return instance.value?.connect({

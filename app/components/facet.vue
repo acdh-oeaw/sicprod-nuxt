@@ -11,14 +11,22 @@ const props = withDefaults(
 	defineProps<{
 		options: Array<FacetType> | undefined;
 	}>(),
-	{ options: () => [] },
+	{
+		options: () => {
+			return [];
+		},
+	},
 );
 
 const input = ref<string>("");
 const displayedOptions = computed(() => {
-	if (input.value.length > 0)
-		return props.options.filter((o) => o.name.toLowerCase().includes(input.value.toLowerCase()));
-	else return props.options;
+	if (input.value.length > 0) {
+		return props.options.filter((o) => {
+			return o.name.toLowerCase().includes(input.value.toLowerCase());
+		});
+	} else {
+		return props.options;
+	}
 });
 const showAllOptions = ref<boolean>(false);
 const maxResultsToDisplay = 5;

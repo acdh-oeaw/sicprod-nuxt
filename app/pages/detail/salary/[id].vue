@@ -23,19 +23,24 @@ const relationsEndpoint = "apis_api_apis_ontology.salary_relations_list";
 const data = ref({
 	entity: useQuery({
 		queryKey: [detailsEndpoint, id],
-		queryFn: () => $api[detailsEndpoint]({ params: { id } }),
+		queryFn: () => {
+			return $api[detailsEndpoint]({ params: { id } });
+		},
 	}),
 	relations: useQuery({
 		queryKey: [relationsEndpoint, id],
-		queryFn: () =>
-			loadAndGroupRelations($api[relationsEndpoint], {
+		queryFn: () => {
+			return loadAndGroupRelations($api[relationsEndpoint], {
 				params: { id: String(id) },
-			}),
+			});
+		},
 	}),
 });
 
 const flattenedRelations = computed(() => {
-	if (!data.value.relations.data) return [];
+	if (!data.value.relations.data) {
+		return [];
+	}
 	return getFlattenedRelations(data.value.relations.data);
 });
 </script>
@@ -63,31 +68,31 @@ const flattenedRelations = computed(() => {
 					class="ml-auto inline-block size-7 w-fit"
 					popup-position="left"
 					:references="data.entity.data?.references"
-				></ReferenceButton>
+				/>
 			</div>
 		</template>
 		<template #base>
-			<div class="col-span-2 my-2 border-t"></div>
+			<div class="col-span-2 my-2 border-t" />
 			<span>{{ t("Pages.searchviews.salary.type") }}:</span>
 			<span>
 				{{ data.entity.data?.typ }}
 			</span>
-			<div class="col-span-2 my-2 border-t"></div>
+			<div class="col-span-2 my-2 border-t" />
 			<span>{{ t("Pages.searchviews.salary.repetition_type") }}:</span>
 			<span>
 				{{ data.entity.data?.repetitionType }}
 			</span>
-			<div class="col-span-2 my-2 border-t"></div>
+			<div class="col-span-2 my-2 border-t" />
 			<span>{{ t("Pages.searchviews.salary.start_date") }}:</span>
 			<span>
 				{{ String(data.entity.data?.start_date_written || "").replace(/\<.*?\>/g, "") }}
 			</span>
-			<div class="col-span-2 my-2 border-t"></div>
+			<div class="col-span-2 my-2 border-t" />
 			<span>{{ t("Pages.searchviews.salary.end_date") }}:</span>
 			<span>
 				{{ String(data.entity.data?.end_date_written || "").replace(/\<.*?\>/g, "") }}
 			</span>
-			<div class="col-span-2 my-2 border-t"></div>
+			<div class="col-span-2 my-2 border-t" />
 		</template>
 		<template #right>
 			<div v-if="data.entity.data" class="flex flex-col gap-3">
@@ -142,7 +147,7 @@ const flattenedRelations = computed(() => {
 			</div>
 		</template>
 		<template #bottom>
-			<Timeline v-if="!data.relations.isLoading" :relations="flattenedRelations"></Timeline>
+			<Timeline v-if="!data.relations.isLoading" :relations="flattenedRelations" />
 		</template>
 	</DetailPage>
 </template>

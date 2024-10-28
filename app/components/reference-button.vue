@@ -17,7 +17,13 @@ const props = withDefaults(
 		popupPosition?: Placement;
 		popupOffset?: number;
 	}>(),
-	{ popupPosition: "top", popupOffset: 12, references: () => [] },
+	{
+		popupPosition: "top",
+		popupOffset: 12,
+		references: () => {
+			return [];
+		},
+	},
 );
 // Popover positioning using floatingUI
 const reference = ref(null);
@@ -36,25 +42,30 @@ const citationConfig = {
 	lang: "en-EN",
 };
 const citation = computed(() => {
-	const c = props.references.map(
-		(r) =>
-			new Cite({
-				...r.bibtex,
-				note: r.folio || r.notes,
-				page: [...new Set([r.pages_start, r.pages_end])].join("-"),
-			}),
-	);
+	const c = props.references.map((r) => {
+		return new Cite({
+			...r.bibtex,
+			note: r.folio || r.notes,
+			page: [...new Set([r.pages_start, r.pages_end])].join("-"),
+		});
+	});
 	return c;
 });
 function downloadBibTex() {
 	const blob = new Blob(
-		citation.value.map((c) => c.format("bibtex")),
+		citation.value.map((c) => {
+			return c.format("bibtex");
+		}),
 		{ type: "text/plain;charset=utf-8;" },
 	);
 	window.open(URL.createObjectURL(blob), "_blank");
 }
 async function copyToClipboard() {
-	const html = citation.value.map((c) => c.format("bibliography", citationConfig)).join("\n");
+	const html = citation.value
+		.map((c) => {
+			return c.format("bibliography", citationConfig);
+		})
+		.join("\n");
 	const container = document.createElement("div");
 	container.innerHTML = html;
 	const text = container.innerText;
@@ -72,7 +83,9 @@ async function copyToClipboard() {
 }
 
 function getLink(ref: Reference) {
-	if (ref == null || !("title" in ref.scandata) || !("pages" in ref.scandata)) return null;
+	if (ref == null || !("title" in ref.scandata) || !("pages" in ref.scandata)) {
+		return null;
+	}
 	return {
 		path: localePath("/iiif"),
 		query: {
@@ -132,7 +145,7 @@ function getLink(ref: Reference) {
 						@click.stop
 					>
 						<!-- eslint-disable-next-line vue/no-v-html -->
-						<span v-html="entry.format('bibliography', citationConfig)"></span>
+						<span v-html="entry.format('bibliography', citationConfig)" />
 					</component>
 				</div>
 			</PopoverPanel>

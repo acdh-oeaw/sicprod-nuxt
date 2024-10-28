@@ -21,7 +21,9 @@ paths.forEach((path) => {
 
 	for (const segment of route.split("/")) {
 		/** Dynamic routes. */
-		if (segment.startsWith("[") && segment.endsWith("]")) return;
+		if (segment.startsWith("[") && segment.endsWith("]")) {
+			return;
+		}
 
 		segments.push(segment);
 	}

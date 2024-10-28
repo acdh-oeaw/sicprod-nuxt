@@ -103,7 +103,7 @@ const input = ref(route.query.q === undefined ? "" : String(route.query.q));
 							{{ col.label }}
 						</div>
 					</th>
-					<th class="m-2 p-2 text-start font-semibold md:p-4"></th>
+					<th class="m-2 p-2 text-start font-semibold md:p-4" />
 				</tr>
 				<template v-if="data !== null">
 					<NuxtLink

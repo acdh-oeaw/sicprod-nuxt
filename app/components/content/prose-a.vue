@@ -13,13 +13,19 @@ const isExternalUrl = computed(() => {
 });
 
 const href = computed(() => {
-	if (isExternalUrl.value) return props.href;
+	if (isExternalUrl.value) {
+		return props.href;
+	}
 	return localePath(props.href);
 });
 
 const target = computed(() => {
-	if (props.target != null) return props.target;
-	if (isExternalUrl.value) return "_blank";
+	if (props.target != null) {
+		return props.target;
+	}
+	if (isExternalUrl.value) {
+		return "_blank";
+	}
 	return undefined;
 });
 </script>

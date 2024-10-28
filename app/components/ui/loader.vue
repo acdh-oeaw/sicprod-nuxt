@@ -1,6 +1,6 @@
 <template>
 	<!-- eslint-disable tailwindcss/no-custom-classname -->
-	<div class="dots-3"></div>
+	<div class="dots-3" />
 	<span class="sr-only">Loading</span>
 </template>
 

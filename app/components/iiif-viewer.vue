@@ -20,17 +20,25 @@ onMounted(async () => {
 		manifestUrl = await import(`~/assets/manifests/${decodeURI(book)}.json?url`);
 		manifest.value = await import(`~/assets/manifests/${decodeURI(book)}.json`);
 	}
-	if (manifest.value === undefined) return;
+
+	if (manifest.value === undefined) {
+		return;
+	}
+
 	const pageIdx = Math.max(
 		0,
-		manifest.value.items.findIndex((item) => item.label?.de?.[0] === page),
+		manifest.value.items.findIndex((item) => {
+			return item.label?.de?.[0] === page;
+		}),
 	);
+
 	//@ts-expect-error no Tify export
 	const tify = new Tify({
 		container: "#tify",
 		manifestUrl: manifestUrl.default,
 		pages: [pageIdx + 1],
 	});
+
 	tify.ready.then(() => {
 		tify.viewer.addHandler("open", () => {
 			const page = tify.options.pages[0] ?? 1;
@@ -44,7 +52,7 @@ onMounted(async () => {
 
 <template>
 	<div class="relative h-full">
-		<div id="tify" class="h-full"></div>
+		<div id="tify" class="h-full" />
 		<div
 			class="absolute bottom-0 right-0 bg-neutral-100/70 p-3 text-sm md:max-w-96 dark:bg-neutral-900/70"
 		>

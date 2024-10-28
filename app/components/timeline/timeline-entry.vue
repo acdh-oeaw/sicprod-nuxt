@@ -21,54 +21,79 @@ const { floatingStyles, update } = useFloating(reference, floating, {
 	middleware: [shift()],
 });
 watch(
-	() => props.scale,
+	() => {
+		return props.scale;
+	},
 	() => {
 		update();
 	},
 );
 
 const startDate = computed(() => {
-	if (Array.isArray(props.item))
+	if (Array.isArray(props.item)) {
 		return (
 			props.item
-				.map((i) => new Date(i.start_date ?? "").valueOf())
-				.reduce((prev, curr) => prev + curr) / props.item.length
+				.map((i) => {
+					return new Date(i.start_date ?? "").valueOf();
+				})
+				.reduce((prev, curr) => {
+					return prev + curr;
+				}) / props.item.length
 		);
-	else return new Date(props.item.start_date ?? "").valueOf();
+	} else {
+		return new Date(props.item.start_date ?? "").valueOf();
+	}
 });
 const endDate = computed(() => {
-	if (Array.isArray(props.item))
-		return props.item.every((i) => i.end_date)
+	if (Array.isArray(props.item)) {
+		return props.item.every((i) => {
+			return i.end_date;
+		})
 			? props.item
-					.map((i) => new Date(i.end_date ?? "").valueOf())
-					.reduce((prev, curr) => prev + curr) / props.item.length
+					.map((i) => {
+						return new Date(i.end_date ?? "").valueOf();
+					})
+					.reduce((prev, curr) => {
+						return prev + curr;
+					}) / props.item.length
 			: null;
-	else return props.item.end_date ? new Date(props.item.end_date).valueOf() : null;
+	} else {
+		return props.item.end_date ? new Date(props.item.end_date).valueOf() : null;
+	}
 });
 const dimensions = computed(() => {
 	if (
 		endDate.value &&
 		endDate.value !== startDate.value &&
 		props.scale(endDate.value) - props.scale(startDate.value) > 12
-	)
+	) {
 		return {
 			width: `${props.scale(endDate.value) - props.scale(startDate.value)}px`,
 			height: "7px",
 			position: "relative",
 			zIndex: "0",
 		};
-	else
+	} else {
 		return {
 			width: "",
 			height: "",
 			position: "",
 			zIndex: "2",
 		};
+	}
 });
 const itemClass = computed(() => {
 	if (Array.isArray(props.item)) {
-		return new Set(props.item.map((i) => i.class)).size === 1 ? props.item[0].class : "mix";
-	} else return props.item.class;
+		return new Set(
+			props.item.map((i) => {
+				return i.class;
+			}),
+		).size === 1
+			? props.item[0].class
+			: "mix";
+	} else {
+		return props.item.class;
+	}
 });
 </script>
 

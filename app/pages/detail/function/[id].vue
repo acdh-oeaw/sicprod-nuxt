@@ -25,22 +25,35 @@ const relationsEndpoint = "apis_api_apis_ontology.function_relations_list";
 const data = ref({
 	entity: useQuery({
 		queryKey: [detailsEndpoint, id],
-		queryFn: () => $api[detailsEndpoint]({ params: { id } }),
+		queryFn: () => {
+			return $api[detailsEndpoint]({ params: { id } });
+		},
 	}),
 	relations: useQuery({
 		queryKey: [relationsEndpoint, id],
-		queryFn: () =>
-			loadAndGroupRelations($api[relationsEndpoint], {
+		queryFn: () => {
+			return loadAndGroupRelations($api[relationsEndpoint], {
 				params: { id: String(id) },
-			}),
+			});
+		},
 	}),
 });
 
 const maxChipCount = 3;
 const chipNames = computed(() => {
-	if (data.value.relations.isLoading) return [];
-	const fNames = [...new Set(data.value.relations.data?.institution?.map((f) => f.to.name))];
-	if (fNames.length <= maxChipCount) return fNames;
+	if (data.value.relations.isLoading) {
+		return [];
+	}
+	const fNames = [
+		...new Set(
+			data.value.relations.data?.institution?.map((f) => {
+				return f.to.name;
+			}),
+		),
+	];
+	if (fNames.length <= maxChipCount) {
+		return fNames;
+	}
 	const truncatedchipNames = [
 		...fNames.slice(0, maxChipCount),
 		t("DetailPage.andOthers", { count: fNames.length - maxChipCount }),
@@ -48,7 +61,9 @@ const chipNames = computed(() => {
 	return truncatedchipNames;
 });
 const flattenedRelations = computed(() => {
-	if (!data.value.relations.data) return [];
+	if (!data.value.relations.data) {
+		return [];
+	}
 	return getFlattenedRelations(data.value.relations.data);
 });
 const showVerticalTimeline = ref(false);
@@ -59,7 +74,9 @@ function openVerticalTimeline() {
 	showVerticalTimeline.value = true;
 }
 const needsFamilyTree = computed(() => {
-	if (!data.value.relations.data) return false;
+	if (!data.value.relations.data) {
+		return false;
+	}
 
 	const functionRelationNames = [
 		"ist untergeordnet",
@@ -67,7 +84,9 @@ const needsFamilyTree = computed(() => {
 		"ist verbunden mit",
 	];
 	return Boolean(
-		data.value.relations.data.function?.find((r) => functionRelationNames.includes(r.name)),
+		data.value.relations.data.function?.find((r) => {
+			return functionRelationNames.includes(r.name);
+		}),
 	);
 });
 </script>
@@ -99,7 +118,7 @@ const needsFamilyTree = computed(() => {
 						class="ml-auto inline-block size-7 w-fit"
 						popup-position="left"
 						:references="data.entity.data?.references"
-					></ReferenceButton>
+					/>
 					<button
 						v-if="flattenedRelations.length > 0"
 						class="group w-fit scale-90 items-center rounded-md font-medium text-neutral-600 transition-transform hover:scale-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 dark:text-neutral-200"
@@ -115,22 +134,22 @@ const needsFamilyTree = computed(() => {
 					:close-modal="closeVerticalTimeline"
 					:is-open="showVerticalTimeline"
 					:relations="flattenedRelations"
-				></VerticalTimeline>
+				/>
 			</div>
 		</template>
 		<template #base>
-			<div class="col-span-2 my-2 border-t"></div>
+			<div class="col-span-2 my-2 border-t" />
 			<span>{{ t("Pages.searchviews.function.start_date") }}:</span>
 			<span>
 				{{ String(data.entity.data?.start_date_written || "").replace(/\<.*?\>/g, "") }}
 			</span>
-			<div class="col-span-2 my-2 border-t"></div>
+			<div class="col-span-2 my-2 border-t" />
 			<span>{{ t("Pages.searchviews.function.end_date") }}:</span>
 			<span>
 				{{ String(data.entity.data?.end_date_written || "").replace(/\<.*?\>/g, "") }}
 			</span>
 			<template v-if="Number(data.entity.data?.alternative_label?.length) > 0">
-				<div class="col-span-2 my-2 border-t"></div>
+				<div class="col-span-2 my-2 border-t" />
 				<span>{{ t("Pages.searchviews.person.alternative_names") }}:</span>
 				<div>
 					<span v-for="name in data.entity.data?.alternative_label" :key="name" class="block">
@@ -213,7 +232,7 @@ const needsFamilyTree = computed(() => {
 			</div>
 		</template>
 		<template #bottom>
-			<Timeline v-if="!data.relations.isLoading" :relations="flattenedRelations"></Timeline>
+			<Timeline v-if="!data.relations.isLoading" :relations="flattenedRelations" />
 		</template>
 	</DetailPage>
 </template>

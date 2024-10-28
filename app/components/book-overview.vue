@@ -20,7 +20,10 @@ function getLink(item: unknown) {
 }
 
 const filteredItemList = computed(() => {
-	const result = collection.items.filter((item) => item.label.de[0]?.includes(searchInput.value));
+	const result = collection.items.filter((item) => {
+		return item.label.de[0]?.includes(searchInput.value);
+	});
+
 	return result.sort((a, b) => {
 		return (
 			a.label.de[0]?.localeCompare(b.label.de[0] ?? "", undefined, {

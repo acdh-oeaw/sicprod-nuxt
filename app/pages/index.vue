@@ -18,12 +18,13 @@ usePageMetadata({
 const { $api } = useNuxtApp();
 const { data } = useQuery({
 	queryKey: ["countPersons"],
-	queryFn: () =>
-		$api["apis_api_apis_ontology.person_list"]({
+	queryFn: () => {
+		return $api["apis_api_apis_ontology.person_list"]({
 			queries: {
 				limit: 1,
 			},
-		}),
+		});
+	},
 });
 </script>
 
@@ -95,7 +96,7 @@ const { data } = useQuery({
 							class="bg-neutral-50 dark:bg-neutral-700/50"
 							:graph="network"
 							:node-distance="10"
-						></GraphViz>
+						/>
 					</div>
 					<div class="px-6 py-4">
 						<div class="mb-2 text-xl font-bold">Netzwerkvisualisierung</div>

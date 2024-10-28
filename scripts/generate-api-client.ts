@@ -35,7 +35,11 @@ async function generate() {
 	const paths: PathsObject = {};
 
 	for (const [key, value] of Object.entries(openApiDoc.paths)) {
-		if (prefixes.some((retain) => key.startsWith(retain))) {
+		if (
+			prefixes.some((retain) => {
+				return key.startsWith(retain);
+			})
+		) {
 			paths[key] = value;
 		}
 	}

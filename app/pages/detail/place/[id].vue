@@ -24,22 +24,35 @@ const relationsEndpoint = "apis_api_apis_ontology.place_relations_list";
 const data = ref({
 	entity: useQuery({
 		queryKey: [detailsEndpoint, id],
-		queryFn: () => $api[detailsEndpoint]({ params: { id } }),
+		queryFn: () => {
+			return $api[detailsEndpoint]({ params: { id } });
+		},
 	}),
 	relations: useQuery({
 		queryKey: [relationsEndpoint, id],
-		queryFn: () =>
-			loadAndGroupRelations($api[relationsEndpoint], {
+		queryFn: () => {
+			return loadAndGroupRelations($api[relationsEndpoint], {
 				params: { id: String(id) },
-			}),
+			});
+		},
 	}),
 });
 
 const maxChipCount = 3;
 const chipNames = computed(() => {
-	if (data.value.relations.isLoading) return [];
-	const fNames = [...new Set(data.value.relations.data?.institution?.map((f) => f.to.name))];
-	if (fNames.length <= maxChipCount) return fNames;
+	if (data.value.relations.isLoading) {
+		return [];
+	}
+	const fNames = [
+		...new Set(
+			data.value.relations.data?.institution?.map((f) => {
+				return f.to.name;
+			}),
+		),
+	];
+	if (fNames.length <= maxChipCount) {
+		return fNames;
+	}
 	const truncatedChipNames = [
 		...fNames.slice(0, maxChipCount),
 		t("DetailPage.andOthers", { count: fNames.length - maxChipCount }),
@@ -47,7 +60,9 @@ const chipNames = computed(() => {
 	return truncatedChipNames;
 });
 const flattenedRelations = computed(() => {
-	if (!data.value.relations.data) return [];
+	if (!data.value.relations.data) {
+		return [];
+	}
 	return getFlattenedRelations(data.value.relations.data);
 });
 </script>
@@ -78,27 +93,27 @@ const flattenedRelations = computed(() => {
 					class="ml-auto inline-block size-7 w-fit"
 					popup-position="left"
 					:references="data.entity.data?.references"
-				></ReferenceButton>
+				/>
 			</div>
 		</template>
 		<template #base>
-			<div class="col-span-2 my-2 border-t"></div>
+			<div class="col-span-2 my-2 border-t" />
 			<span>{{ t("Pages.searchviews.place.type") }}:</span>
 			<span>
 				{{ data.entity.data?.type }}
 			</span>
-			<div class="col-span-2 my-2 border-t"></div>
+			<div class="col-span-2 my-2 border-t" />
 			<span>{{ t("Pages.searchviews.place.start_date") }}:</span>
 			<span>
 				{{ String(data.entity.data?.start_date_written || "").replace(/\<.*?\>/g, "") }}
 			</span>
-			<div class="col-span-2 my-2 border-t"></div>
+			<div class="col-span-2 my-2 border-t" />
 			<span>{{ t("Pages.searchviews.place.end_date") }}:</span>
 			<span>
 				{{ String(data.entity.data?.end_date_written || "").replace(/\<.*?\>/g, "") }}
 			</span>
 			<template v-if="Number(data.entity.data?.alternative_label?.length) > 0">
-				<div class="col-span-2 my-2 border-t"></div>
+				<div class="col-span-2 my-2 border-t" />
 				<span>{{ t("Pages.searchviews.person.alternative_names") }}:</span>
 				<div>
 					<span v-for="name in data.entity.data?.alternative_label" :key="name" class="block">
@@ -106,13 +121,13 @@ const flattenedRelations = computed(() => {
 					</span>
 				</div>
 			</template>
-			<div class="col-span-2 my-2 border-t"></div>
+			<div class="col-span-2 my-2 border-t" />
 			<Map
 				v-if="data.entity.data?.latitude && data.entity.data?.longitude"
 				class="col-span-2"
 				:latitude="data.entity.data?.latitude ?? 0"
 				:longitude="data.entity.data?.longitude ?? 0"
-			></Map>
+			/>
 		</template>
 		<template #right>
 			<div v-if="data.entity.data" class="flex flex-col gap-3">
@@ -167,7 +182,7 @@ const flattenedRelations = computed(() => {
 			</div>
 		</template>
 		<template #bottom>
-			<Timeline v-if="!data.relations.isLoading" :relations="flattenedRelations"></Timeline>
+			<Timeline v-if="!data.relations.isLoading" :relations="flattenedRelations" />
 		</template>
 	</DetailPage>
 </template>

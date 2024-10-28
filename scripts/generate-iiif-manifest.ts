@@ -15,7 +15,9 @@ async function generate() {
 
 	const booksUrl = createUrl({ baseUrl: apiBaseUrl, pathname: "/images/sicprod/" });
 	const _books = (await request(booksUrl, { responseType: "json" })) as Array<string>;
-	const books = _books.filter((book) => book !== "list");
+	const books = _books.filter((book) => {
+		return book !== "list";
+	});
 
 	const imagesPerBook: Array<Array<string>> = (await Promise.all(
 		books.map((book) => {

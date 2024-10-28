@@ -28,22 +28,35 @@ const relationsEndpoint = "apis_api_apis_ontology.person_relations_list";
 const data = ref({
 	entity: useQuery({
 		queryKey: [detailsEndpoint, id],
-		queryFn: () => $api[detailsEndpoint]({ params: { id } }),
+		queryFn: () => {
+			return $api[detailsEndpoint]({ params: { id } });
+		},
 	}),
 	relations: useQuery({
 		queryKey: [relationsEndpoint, id],
-		queryFn: () =>
-			loadAndGroupRelations($api[relationsEndpoint], {
+		queryFn: () => {
+			return loadAndGroupRelations($api[relationsEndpoint], {
 				params: { id: String(id) },
-			}),
+			});
+		},
 	}),
 });
 
 const maxFunctionCount = 3;
 const functionNames = computed(() => {
-	if (data.value.relations.isLoading) return [];
-	const fNames = [...new Set(data.value.relations.data?.function?.map((f) => f.to.name))];
-	if (fNames.length <= maxFunctionCount) return fNames;
+	if (data.value.relations.isLoading) {
+		return [];
+	}
+	const fNames = [
+		...new Set(
+			data.value.relations.data?.function?.map((f) => {
+				return f.to.name;
+			}),
+		),
+	];
+	if (fNames.length <= maxFunctionCount) {
+		return fNames;
+	}
 	const truncatedFunctionNames = [
 		...fNames.slice(0, maxFunctionCount),
 		t("DetailPage.andOthers", { count: fNames.length - maxFunctionCount }),
@@ -51,21 +64,31 @@ const functionNames = computed(() => {
 	return truncatedFunctionNames;
 });
 const flattenedRelations = computed(() => {
-	if (!data.value.relations.data) return [];
+	if (!data.value.relations.data) {
+		return [];
+	}
 	return getFlattenedRelations(data.value.relations.data);
 });
 
 const sameAs = computed(() => {
-	if (!data.value.relations.data) return [];
+	if (!data.value.relations.data) {
+		return [];
+	}
 	return (
 		data.value.relations.data.person
-			?.filter((r) => r.name === "ist möglicherweise identisch mit")
-			.map((r) => r.to) ?? []
+			?.filter((r) => {
+				return r.name === "ist möglicherweise identisch mit";
+			})
+			.map((r) => {
+				return r.to;
+			}) ?? []
 	);
 });
 
 const needsFamilyTree = computed(() => {
-	if (!data.value.relations.data) return false;
+	if (!data.value.relations.data) {
+		return false;
+	}
 
 	const familyRelationNames = [
 		"ist Kind von",
@@ -74,7 +97,9 @@ const needsFamilyTree = computed(() => {
 		"hat Ehe mit",
 	];
 	return Boolean(
-		data.value.relations.data.person?.find((r) => familyRelationNames.includes(r.name)),
+		data.value.relations.data.person?.find((r) => {
+			return familyRelationNames.includes(r.name);
+		}),
 	);
 });
 
@@ -133,7 +158,7 @@ function toggleShowAltNames() {
 						class="size-7 w-fit"
 						popup-position="left"
 						:references="data.entity.data?.references"
-					></ReferenceButton>
+					/>
 
 					<button
 						v-if="flattenedRelations.length > 0"
@@ -150,30 +175,30 @@ function toggleShowAltNames() {
 					:close-modal="closeVerticalTimeline"
 					:is-open="showVerticalTimeline"
 					:relations="flattenedRelations"
-				></VerticalTimeline>
+				/>
 			</div>
 		</template>
 		<template #base>
-			<div class="col-span-2 my-2 border-t"></div>
+			<div class="col-span-2 my-2 border-t" />
 			<span>{{ t("Pages.searchviews.person.born") }}:</span>
 			<span>
 				{{ String(data.entity.data?.start_date_written || "").replace(/\<.*?\>/g, "") }}
 			</span>
-			<div class="col-span-2 my-2 border-t"></div>
+			<div class="col-span-2 my-2 border-t" />
 			<span>{{ t("Pages.searchviews.person.died") }}:</span>
 			<span>
 				{{ String(data.entity.data?.end_date_written || "").replace(/\<.*?\>/g, "") }}
 			</span>
-			<div class="col-span-2 my-2 border-t"></div>
+			<div class="col-span-2 my-2 border-t" />
 			<span>{{ t("Pages.searchviews.person.gender") }}:</span>
 			<span>{{ data.entity.data?.gender }}</span>
-			<div class="col-span-2 my-2 border-t"></div>
+			<div class="col-span-2 my-2 border-t" />
 			<span>{{ t("Pages.searchviews.person.status") }}:</span>
 			<span>
 				{{ data.entity.data?.status }}
 			</span>
 			<template v-if="Number(data.entity.data?.alternative_label?.length) > 0">
-				<div class="col-span-2 my-2 border-t"></div>
+				<div class="col-span-2 my-2 border-t" />
 				<span>{{ t("Pages.searchviews.person.alternative_names") }}:</span>
 				<div>
 					<span
@@ -193,7 +218,7 @@ function toggleShowAltNames() {
 				</div>
 			</template>
 			<template v-if="sameAs.length > 0">
-				<div class="col-span-2 my-2 border-t"></div>
+				<div class="col-span-2 my-2 border-t" />
 				<span>{{ t("Pages.searchviews.person.same_as") }}:</span>
 				<span>
 					<NuxtLink
@@ -266,7 +291,7 @@ function toggleShowAltNames() {
 			</div>
 		</template>
 		<template #bottom>
-			<Timeline v-if="!data.relations.isLoading" :relations="flattenedRelations"></Timeline>
+			<Timeline v-if="!data.relations.isLoading" :relations="flattenedRelations" />
 		</template>
 	</DetailPage>
 </template>

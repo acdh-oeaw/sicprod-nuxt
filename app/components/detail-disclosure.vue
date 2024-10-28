@@ -20,7 +20,11 @@ const props = withDefaults(
 		detailsLoading?: boolean;
 		model: ModelString;
 	}>(),
-	{ rels: () => [] },
+	{
+		rels: () => {
+			return [];
+		},
+	},
 );
 
 const t = useTranslations();
@@ -28,7 +32,11 @@ const localePath = useLocalePath();
 
 const groupedRelations = computed(() => {
 	const groups: Record<string, Array<TempTriple>> = {};
-	if (props.detailsLoading) return groups;
+
+	if (props.detailsLoading) {
+		return groups;
+	}
+
 	for (const rel of props.rels) {
 		const prop = rel.to.name;
 		if (!(prop in groups)) {
@@ -125,7 +133,7 @@ const groupedRelations = computed(() => {
 											"
 											class="float-right mr-0.5 size-5"
 											:references="hit.references"
-										></ReferenceButton>
+										/>
 									</td>
 								</NuxtLink>
 							</component>
