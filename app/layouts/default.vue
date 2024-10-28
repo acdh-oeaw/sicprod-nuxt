@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { assert, createUrl, isNonEmptyString } from "@acdh-oeaw/lib";
+import { createUrl, isNonEmptyString } from "@acdh-oeaw/lib";
 import inter from "@fontsource-variable/inter/files/inter-latin-standard-normal.woff2?url";
 import type { WebSite, WithContext } from "schema-dts";
 
@@ -9,9 +9,6 @@ const locale = useLocale();
 const t = useTranslations();
 
 const router = useRouter();
-
-const route = useRoute();
-assert(route.meta.title, "Missing `title` in `definePageMeta`.");
 
 const i18nHead = useLocaleHead({
 	addDirAttribute: true,
@@ -29,7 +26,7 @@ useHead({
 		return ["%s", t("DefaultLayout.meta.title")].join(" | ");
 	}),
 	title: computed(() => {
-		return t(route.meta.title);
+		return t("DefaultLayout.meta.title");
 	}),
 	link: computed(() => {
 		return [
@@ -45,7 +42,7 @@ useHead({
 		const meta = [
 			{ name: "description", content: t("DefaultLayout.meta.description") },
 			{ property: "og:type", content: "website" },
-			{ property: "og:title", content: t(route.meta.title) },
+			{ property: "og:title", content: t("DefaultLayout.meta.title") },
 			{ property: "og:site_name", content: t("DefaultLayout.meta.title") },
 			{ property: "og:description", content: t("DefaultLayout.meta.description") },
 			{
@@ -58,16 +55,13 @@ useHead({
 				),
 			},
 			{ name: "twitter:card", content: "summary_large_image" },
-			{ name: "twitter:creator", content: "@acdh_oeaw" },
-			{ name: "twitter:site", content: "@acdh_oeaw" },
+			{ name: "twitter:creator", content: t("DefaultLayout.meta.twitter") },
+			{ name: "twitter:site", content: t("DefaultLayout.meta.twitter") },
 			...(i18nHead.value.meta ?? []),
 		];
 
 		if (isNonEmptyString(env.public.googleSiteVerification)) {
-			meta.push({
-				name: "google-site-verification",
-				content: env.public.googleSiteVerification,
-			});
+			meta.push({ name: "google-site-verification", content: env.public.googleSiteVerification });
 		}
 
 		return meta;
@@ -85,9 +79,14 @@ useHead({
 		];
 
 		if (isNonEmptyString(env.public.matomoBaseUrl) && isNonEmptyString(env.public.matomoId)) {
+			const baseUrl = env.public.matomoBaseUrl;
+
 			scripts.push({
 				type: "",
-				innerHTML: createAnalyticsScript(env.public.matomoBaseUrl, env.public.matomoId),
+				innerHTML: createAnalyticsScript(
+					baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`,
+					env.public.matomoId,
+				),
 			});
 		}
 
@@ -102,7 +101,9 @@ router.afterEach((to, from) => {
 
 <template>
 	<div class="grid min-h-full grid-rows-[auto_1fr_auto]">
-		<SkipLink target-id="main-content">{{ t("DefaultLayout.skip-to-main-content") }}</SkipLink>
+		<SkipLink target-id="main-content">
+			{{ t("DefaultLayout.skip-to-main-content") }}
+		</SkipLink>
 
 		<AppHeader />
 		<ErrorBoundary>

@@ -1,10 +1,11 @@
 <script lang="ts" setup>
 import SearchPage from "@/components/search-page.vue";
 
-definePageMeta({
+const t = useTranslations();
+
+usePageMeta({
 	title: "Pages.searchviews.person.title",
 });
-const t = useTranslations();
 
 const { $api } = useNuxtApp();
 const endpoint = $api["apis_api_apis_ontology.person_list"];

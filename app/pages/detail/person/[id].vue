@@ -13,11 +13,12 @@ import { getFlattenedRelations } from "@/utils/timeline-utils";
 
 const t = useTranslations();
 const localePath = useLocalePath();
+
 const route = useRoute();
 const id = Number(route.params.id);
 
-definePageMeta({
-	title: "Pages.searchviews.person.title",
+usePageMeta({
+	title: t("Pages.searchviews.person.title"),
 });
 
 const { $api } = useNuxtApp();

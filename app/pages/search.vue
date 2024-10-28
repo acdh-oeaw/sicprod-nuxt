@@ -1,6 +1,8 @@
 <script lang="ts" setup>
-definePageMeta({
-	title: "Pages.searchviews.title",
+const t = useTranslations();
+
+usePageMeta({
+	title: t("Pages.searchviews.title"),
 });
 </script>
 

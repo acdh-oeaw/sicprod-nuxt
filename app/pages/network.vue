@@ -2,8 +2,9 @@
 import NetworkVisualization from "@/components/networkVisualization.vue";
 
 const t = useTranslations();
-definePageMeta({
-	title: "Pages.network.title",
+
+usePageMeta({
+	title: t("Pages.network.title"),
 });
 </script>
 

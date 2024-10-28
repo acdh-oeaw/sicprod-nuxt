@@ -9,11 +9,12 @@ import { loadAndGroupRelations } from "@/lib/group-relations.ts";
 import { getFlattenedRelations } from "@/utils/timeline-utils";
 
 const t = useTranslations();
+
 const route = useRoute();
 const id = Number(route.params.id);
 
-definePageMeta({
-	title: "Pages.searchviews.place.title",
+usePageMeta({
+	title: t("Pages.searchviews.place.title"),
 });
 
 const { $api } = useNuxtApp();

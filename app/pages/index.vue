@@ -4,15 +4,16 @@ import { useQuery } from "@tanstack/vue-query";
 import network from "~/assets/networkSnippet.json";
 
 const localePath = useLocalePath();
+
 defineRouteRules({
 	prerender: true,
 });
 
-definePageMeta({
-	title: "IndexPage.meta.title",
-});
-
 const t = useTranslations();
+
+usePageMeta({
+	title: t("IndexPage.meta.title"),
+});
 
 const { $api } = useNuxtApp();
 const { data } = useQuery({
