@@ -40,7 +40,7 @@ function onReset() {
 </script>
 
 <template>
-	<MainContent class="grid min-h-full place-content-center place-items-center">
+	<MainContent class="grid min-h-full place-content-center place-items-center gap-y-3">
 		<template v-if="isNotFoundPage">
 			<PageTitle>{{ t("NotFoundPage.title") }}</PageTitle>
 		</template>
@@ -52,7 +52,9 @@ function onReset() {
 				<span>{{ props.error.message }}</span>
 			</div>
 			<div>
-				<button @click="onReset">{{ t("ErrorPage.try-again") }}</button>
+				<button @click="onReset">
+					{{ t("ErrorPage.try-again") }}
+				</button>
 			</div>
 		</template>
 	</MainContent>
