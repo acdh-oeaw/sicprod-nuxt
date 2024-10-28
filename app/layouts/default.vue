@@ -6,6 +6,9 @@ const env = useRuntimeConfig();
 
 const locale = useLocale();
 const t = useTranslations();
+
+const router = useRouter();
+
 const route = useRoute();
 assert(route.meta.title, "Missing `title` in `definePageMeta`.");
 
@@ -89,6 +92,10 @@ useHead({
 		return scripts;
 	}),
 });
+
+router.afterEach((to, from) => {
+	trackPageView(to, from);
+});
 </script>
 
 <template>
@@ -100,7 +107,5 @@ useHead({
 			<slot />
 		</ErrorBoundary>
 		<AppFooter />
-
-		<RouteAnnouncer />
 	</div>
 </template>
