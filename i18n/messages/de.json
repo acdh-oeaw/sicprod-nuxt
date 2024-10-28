@@ -7,14 +7,21 @@
 	},
 	"AppHeader": {
 		"links": {
-			"home": "Startseite",
-			"search": "Datenbank",
-			"scans": "Scans",
-			"network": "Netzwerk"
-		},
-		"linkTitle": {
-			"network": "Netzwerkvisualisierung",
-			"scans": "Gescannte Rait- und Kopialbücher"
+			"home": {
+				"label": "Startseite"
+			},
+			"search": {
+				"label": "Datenbank",
+				"title": "Datenbank"
+			},
+			"scans": {
+				"label": "Scans",
+				"title": "Gescannte Rait- und Kopialbücher"
+			},
+			"network": {
+				"label": "Netzwerk",
+				"title": "Netzwerkvisualisierung"
+			}
 		},
 		"navigation-main": "Hauptnavigation"
 	},
