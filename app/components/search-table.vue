@@ -2,15 +2,12 @@
 import { ChevronRight, Search, XCircle } from "lucide-vue-next";
 
 import Loader from "@/components/ui/loader.vue";
-import type { PaginatedListResultType } from "@/types/resulttypes";
+import type { ModelString, PaginatedListResultType } from "@/types/resulttypes";
 
 interface ColumnEntry {
 	key: string;
 	label: string;
 }
-const locale = useLocale();
-const t = useTranslations();
-const route = useRoute();
 
 const props = defineProps<{
 	cols: Array<ColumnEntry>;
@@ -18,16 +15,17 @@ const props = defineProps<{
 	isFetching: boolean;
 	pageNum: number;
 	limitNum: number;
+	type: ModelString;
 }>();
+
+const t = useTranslations();
+
+const route = useRoute();
 
 const columns = props.cols;
 
-// FIXME:
 const getDetailLink = (id: string) => {
-	let type = route.path.split("/")[2];
-	type = type === "salaries" ? "salary" : type;
-	type = type?.replace(/s$/g, "");
-	return `/${locale.value}/detail/${type}/${id}`;
+	return `/detail/${props.type}/${id}`;
 };
 
 const input = ref(route.query.q === undefined ? "" : String(route.query.q));
@@ -107,7 +105,7 @@ const input = ref(route.query.q === undefined ? "" : String(route.query.q));
 					<th class="m-2 p-2 text-start font-semibold md:p-4" />
 				</tr>
 				<template v-if="data !== null">
-					<NuxtLink
+					<NuxtLinkLocale
 						v-for="hit in data.results"
 						:key="String(hit.id)"
 						class="table-row border-b hover:bg-primary-50 active:bg-primary-50 md:border-t dark:hover:bg-primary-950 dark:active:bg-primary-950"
@@ -129,7 +127,7 @@ const input = ref(route.query.q === undefined ? "" : String(route.query.q));
 						<td class="m-2 overflow-auto text-start align-middle text-sm md:text-md">
 							<ChevronRight class="size-6 shrink-0" />
 						</td>
-					</NuxtLink>
+					</NuxtLinkLocale>
 				</template>
 			</table>
 		</div>

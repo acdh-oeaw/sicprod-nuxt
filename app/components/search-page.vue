@@ -3,9 +3,19 @@ import { useQuery } from "@tanstack/vue-query";
 
 import Facet from "@/components/facet.vue";
 import SearchNavigation from "@/components/search-navigation.vue";
-import type { FacetType, PaginatedListResultType } from "@/types/resulttypes";
+import type { FacetType, ModelString, PaginatedListResultType } from "@/types/resulttypes";
+
+const props = defineProps<{
+	className: string;
+	endpoint: (
+		queries?: Record<string, Record<string, number | string>> | undefined,
+	) => Promise<PaginatedListResultType>;
+	cols: Array<ColumnEntry>;
+	type: ModelString;
+}>();
 
 const t = useTranslations();
+
 const route = useRoute();
 const router = useRouter();
 
@@ -13,13 +23,6 @@ interface ColumnEntry {
 	key: string;
 	label: string;
 }
-const props = defineProps<{
-	className: string;
-	endpoint: (
-		queries?: Record<string, Record<string, number | string>> | undefined,
-	) => Promise<PaginatedListResultType>;
-	cols: Array<ColumnEntry>;
-}>();
 
 // Fetching data from APIS
 const pageLimit = 25;
@@ -235,6 +238,7 @@ watch(
 				:is-fetching="isFetching"
 				:limit-num="limitNum"
 				:page-num="pageNum"
+				:type="props.type"
 			/>
 		</div>
 		<div class="w-full md:mx-4 md:mt-8">

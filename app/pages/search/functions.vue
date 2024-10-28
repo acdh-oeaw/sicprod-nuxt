@@ -25,7 +25,7 @@ const columns = [
 </script>
 
 <template>
-	<SearchPage class-name="Function" :cols="columns" :endpoint="endpoint">
+	<SearchPage class-name="Function" :cols="columns" :endpoint="endpoint" type="function">
 		<h1 class="sr-only">{{ t("SearchFunctionsPage.title") }}</h1>
 	</SearchPage>
 </template>
