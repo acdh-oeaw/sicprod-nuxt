@@ -4,7 +4,7 @@ import SearchPage from "@/components/search-page.vue";
 const t = useTranslations();
 
 usePageMetadata({
-	title: "Pages.searchviews.person.title",
+	title: t("Pages.searchviews.person.title"),
 });
 
 const { $api } = useNuxtApp();
