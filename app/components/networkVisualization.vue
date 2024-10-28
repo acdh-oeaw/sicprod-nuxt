@@ -22,7 +22,7 @@ const { data, isLoading } = useQuery({
 		return loadNetworkData($api[networkEndpoint], {
 			queries: {
 				limit: 5000,
-				//@ts-expect-error apis_ontology mapping
+				// @ts-expect-error apis_ontology mapping
 				entities: selectedClasses.value.map((className) => {
 					return `apis_ontology.${className}`;
 				}),

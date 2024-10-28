@@ -20,10 +20,7 @@ const config = [
 	{
 		rules: {
 			"arrow-body-style": ["error", "always"],
-			curly: "error",
-			"prefer-arrow-callback": ["error", { allowNamedFunctions: true }],
 			"vue/attributes-order": ["warn", { alphabetical: true }],
-			"vue/html-self-closing": "error",
 		},
 	},
 ];

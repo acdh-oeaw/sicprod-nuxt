@@ -36,12 +36,12 @@ function initSigma() {
 		})
 		.nodeColor((node) => {
 			return highlightedNodes.value.size === 0
-				? //@ts-expect-error unknown property color
+				? // @ts-expect-error unknown property color
 					`${node.color}d0`
 				: highlightedNodes.value.has(node)
-					? //@ts-expect-error unknown property color
+					? // @ts-expect-error unknown property color
 						node.color
-					: //@ts-expect-error unknown property color
+					: // @ts-expect-error unknown property color
 						`${node.color}55`;
 		})
 		.warmupTicks(100)
@@ -50,7 +50,7 @@ function initSigma() {
 		.height(height)
 		.width(width)
 		.onNodeClick((node) => {
-			//@ts-expect-error unknown property class
+			// @ts-expect-error unknown property class
 			const path = localePath(`/detail/${node.class}/${node.id}`);
 			void router.push(path);
 		})
@@ -74,15 +74,15 @@ function initSigma() {
 		});
 	forcegraph.value.d3Force(
 		"collide",
-		//@ts-expect-error unknown property val
 		d3.forceCollide((node) => {
+			// @ts-expect-error unknown property val
 			return Math.sqrt(node.val) * forcegraph.value?.nodeRelSize() * 1.1;
 		}),
 	);
 	forcegraph.value.d3Force(
 		"charge",
-		//@ts-expect-error unknown property val
 		d3.forceManyBody().strength((node) => {
+			// @ts-expect-error unknown property val
 			return -node.val * props.nodeDistance;
 		}),
 	);
@@ -113,8 +113,8 @@ watch(
 	() => {
 		forcegraph.value?.d3Force(
 			"charge",
-			//@ts-expect-error unknown property val
 			d3.forceManyBody().strength((node) => {
+				// @ts-expect-error unknown property val
 				return -node.val * props.nodeDistance;
 			}),
 		);

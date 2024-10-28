@@ -23,7 +23,8 @@ const props = withDefaults(
 		},
 	},
 );
-// Popover positioning using floatingUI
+
+/** Popover positioning using floatingUI. */
 const reference = ref(null);
 const floating = ref(null);
 const { floatingStyles } = useFloating(reference, floating, {
@@ -34,11 +35,13 @@ const { floatingStyles } = useFloating(reference, floating, {
 
 const config = Cite.plugins.config.get("@csl");
 config.templates.add("sicprod-stylesheet", styleSheet);
+
 const citationConfig = {
 	format: "html",
 	template: "sicprod-stylesheet",
 	lang: "en-EN",
 };
+
 const citation = computed(() => {
 	const c = props.references.map((r) => {
 		return new Cite({
@@ -47,8 +50,10 @@ const citation = computed(() => {
 			page: [...new Set([r.pages_start, r.pages_end])].join("-"),
 		});
 	});
+
 	return c;
 });
+
 function downloadBibTex() {
 	const blob = new Blob(
 		citation.value.map((c) => {
@@ -56,20 +61,24 @@ function downloadBibTex() {
 		}),
 		{ type: "text/plain;charset=utf-8;" },
 	);
+
 	window.open(URL.createObjectURL(blob), "_blank");
 }
+
 async function copyToClipboard() {
 	const html = citation.value
 		.map((c) => {
 			return c.format("bibliography", citationConfig);
 		})
 		.join("\n");
+
 	const container = document.createElement("div");
 	container.innerHTML = html;
 	const text = container.innerText;
 
 	const blobHtml = new Blob([html], { type: "text/html" });
 	const blobText = new Blob([text], { type: "text/plain" });
+
 	const data = [
 		new ClipboardItem({
 			["text/plain"]: blobText,
@@ -129,7 +138,7 @@ function getLink(ref: Reference) {
 						</button>
 					</div>
 					<component
-						:is="getLink(props.references[idx]) ? NuxtLinkLocale : 'div'"
+						:is="getLink(props.references[idx]) ? resolveComponent('NuxtLinkLocale') : 'div'"
 						v-for="(entry, idx) in citation"
 						:key="entry"
 						class="block p-2"

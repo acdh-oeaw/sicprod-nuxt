@@ -32,7 +32,7 @@ onMounted(async () => {
 		}),
 	);
 
-	//@ts-expect-error no Tify export
+	// @ts-expect-error no Tify export
 	const tify = new Tify({
 		container: "#tify",
 		manifestUrl: manifestUrl.default,
