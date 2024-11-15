@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useQuery } from "@tanstack/vue-query";
 
-import network from "~/assets/networkSnippet.json";
+import network from "~/assets/network-snippet.json";
 
 defineRouteRules({
 	prerender: true,

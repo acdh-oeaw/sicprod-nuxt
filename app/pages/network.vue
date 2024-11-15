@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import NetworkVisualization from "@/components/networkVisualization.vue";
-
 const t = useTranslations();
 
 usePageMetadata({
