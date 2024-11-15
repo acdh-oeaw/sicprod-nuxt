@@ -13,11 +13,11 @@ usePageMetadata({
 	title: t("IndexPage.meta.title"),
 });
 
-const { $api } = useNuxtApp();
+const api = useApiClient();
 const { data } = useQuery({
 	queryKey: ["countPersons"],
 	queryFn: () => {
-		return $api["apis_api_apis_ontology.person_list"]({
+		return api["apis_api_apis_ontology.person_list"]({
 			queries: {
 				limit: 1,
 			},

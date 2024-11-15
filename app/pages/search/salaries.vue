@@ -7,8 +7,8 @@ usePageMetadata({
 	title: t("Pages.searchviews.salary.title"),
 });
 
-const { $api } = useNuxtApp();
-const endpoint = $api["apis_api_apis_ontology.salary_list"];
+const api = useApiClient();
+const endpoint = api["apis_api_apis_ontology.salary_list"];
 
 const columns = [
 	{
@@ -17,7 +17,7 @@ const columns = [
 		sortable: true,
 	},
 	{
-		//label inconsistency in APIS ("typ" instead of "type")
+		/** Inconsistency in APIS: "typ" instead of "type". */
 		key: "typ",
 		label: t("Pages.searchviews.salary.type"),
 		sortable: true,

@@ -7,8 +7,8 @@ usePageMetadata({
 	title: t("Pages.searchviews.person.title"),
 });
 
-const { $api } = useNuxtApp();
-const endpoint = $api["apis_api_apis_ontology.person_list"];
+const api = useApiClient();
+const endpoint = api["apis_api_apis_ontology.person_list"];
 
 const columns = [
 	{

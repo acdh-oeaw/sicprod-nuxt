@@ -7,8 +7,8 @@ usePageMetadata({
 	title: t("Pages.searchviews.institution.title"),
 });
 
-const { $api } = useNuxtApp();
-const endpoint = $api["apis_api_apis_ontology.institution_list"];
+const api = useApiClient();
+const endpoint = api["apis_api_apis_ontology.institution_list"];
 
 const columns = [
 	{

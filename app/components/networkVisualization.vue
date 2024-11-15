@@ -10,7 +10,7 @@ import type { NetworkEntry } from "@/types/resulttypes";
 
 const t = useTranslations();
 
-const { $api } = useNuxtApp();
+const api = useApiClient();
 const networkEndpoint = "apis_api_network_list";
 
 const availableClasses = ["event", "function", "institution", "person", "place", "salary"] as const;
@@ -19,7 +19,7 @@ const selectedClasses = ref<Array<(typeof availableClasses)[number]>>(["person",
 const { data, isLoading } = useQuery({
 	queryKey: [networkEndpoint, selectedClasses],
 	queryFn: () => {
-		return loadNetworkData($api[networkEndpoint], {
+		return loadNetworkData(api[networkEndpoint], {
 			queries: {
 				limit: 5000,
 				// @ts-expect-error apis_ontology mapping

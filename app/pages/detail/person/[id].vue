@@ -20,7 +20,7 @@ usePageMetadata({
 	title: t("Pages.searchviews.person.title"),
 });
 
-const { $api } = useNuxtApp();
+const api = useApiClient();
 const detailsEndpoint = "apis_api_apis_ontology.person_retrieve";
 const relationsEndpoint = "apis_api_apis_ontology.person_relations_list";
 
@@ -28,13 +28,13 @@ const data = ref({
 	entity: useQuery({
 		queryKey: [detailsEndpoint, id],
 		queryFn: () => {
-			return $api[detailsEndpoint]({ params: { id } });
+			return api[detailsEndpoint]({ params: { id } });
 		},
 	}),
 	relations: useQuery({
 		queryKey: [relationsEndpoint, id],
 		queryFn: () => {
-			return loadAndGroupRelations($api[relationsEndpoint], {
+			return loadAndGroupRelations(api[relationsEndpoint], {
 				params: { id: String(id) },
 			});
 		},
