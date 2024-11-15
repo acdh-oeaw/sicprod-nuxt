@@ -35,7 +35,9 @@ const columns = [
 </script>
 
 <template>
-	<SearchPage class-name="Event" :cols="columns" :endpoint="endpoint" type="event">
-		<h1 class="sr-only">{{ t("SearchEventsPage.title") }}</h1>
-	</SearchPage>
+	<main class="max-w-[100dvw]">
+		<SearchPage class-name="Event" :cols="columns" :endpoint="endpoint" type="event">
+			<h1 class="sr-only">{{ t("SearchEventsPage.title") }}</h1>
+		</SearchPage>
+	</main>
 </template>

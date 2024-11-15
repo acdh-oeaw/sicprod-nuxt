@@ -25,7 +25,9 @@ const columns = [
 </script>
 
 <template>
-	<SearchPage class-name="Institution" :cols="columns" :endpoint="endpoint" type="institution">
-		<h1 class="sr-only">{{ t("SearchInstitutionsPage.title") }}</h1>
-	</SearchPage>
+	<main class="max-w-[100dvw]">
+		<SearchPage class-name="Institution" :cols="columns" :endpoint="endpoint" type="institution">
+			<h1 class="sr-only">{{ t("SearchInstitutionsPage.title") }}</h1>
+		</SearchPage>
+	</main>
 </template>
