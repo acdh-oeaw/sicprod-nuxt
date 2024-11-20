@@ -2,13 +2,13 @@
 const t = useTranslations();
 
 usePageMetadata({
-	title: t("Pages.network.title"),
+	title: t("NetworkPage.meta.title"),
 });
 </script>
 
 <template>
 	<MainContent class="relative">
-		<PageTitle class="sr-only">{{ t("Pages.network.title") }}</PageTitle>
+		<PageTitle class="sr-only">{{ t("NetworkPage.title") }}</PageTitle>
 		<NetworkVisualization />
 	</MainContent>
 </template>
