@@ -1,6 +1,8 @@
 import { randomUUID } from "node:crypto";
+import { existsSync } from "node:fs";
 import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
+import { parseArgs } from "node:util";
 
 import { createUrl, log, request } from "@acdh-oeaw/lib";
 import { IIIFBuilder } from "@iiif/builder";
@@ -9,6 +11,14 @@ import { z } from "zod";
 const outputFolder = join(process.cwd(), "assets", "manifests");
 
 async function generate() {
+	const args = parseArgs({ options: { force: { type: "boolean", short: "f" } } });
+
+	const manifestFilePath = join(outputFolder, "collection-manifest.json");
+
+	if (existsSync(manifestFilePath) && !args.values.force) {
+		return false;
+	}
+
 	log.info("Generating iiif manifest...");
 
 	const apiBaseUrl = z.string().url().parse(process.env.NUXT_PUBLIC_IIIF_BASE_URL);
@@ -106,18 +116,23 @@ async function generate() {
 		await writeFile(filePath, JSON.stringify(fileContent), { encoding: "utf-8" });
 	}
 
-	const filePath = join(outputFolder, "collection-manifest.json");
 	const fileContent = builder.toPresentation3({ id: collectionManifest.id, type: "Collection" });
 
-	await writeFile(filePath, JSON.stringify(fileContent), { encoding: "utf-8" });
+	await writeFile(manifestFilePath, JSON.stringify(fileContent), { encoding: "utf-8" });
+
+	return true;
 }
 
 generate()
-	.then(() => {
-		log.success(
-			"Successfully generated iiif manifest.\n",
-			`Output was written to: "${outputFolder}".`,
-		);
+	.then((didGenerateManifest) => {
+		if (didGenerateManifest) {
+			log.success(
+				"Successfully generated iiif manifest.\n",
+				`Output was written to: "${outputFolder}".`,
+			);
+		} else {
+			log.success(`Found cached iiif manifest in "${outputFolder}".`);
+		}
 	})
 	.catch((error: unknown) => {
 		log.error("Failed to generate iiif manifest.\n", String(error));
