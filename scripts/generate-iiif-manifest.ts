@@ -83,7 +83,7 @@ async function generate() {
 							body: {
 								id: bodyId,
 								type: "Image",
-								format: "image/jpg",
+								format: "image/jpeg",
 								height,
 								width,
 							},
