@@ -12,11 +12,11 @@ export function groupTimelineRelations(filteredRelations: Array<TimelineObject>)
 	const groupedDict: Record<string, Array<TimelineObject>> = {};
 
 	filteredRelations.forEach((r) => {
-		if (!((r.start_date ?? "") in groupedDict)) {
-			groupedDict[r.start_date ?? ""] = [];
+		if (!(r.start_date in groupedDict)) {
+			groupedDict[r.start_date] = [];
 		}
 
-		groupedDict[r.start_date ?? ""]?.push(r);
+		groupedDict[r.start_date]?.push(r);
 	});
 
 	return Object.entries(groupedDict)
@@ -54,7 +54,7 @@ export function getFlattenedRelations(relations: Record<string, Array<TempTriple
 
 			return {
 				...entry,
-				start_date: entry.start_date ?? entry.end_date,
+				start_date: entry.start_date,
 				start_date_written: start_date_written,
 			};
 		});

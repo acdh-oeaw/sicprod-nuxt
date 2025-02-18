@@ -42,7 +42,7 @@ export async function loadAndGroupRelations(endpoint: EndpointType, params: endp
 
 	Object.keys(groupedResults).forEach((key) => {
 		return groupedResults[key]?.sort((a, b) => {
-			return new Date(a.start_date ?? 0).getTime() - new Date(b.start_date ?? 0).getTime();
+			return new Date(a.start_date).getTime() - new Date(b.start_date).getTime();
 		});
 	});
 

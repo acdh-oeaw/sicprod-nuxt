@@ -13,7 +13,7 @@ const _PaginatedListResult = z.union([
 export type PaginatedListResultType = z.infer<typeof _PaginatedListResult>;
 export type ModelString = "event" | "function" | "institution" | "person" | "place" | "salary";
 
-export type TempTriple = z.infer<typeof schemas.TempTriple>;
+export type TempTriple = z.infer<typeof schemas.Relation>;
 
 export interface PaginatedTempTripleListType {
 	count: number;
