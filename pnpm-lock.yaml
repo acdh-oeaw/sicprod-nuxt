@@ -128,7 +128,7 @@ importers:
         version: 2.0.7(@acdh-oeaw/eslint-config@2.0.4(@typescript-eslint/parser@8.11.0(eslint@9.13.0(jiti@2.3.3))(typescript@5.6.3))(eslint@9.13.0(jiti@2.3.3))(globals@15.11.0)(typescript@5.6.3))(eslint@9.13.0(jiti@2.3.3))
       '@acdh-oeaw/prettier-config':
         specifier: ^2.0.0
-        version: 2.0.0(prettier@3.5.0)
+        version: 2.0.0(prettier@3.5.2)
       '@acdh-oeaw/stylelint-config':
         specifier: ^2.0.4
         version: 2.0.4(postcss-html@1.7.0)(stylelint-order@6.0.4(stylelint@16.10.0(typescript@5.6.3)))(stylelint@16.10.0(typescript@5.6.3))
@@ -202,8 +202,8 @@ importers:
         specifier: ^8.4.47
         version: 8.4.47
       prettier:
-        specifier: ^3.5.0
-        version: 3.5.0
+        specifier: ^3.5.2
+        version: 3.5.2
       schema-dts:
         specifier: ^1.1.2
         version: 1.1.2(typescript@5.6.3)
@@ -5189,8 +5189,8 @@ packages:
     engines: {node: '>=10.13.0'}
     hasBin: true
 
-  prettier@3.5.0:
-    resolution: {integrity: sha512-quyMrVt6svPS7CjQ9gKb3GLEX/rl3BCL2oa/QkNcXv4YNVBC9olt3s+H7ukto06q7B1Qz46PbrKLO34PR6vXcA==}
+  prettier@3.5.2:
+    resolution: {integrity: sha512-lc6npv5PH7hVqozBR7lkBNOGXV9vMwROAPlumdBkX0wTbbzPu/U1hk5yL8p2pt4Xoc+2mkT8t/sow2YrV/M5qg==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -6543,9 +6543,9 @@ snapshots:
 
   '@acdh-oeaw/lib@0.1.12': {}
 
-  '@acdh-oeaw/prettier-config@2.0.0(prettier@3.5.0)':
+  '@acdh-oeaw/prettier-config@2.0.0(prettier@3.5.2)':
     dependencies:
-      prettier: 3.5.0
+      prettier: 3.5.2
 
   '@acdh-oeaw/stylelint-config@2.0.4(postcss-html@1.7.0)(stylelint-order@6.0.4(stylelint@16.10.0(typescript@5.6.3)))(stylelint@16.10.0(typescript@5.6.3))':
     dependencies:
@@ -12279,7 +12279,7 @@ snapshots:
 
   prettier@2.8.8: {}
 
-  prettier@3.5.0: {}
+  prettier@3.5.2: {}
 
   pretty-bytes@6.1.1: {}
 
