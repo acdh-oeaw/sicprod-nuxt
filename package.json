@@ -104,7 +104,7 @@
 		"npm-run-all2": "^7.0.1",
 		"openapi3-ts": "^4.4.0",
 		"postcss": "^8.4.47",
-		"prettier": "^3.3.3",
+		"prettier": "^3.5.2",
 		"schema-dts": "^1.1.2",
 		"simple-git-hooks": "^2.11.1",
 		"stylelint": "^16.10.0",
