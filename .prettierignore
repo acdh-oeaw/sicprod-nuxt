@@ -1,2 +1,5 @@
 # package manager lock file
 pnpm-lock.yaml
+
+# iiif collection manifest
+assets/manifests/

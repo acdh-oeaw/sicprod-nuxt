@@ -41,7 +41,8 @@ dist
 app/lib/api.ts
 
 # generated iiif manifests
-assets/manifests/
+# can currently not be re-generated
+# assets/manifests/
 
 
 ## .dockerignore ##
