@@ -12,6 +12,7 @@ export function groupTimelineRelations(filteredRelations: Array<TimelineObject>)
 	const groupedDict: Record<string, Array<TimelineObject>> = {};
 
 	filteredRelations.forEach((r) => {
+		if (!r.start_date) return;
 		if (!(r.start_date in groupedDict)) {
 			groupedDict[r.start_date] = [];
 		}
