@@ -9,8 +9,8 @@
 }
 
 #__nuxt {
-	block-size: 100%;
 	isolation: isolate;
+	block-size: 100%;
 }
 
 /* stylelint-disable-next-line selector-class-pattern */

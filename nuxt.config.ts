@@ -31,12 +31,6 @@ export default defineNuxtConfig({
 	devtools: {
 		enabled: true,
 	},
-	eslint: {
-		config: {
-			autoInit: false,
-			standalone: true,
-		},
-	},
 	experimental: {
 		componentIslands: {
 			selectiveClient: true,
@@ -64,18 +58,16 @@ export default defineNuxtConfig({
 		detectBrowserLanguage: {
 			redirectOn: "root",
 		},
-		langDir: "../i18n/messages",
-		lazy: true,
+		langDir: "messages",
 		locales: Object.values(localesMap),
 		strategy: "prefix_and_default",
-		vueI18n: "./i18n/i18n.config.ts",
+		vueI18n: "i18n.config.ts",
 	},
 	imports: {
 		dirs: ["./config/"],
 	},
 	modules: [
 		"@nuxt/content",
-		"@nuxt/eslint",
 		"@nuxt/image",
 		"@nuxtjs/color-mode",
 		"@nuxtjs/i18n",

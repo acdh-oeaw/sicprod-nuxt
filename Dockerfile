@@ -4,18 +4,20 @@
 # @see https://sharp.pixelplumbing.com/install#linux-memory-allocator
 
 # build
-FROM node:22-alpine AS build
+FROM node:26-alpine AS build
 
-RUN corepack enable
+COPY --from=ghcr.io/pnpm/pnpm:12.23.0-alpine /opt/pnpm /opt/pnpm
+ENV PATH="/opt/pnpm:${PATH}"
+ENV pnpm_config_runtime=false
 
 RUN mkdir /app && chown -R node:node /app
 WORKDIR /app
 
 USER node
 
-COPY --chown=node:node .npmrc package.json pnpm-lock.yaml ./
+COPY --chown=node:node package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
-RUN pnpm fetch
+RUN CI=true pnpm fetch
 
 COPY --chown=node:node ./ ./
 
@@ -28,14 +30,14 @@ ARG NUXT_PUBLIC_MATOMO_BASE_URL
 ARG NUXT_PUBLIC_MATOMO_ID
 ARG NUXT_PUBLIC_REDMINE_ID
 
-RUN pnpm install --frozen-lockfile --offline
+RUN CI=true pnpm install --frozen-lockfile --offline
 
 ENV NODE_ENV=production
 
 RUN pnpm run build
 
 # serve
-FROM node:22-alpine AS serve
+FROM node:26-alpine AS serve
 
 RUN mkdir /app && chown -R node:node /app
 WORKDIR /app

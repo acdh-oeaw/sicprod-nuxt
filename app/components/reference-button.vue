@@ -149,7 +149,6 @@ function getLink(ref: Reference) {
 							:to="getLink(props.references[idx])!"
 							@click.stop
 						>
-							<!-- eslint-disable-next-line vue/no-v-html -->
 							<span v-html="entry.format('bibliography', citationConfig)" />
 						</NuxtLinkLocale>
 
@@ -160,7 +159,6 @@ function getLink(ref: Reference) {
 								'border-b-2 dark:border-neutral-700': idx < citation.length - 1,
 							}"
 						>
-							<!-- eslint-disable-next-line vue/no-v-html -->
 							<span v-html="entry.format('bibliography', citationConfig)" />
 						</div>
 					</template>

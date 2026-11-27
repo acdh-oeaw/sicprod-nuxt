@@ -1,0 +1,10 @@
+{
+	"$schema": "./node_modules/oxlint/configuration_schema.json",
+	"plugins": ["eslint", "typescript", "unicorn", "oxc", "vue"],
+	"ignorePatterns": ["app/lib/api.ts"],
+	"rules": {
+		"arrow-body-style": ["error", "always"],
+		"no-empty-function": "error",
+		"typescript/no-empty-object-type": "error"
+	}
+}
