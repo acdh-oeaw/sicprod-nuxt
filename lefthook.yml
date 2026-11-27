@@ -1,0 +1,20 @@
+glob_matcher: doublestar
+
+pre-commit:
+  jobs:
+    - name: lint-code
+      glob: "**/*.{js,jsx,mjs,cjs,ts,tsx,mts,cts,vue}"
+      run: pnpm exec oxlint --fix -- {staged_files}
+      stage_fixed: true
+    - name: lint-styles
+      glob: "**/*.{css,vue}"
+      run: pnpm exec stylelint --fix --cache --ignore-path .gitignore -- {staged_files}
+      stage_fixed: true
+    - name: format
+      exclude:
+        - "assets/manifests/**"
+        - "content/**"
+        - "public/**"
+        - "pnpm-lock.yaml"
+      run: pnpm exec oxfmt --write --no-error-on-unmatched-pattern -- {staged_files}
+      stage_fixed: true

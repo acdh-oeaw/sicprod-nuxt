@@ -89,7 +89,7 @@ function initSigma() {
 	forcegraph.value.onEngineStop(() => {
 		forcegraph.value?.zoomToFit(400);
 		forcegraph.value?.cooldownTicks(100);
-		// eslint-disable-next-line @typescript-eslint/no-empty-function
+		// oxlint-disable-next-line eslint/no-empty-function
 		forcegraph.value?.onEngineStop(() => {});
 	});
 }
