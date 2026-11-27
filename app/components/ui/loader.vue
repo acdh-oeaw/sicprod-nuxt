@@ -1,5 +1,4 @@
 <template>
-	<!-- eslint-disable tailwindcss/no-custom-classname -->
 	<div class="dots-3" />
 	<span class="sr-only">Loading</span>
 </template>
@@ -24,12 +23,12 @@
 	top: 0;
 	left: 0;
 	height: 12px;
+	aspect-ratio: 1;
 	border-radius: 50%;
 	background: currentColor;
 	animation:
 		d3-1 1.5s linear infinite,
 		d3-2 0.5s cubic-bezier(0, 200, 0.8, 200) infinite;
-	aspect-ratio: 1;
 }
 
 @keyframes d3-0 {

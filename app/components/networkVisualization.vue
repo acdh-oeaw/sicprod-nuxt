@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from "@headlessui/vue";
 import { useQuery } from "@tanstack/vue-query";
-import type { LinkObject } from "force-graph";
 import { Check, ChevronUp, MoveHorizontal, Share2 } from "lucide-vue-next";
 
 import { bgColors, colorCodes } from "@/lib/colors";
 import { loadNetworkData } from "@/lib/load-network-data";
+import type { GraphData } from "@/types/graph";
 import type { NetworkEntry } from "@/types/resulttypes";
 
 const t = useTranslations();
@@ -32,15 +32,9 @@ const { data, isLoading } = useQuery({
 });
 
 function getGraph(data: Array<NetworkEntry>, minDegree = 0) {
-	const graph = {
-		nodes: [] as Array<{
-			id: string;
-			name: string;
-			val: number;
-			color?: string;
-			class?: string;
-		}>,
-		links: [] as Array<LinkObject>,
+	const graph: GraphData = {
+		nodes: [],
+		links: [],
 	};
 	const edgeDict: Record<string, Array<string>> = {};
 	data.forEach((entity) => {

@@ -1,0 +1,10 @@
+engineStrict: true
+shellEmulator: true
+
+allowBuilds:
+  citation-js: false
+  esbuild: true
+  sharp: true
+  lefthook: true
+  tify: true
+  vue-demi: true

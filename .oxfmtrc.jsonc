@@ -1,0 +1,8 @@
+{
+	"$schema": "./node_modules/oxfmt/configuration_schema.json",
+	"printWidth": 100,
+	"proseWrap": "always",
+	"useTabs": true,
+	"sortPackageJson": false,
+	"ignorePatterns": ["pnpm-lock.yaml", "assets/manifests/**", "content/**", "public/**"],
+}
