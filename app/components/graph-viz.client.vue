@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import * as d3 from "d3-force";
-import ForceGraph, { type ForceGraphInstance, type LinkObject, type NodeObject } from "force-graph";
+import ForceGraph, { type LinkObject, type NodeObject } from "force-graph";
 
 const props = defineProps<{
 	graph: {
@@ -9,7 +9,7 @@ const props = defineProps<{
 	};
 	nodeDistance: number;
 }>();
-const forcegraph = ref<ForceGraphInstance>();
+const forcegraph = shallowRef<ForceGraph>();
 const networkContainer = ref<HTMLElement>();
 const localePath = useLocalePath();
 const router = useRouter();
@@ -28,8 +28,8 @@ function initSigma() {
 
 	const height = networkContainer.value.clientHeight - 1;
 	const width = networkContainer.value.clientWidth - 1;
-	const myGraph = ForceGraph();
-	forcegraph.value = myGraph(networkContainer.value)
+	const myGraph = new ForceGraph(networkContainer.value);
+	forcegraph.value = myGraph
 		.graphData(props.graph)
 		.linkColor((link) => {
 			return highlightedLinks.value.has(link) ? "#aaaaaa" : "#cccccc30";

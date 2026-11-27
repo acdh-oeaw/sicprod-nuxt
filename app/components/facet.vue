@@ -5,7 +5,13 @@ import type { FacetType } from "@/types/resulttypes";
 
 const t = useTranslations();
 
-const model = defineModel({ type: Array<number | string>, required: true, default: [] });
+const model = defineModel({
+	type: Array<number | string>,
+	required: true,
+	default: () => {
+		return [];
+	},
+});
 
 const props = withDefaults(
 	defineProps<{

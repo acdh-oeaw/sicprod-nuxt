@@ -40,7 +40,9 @@ export default defineNuxtPlugin((nuxt) => {
 
 	if (import.meta.client) {
 		nuxt.hooks.hook("app:created", () => {
-			hydrate(queryClient, state.value);
+			if (state.value != null) {
+				hydrate(queryClient, state.value);
+			}
 		});
 	}
 });
