@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { useQuery } from "@tanstack/vue-query";
 
-import Facet from "@/components/facet.vue";
-import SearchNavigation from "@/components/search-navigation.vue";
-import type { FacetType, ModelString, PaginatedListResultType } from "@/types/resulttypes";
+import Facet from "#/app/components/facet.vue";
+import SearchNavigation from "#/app/components/search-navigation.vue";
+import type { FacetType, ModelString, PaginatedListResultType } from "#/app/types/resulttypes.d.ts";
 
 const props = defineProps<{
 	className: string;
@@ -84,7 +84,7 @@ const relationFacets = computed(() => {
 	if (!data.value) {
 		return facetObject;
 	}
-	Object.entries(data.value.facets).forEach(([key, value]) => {
+	Object.entries(data.value.facets ?? {}).forEach(([key, value]) => {
 		if (key.startsWith("relation_") && hasMatchingFacetType(value)) {
 			facetObject[key] = Object.entries(value)
 				.map(([k, v]) => {
@@ -105,7 +105,7 @@ const classFacets = computed(() => {
 	if (!data.value) {
 		return facetObject;
 	}
-	Object.entries(data.value.facets).forEach(([key, value]) => {
+	Object.entries(data.value.facets ?? {}).forEach(([key, value]) => {
 		if (!key.startsWith("relation_") && hasMatchingFacetType(value)) {
 			facetObject[key] = Object.entries(value)
 				.filter(([_, v]) => {

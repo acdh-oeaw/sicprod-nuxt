@@ -1,12 +1,13 @@
 <script setup lang="ts">
+import "@citation-js/plugin-bibtex";
+import "@citation-js/plugin-csl";
+import { Cite, plugins } from "@citation-js/core";
 import { offset, type Placement, shift, useFloating } from "@floating-ui/vue";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
-// @ts-expect-error missing types for citation-js
-import Cite from "citation-js";
-import { ArrowDownToLine, BookOpenText, Copy } from "lucide-vue-next";
+import { ArrowDownToLine, BookOpenText, Copy } from "@lucide/vue";
 
-import type { Reference } from "@/types/resulttypes";
-import styleSheet from "~/assets/sicprod-style.csl?raw";
+import type { Reference } from "#/app/types/resulttypes.d.ts";
+import styleSheet from "#/assets/sicprod-style.csl?raw";
 
 const t = useTranslations();
 const props = withDefaults(
@@ -33,12 +34,11 @@ const { floatingStyles } = useFloating(reference, floating, {
 	middleware: [offset(props.popupOffset), shift({ padding: 8 })],
 });
 
-const config = Cite.plugins.config.get("@csl");
-config.templates.add("sicprod-stylesheet", styleSheet);
+plugins.config.get("@csl").styles.add("sicprod-stylesheet", styleSheet);
 
 const citationConfig = {
 	format: "html",
-	template: "sicprod-stylesheet",
+	style: "sicprod-stylesheet",
 	lang: "en-EN",
 };
 
@@ -89,16 +89,17 @@ async function copyToClipboard() {
 	await navigator.clipboard.write(data);
 }
 
-function getLink(ref: Reference) {
-	if (ref == null || !("title" in ref.scandata) || !("pages" in ref.scandata)) {
+function getLink(ref: Reference | undefined) {
+	const { title, pages } = ref?.scandata ?? {};
+	if (typeof title !== "string" || typeof pages !== "string") {
 		return null;
 	}
 
 	return {
 		path: "/iiif",
 		query: {
-			book: ref.scandata.title,
-			page: ref.scandata.pages.replaceAll(".jpg", ""),
+			book: title,
+			page: pages.replaceAll(".jpg", ""),
 		},
 	};
 }
@@ -108,7 +109,7 @@ function getLink(ref: Reference) {
 	<Popover>
 		<PopoverButton
 			ref="reference"
-			class="group inline-flex size-full scale-90 items-center rounded-md font-medium text-neutral-600 transition-transform hover:scale-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 dark:text-neutral-200"
+			class="group inline-flex size-full scale-90 items-center rounded-md font-medium text-neutral-600 transition-transform hover:scale-100 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white/75 dark:text-neutral-200"
 		>
 			<BookOpenText class="mx-auto size-full" />
 			<span class="sr-only">{{ t("References.references") }}</span>
@@ -138,10 +139,10 @@ function getLink(ref: Reference) {
 							<Copy class="size-4 transition-transform hover:scale-125" />
 						</button>
 					</div>
-					<template v-for="(entry, idx) in citation" :key="entry">
+					<template v-for="(entry, idx) in citation" :key="idx">
 						<NuxtLinkLocale
 							v-if="getLink(props.references[idx])"
-							class="block p-2 hover:bg-neutral-100 focus:outline-none focus-visible:ring dark:hover:bg-neutral-900"
+							class="block p-2 hover:bg-neutral-100 focus:outline-hidden focus-visible:ring-3 dark:hover:bg-neutral-900"
 							:class="{
 								'border-b-2 dark:border-neutral-700': idx < citation.length - 1,
 							}"

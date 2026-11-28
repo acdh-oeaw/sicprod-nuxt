@@ -3,35 +3,22 @@
 	"private": true,
 	"license": "MIT",
 	"type": "module",
-	"engines": {
-		"node": "26.x",
-		"pnpm": "12.x"
-	},
-	"devEngines": {
-		"packageManager": {
-			"name": "pnpm",
-			"version": "12.23.0",
-			"onFail": "download"
-		},
-		"runtime": {
-			"name": "node",
-			"version": "26.x",
-			"onFail": "download"
-		}
+	"imports": {
+		"#/*": "./*"
 	},
 	"scripts": {
-		"analyze": "dotenv -c -- nuxt analyze",
+		"analyze": "node --env-file-if-exists=.env.local ./node_modules/nuxt/bin/nuxt.mjs analyze",
 		"build": "nuxt build --dotenv ./.env.local",
 		"dev": "nuxt dev --dotenv ./.env.local",
 		"format:check": "oxfmt --check",
 		"format:fix": "oxfmt --write",
 		"generate": "nuxt generate --dotenv ./.env.local",
-		"generate:api-client": "dotenv -c -- tsx ./scripts/generate-api-client.ts",
-		"generate:iiif-manifest": "dotenv -c -- tsx ./scripts/generate-iiif-manifest.ts",
+		"generate:api-client": "node --env-file-if-exists=.env.local --import tsx ./scripts/generate-api-client.ts",
+		"generate:iiif-manifest": "node --env-file-if-exists=.env.local --import tsx ./scripts/generate-iiif-manifest.ts",
 		"lint:check": "run-p --continue-on-error \"lint:*:check\"",
-		"lint:fix": "run-p --continue-on-error \"lint:*:fix\"",
 		"lint:code:check": "oxlint",
 		"lint:code:fix": "oxlint --fix",
+		"lint:fix": "run-p --continue-on-error \"lint:*:fix\"",
 		"lint:styles:check": "stylelint \"**/*.{css,vue}\" --cache --ignore-path .gitignore",
 		"lint:styles:fix": "pnpm run lint:styles:check --fix",
 		"postinstall": "nuxt prepare",
@@ -47,71 +34,64 @@
 		"validate": "run-p format:check lint:check types:check test test:e2e"
 	},
 	"dependencies": {
-		"@acdh-oeaw/lib": "^0.1.12",
-		"@floating-ui/vue": "^1.1.11",
+		"@acdh-oeaw/lib": "^0.3.7",
+		"@citation-js/core": "0.9.0",
+		"@citation-js/plugin-bibtex": "0.9.0",
+		"@citation-js/plugin-csl": "0.9.0",
+		"@floating-ui/vue": "^2.0.1",
 		"@fontsource-variable/inter": "^5.3.0",
 		"@headlessui/tailwindcss": "^0.2.2",
 		"@headlessui/vue": "^1.7.23",
 		"@iiif/builder": "^2.0.1",
 		"@iiif/presentation-3": "^2.2.4",
 		"@jsplumb/browser-ui": "^6.2.10",
-		"@nuxt/content": "^2.13.4",
-		"@nuxt/image": "^1.11.2",
-		"@nuxtjs/color-mode": "^3.5.2",
+		"@lucide/vue": "^1.82.0",
+		"@nuxt/image": "^2.2.1",
+		"@nuxtjs/color-mode": "^4.1.0",
 		"@nuxtjs/i18n": "^10.7.0",
 		"@nuxtjs/leaflet": "^1.3.3",
 		"@tanstack/vue-query": "^5.108.4",
 		"@vue-leaflet/vue-leaflet": "^0.10.1",
-		"@vueuse/core": "^11.3.0",
-		"@vueuse/nuxt": "^11.3.0",
-		"@zodios/core": "^10.9.6",
-		"citation-js": "^0.7.22",
 		"d3": "^7.9.2",
 		"d3-force": "^3.0.1",
 		"d3-time-format": "^4.1.1",
 		"fast-glob": "^3.3.3",
-		"force-graph": "^1.52.0",
-		"lucide-vue-next": "^0.453.0",
-		"nuxt": "^3.21.11",
-		"openapi-zod-client": "^1.18.3",
-		"pino-http": "^10.5.0",
-		"satori": "^0.11.3",
-		"tify": "^0.31.0",
+		"force-graph": "^1.52.1",
+		"nitro": "3.0.261103-rc",
+		"nuxt": "^4.7.0",
+		"pino": "^10.4.0",
+		"tify": "^0.36.2",
+		"valibot": "^1.5.0",
 		"vue": "^3.5.46",
 		"vue-i18n": "^11.4.24",
-		"vue-router": "^4.6.5",
-		"zod": "^3.25.76"
+		"vue-router": "^5.5.3"
 	},
 	"devDependencies": {
 		"@acdh-oeaw/stylelint-config": "^4.0.0",
-		"@acdh-oeaw/tailwindcss-preset": "^0.0.22",
 		"@acdh-oeaw/tsconfig": "^1.5.1",
+		"@hey-api/openapi-ts": "0.99.0",
 		"@playwright/test": "^1.65.1",
 		"@tailwindcss/typography": "^0.5.20",
+		"@tailwindcss/vite": "^4.3.5",
 		"@types/d3": "^7.4.3",
 		"@types/d3-force": "^3.0.10",
-		"@types/node": "^22.20.7",
+		"@types/node": "^26.6.11",
 		"axe-core": "^4.14.1",
 		"axe-playwright": "^2.2.2",
 		"ci-info": "^4.5.0",
-		"dotenv": "^16.6.1",
-		"dotenv-cli": "^7.4.4",
-		"dotenv-expand": "^11.0.7",
-		"globals": "^15.15.0",
 		"lefthook": "^2.2.4",
-		"npm-run-all2": "^7.0.2",
+		"npm-run-all2": "^9.1.0",
 		"openapi3-ts": "^4.6.2",
 		"oxfmt": "^0.80.0",
 		"oxlint": "^1.95.0",
-		"postcss": "^8.5.33",
-		"schema-dts": "^1.1.5",
+		"schema-dts": "^2.1.0",
 		"stylelint": "^18.1.0",
-		"tailwind-scrollbar": "^3.1.0",
-		"tailwindcss": "^3.4.19",
+		"tailwind-scrollbar": "^4.0.2",
+		"tailwindcss": "^4.3.5",
 		"tsx": "^4.23.15",
-		"typescript": "^5.9.3",
-		"vite": "^7.3.8",
-		"vue-tsc": "^2.2.12"
+		"typescript": "^6.0.3",
+		"vite": "8.4.0",
+		"vue-tsc": "^3.3.14"
 	},
 	"browserslist": {
 		"development": [
@@ -125,12 +105,22 @@
 			"not op_mini all"
 		]
 	},
-	"postcss": {
-		"plugins": {
-			"tailwindcss": {}
-		}
-	},
 	"stylelint": {
 		"extends": "@acdh-oeaw/stylelint-config"
+	},
+	"devEngines": {
+		"packageManager": {
+			"name": "pnpm",
+			"version": "12.23.0",
+			"onFail": "download"
+		},
+		"runtime": {
+			"name": "node",
+			"version": "26.x",
+			"onFail": "download"
+		}
+	},
+	"engines": {
+		"node": "26.x"
 	}
 }

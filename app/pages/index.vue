@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useQuery } from "@tanstack/vue-query";
 
-import network from "~/assets/networkSnippet.json";
+import network from "#/assets/networkSnippet.json";
 
 defineRouteRules({
 	prerender: true,
@@ -27,7 +27,7 @@ const { data } = useQuery({
 </script>
 
 <template>
-	<MainContent class="container grid content-start gap-y-8 py-8">
+	<MainContent class="page-container grid content-start gap-y-8 py-8">
 		<PageTitle>{{ t("IndexPage.title") }}</PageTitle>
 		<div>
 			<p class="mb-2">{{ t("IndexPage.intro1", { count: data?.count ?? "ca. 6000" }) }}</p>
@@ -44,7 +44,7 @@ const { data } = useQuery({
 		<div class="flex w-full flex-wrap items-stretch justify-around gap-5">
 			<NuxtLinkLocale to="/detail/person/18">
 				<div
-					class="group h-full min-w-20 max-w-72 overflow-hidden rounded-md shadow-lg dark:bg-neutral-800"
+					class="group h-full max-w-72 min-w-20 overflow-hidden rounded-md shadow-lg dark:bg-neutral-800"
 				>
 					<div class="max-h-72 w-full overflow-hidden">
 						<NuxtImg
@@ -67,7 +67,7 @@ const { data } = useQuery({
 			</NuxtLinkLocale>
 			<NuxtLinkLocale to="/search/persons">
 				<div
-					class="group h-full min-w-20 max-w-72 overflow-hidden rounded-md shadow-lg dark:bg-neutral-800"
+					class="group h-full max-w-72 min-w-20 overflow-hidden rounded-md shadow-lg dark:bg-neutral-800"
 				>
 					<div class="max-h-72 w-full overflow-hidden">
 						<NuxtImg
@@ -87,7 +87,7 @@ const { data } = useQuery({
 			</NuxtLinkLocale>
 			<NuxtLinkLocale to="/network">
 				<div
-					class="h-full min-w-20 max-w-72 overflow-hidden rounded-md shadow-lg dark:bg-neutral-800"
+					class="h-full max-w-72 min-w-20 overflow-hidden rounded-md shadow-lg dark:bg-neutral-800"
 				>
 					<div class="h-72 w-full">
 						<GraphViz
@@ -107,7 +107,7 @@ const { data } = useQuery({
 			</NuxtLinkLocale>
 			<NuxtLinkLocale to="/iiif">
 				<div
-					class="group h-full min-w-20 max-w-72 overflow-hidden rounded-md shadow-lg dark:bg-neutral-800"
+					class="group h-full max-w-72 min-w-20 overflow-hidden rounded-md shadow-lg dark:bg-neutral-800"
 				>
 					<div class="max-h-72 w-full overflow-hidden">
 						<NuxtImg

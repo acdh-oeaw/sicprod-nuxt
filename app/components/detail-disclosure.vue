@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import { get } from "@acdh-oeaw/lib";
 import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
-import { ChevronDown } from "lucide-vue-next";
+import { ChevronDown } from "@lucide/vue";
 
-import ReferenceButton from "@/components/reference-button.vue";
-import Centered from "@/components/ui/centered.vue";
-import Loader from "@/components/ui/loader.vue";
-import { borderColors, icons, scrollbarColors, textColors } from "@/lib/colors";
-import type { ModelString, TempTriple } from "@/types/resulttypes";
+import ReferenceButton from "#/app/components/reference-button.vue";
+import Centered from "#/app/components/ui/centered.vue";
+import Loader from "#/app/components/ui/loader.vue";
+import { borderColors, icons, scrollbarColors, textColors } from "#/app/lib/colors.ts";
+import type { ModelString, TempTriple } from "#/app/types/resulttypes.d.ts";
 
 const props = withDefaults(
 	defineProps<{
@@ -55,18 +55,18 @@ const groupedRelations = computed(() => {
 	>
 		<DisclosureButton
 			as="button"
-			class="rounded flex w-full items-center justify-between border-b-4 p-2 text-xl transition ui-open:rounded-b-none"
+			class="ui-open:rounded-b-none flex w-full items-center justify-between rounded border-b-4 p-2 text-xl transition"
 			:class="borderColors[model]"
 		>
 			<span class="flex gap-2 align-baseline">
 				<component :is="icons[model]" class="inline" />
 				{{ title }}
 			</span>
-			<ChevronDown class="size-5 transition ui-open:-rotate-180" />
+			<ChevronDown class="ui-open:-rotate-180 size-5 transition" />
 		</DisclosureButton>
 		<DisclosurePanel
 			as="div"
-			class="rounded box-border overflow-hidden rounded-t-none p-4 transition-[max-height,border,padding] ui-open:max-h-full ui-open:border-t-0 ui-not-open:max-h-0 ui-not-open:border-transparent ui-not-open:py-0"
+			class="ui-open:max-h-full ui-open:border-t-0 ui-not-open:max-h-0 ui-not-open:border-transparent ui-not-open:py-0 box-border overflow-hidden rounded rounded-t-none p-4 transition-[max-height,border,padding]"
 			static
 		>
 			<slot v-if="(!detailsLoading && rels.length !== 0 && headers) || customSlot">
@@ -79,7 +79,7 @@ const groupedRelations = computed(() => {
 						</tr>
 					</thead>
 					<tbody
-						class="block max-h-screen w-full table-fixed overflow-auto scrollbar-thin scrollbar-track-transparent"
+						class="block max-h-screen w-full table-fixed scrollbar-thin scrollbar-track-transparent overflow-auto"
 						:class="scrollbarColors[model]"
 					>
 						<component
@@ -87,12 +87,12 @@ const groupedRelations = computed(() => {
 							v-for="rel of groupedRelations"
 							:key="rel[0]?.to?.name"
 							as="tbody"
-							class="w-full border-t md:border-t dark:hover:bg-primary-950 dark:active:bg-primary-950"
+							class="dark:hover:bg-primary-950 dark:active:bg-primary-950 w-full border-t md:border-t"
 						>
 							<DisclosureButton
 								v-if="rel.length > 1"
 								as="tr"
-								class="group table w-full table-fixed cursor-pointer hover:bg-primary-50 active:bg-primary-50 dark:hover:bg-primary-950 dark:active:bg-primary-950"
+								class="group hover:bg-primary-50 active:bg-primary-50 dark:hover:bg-primary-950 dark:active:bg-primary-950 table w-full table-fixed cursor-pointer"
 								role="button"
 								tabindex="0"
 							>

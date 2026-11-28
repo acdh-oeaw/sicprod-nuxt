@@ -1,4 +1,4 @@
-import { Calendar, Contact, HandCoins, MapPin, School2, User } from "lucide-vue-next";
+import { Calendar, Contact, HandCoins, MapPin, School2, User } from "@lucide/vue";
 import colors from "tailwindcss/colors";
 
 export const icons = {

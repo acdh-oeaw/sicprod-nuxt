@@ -1,15 +1,15 @@
 <script setup lang="ts">
+import { SquareGanttChart } from "@lucide/vue";
 import { useQuery } from "@tanstack/vue-query";
-import { SquareGanttChart } from "lucide-vue-next";
 
-import DetailPage from "@/components/detail-page.vue";
-import FamilyTree from "@/components/family-tree.vue";
-import ReferenceButton from "@/components/reference-button.vue";
-import Timeline from "@/components/timeline/timeline.vue";
-import VerticalTimeline from "@/components/timeline/vertical-timeline.vue";
-import Loader from "@/components/ui/loader.vue";
-import { loadAndGroupRelations } from "@/lib/group-relations.ts";
-import { getFlattenedRelations } from "@/utils/timeline-utils";
+import DetailPage from "#/app/components/detail-page.vue";
+import FamilyTree from "#/app/components/family-tree.vue";
+import ReferenceButton from "#/app/components/reference-button.vue";
+import Timeline from "#/app/components/timeline/timeline.vue";
+import VerticalTimeline from "#/app/components/timeline/vertical-timeline.vue";
+import Loader from "#/app/components/ui/loader.vue";
+import { loadAndGroupRelations } from "#/app/lib/group-relations.ts";
+import { getFlattenedRelations } from "#/app/utils/timeline-utils.ts";
 
 const t = useTranslations();
 
@@ -146,7 +146,7 @@ function toggleShowAltNames() {
 					<div
 						v-for="f in functionNames"
 						:key="f"
-						class="mr-3 inline-block w-fit rounded-md bg-function-200 px-3 py-1.5 text-xs font-semibold uppercase dark:bg-function-900 dark:text-neutral-100"
+						class="bg-function-200 dark:bg-function-900 mr-3 inline-block w-fit rounded-md px-3 py-1.5 text-xs font-semibold uppercase dark:text-neutral-100"
 					>
 						{{ f }}
 					</div>
@@ -161,7 +161,7 @@ function toggleShowAltNames() {
 
 					<button
 						v-if="flattenedRelations.length > 0"
-						class="group w-fit scale-90 items-center rounded-md font-medium text-neutral-600 transition-transform hover:scale-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 dark:text-neutral-200"
+						class="group w-fit scale-90 items-center rounded-md font-medium text-neutral-600 transition-transform hover:scale-100 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white/75 dark:text-neutral-200"
 						:title="t('Timeline.timeline')"
 						@click="openVerticalTimeline"
 					>
@@ -223,7 +223,7 @@ function toggleShowAltNames() {
 					<NuxtLinkLocale
 						v-for="person in sameAs"
 						:key="person.id"
-						class="-ml-1 -mt-1 block p-1 hover:bg-primary-50 active:bg-primary-50 dark:hover:bg-primary-950 dark:active:bg-primary-950"
+						class="hover:bg-primary-50 active:bg-primary-50 dark:hover:bg-primary-950 dark:active:bg-primary-950 -mt-1 -ml-1 block p-1"
 						:to="`/detail/person/${person.id}`"
 					>
 						{{ person.name }}

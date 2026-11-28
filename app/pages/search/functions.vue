@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import SearchPage from "@/components/search-page.vue";
+import SearchPage from "#/app/components/search-page.vue";
 
 const t = useTranslations();
 

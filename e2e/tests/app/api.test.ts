@@ -1,5 +1,5 @@
-import { createApiClient } from "@/lib/api";
-import { expect, test } from "~/e2e/lib/test";
+import { createApiClient } from "#/app/lib/api.ts";
+import { expect, test } from "#/e2e/lib/test.ts";
 
 const baseUrl = process.env.NUXT_PUBLIC_API_BASE_URL!;
 const ApiClient = createApiClient(baseUrl);

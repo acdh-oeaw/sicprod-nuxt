@@ -29,7 +29,7 @@ const links = computed(() => {
 
 <template>
 	<header
-		class="shadow-header-sm md:shadow-header dark:bg-neutral-950 dark:shadow-header-dark-sm dark:md:shadow-header-dark"
+		class="shadow-header-sm md:shadow-header dark:shadow-header-dark-sm dark:md:shadow-header-dark dark:bg-neutral-950"
 	>
 		<div class="flex items-center justify-between gap-x-4 px-8 py-6">
 			<nav :aria-label="t('AppHeader.navigation-main')">

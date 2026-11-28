@@ -9,11 +9,11 @@ import {
 	TransitionChild,
 	TransitionRoot,
 } from "@headlessui/vue";
-import { Check, ChevronDown, X } from "lucide-vue-next";
+import { Check, ChevronDown, X } from "@lucide/vue";
 
-import { bgColorsSemiTransparent } from "@/lib/colors";
-import type { TimelineObject } from "@/types/timeline";
-import { groupTimelineRelations } from "@/utils/timeline-utils";
+import { bgColorsSemiTransparent } from "#/app/lib/colors.ts";
+import type { TimelineObject } from "#/app/types/timeline.ts";
+import { groupTimelineRelations } from "#/app/utils/timeline-utils.ts";
 
 import VerticalTimelineEntry from "./vertical-timeline-entry.vue";
 
@@ -75,14 +75,14 @@ const selectedClasses = ref(availableClasses.value);
 						leave-to="opacity-0 scale-95"
 					>
 						<DialogPanel
-							class="rounded relative w-full max-w-md overflow-hidden bg-white p-6 text-left align-middle shadow-xl transition-all md:max-w-lg dark:bg-neutral-800"
+							class="relative w-full max-w-md overflow-hidden rounded bg-white p-6 text-left align-middle shadow-xl transition-all md:max-w-lg dark:bg-neutral-800"
 						>
 							<h2 class="text-2xl">{{ t("Timeline.timeline") }}</h2>
-							<button class="absolute right-2 top-2" @click="closeModal">
+							<button class="absolute top-2 right-2" @click="closeModal">
 								<X class="size-4 text-neutral-500" />
 							</button>
 							<Listbox v-model="selectedClasses" multiple>
-								<div class="relative mb-4 mt-1">
+								<div class="relative mt-1 mb-4">
 									<ListboxButton
 										class="relative w-full cursor-pointer rounded-lg bg-inherit py-2 pr-10 text-left sm:text-sm"
 									>
@@ -121,7 +121,7 @@ const selectedClasses = ref(availableClasses.value);
 														active
 															? 'bg-primary-100 text-primary-900 dark:bg-primary-900 dark:text-primary-100'
 															: 'text-neutral-900 dark:text-neutral-100',
-														'relative cursor-pointer select-none py-2 pl-10 pr-4',
+														'relative cursor-pointer py-2 pr-4 pl-10 select-none',
 													]"
 												>
 													<span
@@ -131,7 +131,7 @@ const selectedClasses = ref(availableClasses.value);
 													</span>
 													<span
 														v-if="selected"
-														class="absolute inset-y-0 left-0 flex items-center pl-3 text-primary-600"
+														class="text-primary-600 absolute inset-y-0 left-0 flex items-center pl-3"
 													>
 														<Check aria-hidden="true" class="size-5" />
 													</span>

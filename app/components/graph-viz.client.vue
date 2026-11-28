@@ -2,7 +2,7 @@
 import * as d3 from "d3-force";
 import ForceGraph from "force-graph";
 
-import type { GraphData, GraphLink, GraphNode } from "@/types/graph";
+import type { GraphData, GraphLink, GraphNode } from "#/app/types/graph.ts";
 
 const props = defineProps<{
 	graph: GraphData;

@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from "@headlessui/vue";
+import { Check, ChevronUp, MoveHorizontal, Share2 } from "@lucide/vue";
 import { useQuery } from "@tanstack/vue-query";
-import { Check, ChevronUp, MoveHorizontal, Share2 } from "lucide-vue-next";
 
-import { bgColors, colorCodes } from "@/lib/colors";
-import { loadNetworkData } from "@/lib/load-network-data";
-import type { GraphData } from "@/types/graph";
-import type { NetworkEntry } from "@/types/resulttypes";
+import { bgColors, colorCodes } from "#/app/lib/colors.ts";
+import { loadNetworkData } from "#/app/lib/load-network-data.ts";
+import type { GraphData } from "#/app/types/graph.ts";
+import type { NetworkEntry } from "#/app/types/resulttypes.d.ts";
 
 const t = useTranslations();
 
@@ -105,7 +105,7 @@ const nodeDistance = ref(10);
 	<Centered v-if="isLoading"><Loader /></Centered>
 	<div v-else class="relative size-full">
 		<div
-			class="absolute bottom-0 right-2 z-10 mb-2 mt-1 rounded-lg bg-white/70 p-2 dark:bg-neutral-900/70"
+			class="absolute right-2 bottom-0 z-10 mt-1 mb-2 rounded-lg bg-white/70 p-2 dark:bg-neutral-900/70"
 		>
 			<Listbox v-model="selectedClasses" multiple>
 				<div class="relative">
@@ -115,7 +115,7 @@ const nodeDistance = ref(10);
 						leave-to-class="opacity-0"
 					>
 						<ListboxOptions
-							class="bottom-11 right-0 z-10 mt-1 max-h-60 w-full overflow-auto py-1 sm:text-sm"
+							class="right-0 bottom-11 z-10 mt-1 max-h-60 w-full overflow-auto py-1 sm:text-sm"
 						>
 							<ListboxOption
 								v-for="className in availableClasses"
@@ -129,7 +129,7 @@ const nodeDistance = ref(10);
 										active
 											? 'bg-primary-100 text-primary-900 dark:bg-primary-900 dark:text-primary-100'
 											: 'text-neutral-900 dark:text-neutral-100',
-										'relative cursor-pointer select-none py-2 pl-10 pr-4',
+										'relative cursor-pointer py-2 pr-4 pl-10 select-none',
 									]"
 								>
 									<span :class="[selected ? 'font-medium' : 'font-normal', 'block truncate']">
@@ -137,7 +137,7 @@ const nodeDistance = ref(10);
 									</span>
 									<span
 										v-if="selected"
-										class="absolute inset-y-0 left-0 flex items-center pl-3 text-primary-600"
+										class="text-primary-600 absolute inset-y-0 left-0 flex items-center pl-3"
 									>
 										<Check aria-hidden="true" class="size-5" />
 									</span>
@@ -146,7 +146,7 @@ const nodeDistance = ref(10);
 						</ListboxOptions>
 					</Transition>
 					<ListboxButton
-						class="relative w-full cursor-pointer py-2 pl-1 pr-10 text-left sm:text-sm"
+						class="relative w-full cursor-pointer py-2 pr-10 pl-1 text-left sm:text-sm"
 					>
 						<span
 							v-for="className in selectedClasses"
@@ -186,13 +186,13 @@ const nodeDistance = ref(10);
 				class="float-right mt-2 flex gap-5 px-2 pb-1 text-center text-sm text-neutral-600 dark:text-neutral-300"
 			>
 				<div>
-					<span class="block font-bold uppercase text-neutral-300 dark:text-neutral-600">
+					<span class="block font-bold text-neutral-300 uppercase dark:text-neutral-600">
 						{{ t("Pages.network.nodes") }}
 					</span>
 					{{ graph.nodes.length }}
 				</div>
 				<div>
-					<span class="block font-bold uppercase text-neutral-300 dark:text-neutral-600">
+					<span class="block font-bold text-neutral-300 uppercase dark:text-neutral-600">
 						{{ t("Pages.network.links") }}
 					</span>
 					{{ graph.links.length }}

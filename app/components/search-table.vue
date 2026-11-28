@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { ChevronRight, Search, XCircle } from "lucide-vue-next";
+import { ChevronRight, Search, XCircle } from "@lucide/vue";
 
-import Loader from "@/components/ui/loader.vue";
-import type { ModelString, PaginatedListResultType } from "@/types/resulttypes";
+import Loader from "#/app/components/ui/loader.vue";
+import type { ModelString, PaginatedListResultType } from "#/app/types/resulttypes.d.ts";
 
 interface ColumnEntry {
 	key: string;
@@ -11,7 +11,7 @@ interface ColumnEntry {
 
 const props = defineProps<{
 	cols: Array<ColumnEntry>;
-	data: PaginatedListResultType;
+	data: PaginatedListResultType | undefined;
 	isFetching: boolean;
 	pageNum: number;
 	limitNum: number;
@@ -27,6 +27,15 @@ const columns = props.cols;
 const getDetailLink = (id: string) => {
 	return `/detail/${props.type}/${id}`;
 };
+
+function formatCell(hit: Record<string, unknown>, key: string) {
+	const value = hit[key];
+	if (!value) {
+		return "";
+	}
+
+	return Array.isArray(value) ? value.join(", ") : String(value).replace(/ <.*?>/g, "");
+}
 
 const input = ref(route.query.q === undefined ? "" : String(route.query.q));
 </script>
@@ -75,7 +84,7 @@ const input = ref(route.query.q === undefined ? "" : String(route.query.q));
 				<XCircle class="mx-2 size-6 text-neutral-500" />
 			</button>
 		</div>
-		<div class="relative text-primary-950 dark:text-primary-200">
+		<div class="text-primary-950 dark:text-primary-200 relative">
 			<Centered v-if="isFetching" class="mt-5">
 				<Loader />
 			</Centered>
@@ -108,23 +117,17 @@ const input = ref(route.query.q === undefined ? "" : String(route.query.q));
 					<NuxtLinkLocale
 						v-for="hit in data.results"
 						:key="String(hit.id)"
-						class="table-row border-b hover:bg-primary-50 active:bg-primary-50 md:border-t dark:hover:bg-primary-950 dark:active:bg-primary-950"
+						class="hover:bg-primary-50 active:bg-primary-50 dark:hover:bg-primary-950 dark:active:bg-primary-950 table-row border-b md:border-t"
 						:to="getDetailLink(String(hit.id || String(hit.id)?.replace(/\D/g, '')))"
 					>
 						<td
 							v-for="col in columns"
 							:key="col.key + hit.id"
-							class="m-2 overflow-auto p-2 text-start text-sm md:p-4 md:text-md"
+							class="md:text-md m-2 overflow-auto p-2 text-start text-sm md:p-4"
 						>
-							<span v-if="hit[col.key]">
-								{{
-									Array.isArray(hit[col.key])
-										? hit[col.key].join(", ")
-										: String(hit[col.key])?.replace(/ \<.*?\>/g, "")
-								}}
-							</span>
+							{{ formatCell(hit, col.key) }}
 						</td>
-						<td class="m-2 overflow-auto text-start align-middle text-sm md:text-md">
+						<td class="md:text-md m-2 overflow-auto text-start align-middle text-sm">
 							<ChevronRight class="size-6 shrink-0" />
 						</td>
 					</NuxtLinkLocale>

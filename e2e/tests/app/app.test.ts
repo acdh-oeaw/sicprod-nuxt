@@ -1,7 +1,7 @@
 import { createUrl } from "@acdh-oeaw/lib";
 
-import { defaultLocale, locales } from "@/config/i18n.config";
-import { expect, test } from "~/e2e/lib/test";
+import { defaultLocale, locales } from "#/app/config/i18n.config.ts";
+import { expect, test } from "#/e2e/lib/test.ts";
 
 const baseUrl = process.env.NUXT_PUBLIC_APP_BASE_URL!;
 

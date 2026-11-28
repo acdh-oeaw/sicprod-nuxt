@@ -2,11 +2,12 @@ import { join } from "node:path";
 
 import { createUrl } from "@acdh-oeaw/lib";
 import fg from "fast-glob";
-import { z } from "zod";
+import { defineEventHandler } from "nuxt/server";
+import * as v from "valibot";
 
-import { locales } from "@/config/i18n.config";
+import { locales } from "#/app/config/i18n.config.ts";
 
-const baseUrl = z.string().url().parse(process.env.NUXT_PUBLIC_APP_BASE_URL);
+const baseUrl = v.parse(v.pipe(v.string(), v.url()), process.env.NUXT_PUBLIC_APP_BASE_URL);
 
 const paths = fg.globSync("./**/*.vue", { cwd: join(process.cwd(), "app", "pages") });
 
@@ -54,6 +55,8 @@ const sitemap = [
 ].join("\n");
 
 export default defineEventHandler((event) => {
-	defaultContentType(event, "application/xml");
+	if (!event.res.headers.has("content-type")) {
+		event.res.headers.set("content-type", "application/xml");
+	}
 	return sitemap;
 });

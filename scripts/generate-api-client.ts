@@ -1,16 +1,16 @@
 import { join } from "node:path";
 
 import { createUrl, createUrlSearchParams, log, request } from "@acdh-oeaw/lib";
-import { generateZodClientFromOpenAPI } from "openapi-zod-client";
+import { createClient } from "@hey-api/openapi-ts";
 import type { OpenAPIObject, PathsObject } from "openapi3-ts/oas30";
-import { z } from "zod";
+import * as v from "valibot";
 
-const outputFilePath = join(process.cwd(), "app", "lib", "api.ts");
+const outputPath = join(process.cwd(), "app", "lib", "api-generated");
 
 async function generate() {
 	log.info("Generating api client...");
 
-	const apiBaseUrl = z.string().url().parse(process.env.NUXT_PUBLIC_API_BASE_URL);
+	const apiBaseUrl = v.parse(v.pipe(v.string(), v.url()), process.env.NUXT_PUBLIC_API_BASE_URL);
 
 	const url = createUrl({
 		baseUrl: apiBaseUrl,
@@ -45,26 +45,23 @@ async function generate() {
 	}
 
 	/** Generate api client. */
-	await generateZodClientFromOpenAPI({
-		distPath: outputFilePath,
-		openApiDoc: {
-			...openApiDoc,
-			paths,
-		},
-		options: {
-			shouldExportAllTypes: true,
-			withAlias: true,
-		},
+	await createClient({
+		input: { ...openApiDoc, paths },
+		output: outputPath,
+		plugins: [
+			"@hey-api/typescript",
+			"valibot",
+			{ name: "@hey-api/sdk", responseStyle: "data", validator: { response: "valibot" } },
+			"@hey-api/client-fetch",
+		],
 	});
 }
 
 generate()
 	.then(() => {
-		log.success(
-			"Successfully generated api client.\n",
-			`Output was written to: "${outputFilePath}".`,
-		);
+		log.success("Successfully generated api client.\n", `Output was written to: "${outputPath}".`);
 	})
 	.catch((error: unknown) => {
 		log.error("Failed to generate api client.\n", String(error));
+		process.exitCode = 1;
 	});

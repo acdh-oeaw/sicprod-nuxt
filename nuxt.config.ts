@@ -1,14 +1,12 @@
 import { fileURLToPath } from "node:url";
 
+import tailwindcss from "@tailwindcss/vite";
+
 import { defaultLocale, localesMap } from "./app/config/i18n.config";
 
 const baseUrl = process.env.NUXT_PUBLIC_APP_BASE_URL!;
 
 export default defineNuxtConfig({
-	alias: {
-		"@": fileURLToPath(new URL("./app/", import.meta.url)),
-		"~": fileURLToPath(new URL("./", import.meta.url)),
-	},
 	app: {
 		layoutTransition: false,
 		pageTransition: false,
@@ -17,16 +15,17 @@ export default defineNuxtConfig({
 		classSuffix: "",
 		dataValue: "ui-color-scheme",
 	},
-	components: [{ extensions: [".vue"], path: "@/components", pathPrefix: false }],
-	content: {
-		defaultLocale,
-		locales: Object.keys(localesMap),
-	},
+	components: [
+		{
+			extensions: [".vue"],
+			path: fileURLToPath(new URL("./app/components/", import.meta.url)),
+			pathPrefix: false,
+		},
+	],
 	css: [
 		"@fontsource-variable/inter/standard.css",
 		"@fontsource-variable/inter/standard-italic.css",
-		"tailwindcss/tailwind.css",
-		"@/styles/index.css",
+		fileURLToPath(new URL("./app/styles/index.css", import.meta.url)),
 	],
 	devtools: {
 		enabled: true,
@@ -66,23 +65,11 @@ export default defineNuxtConfig({
 	imports: {
 		dirs: ["./config/"],
 	},
-	modules: [
-		"@nuxt/content",
-		"@nuxt/image",
-		"@nuxtjs/color-mode",
-		"@nuxtjs/i18n",
-		"@nuxtjs/leaflet",
-		"@vueuse/nuxt",
-	],
+	modules: ["@nuxt/image", "@nuxtjs/color-mode", "@nuxtjs/i18n", "@nuxtjs/leaflet"],
 	nitro: {
 		compressPublicAssets: true,
 		prerender: {
 			routes: ["/manifest.webmanifest", "/robots.txt", "/sitemap.xml"],
-		},
-	},
-	postcss: {
-		plugins: {
-			tailwindcss: {},
 		},
 	},
 	runtimeConfig: {
@@ -100,15 +87,8 @@ export default defineNuxtConfig({
 	typescript: {
 		shim: false,
 		strict: true,
-		// https://github.com/nuxt/nuxt/issues/14816#issuecomment-1484918081
-		tsConfig: {
-			compilerOptions: {
-				baseUrl: ".",
-				paths: {
-					"@/*": ["./app/*"],
-					"~/*": ["./*"],
-				},
-			},
-		},
+	},
+	vite: {
+		plugins: [tailwindcss()],
 	},
 });

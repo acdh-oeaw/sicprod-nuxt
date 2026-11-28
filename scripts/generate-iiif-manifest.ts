@@ -6,7 +6,7 @@ import { parseArgs } from "node:util";
 
 import { createUrl, log, request } from "@acdh-oeaw/lib";
 import { IIIFBuilder } from "@iiif/builder";
-import { z } from "zod";
+import * as v from "valibot";
 
 const outputFolder = join(process.cwd(), "assets", "manifests");
 
@@ -21,7 +21,7 @@ async function generate() {
 
 	log.info("Generating iiif manifest...");
 
-	const apiBaseUrl = z.string().url().parse(process.env.NUXT_PUBLIC_IIIF_BASE_URL);
+	const apiBaseUrl = v.parse(v.pipe(v.string(), v.url()), process.env.NUXT_PUBLIC_IIIF_BASE_URL);
 
 	const booksUrl = createUrl({ baseUrl: apiBaseUrl, pathname: "/images/sicprod/" });
 	const books = (await request(booksUrl, { responseType: "json" })) as Array<string>;

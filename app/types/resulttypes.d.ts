@@ -1,35 +1,40 @@
-import { z } from "zod";
+import type {
+	ApisApiApisOntologyEventListResponse,
+	ApisApiApisOntologyFunctionListResponse,
+	ApisApiApisOntologyInstitutionListResponse,
+	ApisApiApisOntologyPersonListResponse,
+	ApisApiApisOntologyPlaceListResponse,
+	ApisApiApisOntologySalaryListResponse,
+	Relation,
+} from "#/app/lib/api-generated/types.gen.ts";
 
-import { schemas } from "@/lib/api";
+export type {
+	Network as NetworkEntry,
+	PaginatedNetworkList,
+	PaginatedRelationList as PaginatedTempTripleListType,
+	SimplifiedReference as Reference,
+} from "#/app/lib/api-generated/types.gen.ts";
 
-const _PaginatedListResult = z.union([
-	schemas.PaginatedEventList,
-	schemas.PaginatedFunctionList,
-	schemas.PaginatedInstitutionList,
-	schemas.PaginatedPersonList,
-	schemas.PaginatedPlaceList,
-	schemas.PaginatedSalaryList,
-]);
-export type PaginatedListResultType = z.infer<typeof _PaginatedListResult>;
+type PaginatedListResponse =
+	| ApisApiApisOntologyEventListResponse
+	| ApisApiApisOntologyFunctionListResponse
+	| ApisApiApisOntologyInstitutionListResponse
+	| ApisApiApisOntologyPersonListResponse
+	| ApisApiApisOntologyPlaceListResponse
+	| ApisApiApisOntologySalaryListResponse;
+
+/** The API adds these pagination and facet fields outside its OpenAPI schema. */
+export type PaginatedListResultType = PaginatedListResponse & {
+	facets?: Record<string, unknown>;
+	limit?: number;
+};
+
 export type ModelString = "event" | "function" | "institution" | "person" | "place" | "salary";
 
-export type TempTriple = z.infer<typeof schemas.Relation>;
-
-export interface PaginatedTempTripleListType {
-	count: number;
-	next?: string | null | undefined;
-	previous?: string | null | undefined;
-	results: Array<TempTriple>;
-}
+export type TempTriple = Relation;
 
 export interface FacetType {
 	id?: number | string;
 	name: string;
 	count: number;
 }
-
-export type Reference = z.infer<typeof schemas.Reference>;
-
-export type NetworkEntry = z.infer<typeof schemas.Network>;
-
-export type PaginatedNetworkList = z.infer<typeof schemas.PaginatedNetworkList>;

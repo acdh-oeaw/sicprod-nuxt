@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { useQuery } from "@tanstack/vue-query";
 
-import DetailPage from "@/components/detail-page.vue";
-import Timeline from "@/components/timeline/timeline.vue";
-import Loader from "@/components/ui/loader.vue";
-import { loadAndGroupRelations } from "@/lib/group-relations.ts";
-import { getFlattenedRelations } from "@/utils/timeline-utils";
+import DetailPage from "#/app/components/detail-page.vue";
+import Timeline from "#/app/components/timeline/timeline.vue";
+import Loader from "#/app/components/ui/loader.vue";
+import { loadAndGroupRelations } from "#/app/lib/group-relations.ts";
+import { getFlattenedRelations } from "#/app/utils/timeline-utils.ts";
 
 const t = useTranslations();
 
@@ -59,7 +59,7 @@ const flattenedRelations = computed(() => {
 			<div class="flex justify-between">
 				<div
 					v-if="data.entity.data?.repetitionType"
-					class="mr-3 inline-block w-fit rounded-md bg-salary-200 px-3 py-1.5 text-xs font-semibold uppercase dark:bg-salary-900 dark:text-neutral-100"
+					class="bg-salary-200 dark:bg-salary-900 mr-3 inline-block w-fit rounded-md px-3 py-1.5 text-xs font-semibold uppercase dark:text-neutral-100"
 				>
 					{{ data.entity.data?.repetitionType }}
 				</div>

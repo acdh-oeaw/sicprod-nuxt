@@ -73,9 +73,9 @@ useHead({
 			description: t("DefaultLayout.meta.description"),
 		};
 
-		const scripts = [
-			{ type: "application/ld+json", innerHTML: JSON.stringify(jsonLd, safeJsonLdReplacer) },
-		];
+		const scripts: Array<
+			{ type: "application/ld+json"; innerHTML: string } | { type: ""; innerHTML: string }
+		> = [{ type: "application/ld+json", innerHTML: JSON.stringify(jsonLd, safeJsonLdReplacer) }];
 
 		if (isNonEmptyString(env.public.matomoBaseUrl) && isNonEmptyString(env.public.matomoId)) {
 			const baseUrl = env.public.matomoBaseUrl;

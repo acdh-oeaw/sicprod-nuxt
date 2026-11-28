@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { useQuery } from "@tanstack/vue-query";
 
-import DetailPage from "@/components/detail-page.vue";
-import Map from "@/components/map.vue";
-import Timeline from "@/components/timeline/timeline.vue";
-import Loader from "@/components/ui/loader.vue";
-import { loadAndGroupRelations } from "@/lib/group-relations.ts";
-import { getFlattenedRelations } from "@/utils/timeline-utils";
+import DetailPage from "#/app/components/detail-page.vue";
+import Timeline from "#/app/components/timeline/timeline.vue";
+import Loader from "#/app/components/ui/loader.vue";
+import { loadAndGroupRelations } from "#/app/lib/group-relations.ts";
+import { getFlattenedRelations } from "#/app/utils/timeline-utils.ts";
+import { Map } from "#components";
 
 const t = useTranslations();
 
@@ -83,7 +83,7 @@ const flattenedRelations = computed(() => {
 					<div
 						v-for="f in chipNames"
 						:key="f"
-						class="mr-3 inline-block w-fit rounded-md bg-institution-200 px-3 py-1.5 text-xs font-semibold uppercase dark:bg-institution-900 dark:text-neutral-100"
+						class="bg-institution-200 dark:bg-institution-900 mr-3 inline-block w-fit rounded-md px-3 py-1.5 text-xs font-semibold uppercase dark:text-neutral-100"
 					>
 						{{ f }}
 					</div>

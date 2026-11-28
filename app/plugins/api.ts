@@ -5,9 +5,7 @@ export default defineNuxtPlugin({
 	setup() {
 		const env = useRuntimeConfig();
 
-		const client = createApiClient(env.public.apiBaseUrl, {
-			axiosConfig: { paramsSerializer: { indexes: null } },
-		});
+		const client = createApiClient(env.public.apiBaseUrl);
 
 		return {
 			provide: {

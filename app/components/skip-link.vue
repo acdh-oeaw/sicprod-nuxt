@@ -5,9 +5,7 @@ const props = defineProps<{
 
 const route = useRoute();
 
-/**
- * @see https://bugzilla.mozilla.org/show_bug.cgi?id=308064
- */
+/** @see https://bugzilla.mozilla.org/show_bug.cgi?id=308064 */
 function onClick() {
 	const element = document.getElementById(props.targetId);
 	element?.focus();
@@ -16,7 +14,7 @@ function onClick() {
 
 <template>
 	<NuxtLink
-		class="rounded fixed -translate-y-full bg-background px-4 py-3 text-on-background transition focus:translate-y-0"
+		class="bg-background text-on-background fixed -translate-y-full rounded px-4 py-3 transition focus:translate-y-0"
 		:href="{ hash: `#${props.targetId}`, query: route.query }"
 		@click="onClick"
 	>

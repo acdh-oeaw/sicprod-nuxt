@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { Manifest } from "@iiif/presentation-3";
-import { ChevronRight, Search, XCircle } from "lucide-vue-next";
+import { ChevronRight, Search, XCircle } from "@lucide/vue";
 
-import collection from "~/assets/manifests/collection-manifest.json";
+import collection from "#/assets/manifests/collection-manifest.json";
 
 const t = useTranslations();
 
@@ -62,13 +62,13 @@ const filteredItemList = computed(() => {
 			<NuxtLinkLocale
 				v-for="item in filteredItemList"
 				:key="item.id"
-				class="flex justify-between border-b hover:bg-primary-50 active:bg-primary-50 md:border-t dark:hover:bg-primary-950 dark:active:bg-primary-950"
+				class="hover:bg-primary-50 active:bg-primary-50 dark:hover:bg-primary-950 dark:active:bg-primary-950 flex justify-between border-b md:border-t"
 				:to="getLink(item)"
 			>
-				<div class="overflow-auto p-2 text-start text-sm md:p-4 md:text-md">
+				<div class="md:text-md overflow-auto p-2 text-start text-sm md:p-4">
 					{{ item.label.de[0] }}
 				</div>
-				<div class="self-center overflow-auto text-start align-middle text-sm md:text-md">
+				<div class="md:text-md self-center overflow-auto text-start align-middle text-sm">
 					<ChevronRight class="size-6 shrink-0" />
 				</div>
 			</NuxtLinkLocale>

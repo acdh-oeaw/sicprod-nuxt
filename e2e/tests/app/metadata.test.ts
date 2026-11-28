@@ -1,9 +1,9 @@
 import { createUrl } from "@acdh-oeaw/lib";
 
-import { locales } from "@/config/i18n.config";
-import { escape } from "@/utils/safe-json-ld-replacer";
-import { sliceTrailingSlash } from "@/utils/slice-trailing-slash";
-import { expect, test } from "~/e2e/lib/test";
+import { locales } from "#/app/config/i18n.config.ts";
+import { escape } from "#/app/utils/safe-json-ld-replacer.ts";
+import { sliceTrailingSlash } from "#/app/utils/slice-trailing-slash.ts";
+import { expect, test } from "#/e2e/lib/test.ts";
 
 const baseUrl = process.env.NUXT_PUBLIC_APP_BASE_URL!;
 

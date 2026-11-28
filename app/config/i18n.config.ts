@@ -1,6 +1,6 @@
 import type { LocaleObject } from "@nuxtjs/i18n";
 
-import type de from "~/i18n/messages/de.json";
+import type de from "#/i18n/messages/de.json";
 
 export const locales = ["de"] as const;
 
