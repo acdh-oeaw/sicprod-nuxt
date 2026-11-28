@@ -16,21 +16,24 @@ const t = useTranslations();
 const route = useRoute();
 const id = Number(route.params.id);
 
-usePageMetadata({
-	title: t("Pages.searchviews.person.title"),
-});
-
 const { $api } = useNuxtApp();
 const detailsEndpoint = "apis_api_apis_ontology.person_retrieve";
 const relationsEndpoint = "apis_api_apis_ontology.person_relations_list";
 
+const { entity, load } = useRecordDetails(
+	detailsEndpoint,
+	id,
+	() => {
+		return $api[detailsEndpoint]({ params: { id } });
+	},
+	(record) => {
+		return [record.first_name, record.name].filter(Boolean).join(" ");
+	},
+	t("Pages.searchviews.person.title"),
+);
+
 const data = ref({
-	entity: useQuery({
-		queryKey: [detailsEndpoint, id],
-		queryFn: () => {
-			return $api[detailsEndpoint]({ params: { id } });
-		},
-	}),
+	entity,
 	relations: useQuery({
 		queryKey: [relationsEndpoint, id],
 		queryFn: () => {
@@ -128,6 +131,8 @@ function toggleShowAltNames() {
 		showAltNamesLabel.value = "DetailPage.showAllEntries";
 	}
 }
+
+await load();
 </script>
 
 <template>

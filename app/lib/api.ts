@@ -1,3 +1,5 @@
+import { HttpError } from "@acdh-oeaw/lib";
+
 import { type Client, createClient } from "./api-generated/client";
 import * as sdk from "./api-generated/sdk.gen";
 
@@ -10,6 +12,13 @@ export function createApiClient(baseUrl: string) {
 	const client = createClient({
 		baseUrl,
 		querySerializer: { array: { explode: true, style: "form" } },
+	});
+
+	client.interceptors.error.use((error, response, request) => {
+		if (response?.status === 404 && request) {
+			return new HttpError(request, response);
+		}
+		return error;
 	});
 
 	function list<Query, Result>(

@@ -37,6 +37,13 @@ test("should disallow indexing of not-found page", async ({ page }) => {
 	}
 });
 
+test("should return a non-indexable 404 for an invalid record ID", async ({ request }) => {
+	const response = await request.get("/detail/person/invalid");
+
+	expect(response.status()).toBe(404);
+	expect(await response.text()).toContain('<meta name="robots" content="noindex">');
+});
+
 test("should set page metadata", async ({ createIndexPage }) => {
 	for (const locale of locales) {
 		const { indexPage, i18n } = await createIndexPage(locale);
@@ -105,6 +112,7 @@ test("should add json+ld metadata", async ({ createIndexPage }) => {
 				"@context": "https://schema.org",
 				"@type": "WebSite",
 				name: escape(i18n.t("DefaultLayout.meta.title")),
+				url: String(createUrl({ baseUrl, pathname: "/" })),
 				description: escape(i18n.t("DefaultLayout.meta.description")),
 			}),
 		);
@@ -129,5 +137,6 @@ test("should serve an open-graph image", async ({ createIndexPage, request }) =>
 
 		expect(status).toBe(200);
 		expect(contentType).toBe("image/png");
+		expect((await response.body()).subarray(0, 8).toString("hex")).toBe("89504e470d0a1a0a");
 	}
 });
