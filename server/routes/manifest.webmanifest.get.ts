@@ -1,6 +1,7 @@
+import { defineEventHandler } from "nuxt/server";
 import { createI18n } from "vue-i18n";
 
-import de from "~/i18n/messages/de.json";
+import de from "#/i18n/messages/de.json";
 
 const locale = "de";
 
@@ -23,6 +24,8 @@ const manifest = {
 };
 
 export default defineEventHandler((event) => {
-	defaultContentType(event, "application/manifest+json");
+	if (!event.res.headers.has("content-type")) {
+		event.res.headers.set("content-type", "application/manifest+json");
+	}
 	return manifest;
 });

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-// import { Pin } from "lucide-vue-next";
-
 const zoom = ref(7);
 
 defineProps<{

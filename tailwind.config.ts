@@ -1,18 +1,20 @@
-import { createPreset } from "@acdh-oeaw/tailwindcss-preset";
 import headlessUiPlugin from "@headlessui/tailwindcss";
 import typographyPlugin from "@tailwindcss/typography";
 import scrollBarPlugin from "tailwind-scrollbar";
 import type { Config } from "tailwindcss";
 import colors from "tailwindcss/colors";
 
-const preset = createPreset();
-
 const config = {
-	content: ["./app/**/*.@(css|ts|vue)", "./content/**/*.md"],
+	content: ["./app/**/*.@(css|ts|vue)"],
+	darkMode: ["selector", '[data-ui-color-scheme="dark"]'],
 	plugins: [headlessUiPlugin, scrollBarPlugin, typographyPlugin],
-	presets: [preset],
 	theme: {
 		extend: {
+			borderRadius: {
+				sm: "2px",
+				md: "4px",
+				lg: "8px",
+			},
 			boxShadow: {
 				header: "48px 0 0 0 white, -48px 0 0 0 white, 0 8px 40px -6px rgba(70, 70, 70, 0.4)",
 				"header-dark": "48px 0 0 0 black, -48px 0 0 0 black, 0 8px 40px -6px rgba(0, 0, 0, 0.4)",
@@ -25,6 +27,8 @@ const config = {
 					"linear-gradient(to right, rgba(0, 0, 0, 0.3) 3px, rgba(255, 255, 255, 0.5) 5px, rgba(255, 255, 255, 0.25) 7px, rgba(255, 255, 255, 0.25) 10px, transparent 12px, transparent 16px, rgba(255, 255, 255, 0.25) 17px, transparent 22px);",
 			},
 			colors: {
+				background: "var(--page-background)",
+				"on-background": "var(--page-foreground)",
 				primary: {
 					50: "#f4f7fb",
 					100: "#e8eff6",
@@ -78,9 +82,23 @@ const config = {
 			fontFamily: {
 				mono: "var(--font-mono, ui-monospace), monospace",
 			},
+			fontSize: {
+				md: ["1rem", "1.5rem"],
+			},
 			maxWidth: {
 				container: "80rem",
 				content: "64rem",
+			},
+			screens: {
+				xs: "30rem",
+				"3xl": "120rem",
+			},
+			typography: {
+				DEFAULT: {
+					css: {
+						maxWidth: null,
+					},
+				},
 			},
 		},
 	},

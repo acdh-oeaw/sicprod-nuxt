@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ChevronUp } from "lucide-vue-next";
+import { ChevronUp } from "@lucide/vue";
 import type { RouteLocationNormalized } from "vue-router";
 
 const route: RouteLocationNormalized = useRoute();
@@ -27,7 +27,7 @@ const t = useTranslations();
 			}"
 		>
 			<div
-				class="cursor-pointer rounded-md border p-2 transition hover:bg-primary-50 active:bg-primary-50 md:border-t dark:hover:bg-primary-950 dark:active:bg-primary-950"
+				class="hover:bg-primary-50 active:bg-primary-50 dark:hover:bg-primary-950 dark:active:bg-primary-950 cursor-pointer rounded-md border p-2 transition md:border-t"
 			>
 				<ChevronUp class="size-5 -rotate-90" />
 				<span class="sr-only">{{ t("ui.prev-page") }}</span>
@@ -37,7 +37,7 @@ const t = useTranslations();
 			<ChevronUp class="size-5 -rotate-90" />
 			<span class="sr-only">{{ t("ui.first-page") }}</span>
 		</div>
-		<div v-if="all != 0 && showLabel" class="m-1 text-sm md:text-md">
+		<div v-if="all != 0 && showLabel" class="md:text-md m-1 text-sm">
 			{{
 				t("ui.showing-results", {
 					first: (page - 1) * limit + 1,
@@ -58,7 +58,7 @@ const t = useTranslations();
 			}"
 		>
 			<div
-				class="cursor-pointer rounded-md border p-2 transition hover:bg-primary-50 active:bg-primary-50 md:border-t dark:hover:bg-primary-950 dark:active:bg-primary-950"
+				class="hover:bg-primary-50 active:bg-primary-50 dark:hover:bg-primary-950 dark:active:bg-primary-950 cursor-pointer rounded-md border p-2 transition md:border-t"
 			>
 				<ChevronUp class="size-5 rotate-90" />
 				<span class="sr-only">{{ t("ui.next-page") }}</span>

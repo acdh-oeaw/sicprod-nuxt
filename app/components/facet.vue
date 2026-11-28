@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { Search } from "lucide-vue-next";
+import { Search } from "@lucide/vue";
 
-import type { FacetType } from "@/types/resulttypes";
+import type { FacetType } from "#/app/types/resulttypes.d.ts";
 
 const t = useTranslations();
 
@@ -64,7 +64,7 @@ const maxResultsToDisplay = 5;
 				class="my-1 hover:font-medium"
 			>
 				<label
-					class="relative flex cursor-default select-none justify-between pr-4"
+					class="relative flex cursor-default justify-between pr-4 select-none"
 					:title="option.name"
 				>
 					<input v-model="model" type="checkbox" :value="option.id ?? option.name" />

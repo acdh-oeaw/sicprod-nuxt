@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import NetworkVisualization from "@/components/networkVisualization.vue";
+import NetworkVisualization from "#/app/components/networkVisualization.vue";
 
 const t = useTranslations();
 

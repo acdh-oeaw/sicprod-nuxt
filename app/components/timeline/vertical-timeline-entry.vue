@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { bgColors } from "@/lib/colors";
-import type { TimelineObject } from "@/types/timeline";
+import { bgColors } from "#/app/lib/colors.ts";
+import type { TimelineObject } from "#/app/types/timeline.ts";
 
 import ReferenceButton from "../reference-button.vue";
 
@@ -101,7 +101,7 @@ const itemClass = computed(() => {
 				<NuxtLinkLocale
 					v-for="(i, idx) in item"
 					:key="idx"
-					class="flow-root rounded-md p-2 transition duration-150 ease-in-out hover:bg-neutral-100 focus:outline-none focus-visible:ring dark:hover:bg-neutral-900"
+					class="flow-root rounded-md p-2 transition duration-150 ease-in-out hover:bg-neutral-100 focus:outline-hidden focus-visible:ring-3 dark:hover:bg-neutral-900"
 					:to="`/detail/${i.class}/${i.to.id}`"
 				>
 					<div class="flex items-center justify-between text-sm text-neutral-500">
@@ -121,7 +121,7 @@ const itemClass = computed(() => {
 			</div>
 			<div v-else>
 				<NuxtLinkLocale
-					class="flow-root rounded-md p-2 transition duration-150 ease-in-out hover:bg-neutral-100 focus:outline-none focus-visible:ring dark:hover:bg-neutral-900"
+					class="flow-root rounded-md p-2 transition duration-150 ease-in-out hover:bg-neutral-100 focus:outline-hidden focus-visible:ring-3 dark:hover:bg-neutral-900"
 					:to="`/detail/${item.class}/${item.to.id}`"
 				>
 					<div class="flex items-center justify-between text-sm text-neutral-500">

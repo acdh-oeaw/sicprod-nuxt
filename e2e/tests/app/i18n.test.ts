@@ -1,9 +1,9 @@
-import { defaultLocale } from "@/config/i18n.config";
-import { expect, test } from "~/e2e/lib/test";
+import { defaultLocale } from "#/app/config/i18n.config.ts";
+import { expect, test } from "#/e2e/lib/test.ts";
 
 /**
- * We use `prefix_and_default` i18n routing strategy, because this app was originally published
- * in both "de" and "en" (which was removed shortly thereafter).
+ * We use `prefix_and_default` i18n routing strategy, because this app was originally published in
+ * both "de" and "en" (which was removed shortly thereafter).
  *
  * We want unprefixed routes to be canonical, but prefixed routes still need to resolve, because
  * they have been bookmarked by researchers already, and may also be indexed by google already.

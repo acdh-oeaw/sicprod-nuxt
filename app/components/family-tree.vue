@@ -11,9 +11,9 @@ import {
 	type OverlaySpec,
 	ready,
 } from "@jsplumb/browser-ui";
-import { ChevronDown } from "lucide-vue-next";
+import { ChevronDown } from "@lucide/vue";
 
-import type { TempTriple } from "@/types/resulttypes";
+import type { TempTriple } from "#/app/types/resulttypes.d.ts";
 
 const t = useTranslations();
 
@@ -391,7 +391,7 @@ function toggleShowAllChildren() {
 		<div
 			v-if="children.length <= props.collapseThreshold || showAllChilldren"
 			ref="childContainer"
-			class="mb-2 mt-7 flex flex-wrap justify-evenly gap-x-2 gap-y-6"
+			class="mt-7 mb-2 flex flex-wrap justify-evenly gap-x-2 gap-y-6"
 		>
 			<NuxtLinkLocale
 				v-for="person in children"
@@ -407,7 +407,7 @@ function toggleShowAllChildren() {
 		<div
 			v-else
 			ref="uncollapseChildrenContainer"
-			class="mb-2 mt-7 flex flex-wrap justify-evenly gap-2"
+			class="mt-7 mb-2 flex flex-wrap justify-evenly gap-2"
 		>
 			<button
 				class="border-2 border-dotted p-2 text-center align-middle"

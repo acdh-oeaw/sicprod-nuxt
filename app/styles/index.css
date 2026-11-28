@@ -1,11 +1,166 @@
-:root {
-	--font-body: "Inter Variable";
-	--color-on-background: var(--color-neutral-900);
+@import "tailwindcss" source(none);
+
+@config "../../tailwind.config.ts";
+
+@source "..";
+
+@layer base {
+	@media (prefers-reduced-motion: reduce) {
+		*,
+		*::before,
+		*::after {
+			scroll-behavior: auto !important;
+			transition-duration: 0.01ms !important;
+			animation-duration: 0.01ms !important;
+			animation-iteration-count: 1 !important;
+		}
+	}
+
+	@media (resolution >= 200dpi) {
+		:root {
+			--page-font-size: 18px;
+		}
+	}
+
+	:root {
+		--neutral-0: 0deg 0% 100%;
+		--neutral-50: 0deg 0% 98.04%;
+		--neutral-100: 240deg 4.76% 95.88%;
+		--neutral-200: 240deg 5.88% 90%;
+		--neutral-300: 240deg 4.88% 83.92%;
+		--neutral-400: 240deg 5.03% 64.9%;
+		--neutral-500: 240deg 3.83% 46.08%;
+		--neutral-600: 240deg 5.2% 33.92%;
+		--neutral-700: 240deg 5.26% 26.08%;
+		--neutral-800: 240deg 3.7% 15.88%;
+		--neutral-900: 240deg 5.88% 10%;
+		--neutral-950: 240deg 10% 3.92%;
+		--neutral-1000: 0deg 0% 0%;
+		--page-background: hsl(var(--neutral-0));
+		--page-foreground: hsl(var(--neutral-900));
+		--page-border: hsl(var(--neutral-200));
+		--page-focus-ring: hsl(var(--neutral-950));
+
+		overflow: hidden;
+		block-size: 100%;
+		color-scheme: light;
+		background-color: var(--page-background);
+		color: var(--page-foreground);
+		font-size: var(--page-font-size, 1rem);
+		font-family: "Inter Variable", system-ui, sans-serif;
+		font-synthesis: none;
+		overflow-wrap: break-word;
+		tab-size: 4;
+		text-rendering: optimizeLegibility;
+		text-size-adjust: none;
+		-webkit-tap-highlight-color: transparent;
+	}
+
+	:root[data-ui-color-scheme="dark"] {
+		--page-background: hsl(0deg 0% 12.16%);
+		--page-foreground: hsl(var(--neutral-50));
+		--page-border: hsl(var(--neutral-800));
+		--page-focus-ring: hsl(var(--neutral-300));
+
+		color-scheme: dark;
+	}
+
+	*,
+	*::before,
+	*::after {
+		border-color: var(--page-border);
+	}
+
+	body {
+		overflow-y: auto;
+		block-size: 100%;
+	}
+
+	:focus {
+		outline: none;
+	}
+
+	:focus-visible {
+		outline: 2px solid var(--page-focus-ring);
+		outline-offset: 0;
+	}
+
+	a {
+		text-underline-offset: 0.15em;
+	}
+
+	blockquote,
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		text-wrap: balance;
+	}
+
+	p {
+		text-wrap: pretty;
+	}
+
+	table {
+		font-variant-numeric: tabular-nums;
+	}
+
+	[id] {
+		scroll-margin-block-start: 2ex;
+	}
 }
 
-:root[data-ui-color-scheme="dark"] {
-	--color-background: 0deg 0% 12.16%;
-	--color-on-background: var(--color-neutral-50);
+@layer utilities {
+	:where(.page-container) {
+		width: 100%;
+		max-width: 96rem;
+		margin-inline: auto;
+		padding-inline: 1rem;
+
+		@media (width >= 48rem) {
+			padding-inline: 2rem;
+		}
+	}
+}
+
+.prose {
+	--tw-prose-body: hsl(var(--neutral-700));
+	--tw-prose-headings: hsl(var(--neutral-900));
+	--tw-prose-lead: hsl(var(--neutral-600));
+	--tw-prose-links: hsl(var(--neutral-900));
+	--tw-prose-bold: hsl(var(--neutral-900));
+	--tw-prose-counters: hsl(var(--neutral-500));
+	--tw-prose-bullets: hsl(var(--neutral-300));
+	--tw-prose-hr: hsl(var(--neutral-200));
+	--tw-prose-quotes: hsl(var(--neutral-900));
+	--tw-prose-quote-borders: hsl(var(--neutral-200));
+	--tw-prose-captions: hsl(var(--neutral-500));
+	--tw-prose-code: hsl(var(--neutral-900));
+	--tw-prose-pre-code: hsl(var(--neutral-200));
+	--tw-prose-pre-bg: hsl(var(--neutral-800));
+	--tw-prose-th-borders: hsl(var(--neutral-300));
+	--tw-prose-td-borders: hsl(var(--neutral-200));
+}
+
+[data-ui-color-scheme="dark"] .prose {
+	--tw-prose-body: hsl(var(--neutral-300));
+	--tw-prose-headings: hsl(var(--neutral-0));
+	--tw-prose-lead: hsl(var(--neutral-400));
+	--tw-prose-links: hsl(var(--neutral-0));
+	--tw-prose-bold: hsl(var(--neutral-0));
+	--tw-prose-counters: hsl(var(--neutral-400));
+	--tw-prose-bullets: hsl(var(--neutral-600));
+	--tw-prose-hr: hsl(var(--neutral-700));
+	--tw-prose-quotes: rgb(243 244 246);
+	--tw-prose-quote-borders: hsl(var(--neutral-700));
+	--tw-prose-captions: hsl(var(--neutral-400));
+	--tw-prose-code: hsl(var(--neutral-0));
+	--tw-prose-pre-code: hsl(var(--neutral-300));
+	--tw-prose-pre-bg: hsl(var(--neutral-1000) / 50%);
+	--tw-prose-th-borders: hsl(var(--neutral-600));
+	--tw-prose-td-borders: hsl(var(--neutral-700));
 }
 
 #__nuxt {

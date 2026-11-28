@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from "@headlessui/vue";
-import { Laptop, Moon, Sun } from "lucide-vue-next";
+import { Laptop, Moon, Sun } from "@lucide/vue";
 
 const t = useTranslations();
 
@@ -28,12 +28,12 @@ const colorSchemes = computed(() => {
 					<ListboxOption
 						v-for="(colorScheme, name) in colorSchemes"
 						:key="name"
-						class="group flex cursor-pointer items-center gap-2 p-2 pr-9 ui-active:text-primary-600 ui-active:dark:text-primary-300"
+						class="group ui-active:text-primary-600 ui-active:dark:text-primary-300 flex cursor-pointer items-center gap-2 p-2 pr-9"
 						:value="name"
 					>
 						<component
 							:is="colorScheme"
-							class="transition group-hover:scale-110 ui-active:scale-90"
+							class="ui-active:scale-90 transition group-hover:scale-110"
 							:size="20"
 						/>
 						{{ t(`ColorSchemeToggle.color-schemes.${name}`) }}
@@ -41,10 +41,10 @@ const colorSchemes = computed(() => {
 
 					<ListboxOption
 						key="system"
-						class="group flex cursor-pointer items-center gap-2 p-2 pr-9 ui-active:text-primary-600 ui-active:dark:text-primary-300"
+						class="group ui-active:text-primary-600 ui-active:dark:text-primary-300 flex cursor-pointer items-center gap-2 p-2 pr-9"
 						value="system"
 					>
-						<Laptop class="transition group-hover:scale-110 ui-active:scale-90" :size="20" />
+						<Laptop class="ui-active:scale-90 transition group-hover:scale-110" :size="20" />
 						{{ t(`ColorSchemeToggle.color-schemes.system`) }}
 					</ListboxOption>
 				</ListboxOptions>

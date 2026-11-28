@@ -1,8 +1,6 @@
-import type { DeepReadonlyObject } from "@zodios/core/lib/utils.types";
+import type { NetworkEntry, PaginatedNetworkList } from "#/app/types/resulttypes.d.ts";
 
-import type { NetworkEntry, PaginatedNetworkList } from "@/types/resulttypes";
-
-type ParamType = DeepReadonlyObject<Record<string, number | string | null | undefined>>;
+type ParamType = Readonly<Record<string, number | string | null | undefined>>;
 interface endpointProps {
 	queries: {
 		limit?: number;

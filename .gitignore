@@ -36,7 +36,7 @@ dist
 /test-results/
 
 # generated api client
-app/lib/api.ts
+/app/lib/api-generated/
 
 # generated iiif manifests
 # can currently not be re-generated

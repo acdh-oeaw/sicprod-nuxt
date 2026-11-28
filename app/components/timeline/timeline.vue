@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import "d3-time-format"; // für die Locale-Funktionen
-
 import type { TimeLocaleDefinition } from "d3";
 import * as d3 from "d3";
 
-import type { TimelineObject } from "@/types/timeline";
-import { groupTimelineRelations } from "@/utils/timeline-utils";
+import type { TimelineObject } from "#/app/types/timeline.ts";
+import { groupTimelineRelations } from "#/app/utils/timeline-utils.ts";
 
 import TimelineEntry from "./timeline-entry.vue";
 
@@ -153,6 +152,6 @@ onBeforeUnmount(() => {
 }
 
 .tick line {
-	color: hsl(var(--color-neutral-300));
+	color: hsl(var(--neutral-300));
 }
 </style>

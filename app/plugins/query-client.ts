@@ -56,7 +56,6 @@ async function getErrorMessage(error: Error): Promise<string> {
 
 				return data.message;
 			} catch {
-				/** */
 			}
 		}
 

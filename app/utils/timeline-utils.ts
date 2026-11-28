@@ -1,5 +1,5 @@
-import type { TempTriple } from "@/types/resulttypes";
-import type { TimelineObject } from "@/types/timeline";
+import type { TempTriple } from "#/app/types/resulttypes.d.ts";
+import type { TimelineObject } from "#/app/types/timeline.ts";
 
 /** Type guard to filter grouped relations. */
 function isValidTimelineObject(

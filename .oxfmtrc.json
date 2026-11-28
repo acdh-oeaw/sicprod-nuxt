@@ -1,0 +1,20 @@
+{
+	"$schema": "./node_modules/oxfmt/configuration_schema.json",
+	"endOfLine": "lf",
+	"ignorePatterns": [
+		"pnpm-lock.yaml",
+		"app/lib/api-generated/**",
+		"assets/manifests/**",
+		"content/**",
+		"public/**"
+	],
+	"jsdoc": true,
+	"printWidth": 100,
+	"sortImports": true,
+	"sortPackageJson": {
+		"sortScripts": true
+	},
+	"sortTailwindcss": true,
+	"tabWidth": 2,
+	"useTabs": true
+}
