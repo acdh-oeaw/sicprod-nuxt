@@ -54,14 +54,8 @@ async function getRecordPaths(apiBaseUrl: string) {
 
 export default defineCachedHandler(
 	async (event) => {
-		const config = v.parse(
-			v.object({
-				appBaseUrl: v.pipe(v.string(), v.url()),
-				apiBaseUrl: v.optional(v.pipe(v.string(), v.url())),
-				bots: v.optional(v.picklist(["enabled", "disabled"])),
-			}),
-			useRuntimeConfig().public,
-		);
+		const config = useRuntimeConfig().public as Record<string, unknown>;
+		const baseUrl = v.parse(v.pipe(v.string(), v.url()), config.appBaseUrl);
 
 		const paths = new Set(pages);
 		if (config.bots === "enabled") {
@@ -76,7 +70,7 @@ export default defineCachedHandler(
 			'<?xml version="1.0" encoding="UTF-8"?>',
 			'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
 			...Array.from(paths, (pathname) => {
-				const url = String(createUrl({ baseUrl: config.appBaseUrl, pathname }));
+				const url = String(createUrl({ baseUrl, pathname }));
 				return `<url><loc>${escape(url)}</loc></url>`;
 			}),
 			"</urlset>",
