@@ -34,6 +34,9 @@
 		}
 	},
 	"DetailPage": {
+		"meta": {
+			"description": "{record}. Eintrag in SiCProD, der Datenbank zu Hof und Verwaltung Sigmunds von Tirol."
+		},
 		"basedata": "Basisdaten",
 		"andOthers": "und {count} weitere",
 		"showAllEntries": "Alle {count} Einträge anzeigen",
@@ -79,7 +82,7 @@
 	},
 	"IndexPage": {
 		"meta": {
-			"title": "Startseite"
+			"title": "Hof und Verwaltung Sigmunds von Tirol"
 		},
 		"title": "SiCProD - eine prosopographische Datenbank zu Hof und Verwaltung Sigmunds von Tirol",
 		"intro1": "Willkommen auf der Webseite von SiCProD. Hier finden Sie eine Datenbank, in der aktuell {count} Personen verzeichnet sind, die am Hof von (Erz-)Herzog Sigmund von Tirol (reg. 1439/1446–1490) bzw. in der Verwaltung seines Herrschaftsgebiets tätig waren oder mit ihm in Verbindung standen.",

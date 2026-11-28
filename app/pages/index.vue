@@ -1,5 +1,7 @@
 <script lang="ts" setup>
+import { createUrl } from "@acdh-oeaw/lib";
 import { useQuery } from "@tanstack/vue-query";
+import type { WebSite, WithContext } from "schema-dts";
 
 import network from "#/assets/networkSnippet.json";
 
@@ -8,6 +10,23 @@ defineRouteRules({
 });
 
 const t = useTranslations();
+const { public: config } = useRuntimeConfig();
+
+useHead(() => {
+	const metadata: WithContext<WebSite> = {
+		"@context": "https://schema.org",
+		"@type": "WebSite",
+		name: t("DefaultLayout.meta.title"),
+		url: String(createUrl({ baseUrl: config.appBaseUrl, pathname: "/" })),
+		description: t("DefaultLayout.meta.description"),
+	};
+
+	return {
+		script: [
+			{ type: "application/ld+json", innerHTML: JSON.stringify(metadata, safeJsonLdReplacer) },
+		],
+	};
+});
 
 usePageMetadata({
 	title: t("IndexPage.meta.title"),

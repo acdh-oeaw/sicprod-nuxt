@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { createUrl, isNonEmptyString } from "@acdh-oeaw/lib";
 import inter from "@fontsource-variable/inter/files/inter-latin-standard-normal.woff2?url";
-import type { WebSite, WithContext } from "schema-dts";
 
 const env = useRuntimeConfig();
 
@@ -53,6 +52,9 @@ useHead({
 					}),
 				),
 			},
+			{ property: "og:image:type", content: "image/png" },
+			{ property: "og:image:width", content: "1200" },
+			{ property: "og:image:height", content: "630" },
 			{ name: "twitter:card", content: "summary_large_image" },
 			{ name: "twitter:creator", content: t("DefaultLayout.meta.twitter") },
 			{ name: "twitter:site", content: t("DefaultLayout.meta.twitter") },
@@ -66,16 +68,7 @@ useHead({
 		return meta;
 	}),
 	script: computed(() => {
-		const jsonLd: WithContext<WebSite> = {
-			"@context": "https://schema.org",
-			"@type": "WebSite",
-			name: t("DefaultLayout.meta.title"),
-			description: t("DefaultLayout.meta.description"),
-		};
-
-		const scripts: Array<
-			{ type: "application/ld+json"; innerHTML: string } | { type: ""; innerHTML: string }
-		> = [{ type: "application/ld+json", innerHTML: JSON.stringify(jsonLd, safeJsonLdReplacer) }];
+		const scripts: Array<{ type: ""; innerHTML: string }> = [];
 
 		if (isNonEmptyString(env.public.matomoBaseUrl) && isNonEmptyString(env.public.matomoId)) {
 			const baseUrl = env.public.matomoBaseUrl;

@@ -12,21 +12,24 @@ const t = useTranslations();
 const route = useRoute();
 const id = Number(route.params.id);
 
-usePageMetadata({
-	title: t("Pages.searchviews.event.title"),
-});
-
 const { $api } = useNuxtApp();
 const detailsEndpoint = "apis_api_apis_ontology.event_retrieve";
 const relationsEndpoint = "apis_api_apis_ontology.event_relations_list";
 
+const { entity, load } = useRecordDetails(
+	detailsEndpoint,
+	id,
+	() => {
+		return $api[detailsEndpoint]({ params: { id } });
+	},
+	(record) => {
+		return record.name;
+	},
+	t("Pages.searchviews.event.title"),
+);
+
 const data = ref({
-	entity: useQuery({
-		queryKey: [detailsEndpoint, id],
-		queryFn: () => {
-			return $api[detailsEndpoint]({ params: { id } });
-		},
-	}),
+	entity,
 	relations: useQuery({
 		queryKey: [relationsEndpoint, id],
 		queryFn: () => {
@@ -63,6 +66,8 @@ const flattenedRelations = computed(() => {
 	}
 	return getFlattenedRelations(data.value.relations.data);
 });
+
+await load();
 </script>
 
 <template>

@@ -1,62 +1,80 @@
-import { join } from "node:path";
-
 import { createUrl } from "@acdh-oeaw/lib";
-import fg from "fast-glob";
-import { defineEventHandler } from "nuxt/server";
+import { defineCachedHandler } from "nitro/cache";
+import { useRuntimeConfig } from "nitro/runtime-config";
 import * as v from "valibot";
 
-import { locales } from "#/app/config/i18n.config.ts";
+import { createApiClient } from "#/app/lib/api.ts";
+import { escape } from "#/app/utils/safe-json-ld-replacer.ts";
 
-const baseUrl = v.parse(v.pipe(v.string(), v.url()), process.env.NUXT_PUBLIC_APP_BASE_URL);
+const recordTypes = ["event", "function", "institution", "person", "place", "salary"] as const;
 
-const paths = fg.globSync("./**/*.vue", { cwd: join(process.cwd(), "app", "pages") });
+const pages = [
+	"/",
+	"/iiif",
+	"/imprint",
+	"/network",
+	"/search/events",
+	"/search/functions",
+	"/search/institutions",
+	"/search/persons",
+	"/search/places",
+	"/search/salaries",
+];
 
-const routes: Array<string> = [];
+async function getRecordPaths(apiBaseUrl: string) {
+	const api = createApiClient(apiBaseUrl);
+	const recordPaths = await Promise.all(
+		recordTypes.map(async (type) => {
+			const list = api[`apis_api_apis_ontology.${type}_list`];
+			const paths: Array<string> = [];
+			let offset = 0;
 
-paths.forEach((path) => {
-	const _route = path.slice(0, -".vue".length).replace(/\/?index$/, "");
-	const route = _route.length === 0 ? _route : `/${_route}`;
+			while (true) {
+				const page = await list({ queries: { limit: 500, offset } });
 
-	const segments = [];
+				for (const { id } of page.results) {
+					paths.push(`/detail/${type}/${id}`);
+				}
 
-	for (const segment of route.split("/")) {
-		/** Dynamic routes. */
-		if (segment.startsWith("[") && segment.endsWith("]")) {
-			return;
+				if (!page.next) {
+					return paths;
+				}
+
+				if (page.results.length === 0) {
+					throw new Error(`The ${type} API returned an empty sitemap page with a next link.`);
+				}
+
+				offset += page.results.length;
+			}
+		}),
+	);
+
+	return recordPaths.flat();
+}
+
+export default defineCachedHandler(
+	async (event) => {
+		const config = useRuntimeConfig().public as Record<string, unknown>;
+		const baseUrl = v.parse(v.pipe(v.string(), v.url()), config.appBaseUrl);
+
+		const paths = new Set(pages);
+		if (config.bots === "enabled") {
+			const apiBaseUrl = v.parse(v.pipe(v.string(), v.url()), config.apiBaseUrl);
+			for (const path of await getRecordPaths(apiBaseUrl)) {
+				paths.add(path);
+			}
 		}
 
-		segments.push(segment);
-	}
-
-	routes.push(segments.join("/"));
-});
-
-const entries: Array<{ url: string; lastModified?: Date }> = locales.flatMap(() => {
-	return routes.map((pathname) => {
-		return {
-			url: String(createUrl({ baseUrl, pathname })),
-			// lastModified: new Date(),
-		};
-	});
-});
-
-const sitemap = [
-	'<?xml version="1.0" encoding="UTF-8"?>',
-	'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-	...entries.flatMap((entry) => {
-		const elements = ["<url>", `<loc>${entry.url}</loc>`];
-		if (entry.lastModified != null) {
-			elements.push(`<lastmod>${entry.lastModified.toISOString()}</lastmod>`);
-		}
-		elements.push("</url>");
-		return elements;
-	}),
-	"</urlset>",
-].join("\n");
-
-export default defineEventHandler((event) => {
-	if (!event.res.headers.has("content-type")) {
-		event.res.headers.set("content-type", "application/xml");
-	}
-	return sitemap;
-});
+		event.res.headers.set("content-type", "application/xml; charset=utf-8");
+		return [
+			'<?xml version="1.0" encoding="UTF-8"?>',
+			'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+			...Array.from(paths, (pathname) => {
+				const url = String(createUrl({ baseUrl, pathname }));
+				return `<url><loc>${escape(url)}</loc></url>`;
+			}),
+			"</urlset>",
+		].join("\n");
+	},
+	{ maxAge: 60 * 60, swr: true },
+);

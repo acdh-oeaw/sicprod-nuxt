@@ -69,7 +69,7 @@ export default defineNuxtConfig({
 	nitro: {
 		compressPublicAssets: true,
 		prerender: {
-			routes: ["/manifest.webmanifest", "/robots.txt", "/sitemap.xml"],
+			routes: ["/manifest.webmanifest", "/robots.txt"],
 		},
 	},
 	runtimeConfig: {

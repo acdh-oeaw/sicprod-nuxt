@@ -33,6 +33,7 @@ test.describe("app", () => {
 
 	test("should serve a sitemap.xml", async ({ request }) => {
 		const response = await request.get("/sitemap.xml");
+		expect(response.status()).toBe(200);
 		const body = await response.body();
 
 		// TODO: use toMatchSnapshot
